@@ -13,9 +13,14 @@ security:
                 admin: { password: adminpass, roles: [ 'ROLE_ADMIN' ] }
 
     firewalls:
+        secured_area:            
+            pattern:    ^/
+            anonymous: ~
+            http_basic:
+                realm: "Secured Demo Area"
         dev:
             pattern:  ^/(_(profiler|wdt)|css|images|js)/
-            security: false        
+            security: false
 
     access_control:
         #- { path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUSLY, requires_channel: https }
