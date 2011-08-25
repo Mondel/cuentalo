@@ -1,0 +1,18 @@
+{% extends '::base.html.twig' %}
+
+{% block title %} cuentalo.com.uy | Mondel {% endblock %}
+    
+{% block body %}
+    
+    <form action="{{ path('_homepage') }}" method="post" {{ form_enctype(form) }}>
+        
+        {{ form_errors(form) }}
+        
+        {{ form_rest(form) }}
+        
+        <input type="submit" value="Registrarme" />
+        
+    </form>
+    
+{% endblock %}
+    

@@ -1,0 +1,7 @@
+parameters:
+#    mondel_cuentalo.example.class: Mondel\CuentaloBundle\Example
+
+services:
+#    mondel_cuentalo.example:
+#        class: %mondel_cuentalo.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]
