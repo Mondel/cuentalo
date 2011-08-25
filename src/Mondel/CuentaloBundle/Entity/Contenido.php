@@ -61,7 +61,6 @@ class Contenido
      * @var string $ip
      *
      * @Assert\MaxLength(20)
-     * @Assert\NotBlank()
      * @ORM\Column(name="ip", type="string", length=20)
      */
     private $ip;//$this->request->getClientIp()
@@ -122,7 +121,7 @@ class Contenido
     public function __construct()
     {
         $this->comentarios = new \Doctrine\Common\Collections\ArrayCollection();
-    $this->votos = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->votos = new \Doctrine\Common\Collections\ArrayCollection();
     }
     
     /**

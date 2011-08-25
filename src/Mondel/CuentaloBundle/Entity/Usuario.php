@@ -3,6 +3,7 @@
 namespace Mondel\CuentaloBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Validator\Constraints\Date;
 
@@ -13,7 +14,7 @@ use Symfony\Component\Validator\Constraints\Date;
  * @ORM\Entity(repositoryClass="Mondel\CuentaloBundle\Entity\UsuarioRepository")
  * @ORM\HasLifecycleCallbacks()
  */
-class Usuario
+class Usuario implements UserInterface
 {
     /**
      * @var integer $id
@@ -82,7 +83,7 @@ class Usuario
      * @Assert\MaxLength(10)
      * @Assert\MinLength(6)
      * @Assert\NotBlank()
-     * @ORM\Column(name="contrasenia", type="string", length=10)
+     * @ORM\Column(name="contrasenia", type="string", length=255)
      */
     private $contrasenia;
 
@@ -288,4 +289,34 @@ class Usuario
     {
         return $this->votos;
     }
+
+    /*
+     * Implements UserInterface
+     */
+    public function equals(UserInterface $user) {
+        return $user->getUsername() == $this->getUsername();
+    }
+
+    public function eraseCredentials() {
+        
+    }
+
+    public function getPassword() {
+        return $this->getContrasenia();
+    }
+
+    public function getRoles() {
+        return array('ROLE_USER');
+    }
+
+    public function getSalt() {
+        return false;        
+    }
+
+    public function getUsername() {
+        return $this->getEmail();
+    }
+    /*
+     * Fin Implements UserInterface
+     */
 }

@@ -4,15 +4,48 @@
     
 {% block body %}
     
-    <form action="{{ path('_homepage') }}" method="post" {{ form_enctype(form) }}>
+    {% if( app.session.flash('notice') ) %}
+        <div class="notice">
+            <p>{{ app.session.flash('notice') }}</p>
+        </div>
+    {% endif %}
+
+    {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+
+        <a href="{{ path('logout') }}">Salir</a>
+
+    {% else %}
+        
+        <a href="{{ path('registro') }}">Registrarme</a> | <a href="{{ path('login') }}">Entrar</a>    
+        
+    {% endif %}
+    
+    <div>
+        Ultimos Mensajes:
+        {% for mensaje in ultimos_mensajes %}
+
+            <br/>
+        
+            {{ mensaje.fechaCreacion | date('d-m-Y') }} - {{ mensaje.texto }}
+            
+            <br/>
+
+        {% else %}
+
+            <p>No hay mensajes aún</p>
+
+        {% endfor %}
+    </div>
+    
+    <form action="{{ path('homepage') }}" method="post" {{ form_enctype(form) }}>
         
         {{ form_errors(form) }}
         
         {{ form_rest(form) }}
         
-        <input type="submit" value="Registrarme" />
+        <input type="submit" value="Crear" />
         
     </form>
-    
+        
 {% endblock %}
     
