@@ -1,3 +1,6 @@
+# Eliminar archivos temporales en Entity (?)
+# find . -name '*.php~' -exec rm {} \;
+
 Symfony Standard Edition
 ========================
 

@@ -1,0 +1,39 @@
+{% extends '::base.html.twig' %}
+
+{% block body %}
+    
+    <p>Titulo: {{ contenido.titulo }}</p>
+    <p>Texto: {{ contenido.texto }}</p>
+    <br/>
+    
+    {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+        
+        Deja tus comentarios:
+        <br/>
+        <form action="{{ path('vista_contenido', {'id': contenido.id, 'titulo': contenido.slug, 'tipo': contenido.tipo}) }}" method="post" {{ form_enctype(form) }}>
+
+            {{ form_errors(form) }}
+
+            {{ form_rest(form) }}
+
+            <input type="submit" value="Comentar" />
+
+        </form>
+    {% endif %}
+    <br/>
+    
+    <br/>
+    Comentarios:
+    <br/>
+    
+    {% for comentario in contenido.comentarios %}
+        
+        <p>{{ comentario.fechaCreacion | date('d-m-Y')}} - {{ comentario.texto }}</p>
+    
+    {% else %}
+    
+        <p>No hay comentarios aún</p>
+    
+    {% endfor %}    
+
+{% endblock %}
