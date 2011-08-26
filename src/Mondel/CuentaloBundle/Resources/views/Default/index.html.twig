@@ -4,48 +4,90 @@
     
 {% block body %}
     
-    {% if( app.session.flash('notice') ) %}
-        <div class="notice">
-            <p>{{ app.session.flash('notice') }}</p>
-        </div>
-    {% endif %}
+    <div id="top" style="height: 30px;">
+        {% if is_granted('IS_AUTHENTICATED_FULLY') %}
 
-    {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+            <a href="{{ path('logout') }}">Salir</a>
 
-        <a href="{{ path('logout') }}">Salir</a>
+        {% else %}
 
-    {% else %}
-        
-        <a href="{{ path('registro') }}">Registrarme</a> | <a href="{{ path('login') }}">Entrar</a>    
-        
-    {% endif %}
+            <div style="float: left;">
+                {# Incluyo el login - Twig es genial! #}
+                {% include 'MondelCuentaloBundle:Usuario:login.html.twig' %}
+            </div>
+
+            <div style="float: right;">
+                <a href="{{ path('registro') }}">Registrarme</a>    
+            </div>
+
+        {% endif %}
+    </div>
     
     <div>
-        Ultimos Mensajes:
-        {% for mensaje in ultimos_mensajes %}
-
-            <br/>
+        <hr/>
+        <form action="{{ path('homepage') }}" method="post" {{ form_enctype(form) }}>
         
-            {{ mensaje.fechaCreacion | date('d-m-Y') }} - {{ mensaje.texto }}
+            {{ form_errors(form) }}
+
+            {{ form_rest(form) }}
+
+            <input type="submit" value="Crear" />
+
+        </form>
+    </div>
+
+    <div>
+        <h3>Ultimos Mensajes:</h3>
+        {% for mensaje in ultimos_mensajes %}
+        
+            <a href="{{ path('vista_contenido', 
+                { 'id': mensaje.id, 
+                'tipo': mensaje.tipo, 
+                'titulo': mensaje.slug }
+            ) }}">{{ mensaje.titulo }}</a> - {{ mensaje.fechaCreacion | date('d-m-Y') }}
             
             <br/>
+            
+        {% else %}
 
+            <p>No hay mensajes aún</p>
+
+        {% endfor %}
+            
+        <h3>Ultimas Anécdotas:</h3>
+        {% for anecdota in ultimas_anecdotas %}
+        
+            <a href="{{ path('vista_contenido', 
+                { 'id': anecdota.id, 
+                'tipo': anecdota.tipo, 
+                'titulo': anecdota.slug }
+            ) }}">{{ anecdota.titulo }}</a> - {{ anecdota.fechaCreacion | date('d-m-Y') }}
+            
+            <br/>
+            
+        {% else %}
+
+            <p>No hay mensajes aún</p>
+
+        {% endfor %}
+            
+         <h3>Ultimos Secretos:</h3>
+        {% for secreto in ultimos_secretos %}
+        
+            <a href="{{ path('vista_contenido', 
+                { 'id': secreto.id, 
+                'tipo': secreto.tipo, 
+                'titulo': secreto.slug }
+            ) }}">{{ secreto.titulo }}</a> - {{ secreto.fechaCreacion | date('d-m-Y') }}
+            
+            <br/>
+            
         {% else %}
 
             <p>No hay mensajes aún</p>
 
         {% endfor %}
     </div>
-    
-    <form action="{{ path('homepage') }}" method="post" {{ form_enctype(form) }}>
-        
-        {{ form_errors(form) }}
-        
-        {{ form_rest(form) }}
-        
-        <input type="submit" value="Crear" />
-        
-    </form>
-        
+
 {% endblock %}
     

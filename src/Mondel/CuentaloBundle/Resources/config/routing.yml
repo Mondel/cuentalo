@@ -3,15 +3,19 @@ homepage:
     defaults: { _controller: MondelCuentaloBundle:Default:index }
 
 login:
-    pattern:   /login
-    defaults:  { _controller: MondelCuentaloBundle:Usuario:login }
+    pattern:  /login    
+    defaults: { _controller: MondelCuentaloBundle:Usuario:login }
     
 login_check:
-    pattern:   /login_check
+    pattern:  /login_check
     
 logout:
-    pattern:   /logout
+    pattern:  /logout
     
 registro:
-    pattern:   /registro
-    defaults:  { _controller: MondelCuentaloBundle:Usuario:registro }
+    pattern:  /registro
+    defaults: { _controller: MondelCuentaloBundle:Usuario:registro }
+    
+vista_contenido:
+    pattern:  /{tipo}/{id}/{titulo}       
+    defaults: { _controller: MondelCuentaloBundle:Contenido:mostrar }

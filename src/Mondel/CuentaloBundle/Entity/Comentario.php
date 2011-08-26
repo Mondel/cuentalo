@@ -34,8 +34,7 @@ class Comentario
     /**
      * @var string $ip
      *
-     * @Assert\MaxLength(20)
-     * @Assert\NotBlank()
+     * @Assert\MaxLength(20)     
      * @ORM\Column(name="ip", type="string", length=20)
      */
     private $ip;//$this->request->getClientIp()
@@ -59,6 +58,12 @@ class Comentario
      * @ORM\JoinColumn(name="usuario_id", referencedColumnName="id")
      */
     private $usuario;
+    
+    /**
+     * @ORM\ManyToOne(targetEntity="Contenido", inversedBy="comentarios")
+     * @ORM\JoinColumn(name="contenido_id", referencedColumnName="id")
+     */
+    private $contenido;
     
     /**
      * @ORM\prePersist
@@ -164,5 +169,25 @@ class Comentario
     public function getUsuario()
     {
         return $this->usuario;
+    }
+
+    /**
+     * Set contenido
+     *
+     * @param Mondel\CuentaloBundle\Entity\Contenido $contenido
+     */
+    public function setContenido(\Mondel\CuentaloBundle\Entity\Contenido $contenido)
+    {
+        $this->contenido = $contenido;
+    }
+
+    /**
+     * Get contenido
+     *
+     * @return Mondel\CuentaloBundle\Entity\Contenido 
+     */
+    public function getContenido()
+    {
+        return $this->contenido;
     }
 }

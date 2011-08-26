@@ -25,8 +25,7 @@ class Voto
     /**
      * @var string $ip
      *
-     * @Assert\MaxLength(20)
-     * @Assert\NotBlank()
+     * @Assert\MaxLength(20)     
      * @ORM\Column(name="ip", type="string", length=20)
      */
     private $ip;//$this->request->getClientIp()
