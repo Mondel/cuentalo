@@ -12,6 +12,7 @@ use Mondel\CuentaloBundle\Helpers\NetworkHelper;
  *
  * @ORM\Table()
  * @ORM\Entity(repositoryClass="Mondel\CuentaloBundle\Entity\VotoRepository")
+ * @ORM\HasLifecycleCallbacks()
  */
 class Voto
 {
@@ -36,7 +37,6 @@ class Voto
     /**
      * @var string pais
      *
-     * @Assert\NotBlank()
      * @ORM\Column(name="pais", type="string", length=50)
      */
     private $pais;
@@ -73,7 +73,7 @@ class Voto
      */
     public function setFechaCreacion()
     {
-        $this->fecha_creacion = new \Date();
+        $this->fecha_creacion = new \DateTime();
     }
 
     /*

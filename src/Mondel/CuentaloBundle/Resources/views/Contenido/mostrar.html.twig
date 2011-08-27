@@ -3,8 +3,10 @@
 {% block body %}
     
     <p>Titulo: {{ contenido.titulo }}</p>
+    
     <p>Texto: {{ contenido.texto }}</p>
-    <br/>
+    
+    <p>Votos: {{ contenido.votos | length }} - <a href="{{ path('votar', {'id': contenido.id}) }}">votar</a></p>
     
     {% if not is_granted('IS_AUTHENTICATED_FULLY') %}
     

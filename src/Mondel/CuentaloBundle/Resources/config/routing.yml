@@ -19,3 +19,7 @@ registro:
 vista_contenido:
     pattern:  /{tipo}/{id}/{titulo}       
     defaults: { _controller: MondelCuentaloBundle:Contenido:mostrar }
+    
+votar:
+    pattern:  /votar/{id}
+    defaults: { _controller: MondelCuentaloBundle:Contenido:votar }
