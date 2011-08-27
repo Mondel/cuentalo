@@ -79,6 +79,11 @@ class Usuario implements UserInterface
     private $fecha_actualizacion;
 
     /**
+     * @ORM\Column(name="salt", type="string", length="255")
+     */
+    private $salt;
+    
+    /**
      * @var string $contrasenia
      *
      * @Assert\MaxLength(10)
@@ -96,24 +101,7 @@ class Usuario implements UserInterface
     /**
      * @ORM\OneToMany(targetEntity="Voto", mappedBy="usuario")
      */
-    private $votos;    
-    
-    /**
-     * @ORM\prePersist
-     */
-    public function setFechaCreacion()
-    {
-        $this->fecha_creacion = new \DateTime();
-        $this->fecha_actualizacion = $this->getFechaCreacion();
-    }
-    
-    /**
-     * @ORM\postUpdate
-     */
-    public function setFechaActualizacion()
-    {
-        $this->fecha_actualizacion = new \Date();
-    }
+    private $votos;
     
     /*
      * Implements UserInterface
@@ -135,7 +123,7 @@ class Usuario implements UserInterface
     }
 
     public function getSalt() {
-        return md5(time());
+        return $this->salt;
     }
 
     public function getUsername() {
@@ -144,6 +132,31 @@ class Usuario implements UserInterface
     /*
      * Fin Implements UserInterface
      */
+    
+    /**
+     * @ORM\prePersist
+     */
+    public function setSalt()
+    {
+        $this->salt = md5(time());
+    }
+    
+    /**
+     * @ORM\prePersist
+     */
+    public function setFechaCreacion()
+    {
+        $this->fecha_creacion = new \DateTime();
+        $this->fecha_actualizacion = $this->getFechaCreacion();
+    }
+    
+    /**
+     * @ORM\postUpdate
+     */
+    public function setFechaActualizacion()
+    {
+        $this->fecha_actualizacion = new \Date();
+    }
     
     /*
      * Fin mis propiedades

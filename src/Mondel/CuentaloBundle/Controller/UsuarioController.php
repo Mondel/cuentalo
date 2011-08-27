@@ -23,7 +23,7 @@ class UsuarioController extends Controller
 
         return $this->render('MondelCuentaloBundle:Usuario:login.html.twig', array(            
             'last_username' => $session->get(SecurityContext::LAST_USERNAME),
-            'error'         => $error,
+            'error'         => $error,            
         ));
     }
     

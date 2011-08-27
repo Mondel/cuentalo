@@ -16,15 +16,27 @@ class DefaultController extends Controller
         
         $ultimos_mensajes = $this->getDoctrine()
                 ->getRepository('MondelCuentaloBundle:Contenido')
-                ->findBy(array('tipo' => 'm'), null, 10, 20);
+                ->findBy(
+                        array('tipo' => 'm'), 
+                        array('fecha_creacion' => 'DESC'), 
+                        10
+                );
                 
         $ultimas_anecdotas = $this->getDoctrine()
                 ->getRepository('MondelCuentaloBundle:Contenido')
-                ->findBy(array('tipo' => 'a'));
+                ->findBy(
+                        array('tipo' => 'a'),
+                        array('fecha_creacion' => 'DESC'), 
+                        10
+                );
         
         $ultimos_secretos = $this->getDoctrine()
                 ->getRepository('MondelCuentaloBundle:Contenido')
-                ->findBy(array('tipo' => 's'));
+                ->findBy(
+                        array('tipo' => 's'),
+                        array('fecha_creacion' => 'DESC'), 
+                        10
+                );
         
         $form = $this->createForm(new ContenidoType(), array());
         

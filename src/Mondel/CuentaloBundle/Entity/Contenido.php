@@ -5,8 +5,8 @@ namespace Mondel\CuentaloBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
-use Mondel\CuentaloBundle\Helpers\NetworkHelpers,
-    Mondel\CuentaloBundle\Helpers\StringHelpers;
+use Mondel\CuentaloBundle\Helpers\NetworkHelper,
+    Mondel\CuentaloBundle\Helpers\StringHelper;
 
 /**
  * Mondel\CuentaloBundle\Entity\Contenido

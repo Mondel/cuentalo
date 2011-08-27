@@ -3,9 +3,9 @@ homepage:
     defaults: { _controller: MondelCuentaloBundle:Default:index }
 
 login:
-    pattern:  /login    
+    pattern:  /login
     defaults: { _controller: MondelCuentaloBundle:Usuario:login }
-    
+      
 login_check:
     pattern:  /login_check
     

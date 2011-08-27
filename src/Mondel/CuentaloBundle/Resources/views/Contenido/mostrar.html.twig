@@ -19,6 +19,11 @@
             <input type="submit" value="Comentar" />
 
         </form>
+        
+    {% else %}
+        
+        <p>Para poder comentar debes <a href="{{ path('registro') }}">Registrarte</a> o <a href="{{ path('login') }}">Entrar</a></p>
+        
     {% endif %}
     <br/>
     
