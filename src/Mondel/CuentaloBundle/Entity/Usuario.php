@@ -52,7 +52,7 @@ class Usuario implements UserInterface
      * @Assert\Email()
      * @Assert\MaxLength(50)
      * @Assert\NotBlank()
-     * @ORM\Column(name="email", type="string", length=50)
+     * @ORM\Column(name="email", type="string", length=50, unique="true")
      */
     private $email;
 
@@ -60,7 +60,7 @@ class Usuario implements UserInterface
      * @var string $sexo
      *
      * @Assert\Choice({"m", "f"})
-     * @ORM\Column(name="sexo", type="string", length=1, unique="true")
+     * @ORM\Column(name="sexo", type="string", length=1)
      */
     private $sexo;
 
@@ -106,40 +106,38 @@ class Usuario implements UserInterface
     /*
      * Implements UserInterface
      */
-    public function equals(UserInterface $user) {
-        return $user->getUsername() == $this->getUsername();
+    public function equals(UserInterface $user)
+    {
+        return md5($user->getUsername()) == md5($this->getUsername());
     }
 
-    public function eraseCredentials() {
+    public function eraseCredentials()
+    {
         
     }
 
-    public function getPassword() {
+    public function getPassword()
+    {
         return $this->getContrasenia();
     }
 
-    public function getRoles() {
+    public function getRoles()
+    {
         return array('ROLE_USER');
     }
 
-    public function getSalt() {
+    public function getSalt()
+    {
         return $this->salt;
     }
 
-    public function getUsername() {
+    public function getUsername()
+    {
         return $this->getEmail();
     }
     /*
      * Fin Implements UserInterface
      */
-    
-    /**
-     * @ORM\prePersist
-     */
-    public function setSalt()
-    {
-        $this->salt = md5(time());
-    }
     
     /**
      * @ORM\prePersist
@@ -160,7 +158,7 @@ class Usuario implements UserInterface
     
     /*
      * Fin mis propiedades
-     */
+     */    
     
     public function __construct()
     {
@@ -276,6 +274,16 @@ class Usuario implements UserInterface
     public function getFechaActualizacion()
     {
         return $this->fecha_actualizacion;
+    }
+
+    /**
+     * Set salt
+     *
+     * @param string $salt
+     */
+    public function setSalt($salt)
+    {
+        $this->salt = $salt;
     }
 
     /**

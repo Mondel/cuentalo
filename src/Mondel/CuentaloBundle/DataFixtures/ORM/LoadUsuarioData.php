@@ -53,7 +53,8 @@ class LoadUsuarioData extends AbstractFixture implements OrderedFixtureInterface
             $usuario->setApellido($apellidos[rand(0, count($apellidos) - 1)]);
             $usuario->setEmail('usuario' . $i . '@cuentalo.com.uy');
             $usuario->setSexo($sexos[rand(0, count($sexos) - 1)]);
-
+            $usuario->setSalt(md5(time()));
+            
             $encoder = $factory->getEncoder($usuario);
             $contrasenia = $encoder->encodePassword(
                     'usuario' . $i, $usuario->getSalt()
