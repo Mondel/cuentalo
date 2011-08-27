@@ -5,7 +5,9 @@ namespace Mondel\CuentaloBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Security\Core\SecurityContext;
 
+use Mondel\CuentaloBundle\Entity\Contenido;
 use Mondel\CuentaloBundle\Form\Type\ContenidoType;
+use Mondel\CuentaloBundle\Helpers\ObjectHelper;
 
 class DefaultController extends Controller
 {    
@@ -50,8 +52,10 @@ class DefaultController extends Controller
             $form->bindRequest($request);
 
             if ($form->isValid()) {
+                $contenidoObj = new Contenido();
+                $data = $form->getData();
                 
-                $contenido = $form->getData();
+                $contenido = ObjectHelper::getObject($contenidoObj, $data);
                 $contenido->setIp($request->getClientIp());
                 
                 $usuario = $this->get('security.context')->getToken()->getUser();

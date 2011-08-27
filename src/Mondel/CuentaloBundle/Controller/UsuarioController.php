@@ -6,7 +6,9 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken;
 use Symfony\Component\Security\Core\SecurityContext;
 
+use Mondel\CuentaloBundle\Entity\Usuario;
 use Mondel\CuentaloBundle\Form\Type\UsuarioType;
+use Mondel\CuentaloBundle\Helpers\ObjectHelper;
 
 class UsuarioController extends Controller
 {
@@ -36,7 +38,12 @@ class UsuarioController extends Controller
             $form->bindRequest($request);
 
             if ($form->isValid()) {                    
-                $usuario = $form->getData();
+                $data = $form->getData();
+                $usuarioObj = new Usuario();
+                
+                $usuario = ObjectHelper::getObject($usuarioObj, $data);
+                
+                $usuario->setSalt(md5(time()));
                 
                 $factory = $this->get('security.encoder_factory');
                 $encoder = $factory->getEncoder($usuario);

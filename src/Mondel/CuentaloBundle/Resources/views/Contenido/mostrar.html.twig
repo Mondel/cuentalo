@@ -6,25 +6,24 @@
     <p>Texto: {{ contenido.texto }}</p>
     <br/>
     
-    {% if is_granted('IS_AUTHENTICATED_FULLY') %}
-        
-        Deja tus comentarios:
-        <br/>
-        <form action="{{ path('vista_contenido', {'id': contenido.id, 'titulo': contenido.slug, 'tipo': contenido.tipo}) }}" method="post" {{ form_enctype(form) }}>
-
-            {{ form_errors(form) }}
-
-            {{ form_rest(form) }}
-
-            <input type="submit" value="Comentar" />
-
-        </form>
-        
-    {% else %}
-        
-        <p>Para poder comentar debes <a href="{{ path('registro') }}">Registrarte</a> o <a href="{{ path('login') }}">Entrar</a></p>
-        
+    {% if not is_granted('IS_AUTHENTICATED_FULLY') %}
+    
+        <p>Para poder comentar debes estar logueado, <a href="{{ path('registro') }}">Registrarte</a></p>
+    
     {% endif %}
+    
+    Deja tus comentarios:
+    <br/>
+    <form action="{{ path('vista_contenido', {'id': contenido.id, 'titulo': contenido.slug, 'tipo': contenido.tipo}) }}" method="post" {{ form_enctype(form) }}>
+
+        {{ form_errors(form) }}
+
+        {{ form_rest(form) }}
+
+        <input type="submit" value="Comentar" />
+
+    </form>
+    
     <br/>
     
     <br/>
