@@ -5,6 +5,7 @@ namespace Mondel\CuentaloBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken;
 use Symfony\Component\Security\Core\SecurityContext;
+
 use Mondel\CuentaloBundle\Form\Type\UsuarioType;
 
 class UsuarioController extends Controller

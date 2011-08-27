@@ -1,9 +1,10 @@
 <?php
 
-namespace Mondel\CuentaloBundle\Resources\util;
+namespace Mondel\CuentaloBundle\Helpers;
 
-class Util
+class StringHelper
 {
+    
     /**
      * Devuelve el slug de la cadena de texto que se le pasa
      * Código copiado del método urlize() de Doctrine 1
@@ -31,7 +32,7 @@ class Util
         return trim($valor, '-');
     }
 
-    public static function sinAcentos($string)
+    private static function sinAcentos($string)
     {
         if (!preg_match('/[\x80-\xff]/', $string)) {
             return $string;
@@ -192,4 +193,5 @@ class Util
         }
         return true;
     }
+    
 }

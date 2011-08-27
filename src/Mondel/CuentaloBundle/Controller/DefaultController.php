@@ -4,6 +4,7 @@ namespace Mondel\CuentaloBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Security\Core\SecurityContext;
+
 use Mondel\CuentaloBundle\Form\Type\ContenidoType;
 
 class DefaultController extends Controller
@@ -15,8 +16,8 @@ class DefaultController extends Controller
         
         $ultimos_mensajes = $this->getDoctrine()
                 ->getRepository('MondelCuentaloBundle:Contenido')
-                ->findBy(array('tipo' => 'm'));
-        
+                ->findBy(array('tipo' => 'm'), null, 10, 20);
+                
         $ultimas_anecdotas = $this->getDoctrine()
                 ->getRepository('MondelCuentaloBundle:Contenido')
                 ->findBy(array('tipo' => 'a'));
@@ -57,12 +58,12 @@ class DefaultController extends Controller
         return $this->render(
                 'MondelCuentaloBundle:Default:index.html.twig',
                 array(
-                    'ultimos_mensajes' => $ultimos_mensajes,
-                    'ultimos_secretos' => $ultimos_secretos,
+                    'ultimos_mensajes'  => $ultimos_mensajes,                    
+                    'ultimos_secretos'  => $ultimos_secretos,
                     'ultimas_anecdotas' => $ultimas_anecdotas,
-                    'form' => $form->createView(),
-                    'last_username' => $session->get(SecurityContext::LAST_USERNAME),
-                    'error'         => $error,
+                    'form'              => $form->createView(),
+                    'last_username'     => $session->get(SecurityContext::LAST_USERNAME),
+                    'error'             => $error,
                 )
         );
     }

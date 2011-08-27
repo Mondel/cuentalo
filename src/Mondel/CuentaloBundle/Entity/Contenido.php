@@ -2,9 +2,11 @@
 
 namespace Mondel\CuentaloBundle\Entity;
 
-use Mondel\CuentaloBundle\Resources\util\Util;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
+
+use Mondel\CuentaloBundle\Helpers\NetworkHelpers,
+    Mondel\CuentaloBundle\Helpers\StringHelpers;
 
 /**
  * Mondel\CuentaloBundle\Entity\Contenido
@@ -15,6 +17,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  */
 class Contenido
 {
+    
     /**
      * @var integer $id
      *
@@ -63,7 +66,7 @@ class Contenido
      * @Assert\MaxLength(20)
      * @ORM\Column(name="ip", type="string", length=20)
      */
-    private $ip;//$this->request->getClientIp()
+    private $ip;
     
     /**
      * @var string pais
@@ -108,7 +111,7 @@ class Contenido
      */
     public function setPais()
     {
-        $this->pais = "";//TODO: Calcular segun ip
+        $this->pais = NetworkHelper::getCountryNameByIp($this->getIp());
     }
     
     /**
@@ -116,8 +119,13 @@ class Contenido
      */
     public function setSlug()
     {
-        $this->slug = Util::slugify($this->getTitulo());
+        $this->slug = StringHelper::slugify($this->getTitulo());
     }
+    
+    /*
+     * Fin mis propiedes
+     */
+    
     public function __construct()
     {
         $this->comentarios = new \Doctrine\Common\Collections\ArrayCollection();
@@ -235,6 +243,16 @@ class Contenido
     }
 
     /**
+     * Get fecha_creacion
+     *
+     * @return date 
+     */
+    public function getFechaCreacion()
+    {
+        return $this->fecha_creacion;
+    }
+
+    /**
      * Set usuario
      *
      * @param Mondel\CuentaloBundle\Entity\Usuario $usuario
@@ -293,14 +311,5 @@ class Contenido
     {
         return $this->votos;
     }
-
-    /**
-     * Get fecha_creacion
-     *
-     * @return date 
-     */
-    public function getFechaCreacion()
-    {
-        return $this->fecha_creacion;
-    }
+    
 }

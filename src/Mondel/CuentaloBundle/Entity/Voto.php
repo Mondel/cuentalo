@@ -5,6 +5,8 @@ namespace Mondel\CuentaloBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
+use Mondel\CuentaloBundle\Helpers\NetworkHelper;
+
 /**
  * Mondel\CuentaloBundle\Entity\Voto
  *
@@ -13,6 +15,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  */
 class Voto
 {
+    
     /**
      * @var integer $id
      *
@@ -28,7 +31,7 @@ class Voto
      * @Assert\MaxLength(20)     
      * @ORM\Column(name="ip", type="string", length=20)
      */
-    private $ip;//$this->request->getClientIp()
+    private $ip;
     
     /**
      * @var string pais
@@ -62,7 +65,7 @@ class Voto
      */
     public function setPais()
     {
-        $this->pais = "";//TODO: Calcular segun ip
+        $this->pais = NetworkHelper::getCountryNameByIp($this->getIp());
     }
     
     /**
@@ -72,6 +75,10 @@ class Voto
     {
         $this->fecha_creacion = new \Date();
     }
+
+    /*
+     * Fin mis propiedades
+     */    
 
     /**
      * Get id
@@ -162,4 +169,5 @@ class Voto
     {
         return $this->contenido;
     }
+    
 }

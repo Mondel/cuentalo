@@ -16,6 +16,7 @@ use Symfony\Component\Validator\Constraints\Date;
  */
 class Usuario implements UserInterface
 {
+    
     /**
      * @var integer $id
      *
@@ -59,7 +60,7 @@ class Usuario implements UserInterface
      * @var string $sexo
      *
      * @Assert\Choice({"m", "f"})
-     * @ORM\Column(name="sexo", type="string", length=1)
+     * @ORM\Column(name="sexo", type="string", length=1, unique="true")
      */
     private $sexo;
 
@@ -113,6 +114,40 @@ class Usuario implements UserInterface
     {
         $this->fecha_actualizacion = new \Date();
     }
+    
+    /*
+     * Implements UserInterface
+     */
+    public function equals(UserInterface $user) {
+        return $user->getUsername() == $this->getUsername();
+    }
+
+    public function eraseCredentials() {
+        
+    }
+
+    public function getPassword() {
+        return $this->getContrasenia();
+    }
+
+    public function getRoles() {
+        return array('ROLE_USER');
+    }
+
+    public function getSalt() {
+        return md5(time());
+    }
+
+    public function getUsername() {
+        return $this->getEmail();
+    }
+    /*
+     * Fin Implements UserInterface
+     */
+    
+    /*
+     * Fin mis propiedades
+     */
     
     public function __construct()
     {
@@ -289,34 +324,5 @@ class Usuario implements UserInterface
     {
         return $this->votos;
     }
-
-    /*
-     * Implements UserInterface
-     */
-    public function equals(UserInterface $user) {
-        return $user->getUsername() == $this->getUsername();
-    }
-
-    public function eraseCredentials() {
-        
-    }
-
-    public function getPassword() {
-        return $this->getContrasenia();
-    }
-
-    public function getRoles() {
-        return array('ROLE_USER');
-    }
-
-    public function getSalt() {
-        return false;        
-    }
-
-    public function getUsername() {
-        return $this->getEmail();
-    }
-    /*
-     * Fin Implements UserInterface
-     */
+    
 }

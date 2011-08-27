@@ -5,6 +5,10 @@ namespace Mondel\CuentaloBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
+use Mondel\CuentaloBundle\Helpers\NetworkHelper,
+    Mondel\CuentaloBundle\Helpers\StringHelper;
+    
+
 /**
  * Mondel\CuentaloBundle\Entity\Comentario
  *
@@ -14,6 +18,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  */
 class Comentario
 {
+    
     /**
      * @var integer $id
      *
@@ -37,7 +42,7 @@ class Comentario
      * @Assert\MaxLength(20)     
      * @ORM\Column(name="ip", type="string", length=20)
      */
-    private $ip;//$this->request->getClientIp()
+    private $ip;
     
     /**
      * @var string pais
@@ -69,8 +74,8 @@ class Comentario
      * @ORM\prePersist
      */
     public function setPais()
-    {
-        $this->pais = "";//TODO: Calcular segun ip
+    {        
+        $this->pais = NetworkHelper::getCountryNameByIp($this->getIp());
     }
     
     /**
@@ -80,6 +85,10 @@ class Comentario
     {
         $this->fecha_creacion = new \DateTime();
     }
+
+    /*
+     * Fin mis propiedades
+     */    
 
     /**
      * Get id
@@ -190,4 +199,5 @@ class Comentario
     {
         return $this->contenido;
     }
+    
 }
