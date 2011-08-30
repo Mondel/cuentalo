@@ -52,9 +52,9 @@ class Comentario
     private $pais;
     
     /**
-     * @var date $fecha_creacion
+     * @var datetime $fecha_creacion
      *
-     * @ORM\Column(name="fecha_creacion", type="date")
+     * @ORM\Column(name="fecha_creacion", type="datetime")
      */
     private $fecha_creacion;
     

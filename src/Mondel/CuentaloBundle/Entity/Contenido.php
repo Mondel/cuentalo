@@ -76,9 +76,9 @@ class Contenido
     private $pais;
     
     /**
-     * @var date $fecha_creacion
+     * @var datetime $fecha_creacion
      *
-     * @ORM\Column(name="fecha_creacion", type="date")
+     * @ORM\Column(name="fecha_creacion", type="datetime")
      */
     private $fecha_creacion;
     
@@ -312,4 +312,24 @@ class Contenido
         return $this->votos;
     }
     
+
+    /**
+     * Add comentarios
+     *
+     * @param Mondel\CuentaloBundle\Entity\Comentario $comentarios
+     */
+    public function addComentario(\Mondel\CuentaloBundle\Entity\Comentario $comentarios)
+    {
+        $this->comentarios[] = $comentarios;
+    }
+
+    /**
+     * Add votos
+     *
+     * @param Mondel\CuentaloBundle\Entity\Voto $votos
+     */
+    public function addVoto(\Mondel\CuentaloBundle\Entity\Voto $votos)
+    {
+        $this->votos[] = $votos;
+    }
 }

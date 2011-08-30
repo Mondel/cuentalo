@@ -346,4 +346,24 @@ class Usuario implements UserInterface
         return $this->votos;
     }
     
+
+    /**
+     * Add contenidos
+     *
+     * @param Mondel\CuentaloBundle\Entity\Contenido $contenidos
+     */
+    public function addContenido(\Mondel\CuentaloBundle\Entity\Contenido $contenidos)
+    {
+        $this->contenidos[] = $contenidos;
+    }
+
+    /**
+     * Add votos
+     *
+     * @param Mondel\CuentaloBundle\Entity\Voto $votos
+     */
+    public function addVoto(\Mondel\CuentaloBundle\Entity\Voto $votos)
+    {
+        $this->votos[] = $votos;
+    }
 }
