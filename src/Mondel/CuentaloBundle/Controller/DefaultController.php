@@ -27,7 +27,6 @@ class DefaultController extends Controller
                 );
 
         $contenido = new Contenido();
-        $contenido->setTexto('Comparte tu secreto, anécdota o un mensaje al mundo...');
         $form = $this->createForm(new ContenidoType(), $contenido);
 
         if ($request->attributes->has(SecurityContext::AUTHENTICATION_ERROR)) {

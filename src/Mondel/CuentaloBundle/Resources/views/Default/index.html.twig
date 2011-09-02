@@ -15,7 +15,11 @@
     <div id="wrap">
 
         <div id="content_top">
-            OK ES EL TOP
+
+            <div id="logo">
+                Cuentalo.com.uy
+            </div>
+
         </div>
 
     </div>
@@ -40,7 +44,7 @@
             <form action="{{ path('homepage') }}" method="post" {{ form_enctype(form) }}>
 
                 {{ form_errors(form.texto) }}
-                {{ form_widget(form.texto) }}
+                {{ form_widget(form.texto, { 'attr': {'placeholder': 'Comparte tu secreto, anécdota o un mensaje al mundo...'} }) }}
 
                 <div id="options">
 
