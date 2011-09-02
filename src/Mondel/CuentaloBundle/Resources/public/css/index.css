@@ -1,0 +1,125 @@
+#menu {
+    line-height: 25px;
+}
+
+#menu li {
+    background: url('../img/arrow.png') 75% 70% no-repeat;
+    padding-top: 5px;
+}
+
+#menu li a {
+    text-decoration: none;
+}
+
+#center #wrap {
+    margin: 0 25px;
+}
+
+#top #wrap {
+    margin: 0 auto;
+    width: 1000px;
+}
+
+#top #wrap #content_top {
+    width: 807px;
+}
+
+#box {
+    background: url('../img/box.png');
+    height: 202px;
+    width: 587px;
+}
+
+#box textarea {
+    background-color: transparent;
+    border-color: transparent;
+    color: #929191;
+    height: 117px;
+    margin: 5px;
+    resize: none;
+    width: 573px;
+}
+
+#box #options {
+    font-size: 12px;
+    margin-left: 10px;
+    width: 560px;
+}
+
+#box #options select {
+    background: transparent;
+    border: none;
+}
+
+#box #options #right_options {
+    float: right;
+}
+
+#box_bottom {
+    margin: 7px 10px;
+}
+
+#box_bottom p {
+    float: left;
+    font-size: 14px;
+    margin: 10px 0;
+}
+
+#box_bottom a {
+    float: right;
+}
+
+.Button {
+	-moz-box-shadow:inset 0px 1px 0px 0px #ffffff;
+	-webkit-box-shadow:inset 0px 1px 0px 0px #ffffff;
+	box-shadow:inset 0px 1px 0px 0px #ffffff;
+	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #ffffff), color-stop(1, #f6f6f6) );
+	background:-moz-linear-gradient( center top, #ffffff 5%, #f6f6f6 100% );
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', endColorstr='#f6f6f6');
+	background-color:#ffffff;
+	-moz-border-radius:15px;
+	-webkit-border-radius:15px;
+	border-radius:15px;
+	border:1px solid #dcdcdc;
+	display:inline-block;
+	color:#666666;
+	font-family:arial;
+	font-size:15px;
+	font-weight:normal;
+	padding:6px 24px;
+	text-decoration:none;
+	text-shadow:1px 1px 0px #ffffff;
+}
+
+.Button:hover {
+	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #f6f6f6), color-stop(1, #ffffff) );
+	background:-moz-linear-gradient( center top, #f6f6f6 5%, #ffffff 100% );
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#f6f6f6', endColorstr='#ffffff');
+	background-color:#f6f6f6;
+}
+
+.Button:active {
+	position:relative;
+	top:1px;
+}
+
+/*
+@-webkit-keyframes greenPulse {
+    from { background-color: #959595; -webkit-box-shadow:: 0 0 9px #333; }
+    50% { background-color: #606060; -webkit-box-shadow:: 0 0 18px #91bd09; }
+    to { background-color: #959595; -webkit-box-shadow:: 0 0 9px #333; }
+}
+
+.Button {
+    padding: 5px 15px 5px;
+    margin: 0 10px 9px 0;
+    -moz-border-radius:15px;
+	-webkit-border-radius:15px;
+	border-radius:15px;
+    color: white;
+    text-decoration: none;
+    -webkit-animation-name: greenPulse;
+    -webkit-animation-duration: 2s;
+    -webkit-animation-iteration-count: infinite;
+}
+*/

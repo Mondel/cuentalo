@@ -1,19 +1,17 @@
 {% extends '::base.html.twig' %}
 
 {% block body %}
-    
-    <p>Titulo: {{ contenido.titulo }}</p>
-    
+
     <p>Texto: {{ contenido.texto }}</p>
-    
+
     <p>Votos: {{ contenido.votos | length }} - <a href="{{ path('votar', {'id': contenido.id}) }}">votar</a></p>
-    
+
     {% if not is_granted('IS_AUTHENTICATED_FULLY') %}
-    
+
         <p>Para poder comentar debes estar logueado, <a href="{{ path('registro') }}">Registrarte</a></p>
-    
+
     {% endif %}
-    
+
     Deja tus comentarios:
     <br/>
     <form action="{{ path('vista_contenido', {'id': contenido.id, 'titulo': contenido.slug, 'tipo': contenido.tipo}) }}" method="post" {{ form_enctype(form) }}>
@@ -25,21 +23,21 @@
         <input type="submit" value="Comentar" />
 
     </form>
-    
+
     <br/>
-    
+
     <br/>
     Comentarios:
     <br/>
-    
+
     {% for comentario in contenido.comentarios %}
-        
+
         <p>{{ comentario.fechaCreacion | date('d-m-Y')}} - {{ comentario.texto }}</p>
-    
+
     {% else %}
-    
+
         <p>No hay comentarios aún</p>
-    
-    {% endfor %}    
+
+    {% endfor %}
 
 {% endblock %}

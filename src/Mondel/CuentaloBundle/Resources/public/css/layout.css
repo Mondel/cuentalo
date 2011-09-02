@@ -1,0 +1,38 @@
+body {
+    background: url('../img/back.gif');
+    color: #6a6969;
+    font-family: Arial;
+}
+
+select {
+    color: black;
+}
+
+#top {
+    background: url('../img/top.gif');
+    height: 57px;
+}
+
+#content {
+    height: 1024px;
+    margin: 25px auto;
+    width: 1006px;
+}
+
+#left {
+    float: left;
+    width: 165px;
+}
+
+#center {
+    border-left: 1px solid #d7d7d7;
+    border-right: 1px solid #d7d7d7;
+    float: left;
+    width: 640px;
+}
+
+#right {
+    float: left;
+    width: 195px;
+}
+

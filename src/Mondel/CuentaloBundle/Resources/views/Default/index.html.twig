@@ -1,93 +1,75 @@
-{% extends '::base.html.twig' %}
+{% extends 'MondelCuentaloBundle::layout.html.twig' %}
 
-{% block title %} cuentalo.com.uy | Mondel {% endblock %}
-    
-{% block body %}
-    
-    <div id="top" style="height: 50px;">
-        {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+{% block stylesheets %}
 
-            <a href="{{ path('logout') }}">Salir</a>
+    {{ parent() }}
 
-        {% else %}
+    <link rel="stylesheet" type="text/css" media="screen" href="{{ asset('bundles/mondelcuentalo/css/index.css') }}" />
 
-            <div style="float: left;">
-                {# Incluyo el login - Twig es genial! #}
-                {% include 'MondelCuentaloBundle:Usuario:login.html.twig' %}
-            </div>
+{% endblock %}
 
-            <div style="float: right;">
-                <a href="{{ path('registro') }}">Registrarme</a>    
-            </div>
+{% block title %} Portada {% endblock %}
 
-        {% endif %}
-    </div>
-    
-    <div>
-        <hr/>
-        <form action="{{ path('homepage') }}" method="post" {{ form_enctype(form) }}>
-        
-            {{ form_errors(form) }}
+{% block top %}
 
-            {{ form_rest(form) }}
+    <div id="wrap">
 
-            <input type="submit" value="Crear" />
+        <div id="content_top">
+            OK ES EL TOP
+        </div>
 
-        </form>
-    </div>
-
-    <div>
-        <h3>Ultimos Mensajes:</h3>
-        {% for mensaje in ultimos_mensajes %}
-        
-            <a href="{{ path('vista_contenido', 
-                { 'id': mensaje.id, 
-                'tipo': mensaje.tipo, 
-                'titulo': mensaje.slug }
-            ) }}">{{ mensaje.titulo }}</a> - {{ mensaje.fechaCreacion | date('d-m-Y') }}
-            
-            <br/>
-            
-        {% else %}
-
-            <p>No hay mensajes aún</p>
-
-        {% endfor %}
-        
-        <h3>Ultimas Anécdotas:</h3>
-        {% for anecdota in ultimas_anecdotas %}
-        
-            <a href="{{ path('vista_contenido', 
-                { 'id': anecdota.id, 
-                'tipo': anecdota.tipo, 
-                'titulo': anecdota.slug }
-            ) }}">{{ anecdota.titulo }}</a> - {{ anecdota.fechaCreacion | date('d-m-Y') }}
-            
-            <br/>
-            
-        {% else %}
-
-            <p>No hay mensajes aún</p>
-
-        {% endfor %}
-            
-         <h3>Ultimos Secretos:</h3>
-        {% for secreto in ultimos_secretos %}
-        
-            <a href="{{ path('vista_contenido', 
-                { 'id': secreto.id, 
-                'tipo': secreto.tipo, 
-                'titulo': secreto.slug }
-            ) }}">{{ secreto.titulo }}</a> - {{ secreto.fechaCreacion | date('d-m-Y') }}
-            
-            <br/>
-            
-        {% else %}
-
-            <p>No hay mensajes aún</p>
-
-        {% endfor %}
     </div>
 
 {% endblock %}
-    
+
+{% block left %}
+
+    <ul id="menu">
+        <li><a href="#">Todos</a></li>
+        <li><a href="#">Secretos</a></li>
+        <li><a href="#">Anecdotas</a></li>
+        <li><a href="#">Mensajes</a></li>
+    </ul>
+
+{% endblock %}
+
+{% block center %}
+
+    <div id="wrap">
+        <div id="box">
+            <form action="{{ path('homepage') }}" method="post" {{ form_enctype(form) }}>
+
+                {{ form_errors(form.texto) }}
+                {{ form_widget(form.texto) }}
+
+                <div id="options">
+
+                    {{ form_label(form.tipo) }}
+                    {{ form_errors(form.tipo) }}
+                    {{ form_widget(form.tipo) }}
+
+                    <div id="right_options">
+                        <img src="{{ asset('bundles/mondelcuentalo/img/amor.png') }}" alt="Emoticons"/>
+                        <img src="{{ asset('bundles/mondelcuentalo/img/enamorado.png') }}" alt="Emoticons"/>
+                        <img src="{{ asset('bundles/mondelcuentalo/img/llorando.png') }}" alt="Emoticons"/>
+                        <img src="{{ asset('bundles/mondelcuentalo/img/risa.png') }}" alt="Emoticons"/>
+                        <img src="{{ asset('bundles/mondelcuentalo/img/triste.png') }}" alt="Emoticons"/>
+                    </div>
+
+                </div>
+
+                <div id="box_bottom">
+
+                    <p>Caracteres: 555</p>
+
+                    <a href="#" class="Button">Compartir</a>
+
+                </div>
+
+            </form>
+        </div>
+    </div>
+
+{% endblock %}
+
+{% block right %} ADSENSE {% endblock%}

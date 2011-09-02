@@ -17,7 +17,7 @@ use Mondel\CuentaloBundle\Helpers\NetworkHelper,
  */
 class Contenido
 {
-    
+
     /**
      * @var integer $id
      *
@@ -27,23 +27,6 @@ class Contenido
      */
     private $id;
 
-    /**
-     * @var string $titulo
-     *
-     * @Assert\MaxLength(50)
-     * @Assert\MinLength(5)
-     * @Assert\NotBlank()     
-     * @ORM\Column(name="titulo", type="string", length=50)
-     */
-    private $titulo;
-
-    /**
-     * @var string $slug
-     *
-     * @ORM\Column(name="slug", type="string", length=100)     
-     */
-    private $slug;
-    
     /**
      * @var string $tipo
      *
@@ -56,10 +39,11 @@ class Contenido
      * @var string $texto
      *
      * @Assert\NotBlank()
+     * @Assert\MaxLength(555)
      * @ORM\Column(name="texto", type="text")
      */
     private $texto;
-    
+
     /**
      * @var string $ip
      *
@@ -67,37 +51,44 @@ class Contenido
      * @ORM\Column(name="ip", type="string", length=20)
      */
     private $ip;
-    
+
     /**
      * @var string pais
      *
      * @ORM\Column(name="pais", type="string", length=50)
      */
     private $pais;
-    
+
+    /**
+     * @var boolean $activo
+     *
+     * @ORM\Column(name="activo", type="boolean")
+     */
+    private $activo;
+
     /**
      * @var datetime $fecha_creacion
      *
      * @ORM\Column(name="fecha_creacion", type="datetime")
      */
     private $fecha_creacion;
-    
+
     /**
      * @ORM\ManyToOne(targetEntity="Usuario", inversedBy="contenidos")
      * @ORM\JoinColumn(name="usuario_id", referencedColumnName="id")
      */
     private $usuario;
-    
+
     /**
      * @ORM\OneToMany(targetEntity="Comentario", mappedBy="contenido")
      */
     private $comentarios;
-    
+
     /**
      * @ORM\OneToMany(targetEntity="Voto", mappedBy="contenido")
      */
     private $votos;
-    
+
     /**
      * @ORM\prePersist
      */
@@ -105,7 +96,7 @@ class Contenido
     {
         $this->fecha_creacion = new \DateTime();
     }
-    
+
     /**
      * @ORM\prePersist
      */
@@ -113,23 +104,22 @@ class Contenido
     {
         $this->pais = NetworkHelper::getCountryNameByIp($this->getIp());
     }
-    
+
     /**
      * @ORM\prePersist
      */
-    public function setSlug()
+    public function setEstadoActivo()
     {
-        $this->slug = StringHelper::slugify($this->getTitulo());
+        $this->activo = true;
     }
-    
+
     /*
      * Fin mis propiedes
      */
-    
     public function __construct()
     {
         $this->comentarios = new \Doctrine\Common\Collections\ArrayCollection();
-        $this->votos = new \Doctrine\Common\Collections\ArrayCollection();
+    $this->votos = new \Doctrine\Common\Collections\ArrayCollection();
     }
     
     /**
@@ -140,36 +130,6 @@ class Contenido
     public function getId()
     {
         return $this->id;
-    }
-
-    /**
-     * Set titulo
-     *
-     * @param string $titulo
-     */
-    public function setTitulo($titulo)
-    {
-        $this->titulo = $titulo;
-    }
-
-    /**
-     * Get titulo
-     *
-     * @return string 
-     */
-    public function getTitulo()
-    {
-        return $this->titulo;
-    }
-
-    /**
-     * Get slug
-     *
-     * @return string 
-     */
-    public function getSlug()
-    {
-        return $this->slug;
     }
 
     /**
@@ -243,9 +203,29 @@ class Contenido
     }
 
     /**
+     * Set activo
+     *
+     * @param boolean $activo
+     */
+    public function setActivo($activo)
+    {
+        $this->activo = $activo;
+    }
+
+    /**
+     * Get activo
+     *
+     * @return boolean 
+     */
+    public function getActivo()
+    {
+        return $this->activo;
+    }
+
+    /**
      * Get fecha_creacion
      *
-     * @return date 
+     * @return datetime 
      */
     public function getFechaCreacion()
     {
@@ -277,7 +257,7 @@ class Contenido
      *
      * @param Mondel\CuentaloBundle\Entity\Comentario $comentarios
      */
-    public function addComentarios(\Mondel\CuentaloBundle\Entity\Comentario $comentarios)
+    public function addComentario(\Mondel\CuentaloBundle\Entity\Comentario $comentarios)
     {
         $this->comentarios[] = $comentarios;
     }
@@ -297,7 +277,7 @@ class Contenido
      *
      * @param Mondel\CuentaloBundle\Entity\Voto $votos
      */
-    public function addVotos(\Mondel\CuentaloBundle\Entity\Voto $votos)
+    public function addVoto(\Mondel\CuentaloBundle\Entity\Voto $votos)
     {
         $this->votos[] = $votos;
     }
@@ -310,26 +290,5 @@ class Contenido
     public function getVotos()
     {
         return $this->votos;
-    }
-    
-
-    /**
-     * Add comentarios
-     *
-     * @param Mondel\CuentaloBundle\Entity\Comentario $comentarios
-     */
-    public function addComentario(\Mondel\CuentaloBundle\Entity\Comentario $comentarios)
-    {
-        $this->comentarios[] = $comentarios;
-    }
-
-    /**
-     * Add votos
-     *
-     * @param Mondel\CuentaloBundle\Entity\Voto $votos
-     */
-    public function addVoto(\Mondel\CuentaloBundle\Entity\Voto $votos)
-    {
-        $this->votos[] = $votos;
     }
 }

@@ -19,28 +19,15 @@ class DefaultController extends Controller
         $repository = $this->getDoctrine()
                 ->getRepository('MondelCuentaloBundle:Contenido');
 
-        $ultimos_mensajes = $repository
+        $ultimos_contenidos = $repository
                 ->findBy(
-                        array('tipo' => 'm'),
-                        array('fecha_creacion' => 'DESC'),
-                        5
-                );
-
-        $ultimas_anecdotas = $repository
-                ->findBy(
-                        array('tipo' => 'a'),
-                        array('fecha_creacion' => 'DESC'),
-                        5
-                );
-
-        $ultimos_secretos = $repository
-                ->findBy(
-                        array('tipo' => 's'),
+                        array(),
                         array('fecha_creacion' => 'DESC'),
                         5
                 );
 
         $contenido = new Contenido();
+        $contenido->setTexto('Comparte tu secreto, anécdota o un mensaje al mundo...');
         $form = $this->createForm(new ContenidoType(), $contenido);
 
         if ($request->attributes->has(SecurityContext::AUTHENTICATION_ERROR)) {
@@ -71,9 +58,7 @@ class DefaultController extends Controller
         return $this->render(
                 'MondelCuentaloBundle:Default:index.html.twig',
                 array(
-                    'ultimos_mensajes'  => $ultimos_mensajes,
-                    'ultimos_secretos'  => $ultimos_secretos,
-                    'ultimas_anecdotas' => $ultimas_anecdotas,
+                    'ultimos_contenidos'  => $ultimos_contenidos,
                     'form'              => $form->createView(),
                     'last_username'     => $session->get(SecurityContext::LAST_USERNAME),
                     'error'             => $error,

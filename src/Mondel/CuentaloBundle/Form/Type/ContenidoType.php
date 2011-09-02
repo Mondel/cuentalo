@@ -8,9 +8,13 @@ use Symfony\Component\Form\FormBuilder;
 class ContenidoType extends AbstractType {
 
     public function buildForm(FormBuilder $builder, array $options) {
-        $builder->add('titulo')
-                ->add('tipo', 'choice', array(
-                    'choices'  => array('m' => 'Mensaje', 'a' => 'Anecdota', 's' => 'Secreto'),
+        $edades = array();
+        for($i = 10; $i < 90; $i++) {
+            $edades[$i - 10] = $i;
+        }
+
+        $builder->add('tipo', 'choice', array(
+                    'choices'  => array('0' => 'Elegir', 'm' => 'Mensaje', 'a' => 'Anecdota', 's' => 'Secreto'),
                     'required' => true,
                 ))
                 ->add('texto');
@@ -20,7 +24,7 @@ class ContenidoType extends AbstractType {
         return array(
             'data_class'      => 'Mondel\CuentaloBundle\Entity\Contenido',
             'csrf_protection' => true,
-            'csrf_field_name' => '_token',            
+            'csrf_field_name' => '_token',
             'intention'       => 'contenido_item',
         );
     }

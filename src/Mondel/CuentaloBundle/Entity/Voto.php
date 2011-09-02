@@ -16,7 +16,7 @@ use Mondel\CuentaloBundle\Helpers\NetworkHelper;
  */
 class Voto
 {
-    
+
     /**
      * @var integer $id
      *
@@ -25,41 +25,41 @@ class Voto
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
-    
+
     /**
      * @var string $ip
      *
-     * @Assert\MaxLength(20)     
+     * @Assert\MaxLength(20)
      * @ORM\Column(name="ip", type="string", length=20)
      */
     private $ip;
-    
+
     /**
      * @var string pais
      *
      * @ORM\Column(name="pais", type="string", length=50)
      */
     private $pais;
-    
+
     /**
      * @var datetime $fecha_creacion
      *
      * @ORM\Column(name="fecha_creacion", type="datetime")
      */
     private $fecha_creacion;
-    
+
     /**
      * @ORM\ManyToOne(targetEntity="Usuario", inversedBy="votos")
      * @ORM\JoinColumn(name="usuario_id", referencedColumnName="id")
      */
     private $usuario;
-    
+
     /**
      * @ORM\ManyToOne(targetEntity="Contenido", inversedBy="votos")
      * @ORM\JoinColumn(name="contenido_id", referencedColumnName="id")
      */
     private $contenido;
-    
+
     /**
      * @ORM\prePersist
      */
@@ -67,7 +67,7 @@ class Voto
     {
         $this->pais = NetworkHelper::getCountryNameByIp($this->getIp());
     }
-    
+
     /**
      * @ORM\prePersist
      */
@@ -78,7 +78,7 @@ class Voto
 
     /*
      * Fin mis propiedades
-     */    
+     */
 
     /**
      * Get id
@@ -123,7 +123,7 @@ class Voto
     /**
      * Get fecha_creacion
      *
-     * @return date 
+     * @return datetime 
      */
     public function getFechaCreacion()
     {
@@ -169,5 +169,4 @@ class Voto
     {
         return $this->contenido;
     }
-    
 }

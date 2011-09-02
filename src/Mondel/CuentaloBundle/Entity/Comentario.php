@@ -7,7 +7,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 
 use Mondel\CuentaloBundle\Helpers\NetworkHelper,
     Mondel\CuentaloBundle\Helpers\StringHelper;
-    
+
 
 /**
  * Mondel\CuentaloBundle\Entity\Comentario
@@ -18,7 +18,7 @@ use Mondel\CuentaloBundle\Helpers\NetworkHelper,
  */
 class Comentario
 {
-    
+
     /**
      * @var integer $id
      *
@@ -27,7 +27,7 @@ class Comentario
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
-    
+
     /**
      * @var string $texto
      *
@@ -35,49 +35,56 @@ class Comentario
      * @ORM\Column(name="texto", type="text")
      */
     private $texto;
-    
+
     /**
      * @var string $ip
      *
-     * @Assert\MaxLength(20)     
+     * @Assert\MaxLength(20)
      * @ORM\Column(name="ip", type="string", length=20)
      */
     private $ip;
-    
+
     /**
-     * @var string pais
+     * @var string $pais
      *
      * @ORM\Column(name="pais", type="string", length=50)
      */
     private $pais;
-    
+
+    /**
+     * @var boolean $activo
+     *
+     * @ORM\Column(name="activo", type="boolean")
+     */
+    private $activo;
+
     /**
      * @var datetime $fecha_creacion
      *
      * @ORM\Column(name="fecha_creacion", type="datetime")
      */
     private $fecha_creacion;
-    
+
     /**
      * @ORM\ManyToOne(targetEntity="Usuario", inversedBy="comentarios")
      * @ORM\JoinColumn(name="usuario_id", referencedColumnName="id")
      */
     private $usuario;
-    
+
     /**
      * @ORM\ManyToOne(targetEntity="Contenido", inversedBy="comentarios")
      * @ORM\JoinColumn(name="contenido_id", referencedColumnName="id")
      */
     private $contenido;
-    
+
     /**
      * @ORM\prePersist
      */
     public function setPais()
-    {        
+    {
         $this->pais = NetworkHelper::getCountryNameByIp($this->getIp());
     }
-    
+
     /**
      * @ORM\prePersist
      */
@@ -86,9 +93,17 @@ class Comentario
         $this->fecha_creacion = new \DateTime();
     }
 
+    /**
+     * @ORM\prePersist
+     */
+    public function setEstadoActivo()
+    {
+        $this->activo = true;
+    }
+
     /*
      * Fin mis propiedades
-     */    
+     */
 
     /**
      * Get id
@@ -151,9 +166,29 @@ class Comentario
     }
 
     /**
+     * Set activo
+     *
+     * @param boolean $activo
+     */
+    public function setActivo($activo)
+    {
+        $this->activo = $activo;
+    }
+
+    /**
+     * Get activo
+     *
+     * @return boolean 
+     */
+    public function getActivo()
+    {
+        return $this->activo;
+    }
+
+    /**
      * Get fecha_creacion
      *
-     * @return date 
+     * @return datetime 
      */
     public function getFechaCreacion()
     {
@@ -199,5 +234,4 @@ class Comentario
     {
         return $this->contenido;
     }
-    
 }

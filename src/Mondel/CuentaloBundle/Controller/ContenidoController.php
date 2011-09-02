@@ -13,7 +13,7 @@ use Mondel\CuentaloBundle\Helpers\ObjectHelper;
 class ContenidoController extends Controller
 {
 
-    public function mostrarAction($id, $tipo, $titulo)
+    public function mostrarAction($id, $tipo)
     {
         $contenido = $this->getDoctrine()
                 ->getRepository('MondelCuentaloBundle:Contenido')
@@ -89,8 +89,7 @@ class ContenidoController extends Controller
                 'vista_contenido',
                 array(
                     'id'     => $contenido->getId(),
-                    'tipo'   => $contenido->getTipo(),
-                    'titulo' => $contenido->getSlug()
+                    'tipo'   => $contenido->getTipo()
                 )
         ));
 

@@ -5,21 +5,21 @@ homepage:
 login:
     pattern:  /login
     defaults: { _controller: MondelCuentaloBundle:Usuario:login }
-      
+
 login_check:
     pattern:  /login_check
-    
+
 logout:
     pattern:  /logout
-    
+
 registro:
     pattern:  /registro
     defaults: { _controller: MondelCuentaloBundle:Usuario:registro }
-    
+
 vista_contenido:
-    pattern:  /{tipo}/{id}/{titulo}       
+    pattern:  /{tipo}/{id}
     defaults: { _controller: MondelCuentaloBundle:Contenido:mostrar }
-    
+
 votar:
     pattern:  /votar/{id}
     defaults: { _controller: MondelCuentaloBundle:Contenido:votar }

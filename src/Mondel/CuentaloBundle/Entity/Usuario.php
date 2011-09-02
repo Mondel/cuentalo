@@ -16,7 +16,7 @@ use Symfony\Component\Validator\Constraints\Date;
  */
 class Usuario implements UserInterface
 {
-    
+
     /**
      * @var integer $id
      *
@@ -31,7 +31,7 @@ class Usuario implements UserInterface
      *
      * @Assert\MaxLength(50)
      * @Assert\MinLength(3)
-     * @Assert\NotBlank()     
+     * @Assert\NotBlank()
      * @ORM\Column(name="nombre", type="string", length=50)
      */
     private $nombre;
@@ -65,6 +65,14 @@ class Usuario implements UserInterface
     private $sexo;
 
     /**
+     * @var date $fecha_nacimiento
+     *
+     * @Assert\Date()
+     * @ORM\Column(name="fecha_nacimiento", type="date")
+     */
+    private $fecha_nacimiento;
+
+    /**
      * @var date $fecha_creacion
      *
      * @ORM\Column(name="fecha_creacion", type="date")
@@ -82,7 +90,7 @@ class Usuario implements UserInterface
      * @ORM\Column(name="salt", type="string", length="255")
      */
     private $salt;
-    
+
     /**
      * @var string $contrasenia
      *
@@ -94,6 +102,27 @@ class Usuario implements UserInterface
     private $contrasenia;
 
     /**
+     * @var boolean $activo
+     *
+     * @ORM\Column(name="activo", type="boolean")
+     */
+    private $activo;
+
+    /**
+     * @var boolean $recibe_noticias
+     *
+     * @ORM\Column(name="recibe_noticias", type="boolean")
+     */
+    private $recibe_noticias;
+
+    /**
+     * @var boolean $recibe_notificaciones
+     *
+     * @ORM\Column(name="recibe_notificaciones", type="boolean")
+     */
+    private $recibe_notificaciones;
+
+    /**
      * @ORM\OneToMany(targetEntity="Contenido", mappedBy="usuario")
      */
     private $contenidos;
@@ -102,7 +131,7 @@ class Usuario implements UserInterface
      * @ORM\OneToMany(targetEntity="Voto", mappedBy="usuario")
      */
     private $votos;
-    
+
     /*
      * Implements UserInterface
      */
@@ -113,7 +142,7 @@ class Usuario implements UserInterface
 
     public function eraseCredentials()
     {
-        
+
     }
 
     public function getPassword()
@@ -138,7 +167,7 @@ class Usuario implements UserInterface
     /*
      * Fin Implements UserInterface
      */
-    
+
     /**
      * @ORM\prePersist
      */
@@ -147,7 +176,15 @@ class Usuario implements UserInterface
         $this->fecha_creacion = new \DateTime();
         $this->fecha_actualizacion = $this->getFechaCreacion();
     }
-    
+
+    /**
+     * @ORM\prePersist
+     */
+    public function setEstadoActivo()
+    {
+        $this->activo = true;
+    }
+
     /**
      * @ORM\postUpdate
      */
@@ -155,15 +192,14 @@ class Usuario implements UserInterface
     {
         $this->fecha_actualizacion = new \Date();
     }
-    
+
     /*
      * Fin mis propiedades
-     */    
-    
+     */
     public function __construct()
     {
         $this->contenidos = new \Doctrine\Common\Collections\ArrayCollection();
-        $this->votos = new \Doctrine\Common\Collections\ArrayCollection();
+    $this->votos = new \Doctrine\Common\Collections\ArrayCollection();
     }
     
     /**
@@ -257,6 +293,26 @@ class Usuario implements UserInterface
     }
 
     /**
+     * Set fecha_nacimiento
+     *
+     * @param date $fechaNacimiento
+     */
+    public function setFechaNacimiento($fechaNacimiento)
+    {
+        $this->fecha_nacimiento = $fechaNacimiento;
+    }
+
+    /**
+     * Get fecha_nacimiento
+     *
+     * @return date 
+     */
+    public function getFechaNacimiento()
+    {
+        return $this->fecha_nacimiento;
+    }
+
+    /**
      * Get fecha_creacion
      *
      * @return date 
@@ -307,11 +363,71 @@ class Usuario implements UserInterface
     }
 
     /**
+     * Set activo
+     *
+     * @param boolean $activo
+     */
+    public function setActivo($activo)
+    {
+        $this->activo = $activo;
+    }
+
+    /**
+     * Get activo
+     *
+     * @return boolean 
+     */
+    public function getActivo()
+    {
+        return $this->activo;
+    }
+
+    /**
+     * Set recibe_noticias
+     *
+     * @param boolean $recibeNoticias
+     */
+    public function setRecibeNoticias($recibeNoticias)
+    {
+        $this->recibe_noticias = $recibeNoticias;
+    }
+
+    /**
+     * Get recibe_noticias
+     *
+     * @return boolean 
+     */
+    public function getRecibeNoticias()
+    {
+        return $this->recibe_noticias;
+    }
+
+    /**
+     * Set recibe_notificaciones
+     *
+     * @param boolean $recibeNotificaciones
+     */
+    public function setRecibeNotificaciones($recibeNotificaciones)
+    {
+        $this->recibe_notificaciones = $recibeNotificaciones;
+    }
+
+    /**
+     * Get recibe_notificaciones
+     *
+     * @return boolean 
+     */
+    public function getRecibeNotificaciones()
+    {
+        return $this->recibe_notificaciones;
+    }
+
+    /**
      * Add contenidos
      *
      * @param Mondel\CuentaloBundle\Entity\Contenido $contenidos
      */
-    public function addContenidos(\Mondel\CuentaloBundle\Entity\Contenido $contenidos)
+    public function addContenido(\Mondel\CuentaloBundle\Entity\Contenido $contenidos)
     {
         $this->contenidos[] = $contenidos;
     }
@@ -331,7 +447,7 @@ class Usuario implements UserInterface
      *
      * @param Mondel\CuentaloBundle\Entity\Voto $votos
      */
-    public function addVotos(\Mondel\CuentaloBundle\Entity\Voto $votos)
+    public function addVoto(\Mondel\CuentaloBundle\Entity\Voto $votos)
     {
         $this->votos[] = $votos;
     }
@@ -344,26 +460,5 @@ class Usuario implements UserInterface
     public function getVotos()
     {
         return $this->votos;
-    }
-    
-
-    /**
-     * Add contenidos
-     *
-     * @param Mondel\CuentaloBundle\Entity\Contenido $contenidos
-     */
-    public function addContenido(\Mondel\CuentaloBundle\Entity\Contenido $contenidos)
-    {
-        $this->contenidos[] = $contenidos;
-    }
-
-    /**
-     * Add votos
-     *
-     * @param Mondel\CuentaloBundle\Entity\Voto $votos
-     */
-    public function addVoto(\Mondel\CuentaloBundle\Entity\Voto $votos)
-    {
-        $this->votos[] = $votos;
     }
 }
