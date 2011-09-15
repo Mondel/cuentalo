@@ -12,12 +12,25 @@
 
 {% block top %}
 
-    <div id="wrap">
+    <div class="Wrap">
 
         <div id="content_top">
 
             <div id="logo">
-                Cuentalo.com.uy
+                Cuentalo.com
+            </div>
+
+            <div id="menu_top">
+                <div id="content_menu_top">
+                    <img src="{{ asset('bundles/mondelcuentalo/img/home.png') }}" />
+                    <img src="{{ asset('bundles/mondelcuentalo/img/favoritos.png') }}" />
+                    <img src="{{ asset('bundles/mondelcuentalo/img/spam.png') }}" />
+
+
+                    {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                         <img src="{{ asset('bundles/mondelcuentalo/img/salir.png') }}" class="Right"/>
+                    {% endif %}
+                </div>
             </div>
 
         </div>
@@ -33,23 +46,26 @@
         <li><a href="#">Secretos</a></li>
         <li><a href="#">Anecdotas</a></li>
         <li><a href="#">Mensajes</a></li>
+        <li><a href="{{ path('login') }}">Entrar</a></li>
     </ul>
 
 {% endblock %}
 
 {% block center %}
 
-    <div id="wrap">
+    <div class="Wrap">
+        <div id="Error">
+            {{ form_errors(form) }}
+        </div>
         <div id="box">
             <form action="{{ path('homepage') }}" method="post" {{ form_enctype(form) }}>
 
-                {{ form_errors(form.texto) }}
+                {#{ form_errors(form.texto) }#}
                 {{ form_widget(form.texto, { 'attr': {'placeholder': 'Comparte tu secreto, anécdota o un mensaje al mundo...'} }) }}
 
                 <div id="options">
 
                     {{ form_label(form.tipo) }}
-                    {{ form_errors(form.tipo) }}
                     {{ form_widget(form.tipo) }}
 
                     <div id="right_options">
@@ -62,18 +78,46 @@
 
                 </div>
 
+                {{ form_rest(form) }}
+
                 <div id="box_bottom">
 
                     <p>Caracteres: 555</p>
 
-                    <a href="#" class="Button">Compartir</a>
+                    <input type="submit" value="Compartir" class="Button" />
 
                 </div>
 
             </form>
+        </div>
+
+        <div id="stream">
+            {% for mensaje in ultimos_contenidos %}
+
+                <div class="Box_contenido">
+                    <div class="Titulo">{{ mensaje.tipo | replace({'s': "Secreto", 'a': "Anécdota", 'm': "Mensaje"})  }} / {{ mensaje.fechaCreacion | date('d.m.y') }}</div>
+                    <div class="Contenido">{{ mensaje.texto }}</div>
+                    <div class="Datos">
+                        Comentarios: {{ mensaje.comentarios | length }}
+                    </div>
+                </div>
+
+            {% else %}
+
+                <p>No hay mensajes aún</p>
+
+            {% endfor %}
         </div>
     </div>
 
 {% endblock %}
 
 {% block right %} ADSENSE {% endblock%}
+
+{% block javascript %}
+    <script language="text/javascript">
+        function submitContenido() {
+
+        }
+    </script>
+{% endblock %}

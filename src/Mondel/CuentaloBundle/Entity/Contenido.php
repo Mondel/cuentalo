@@ -39,6 +39,7 @@ class Contenido
      * @var string $texto
      *
      * @Assert\NotBlank()
+     * @Assert\MinLength(100)
      * @Assert\MaxLength(555)
      * @ORM\Column(name="texto", type="text")
      */

@@ -9,24 +9,47 @@
 
 #menu li a {
     text-decoration: none;
+    color:#000000;
 }
 
-#center #wrap {
+#menu li a:hover {
+    color: #6a6969;
+
+}
+
+#menu_top {
+    width: 640px;
+
+}
+
+#content_menu_top {
+    margin: 0 25px;
+    width: 580px;
+}
+
+#center .Wrap {
     margin: 0 25px;
 }
 
-#top #wrap {
+#top .Wrap {
     margin: 0 auto;
     width: 1000px;
 }
 
-#top #wrap #content_top {
+#content_top {
     width: 807px;
-    padding-top: 30px;
+    padding-top: 25px;
 }
 
-#top #wrap #content_top #logo {
-    font-size: 21px;
+#content_top div {
+    float: left;
+}
+
+#logo {
+    font-size: 25px;
+    width: 165px;
+    font-family:"Monotype Corsiva";
+    font-style:italic;
 }
 
 #box {
@@ -39,24 +62,25 @@
     background-color: transparent;
     border-color: transparent;
     color: #929191;
+    font-size: 13px;
     height: 117px;
     margin: 5px;
     resize: none;
     width: 573px;
 }
 
-#box #options {
+#options {
     font-size: 12px;
     margin-left: 10px;
     width: 560px;
 }
 
-#box #options select {
+#options select {
     background: transparent;
     border: none;
 }
 
-#box #options #right_options {
+#right_options {
     float: right;
 }
 
@@ -70,8 +94,40 @@
     margin: 10px 0;
 }
 
-#box_bottom a {
+#box_bottom input {
     float: right;
+}
+
+.Right {
+    float: right;
+}
+
+
+.Box_contenido {
+    /*background: url('../img/boxmasculino.jpg');
+    height: 199px;*/
+    margin: 25px 2px;
+    width: 582px;
+}
+
+.Box_contenido .Titulo {
+    padding: 7px 8px;
+    border: 1px solid #d7d7d7;
+}
+
+.Box_contenido .Contenido {
+    font-size: 13px;
+    padding: 0 8px;
+    border-left: 1px solid #d7d7d7;
+    border-right: 1px solid #d7d7d7;
+    border-bottom: 1px solid #d7d7d7;
+}
+
+.Box_contenido .Datos {
+    padding: 5px 8px;
+    border-left: 1px solid #D7D7D7;
+    border-right: 1px solid #D7D7D7;
+    border-bottom: 1px solid #D7D7D7;
 }
 
 .Button {
@@ -101,9 +157,11 @@
 	background:-moz-linear-gradient( center top, #f6f6f6 5%, #ffffff 100% );
 	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#f6f6f6', endColorstr='#ffffff');
 	background-color:#f6f6f6;
+    cursor: pointer;
 }
 
 .Button:active {
 	position:relative;
 	top:1px;
 }
+
