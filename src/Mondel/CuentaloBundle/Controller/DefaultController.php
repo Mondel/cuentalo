@@ -11,7 +11,7 @@ use Mondel\CuentaloBundle\Helpers\ObjectHelper;
 
 class DefaultController extends Controller
 {
-    public function indexAction()
+    public function indexAction($tipo='')
     {
         $request = $this->getRequest();
         $session = $request->getSession();
@@ -25,6 +25,10 @@ class DefaultController extends Controller
                         array('fecha_creacion' => 'DESC'),
                         5
                 );
+
+        if (isset($tipo) && !empty($tipo) && $tipo != null) {
+            $ultimos_contenidos = $repository->findBy(array('tipo' => $tipo));
+        }
 
         $contenido = new Contenido();
         $form = $this->createForm(new ContenidoType(), $contenido);

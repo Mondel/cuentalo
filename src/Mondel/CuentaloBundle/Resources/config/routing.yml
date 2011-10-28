@@ -20,6 +20,18 @@ vista_contenido:
     pattern:  /{tipo}/{id}
     defaults: { _controller: MondelCuentaloBundle:Contenido:mostrar }
 
+vista_mensajes:
+    pattern:  /mensajes
+    defaults: { _controller: MondelCuentaloBundle:Default:index, tipo: m }
+
+vista_anecdotas:
+    pattern:  /anecdotas
+    defaults: { _controller: MondelCuentaloBundle:Default:index, tipo: a }
+
+vista_secretos:
+    pattern:  /secretos
+    defaults: { _controller: MondelCuentaloBundle:Default:index, tipo: s }
+
 votar:
     pattern:  /votar/{id}
     defaults: { _controller: MondelCuentaloBundle:Contenido:votar }

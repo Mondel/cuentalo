@@ -51,6 +51,41 @@ class ContenidoController extends Controller
 
     }
 
+    public function mostrarMensajesAction()
+    {
+        $contenido = $this->getDoctrine()
+                ->getRepository('MondelCuentaloBundle:Contenido')
+                ->findBy(array('tipo' => 'm'));
+
+        $request = $this->getRequest();
+        
+        if ($request->getMethod() == 'POST') {
+
+            if (false === $this->get('security.context')->isGranted('IS_AUTHENTICATED_FULLY')) {
+                throw new AccessDeniedException();
+            }
+
+            $form->bindRequest($request);
+            if ($form->isValid()) {
+                $comentario->setIp($request->getClientIp());
+
+                $usuario = $this->get('security.context')->getToken()->getUser();
+                $comentario->setUsuario($usuario);
+                $comentario->setContenido($contenido);
+
+                $em = $this->getDoctrine()->getEntityManager();
+                $em->persist($comentario);
+                $em->flush();
+            }
+        }
+
+        return $this->render(
+            'MondelCuentaloBundle:Contenido:mostrar.html.twig',
+            array('contenido' => $contenido, 'form' => $form->createView())
+        );
+
+    }
+
     public function votarAction($id)
     {
         if (false === $this->get('security.context')->isGranted('IS_AUTHENTICATED_FULLY')) {

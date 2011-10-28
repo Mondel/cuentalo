@@ -106,6 +106,7 @@
 .Box_contenido {
     /*background: url('../img/boxmasculino.jpg');
     height: 199px;*/
+    background: #FFFFFF;
     margin: 25px 2px;
     width: 582px;
 }

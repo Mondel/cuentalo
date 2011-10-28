@@ -43,10 +43,13 @@
 
     <ul id="menu">
         <li><a href="#">Todos</a></li>
-        <li><a href="#">Secretos</a></li>
-        <li><a href="#">Anecdotas</a></li>
-        <li><a href="#">Mensajes</a></li>
+        <li><a href="{{ path('vista_secretos') }}">Secretos</a></li>
+        <li><a href="{{ path('vista_anecdotas') }}">Anecdotas</a></li>
+        <li><a href="{{ path('vista_mensajes') }}">Mensajes</a></li>
         <li><a href="{{ path('login') }}">Entrar</a></li>
+        {% if not is_granted('IS_AUTHENTICATED_FULLY') %}
+            <li><a href="{{ path('registro') }}">Registrarse</a></li>
+        {% endif %}
     </ul>
 
 {% endblock %}
