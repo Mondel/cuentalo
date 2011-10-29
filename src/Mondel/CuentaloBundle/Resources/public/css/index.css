@@ -39,6 +39,7 @@
 #content_top {
     width: 807px;
     padding-top: 25px;
+    margin-left:-5px;
 }
 
 #content_top div {
@@ -46,10 +47,10 @@
 }
 
 #logo {
-    font-size: 25px;
+    height:45px;
     width: 165px;
-    font-family:"Monotype Corsiva";
-    font-style:italic;
+    margin-top:-15px;
+
 }
 
 #box {
