@@ -22,7 +22,7 @@
 
             <div id="menu_top">
                 <div id="content_menu_top">
-
+{% include 'MondelCuentaloBundle:Usuario:login.html.twig' %}
                     {% if is_granted('IS_AUTHENTICATED_FULLY') %}
                          <img src="{{ asset('bundles/mondelcuentalo/img/salir.png') }}" class="Right"/>
                     {% endif %}
@@ -42,7 +42,6 @@
         <li><a href="{{ path('vista_secretos') }}">Secretos</a></li>
         <li><a href="{{ path('vista_anecdotas') }}">Anecdotas</a></li>
         <li><a href="{{ path('vista_mensajes') }}">Mensajes</a></li>
-        <li><a href="{{ path('login') }}">Entrar</a></li>
         {% if not is_granted('IS_AUTHENTICATED_FULLY') %}
             <li><a href="{{ path('registro') }}">Registrarse</a></li>
         {% endif %}
