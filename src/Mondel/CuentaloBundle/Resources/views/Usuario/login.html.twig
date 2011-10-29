@@ -3,10 +3,10 @@
 {% endif %}
 
 <form action="{{ path('login_check') }}" method="post">
-    <label for="username">Email:</label>
+    <label for="username" class="LoginText">Email:</label>
     <input type="text" id="username" name="_username" value="{{ last_username }}" class="LoginInput" />
 
-    <label for="password">Contraseña:</label>
+    <label for="password" class="LoginText">Contraseña:</label>
     <input type="password" id="password" name="_password" class="LoginInput" />
 
     {#
