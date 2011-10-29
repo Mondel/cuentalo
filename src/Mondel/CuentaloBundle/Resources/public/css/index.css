@@ -172,3 +172,9 @@
 	top:1px;
 }
 
+.LoginInput {
+    background: url('../img/inputype.gif');
+    border: none;
+    height: 22px;
+    width: 150px;
+}
