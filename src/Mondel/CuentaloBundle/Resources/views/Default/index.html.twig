@@ -77,7 +77,7 @@
 
                 <div id="box_bottom">
 
-                    <p>Caracteres: 555</p>
+                    <p>Caracteres: <span id="count_caracteres">555</span></p>
 
                     <input type="submit" value="Compartir" class="Button" />
 
@@ -109,13 +109,27 @@
 
 {% block right %} ADSENSE {% endblock%}
 
-{% block javascript %}
+{% block javascripts %}
     <script language="text/javascript">
+ $('#contenido_texto').keypress(function() {
+                textChange();
+            });
 
+        $(document).ready(function(){
 
+            $('#contenido_texto').keypress(function() {
+                textChange();
+            });
 
-        function submitContenido() {
+        });
 
+        function textChange() {
+            alert("AAAA");
+            //var area = $('#contenido_texto');
+            //var num = $('#count_caracteres');
+            //var valor = 555 - area.text().length;
+            //num.text(valor);
         }
+
     </script>
 {% endblock %}
