@@ -5,8 +5,10 @@ namespace Mondel\CuentaloBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Security\Core\SecurityContext;
 
-use Mondel\CuentaloBundle\Entity\Contenido;
-use Mondel\CuentaloBundle\Form\Type\ContenidoType;
+use Mondel\CuentaloBundle\Entity\Contenido,
+    Mondel\CuentaloBundle\Entity\Comentario;
+use Mondel\CuentaloBundle\Form\Type\ContenidoType,
+    Mondel\CuentaloBundle\Form\Type\ComentarioType;
 use Mondel\CuentaloBundle\Helpers\ObjectHelper;
 
 class DefaultController extends Controller
@@ -32,6 +34,16 @@ class DefaultController extends Controller
 
         $contenido = new Contenido();
         $form = $this->createForm(new ContenidoType(), $contenido);
+
+
+        $forms_comentario = array();
+        $i = 1;
+        foreach ($ultimos_contenidos as $ultimo_contenido) {
+            $comentario = new Comentario();
+            $formC = $this->createForm(new ComentarioType(), $comentario);
+
+            $forms_comentario[$i++] = $formC->createView();
+        }
 
         if ($request->attributes->has(SecurityContext::AUTHENTICATION_ERROR)) {
             $error = $request->attributes->get(SecurityContext::AUTHENTICATION_ERROR);
@@ -61,10 +73,11 @@ class DefaultController extends Controller
         return $this->render(
                 'MondelCuentaloBundle:Default:index.html.twig',
                 array(
-                    'ultimos_contenidos'  => $ultimos_contenidos,
-                    'form'              => $form->createView(),
-                    'last_username'     => $session->get(SecurityContext::LAST_USERNAME),
-                    'error'             => $error,
+                    'ultimos_contenidos'    => $ultimos_contenidos,
+                    'form'                  => $form->createView(),
+                    'forms_comentario'      => $forms_comentario,
+                    'last_username'         => $session->get(SecurityContext::LAST_USERNAME),
+                    'error'                 => $error,
                 )
         );
     }

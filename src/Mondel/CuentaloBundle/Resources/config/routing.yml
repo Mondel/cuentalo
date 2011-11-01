@@ -32,6 +32,6 @@ vista_secretos:
     pattern:  /secretos
     defaults: { _controller: MondelCuentaloBundle:Default:index, tipo: s }
 
-votar:
-    pattern:  /votar/{id}
-    defaults: { _controller: MondelCuentaloBundle:Contenido:votar }
+#votar:
+#    pattern:  /votar/{id}
+#    defaults: { _controller: MondelCuentaloBundle:Contenido:votar }

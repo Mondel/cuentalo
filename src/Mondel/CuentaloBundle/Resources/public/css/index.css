@@ -110,8 +110,8 @@
     background: #FFFFFF;
     margin: 25px 2px;
     width: 582px;
-   min-height:60px;
-    max-height:150px;
+    min-height:60px;
+    /* max-height:150px; */
 }
 
 .Box_contenido .Titulo {
@@ -131,6 +131,8 @@
 }
 
 .Box_contenido .Datos {
+    font-size: 13px;
+
     padding: 5px 8px;
     border-left: 1px solid #D7D7D7;
     border-right: 1px solid #D7D7D7;

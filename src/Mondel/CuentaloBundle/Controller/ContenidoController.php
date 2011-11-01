@@ -13,6 +13,11 @@ use Mondel\CuentaloBundle\Helpers\ObjectHelper;
 class ContenidoController extends Controller
 {
 
+    public function comentarioAction()
+    {
+
+    }
+
     public function mostrarAction($id, $tipo)
     {
         $contenido = $this->getDoctrine()
@@ -44,10 +49,11 @@ class ContenidoController extends Controller
             }
         }
 
-        return $this->render(
+        return $this->redirect($this->generateUrl('homepage'));
+        /*return $this->render(
             'MondelCuentaloBundle:Contenido:mostrar.html.twig',
             array('contenido' => $contenido, 'form' => $form->createView())
-        );
+        );*/
 
     }
 
@@ -58,7 +64,7 @@ class ContenidoController extends Controller
                 ->findBy(array('tipo' => 'm'));
 
         $request = $this->getRequest();
-        
+
         if ($request->getMethod() == 'POST') {
 
             if (false === $this->get('security.context')->isGranted('IS_AUTHENTICATED_FULLY')) {
