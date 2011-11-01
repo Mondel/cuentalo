@@ -67,8 +67,7 @@ class Usuario implements UserInterface
     /**
      * @var date $fecha_nacimiento
      *
-     * @Assert\Date()
-     * @ORM\Column(name="fecha_nacimiento", type="date")
+     * @ORM\Column(name="fecha_nacimiento", type="date", nullable="true")
      */
     private $fecha_nacimiento;
 
@@ -111,14 +110,14 @@ class Usuario implements UserInterface
     /**
      * @var boolean $recibe_noticias
      *
-     * @ORM\Column(name="recibe_noticias", type="boolean")
+     * @ORM\Column(name="recibe_noticias", type="boolean", nullable="true")
      */
     private $recibe_noticias;
 
     /**
      * @var boolean $recibe_notificaciones
      *
-     * @ORM\Column(name="recibe_notificaciones", type="boolean")
+     * @ORM\Column(name="recibe_notificaciones", type="boolean", nullable="true")
      */
     private $recibe_notificaciones;
 
@@ -201,11 +200,11 @@ class Usuario implements UserInterface
         $this->contenidos = new \Doctrine\Common\Collections\ArrayCollection();
     $this->votos = new \Doctrine\Common\Collections\ArrayCollection();
     }
-    
+
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -225,7 +224,7 @@ class Usuario implements UserInterface
     /**
      * Get nombre
      *
-     * @return string 
+     * @return string
      */
     public function getNombre()
     {
@@ -245,7 +244,7 @@ class Usuario implements UserInterface
     /**
      * Get apellido
      *
-     * @return string 
+     * @return string
      */
     public function getApellido()
     {
@@ -265,7 +264,7 @@ class Usuario implements UserInterface
     /**
      * Get email
      *
-     * @return string 
+     * @return string
      */
     public function getEmail()
     {
@@ -285,7 +284,7 @@ class Usuario implements UserInterface
     /**
      * Get sexo
      *
-     * @return string 
+     * @return string
      */
     public function getSexo()
     {
@@ -305,7 +304,7 @@ class Usuario implements UserInterface
     /**
      * Get fecha_nacimiento
      *
-     * @return date 
+     * @return date
      */
     public function getFechaNacimiento()
     {
@@ -315,7 +314,7 @@ class Usuario implements UserInterface
     /**
      * Get fecha_creacion
      *
-     * @return date 
+     * @return date
      */
     public function getFechaCreacion()
     {
@@ -325,7 +324,7 @@ class Usuario implements UserInterface
     /**
      * Get fecha_actualizacion
      *
-     * @return date 
+     * @return date
      */
     public function getFechaActualizacion()
     {
@@ -355,7 +354,7 @@ class Usuario implements UserInterface
     /**
      * Get contrasenia
      *
-     * @return string 
+     * @return string
      */
     public function getContrasenia()
     {
@@ -375,7 +374,7 @@ class Usuario implements UserInterface
     /**
      * Get activo
      *
-     * @return boolean 
+     * @return boolean
      */
     public function getActivo()
     {
@@ -395,7 +394,7 @@ class Usuario implements UserInterface
     /**
      * Get recibe_noticias
      *
-     * @return boolean 
+     * @return boolean
      */
     public function getRecibeNoticias()
     {
@@ -415,7 +414,7 @@ class Usuario implements UserInterface
     /**
      * Get recibe_notificaciones
      *
-     * @return boolean 
+     * @return boolean
      */
     public function getRecibeNotificaciones()
     {
@@ -435,7 +434,7 @@ class Usuario implements UserInterface
     /**
      * Get contenidos
      *
-     * @return Doctrine\Common\Collections\Collection 
+     * @return Doctrine\Common\Collections\Collection
      */
     public function getContenidos()
     {
@@ -455,7 +454,7 @@ class Usuario implements UserInterface
     /**
      * Get votos
      *
-     * @return Doctrine\Common\Collections\Collection 
+     * @return Doctrine\Common\Collections\Collection
      */
     public function getVotos()
     {

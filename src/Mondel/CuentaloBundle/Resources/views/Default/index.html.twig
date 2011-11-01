@@ -43,6 +43,8 @@
         <li><a href="{{ path('vista_mensajes') }}">Mensajes</a></li>
         {% if not is_granted('IS_AUTHENTICATED_FULLY') %}
             <li><a href="{{ path('registro') }}">Registrarse</a></li>
+        {% else %}
+            <li><a href="{{ path('logout') }}">Salir</a></li>
         {% endif %}
     </ul>
 

@@ -10,7 +10,7 @@ class UsuarioType extends AbstractType {
     public function buildForm(FormBuilder $builder, array $options) {
         $builder->add('nombre')
                 ->add('apellido')
-                ->add('fecha_nacimiento', null, array('years' => range(1900,2000)))
+                //->add('fecha_nacimiento', null, array('years' => range(1900,2000)))
                 ->add('email')
                 ->add('contrasenia', 'repeated')
                 ->add('contrasenia', 'repeated', array(
@@ -22,15 +22,15 @@ class UsuarioType extends AbstractType {
                 ->add('sexo', 'choice', array(
                     'choices'   => array('m' => 'Masculino', 'f' => 'Femenino'),
                     'required'  => true,
-                ))
-                ->add('recibe_noticias', null, array(
-                    'label'     => 'Quiere recibir noticias por email ?',
-                    'required'  => false
-                ))
-                ->add('recibe_notificaciones', null, array(
-                    'label'     => 'Quiere recibir notificaciones por email ?',
-                    'required'  => false
                 ));
+                //->add('recibe_noticias', null, array(
+                //    'label'     => 'Quiere recibir noticias por email ?',
+                //    'required'  => false
+                //))
+                //->add('recibe_notificaciones', null, array(
+                //    'label'     => 'Quiere recibir notificaciones por email ?',
+                //    'required'  => false
+                //));
     }
 
     public function getDefaultOptions(array $options) {
