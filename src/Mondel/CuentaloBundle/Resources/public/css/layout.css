@@ -33,6 +33,7 @@ select {
 
 #right {
     float: left;
+    text-align: center;
     width: 195px;
 }
 
