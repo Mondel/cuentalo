@@ -172,3 +172,14 @@
 	top:1px;
 }
 
+.LoginInput {
+    background: url('../img/inputype.gif');
+    border: none;
+    color: #929191;
+    height: 22px;
+    width: 150px;
+}
+
+.LoginText {
+    color: #000;
+}
