@@ -132,11 +132,29 @@
 
 .Box_contenido .Datos {
     font-size: 13px;
-
-    padding: 5px 8px;
     border-left: 1px solid #D7D7D7;
     border-right: 1px solid #D7D7D7;
     border-bottom: 1px solid #D7D7D7;
+}
+
+.Box_contenido .Datos .TituloComentarios {
+    background: #d7d7d7;
+    color: #4d4d4d;
+    padding: 2px 5px;
+}
+
+.Box_contenido .Datos .Comentarios {
+    padding: 5px 8px;
+}
+
+.Box_contenido .Datos .Comentarios .IconoSexo {
+    width: 12px;
+}
+
+.Box_contenido .Datos .Comentarios .InputComentarios{
+    border: 1px solid #929191;
+    margin-top: 10px;
+    width: 100%;
 }
 
 .Button {
@@ -185,3 +203,88 @@
 .LoginText {
     color: #000;
 }
+
+/*
+
+.ButtonLogin {
+    border-right-color: #004A73;
+    background: #0571A6;
+    background: -moz-linear-gradient(top,#73AEC9 0,#73AEC9 1px,#338AB0 1px,#0571A6 100%);
+    background: -webkit-gradient(linear,left top,left bottom,color-stop(0,#73AEC9),color-stop(5%,#73AEC9),color-stop(5%,#338AB0),color-stop(100%,#0571A6));
+    background: linear-gradient(top,#73AEC9 0,#73AEC9 1px,#338AB0 1px,#0571A6 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#338AB0',endColorstr='#0571A6',GradientType=0);
+    border-color: #045A8B;
+    color: white!important;
+    text-align: center;
+    margin-left: 4px;
+    margin-right: 4px;
+    font-weight: normal;
+    border-width: 1px;
+    border-style: solid;
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+    border-radius: 3px;
+    cursor: pointer;
+    overflow: visible;
+    padding: 3px 10px;
+    text-decoration: none!important;
+    vertical-align: top;
+    width: auto;
+    font-family: arial,helvetica,sans-serif;
+    height: 22px;
+    font-size: 11px;
+}
+*/
+
+/* clean gray
+*******************************************************************************/
+.ButtonLogin {
+    background-color: #eeeeee;
+    background-image: -webkit-gradient(linear, left top, left bottom, from(#eeeeee), to(#cccccc));
+    /* Saf4+, Chrome */
+    background-image: -webkit-linear-gradient(top, #eeeeee, #cccccc);
+    background-image: -moz-linear-gradient(top, #eeeeee, #cccccc);
+    background-image: -ms-linear-gradient(top, #eeeeee, #cccccc);
+    background-image: -o-linear-gradient(top, #eeeeee, #cccccc);
+    background-image: linear-gradient(top, #eeeeee, #cccccc);
+    border: 1px solid #ccc;
+    border-bottom: 1px solid #bbb;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    -ms-border-radius: 3px;
+    -o-border-radius: 3px;
+    border-radius: 3px;
+    color: #333;
+    font: bold 11px "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", Geneva, Verdana, sans-serif;
+    line-height: 1;
+    padding: 8px 0;
+    text-align: center;
+    text-shadow: 0 1px 0 #eee;
+    width: 100px;
+    height: 28px;
+}
+
+ .ButtonLogin:hover {
+    background-color: #dddddd;
+    background-image: -webkit-gradient(linear, left top, left bottom, from(#dddddd), to(#bbbbbb));
+    /* Saf4+, Chrome */
+    background-image: -webkit-linear-gradient(top, #dddddd, #bbbbbb);
+    background-image: -moz-linear-gradient(top, #dddddd, #bbbbbb);
+    background-image: -ms-linear-gradient(top, #dddddd, #bbbbbb);
+    background-image: -o-linear-gradient(top, #dddddd, #bbbbbb);
+    background-image: linear-gradient(top, #dddddd, #bbbbbb);
+    border: 1px solid #bbb;
+    border-bottom: 1px solid #999;
+    cursor: pointer;
+    text-shadow: 0 1px 0 #ddd;
+ }
+
+ .ButtonLogin:active {
+    border: 1px solid #aaa;
+    border-bottom: 1px solid #888;
+    -webkit-box-shadow: inset 0 0 5px 2px #aaaaaa, 0 1px 0 0 #eeeeee;
+    -moz-box-shadow: inset 0 0 5px 2px #aaaaaa, 0 1px 0 0 #eeeeee;
+    -ms-box-shadow: inset 0 0 5px 2px #aaaaaa, 0 1px 0 0 #eeeeee;
+    -o-box-shadow: inset 0 0 5px 2px #aaaaaa, 0 1px 0 0 #eeeeee;
+    box-shadow: inset 0 0 5px 2px #aaaaaa, 0 1px 0 0 #eeeeee;
+ }

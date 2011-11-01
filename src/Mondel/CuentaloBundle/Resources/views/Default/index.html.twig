@@ -93,30 +93,40 @@
                     <div class="Titulo">{{ mensaje.tipo | replace({'s': "Secreto", 'a': "Anécdota", 'm': "Mensaje"})  }} / {{ mensaje.fechaCreacion | date('d.m.y') }}</div>
                     <div class="Contenido">{{ mensaje.texto }}</div>
                     <div class="Datos">
-                        {# Comentarios: {{ mensaje.comentarios | length }} #}
-                        {% if mensaje.comentarios | length > 0 %}
+                        <div class="TituloComentarios">Comentarios</div>
+                        <div class="Comentarios">
+                            {% if mensaje.comentarios | length > 0 %}
 
-                            {% for comentario in mensaje.comentarios %}
+                                {% for comentario in mensaje.comentarios %}
 
-                                {{ comentario.texto }}<hr/>
+                                    {% if comentario.usuario.sexo == 'm' %}
+                                        <img class="IconoSexo" src="{{ asset('bundles/mondelcuentalo/img/masculino.png') }}" />
+                                    {% else %}
+                                        <img class="IconoSexo" src="{{ asset('bundles/mondelcuentalo/img/femenino.png') }}" />
+                                    {% endif %}
+                                    {{ comentario.usuario.nombre }}:
+                                    {{ comentario.texto }}
+                                    {% if not loop.last %}
+                                        <hr/>
+                                    {% endif %}
 
-                            {%endfor%}
+                                {%endfor%}
 
-                        {% else %}
-                            No hay comentarios
-                        {% endif %}
+                            {% else %}
+                                No hay comentarios
+                            {% endif %}
 
-                        <br/>
-                        <form action="{{ path('vista_contenido', {'id': mensaje.id, 'titulo': '', 'tipo': mensaje.tipo}) }}" method="post" {{ form_enctype(forms_comentario[loop.index]) }}>
+                            <br/>
+                            <form action="{{ path('vista_contenido', {'id': mensaje.id, 'titulo': '', 'tipo': mensaje.tipo}) }}" method="post" {{ form_enctype(forms_comentario[loop.index]) }}>
 
-                            {{ form_errors(forms_comentario[loop.index]) }}
+                                {{ form_errors(forms_comentario[loop.index]) }}
 
-                            {{ form_rest(forms_comentario[loop.index]) }}
+                                {{ form_rest(forms_comentario[loop.index]) }}
 
-                            <!--input type="submit" value="Comentar" /-->
+                                <!--input type="submit" value="Comentar" /-->
 
-                        </form>
-
+                            </form>
+                        </div>
                     </div>
                 </div>
 
@@ -157,8 +167,7 @@ src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
 
             $('input[name="comentario[texto]"]').each(function(index) {
                 $(this).attr("placeholder","deja tu comentario...");
-                $(this).css("border", "1px solid #929191")
-                        .css("width", "260px");
+                $(this).addClass('InputComentarios');
                 $(this).keypress(function(event) {
                     if ( event.which == 13 ) {
                         $(this).parent().parent().submit();
