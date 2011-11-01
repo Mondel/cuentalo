@@ -106,6 +106,8 @@
                                     {% endif %}
                                     {{ comentario.usuario.nombre }}:
                                     {{ comentario.texto }}
+                                    <br/>
+                                    {{ comentario.fechaCreacion | created_ago }}
                                     {% if not loop.last %}
                                         <hr/>
                                     {% endif %}
