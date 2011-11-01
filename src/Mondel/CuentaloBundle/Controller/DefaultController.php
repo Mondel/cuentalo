@@ -60,6 +60,7 @@ class DefaultController extends Controller
                 $usuario = $this->get('security.context')->getToken()->getUser();
                 if ($this->get('security.context')->isGranted('IS_AUTHENTICATED_FULLY')) {
                     $contenido->setUsuario($usuario);
+                    $contenido->setSexo($usuario->getSexo());
                 }
 
                 $em = $this->getDoctrine()->getEntityManager();

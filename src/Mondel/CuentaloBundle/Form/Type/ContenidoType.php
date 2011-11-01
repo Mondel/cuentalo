@@ -17,6 +17,9 @@ class ContenidoType extends AbstractType {
                     'choices'  => array('0' => 'Elegir', 'm' => 'Mensaje', 'a' => 'Anecdota', 's' => 'Secreto'),
                     'required' => true,
                 ))
+                ->add('sexo', 'choice', array(
+                    'choices'   => array('m' => 'Masculino', 'f' => 'Femenino'),
+                ))
                 ->add('texto');
     }
 

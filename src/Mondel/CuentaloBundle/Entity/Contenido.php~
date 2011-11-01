@@ -61,6 +61,14 @@ class Contenido
     private $pais;
 
     /**
+     * @var string $sexo
+     *
+     * @Assert\Choice({"m", "f"})
+     * @ORM\Column(name="sexo", type="string", length=1, nullable="true")
+     */
+    private $sexo;
+
+    /**
      * @var boolean $activo
      *
      * @ORM\Column(name="activo", type="boolean")
@@ -122,11 +130,11 @@ class Contenido
         $this->comentarios = new \Doctrine\Common\Collections\ArrayCollection();
     $this->votos = new \Doctrine\Common\Collections\ArrayCollection();
     }
-    
+
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -146,7 +154,7 @@ class Contenido
     /**
      * Get tipo
      *
-     * @return string 
+     * @return string
      */
     public function getTipo()
     {
@@ -166,7 +174,7 @@ class Contenido
     /**
      * Get texto
      *
-     * @return text 
+     * @return text
      */
     public function getTexto()
     {
@@ -186,7 +194,7 @@ class Contenido
     /**
      * Get ip
      *
-     * @return string 
+     * @return string
      */
     public function getIp()
     {
@@ -196,7 +204,7 @@ class Contenido
     /**
      * Get pais
      *
-     * @return string 
+     * @return string
      */
     public function getPais()
     {
@@ -216,7 +224,7 @@ class Contenido
     /**
      * Get activo
      *
-     * @return boolean 
+     * @return boolean
      */
     public function getActivo()
     {
@@ -226,7 +234,7 @@ class Contenido
     /**
      * Get fecha_creacion
      *
-     * @return datetime 
+     * @return datetime
      */
     public function getFechaCreacion()
     {
@@ -246,7 +254,7 @@ class Contenido
     /**
      * Get usuario
      *
-     * @return Mondel\CuentaloBundle\Entity\Usuario 
+     * @return Mondel\CuentaloBundle\Entity\Usuario
      */
     public function getUsuario()
     {
@@ -266,7 +274,7 @@ class Contenido
     /**
      * Get comentarios
      *
-     * @return Doctrine\Common\Collections\Collection 
+     * @return Doctrine\Common\Collections\Collection
      */
     public function getComentarios()
     {
@@ -286,10 +294,30 @@ class Contenido
     /**
      * Get votos
      *
-     * @return Doctrine\Common\Collections\Collection 
+     * @return Doctrine\Common\Collections\Collection
      */
     public function getVotos()
     {
         return $this->votos;
+    }
+
+    /**
+     * Set sexo
+     *
+     * @param string $sexo
+     */
+    public function setSexo($sexo)
+    {
+        $this->sexo = $sexo;
+    }
+
+    /**
+     * Get sexo
+     *
+     * @return string
+     */
+    public function getSexo()
+    {
+        return $this->sexo;
     }
 }

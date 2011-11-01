@@ -44,6 +44,7 @@
 
 #content_top div {
     float: left;
+    text-align: right;
 }
 
 #logo {
@@ -117,6 +118,14 @@
 .Box_contenido .Titulo {
     padding: 7px 8px;
     border: 1px solid #d7d7d7;
+}
+
+.Box_contenido .Titulo .InfoTitulo {
+    float: right;
+}
+
+.Box_contenido .Titulo .InfoTitulo .IconoSexo {
+    width: 15px;
 }
 
 .Box_contenido .Contenido {
@@ -203,38 +212,6 @@
 .LoginText {
     color: #000;
 }
-
-/*
-
-.ButtonLogin {
-    border-right-color: #004A73;
-    background: #0571A6;
-    background: -moz-linear-gradient(top,#73AEC9 0,#73AEC9 1px,#338AB0 1px,#0571A6 100%);
-    background: -webkit-gradient(linear,left top,left bottom,color-stop(0,#73AEC9),color-stop(5%,#73AEC9),color-stop(5%,#338AB0),color-stop(100%,#0571A6));
-    background: linear-gradient(top,#73AEC9 0,#73AEC9 1px,#338AB0 1px,#0571A6 100%);
-    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#338AB0',endColorstr='#0571A6',GradientType=0);
-    border-color: #045A8B;
-    color: white!important;
-    text-align: center;
-    margin-left: 4px;
-    margin-right: 4px;
-    font-weight: normal;
-    border-width: 1px;
-    border-style: solid;
-    -moz-border-radius: 3px;
-    -webkit-border-radius: 3px;
-    border-radius: 3px;
-    cursor: pointer;
-    overflow: visible;
-    padding: 3px 10px;
-    text-decoration: none!important;
-    vertical-align: top;
-    width: auto;
-    font-family: arial,helvetica,sans-serif;
-    height: 22px;
-    font-size: 11px;
-}
-*/
 
 /* clean gray
 *******************************************************************************/
