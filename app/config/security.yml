@@ -9,21 +9,21 @@ security:
 
     providers:
         main:
-            providers: [in_memory, user_db]        
+            providers: [in_memory, user_db]
         in_memory:
             users:
                 user:  { password: userpass, roles: [ 'ROLE_USER' ] }
                 admin: { password: adminpass, roles: [ 'ROLE_ADMIN' ] }
         user_db:
-            entity: { class: Mondel\CuentaloBundle\Entity\Usuario, property: email }          
+            entity: { class: Mondel\CuentaloBundle\Entity\Usuario, property: email }
 
     firewalls:
-        secured_area:            
+        secured_area:
             pattern:    ^/
             anonymous: ~
             form_login:
-                login_path:     /login
-                check_path:     /login_check                
+                login_path:     /
+                check_path:     /login_check
             logout:
                 path:   /logout
                 target: /

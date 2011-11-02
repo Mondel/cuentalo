@@ -14,13 +14,13 @@ class ContenidoType extends AbstractType {
         }
 
         $builder->add('tipo', 'choice', array(
-                    'choices'  => array('0' => 'Elegir', 'm' => 'Mensaje', 'a' => 'Anecdota', 's' => 'Secreto'),
+                    'choices'  => array('m' => 'Mensaje', 'a' => 'Anecdota', 's' => 'Secreto'),
                     'required' => true,
                 ))
                 ->add('sexo', 'choice', array(
                     'choices'   => array('m' => 'Masculino', 'f' => 'Femenino'),
                 ))
-                ->add('texto');
+                ->add('texto', null ,array('max_length' => 555));
     }
 
     public function getDefaultOptions(array $options) {

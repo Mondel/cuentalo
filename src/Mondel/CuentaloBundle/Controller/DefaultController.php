@@ -6,9 +6,11 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Security\Core\SecurityContext;
 
 use Mondel\CuentaloBundle\Entity\Contenido,
-    Mondel\CuentaloBundle\Entity\Comentario;
+    Mondel\CuentaloBundle\Entity\Comentario,
+    Mondel\CuentaloBundle\Entity\Usuario;
 use Mondel\CuentaloBundle\Form\Type\ContenidoType,
-    Mondel\CuentaloBundle\Form\Type\ComentarioType;
+    Mondel\CuentaloBundle\Form\Type\ComentarioType,
+    Mondel\CuentaloBundle\Form\Type\UsuarioType;
 use Mondel\CuentaloBundle\Helpers\ObjectHelper;
 
 class DefaultController extends Controller
@@ -35,6 +37,8 @@ class DefaultController extends Controller
         $contenido = new Contenido();
         $form = $this->createForm(new ContenidoType(), $contenido);
 
+        $usuarioR = new Usuario();
+        $formR = $this->createForm(new UsuarioType(), $usuarioR);
 
         $forms_comentario = array();
         $i = 1;
@@ -79,6 +83,8 @@ class DefaultController extends Controller
                     'forms_comentario'      => $forms_comentario,
                     'last_username'         => $session->get(SecurityContext::LAST_USERNAME),
                     'error'                 => $error,
+                    'last_username'         => $session->get(SecurityContext::LAST_USERNAME),
+                    'formR'                 => $formR->createView(),
                 )
         );
     }

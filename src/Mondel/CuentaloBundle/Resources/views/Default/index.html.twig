@@ -42,7 +42,7 @@
         <li><a href="{{ path('vista_anecdotas') }}">Anecdotas</a></li>
         <li><a href="{{ path('vista_mensajes') }}">Mensajes</a></li>
         {% if not is_granted('IS_AUTHENTICATED_FULLY') %}
-            <li><a href="{{ path('registro') }}">Registrarse</a></li>
+            <li><a href="#" onclick="registro()">Registrarse</a></li>
         {% else %}
             <li><a href="{{ path('logout') }}">Salir</a></li>
         {% endif %}
@@ -57,7 +57,7 @@
             {{ form_errors(form) }}
         </div>
         <div id="box">
-            <form action="{{ path('homepage') }}" method="post" {{ form_enctype(form) }}>
+            <form id="contenidoForm" action="{{ path('homepage') }}" method="post" {{ form_enctype(form) }}>
 
                 {#{ form_errors(form.texto) }#}
                 {{ form_widget(form.texto, { 'attr': {'placeholder': 'Comparte tu secreto, anécdota o un mensaje al mundo...'} }) }}
@@ -90,7 +90,7 @@
 
                     <p>Caracteres: <span id="count_caracteres">555</span></p>
 
-                    <input type="submit" value="Compartir" class="Button" />
+                    <input type="button" value="Compartir" class="Button" onclick="validaContenido()" />
 
                 </div>
 
@@ -171,9 +171,15 @@
         </div>
     </div>
 
+
+    <div id="registro" style="display: block;">
+        {% include 'MondelCuentaloBundle:Usuario:registro.html.twig' with { 'form' : formR } %}
+    </div>
+
 {% endblock %}
 
-{% block right %} <script type="text/javascript"><!--
+{% block right %}
+<script type="text/javascript"><!--
 google_ad_client = "ca-pub-4717880844454319";
 /* Adsense1 */
 google_ad_slot = "4216094893";
@@ -181,9 +187,9 @@ google_ad_width = 160;
 google_ad_height = 600;
 //-->
 </script>
-<script type="text/javascript"
-src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
-</script> {% endblock%}
+<script type="text/javascript" src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+{% endblock%}
 
 {% block javascripts %}
     <script type="text/javascript">
@@ -217,6 +223,18 @@ src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
             var num = $('#count_caracteres');
             var valor = 555 - area.val().length;
             num.text(valor);
+        }
+
+        function validaContenido() {
+            var area = $('#contenido_texto');
+            if (area.val().length <= 100)
+                alert('El contenido de tu ' + $('#contenido_tipo option[value=' + $('#contenido_tipo').val() + ']').text() + ' debe ser mayor a 100 caracteres.');
+            else
+                $('#contenidoForm').submit();
+        }
+
+        function registro() {
+            $('#registro').dialog();
         }
 
     </script>
