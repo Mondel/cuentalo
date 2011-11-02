@@ -57,3 +57,6 @@ swiftmailer:
 jms_security_extra:
     secure_controllers:  true
     secure_all_services: false
+
+knp_paginator:
+    templating: ~ # enables view helper and twig

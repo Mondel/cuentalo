@@ -26,13 +26,33 @@ class DefaultController extends Controller
         $ultimos_contenidos = $repository
                 ->findBy(
                         array(),
-                        array('fecha_creacion' => 'DESC'),
+                        array(
+                            'fecha_creacion' => 'DESC'
+                        ),
                         5
                 );
 
+        $em = $this->get('doctrine.orm.entity_manager');
+        $dql = "SELECT c FROM MondelCuentaloBundle:Contenido c WHERE c.activo = '1' ORDER BY c.fecha_creacion DESC";
+        $query = $em->createQuery($dql);
+
         if (isset($tipo) && !empty($tipo) && $tipo != null) {
             $ultimos_contenidos = $repository->findBy(array('tipo' => $tipo));
+
+            $dql = "SELECT c FROM MondelCuentaloBundle:Contenido c WHERE c.activo = '1' and c.tipo = '" . $tipo . "' ORDER BY c.fecha_creacion DESC";
+            $query = $em->createQuery($dql);
         }
+
+        $adapter = $this->get('knp_paginator.adapter');
+        $adapter->setQuery($query);
+        $adapter->setDistinct(true);
+
+        $paginator = new \Zend\Paginator\Paginator($adapter);
+        $paginator->setCurrentPageNumber($this->get('request')->query->get('page', 1));
+        $paginator->setItemCountPerPage(10);
+        $paginator->setPageRange(5);
+
+        $ultimos_contenidos = $paginator;
 
         $contenido = new Contenido();
         $form = $this->createForm(new ContenidoType(), $contenido);

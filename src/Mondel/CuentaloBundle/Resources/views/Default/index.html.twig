@@ -37,7 +37,7 @@
 {% block left %}
 
     <ul id="menu">
-        <li><a href="#">Todos</a></li>
+        <li><a href="{{ path('homepage') }}">Todos</a></li>
         <li><a href="{{ path('vista_secretos') }}">Secretos</a></li>
         <li><a href="{{ path('vista_anecdotas') }}">Anecdotas</a></li>
         <li><a href="{{ path('vista_mensajes') }}">Mensajes</a></li>
@@ -168,11 +168,14 @@
                 <p>No hay mensajes aún</p>
 
             {% endfor %}
+
+            {{ ultimos_contenidos | paginate }}
+
         </div>
     </div>
 
 
-    <div id="registro" style="display: block;">
+    <div id="registro" style="display: none;">
         {% include 'MondelCuentaloBundle:Usuario:registro.html.twig' with { 'form' : formR } %}
     </div>
 
@@ -234,7 +237,31 @@ google_ad_height = 600;
         }
 
         function registro() {
-            $('#registro').dialog();
+            $('#registro').dialog({
+                minWidth: 450
+            });
+        }
+
+        function validaRegistro() {
+            var errores = [];
+            var nombre = $('#registro #usuario_nombre');
+            var apellido = $('#registro #usuario_apellido')
+            var email = $('#registro #usuario_email')
+            var contrasenia = $('#registro #usuario_contrasenia');
+
+            if (nombre.val() == '')
+                errores.push('El nombre es obligatorio');
+            if (apellido.val() == '')
+                errores.push('El apellido es obligatorio');
+            if (email.val() == '')
+                errores.push('El email es obligatorio');
+            if (contrasenia.val() == '')
+                errores.push('La contraseña es obligatoria');
+
+            if (errores.length > 0)
+                alert(errores.join('\n'));
+            else
+                $('#registroForm').submit();
         }
 
     </script>

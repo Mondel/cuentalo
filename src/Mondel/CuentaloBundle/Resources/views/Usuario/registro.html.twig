@@ -1,10 +1,10 @@
 
-    <form action="{{ path('registro') }}" method="post" {{ form_enctype(form) }}>
+    <form id="registroForm" action="{{ path('registro') }}" method="post" {{ form_enctype(form) }}>
 
         {{ form_errors(form) }}
 
         {{ form_rest(form) }}
 
-        <input type="submit" value="Registrarme" />
+        <input type="button" value="Registrarme" onclick="validaRegistro()" />
 
     </form>
