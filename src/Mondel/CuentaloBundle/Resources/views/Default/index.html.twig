@@ -46,6 +46,7 @@
         {% else %}
             <li><a href="{{ path('logout') }}">Salir</a></li>
         {% endif %}
+        <li><a target="_blank" href="http://www.mondel.com.uy/contacto.php">Contactanos</a></li>
     </ul>
 {% endblock %}
 
@@ -160,7 +161,7 @@
 
                                 </form>
                             {% else %}
-                                Para ver los comentarios debes estar <a id="logueado" href="#">logueado</a>
+                                Para ver los comentarios debes estar <a href="#" onclick="registro();return false;">registrado</a> o <a class="Logueado" href="#" >iniciar sesi&oacute;n</a>
                             {% endif %}
                         </div>
                     </div>
@@ -208,7 +209,7 @@
 
         $(document).ready(function(){
 
-            $('#logueado').click(function() {
+            $('.Logueado').click(function() {
                 $('#username').css("border", "1px solid red");
                 $('#password').css("border", "1px solid red");
                 $('#username').focus();
