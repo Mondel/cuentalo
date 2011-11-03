@@ -48,6 +48,12 @@
         {% endif %}
     </ul>
 
+    <div id="pubMondel">
+        <a href="http://www.mondel.com.uy">
+            <img src="{{ asset('bundles/mondelcuentalo/img/publicidad.gif') }}" alt="Mondel" />
+        </a>
+    </div>
+
 {% endblock %}
 
 {% block center %}
@@ -247,6 +253,7 @@
 			var allFields = $( [] ).add( nombre ).add( apellido ).add( email ).add(contrasenia).add(sexo);
 
             $("#registro").dialog({
+                title: 'Registro de Cuentalo',
                 minWidth: 450,
                 modal: true,
                 buttons: {
