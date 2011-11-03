@@ -278,8 +278,9 @@
 }
 
 #stream .pagination {
-    text-align: center;
     color: #6A6969;
+    margin: 20px 0;
+    text-align: center;
 }
 
 #stream .pagination a {
@@ -316,5 +317,5 @@
 }
 
 #FooterAds {
-    margin: 15px 0;
+    text-align: center;
 }
