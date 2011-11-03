@@ -300,3 +300,4 @@
 .validateTips { border: 1px solid transparent; padding: 0.3em; }
 .ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default { color: gray; }
 .ui-state-error, .ui-widget-content .ui-state-error, .ui-widget-header .ui-state-error { color: black; }
+.ui-widget-header { border: none; }
