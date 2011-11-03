@@ -15,7 +15,7 @@ use Mondel\CuentaloBundle\Helpers\ObjectHelper;
 
 class DefaultController extends Controller
 {
-    public function indexAction($tipo='')
+    public function indexAction($tipo='', $customError='')
     {
         $request = $this->getRequest();
         $session = $request->getSession();
@@ -103,8 +103,9 @@ class DefaultController extends Controller
                     'forms_comentario'      => $forms_comentario,
                     'last_username'         => $session->get(SecurityContext::LAST_USERNAME),
                     'error'                 => $error,
-                    'last_username'         => $session->get(SecurityContext::LAST_USERNAME),
                     'formR'                 => $formR->createView(),
+                    'customError'           => $customError,
+                    'usuario'               => $this->get('security.context')->getToken()->getUser(),
                 )
         );
     }

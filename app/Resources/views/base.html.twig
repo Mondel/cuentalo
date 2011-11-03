@@ -2,7 +2,19 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-        <title>{% block title %}{% endblock %} | cuentalo.com.uy</title>
+        <meta name="description" content="cuentalo,secretos,anecdotas,mensajes,red social, redes sociales uruguayas" />
+        <meta name="keywords" content="" />
+        <meta name="og:title" content="Cuentalo - Conta tu Secreto, Anectoda o Mensaje" />
+        <meta name="og:type" content="website" />
+        <meta name="og:url" content="http://www.cuentalo.com.uy/" />
+        <meta name="og:description" content="Cuentalo,secretos,anecdotas,mensajes,red social, redes sociales uruguayas" />
+        <meta name="og:site_name" content="Cuentalo" />
+        <meta name="og:country-name" content="Uruguay"/>
+        <meta name="og:email" content="info@cuentalo.com.uy"/>
+        <link rel="canonical" href="http://www.cuentalo.com.uy/" />
+
+        {#{% block title %}{% endblock %}#}
+        <title>Cuentalo - Conta tu Secreto, Anectoda o Mensaje</title>
         {% block stylesheets %}{% endblock %}
         <link rel="shortcut icon" href="{{ asset('favicon.ico') }}" />
     </head>
@@ -11,5 +23,19 @@
             <script type="text/javascript" src="{{ asset('bundles/mondelcuentalo/js/jquery.min.js') }}"></script>
             <script type="text/javascript" src="{{ asset('bundles/mondelcuentalo/js/jquery-ui.min.js') }}"></script>
         {% block javascripts %}{% endblock %}
+            
+        <script type="text/javascript">
+
+          var _gaq = _gaq || [];
+          _gaq.push(['_setAccount', 'UA-26661824-1']);
+          _gaq.push(['_trackPageview']);
+
+          (function() {
+            var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+          })();
+
+        </script>
     </body>
 </html>

@@ -17,13 +17,20 @@
         <div id="content_top">
 
             <div id="logo">
-                <img src="{{ asset('bundles/mondelcuentalo/img/logo_cuentalo.gif') }}">
+                <a href="{{ path('homepage') }}">
+                    <img src="{{ asset('bundles/mondelcuentalo/img/logo_cuentalo.gif') }}">
+                </a>
             </div>
 
             <div id="menu_top">
                 <div id="content_menu_top">
+                    {% if customError %}
+                        <div id="LoginError">{{ customError }}</div>
+                    {% endif %}
                     {% if not is_granted('IS_AUTHENTICATED_FULLY') %}
                          {% include 'MondelCuentaloBundle:Usuario:login.html.twig' %}
+                    {% else %}
+                        Bienvenido {{usuario.nombre}}
                     {% endif %}
                 </div>
             </div>

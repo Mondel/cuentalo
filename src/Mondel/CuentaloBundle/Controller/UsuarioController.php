@@ -40,6 +40,17 @@ class UsuarioController extends Controller
             $form->bindRequest($request);
 
             if ($form->isValid()) {
+
+                $repository = $this->getDoctrine()
+                    ->getRepository('MondelCuentaloBundle:Usuario');
+
+                $userExist = $repository->findOneBy(array('email' => $usuario->getEmail()));
+
+                if ($userExist != null)
+                    return $this->forward('MondelCuentaloBundle:Default:index', array(
+                        'customError'  => 'El email que intenta registrar ya existe'
+                    ));
+
                 $usuario->setSalt(md5(time()));
 
                 $factory = $this->get('security.encoder_factory');
