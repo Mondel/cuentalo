@@ -174,7 +174,6 @@
         </div>
     </div>
 
-
     <div id="registro" style="display: none;">
         {% include 'MondelCuentaloBundle:Usuario:registro.html.twig' with { 'form' : formR } %}
     </div>
@@ -182,16 +181,18 @@
 {% endblock %}
 
 {% block right %}
-<script type="text/javascript"><!--
-google_ad_client = "ca-pub-4717880844454319";
-/* Adsense1 */
-google_ad_slot = "4216094893";
-google_ad_width = 160;
-google_ad_height = 600;
-//-->
-</script>
-<script type="text/javascript" src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
-</script>
+    <div id="adsense">
+        <script type="text/javascript"><!--
+        google_ad_client = "ca-pub-4717880844454319";
+        /* Adsense1 */
+        google_ad_slot = "4216094893";
+        google_ad_width = 160;
+        google_ad_height = 600;
+        //-->
+        </script>
+        <script type="text/javascript" src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+        </script>
+    </div>
 {% endblock%}
 
 {% block javascripts %}
@@ -237,9 +238,85 @@ google_ad_height = 600;
         }
 
         function registro() {
-            $('#registro').dialog({
-                minWidth: 450
+
+            var nombre = $('#registro #usuario_nombre');
+            var apellido = $('#registro #usuario_apellido')
+            var email = $('#registro #usuario_email')
+            var contrasenia = $('#registro #usuario_contrasenia');
+            var sexo = $('#registro #usuario_sexo');
+			var allFields = $( [] ).add( nombre ).add( apellido ).add( email ).add(contrasenia).add(sexo);
+
+            $("#registro").dialog({
+                minWidth: 450,
+                modal: true,
+                buttons: {
+                    "Registrarme": function() {
+                        var bValid = true;
+                        allFields.removeClass( "ui-state-error" );
+
+                        bValid = bValid && checkLength( nombre, "nombre", 3, 30 );
+                        bValid = bValid && checkLength( apellido, "apellido", 3, 30 );
+                        bValid = bValid && checkLength( email, "email", 3, 50 );
+                        bValid = bValid && checkLength( contrasenia, "contraseña", 3, 15 );
+                        bValid = bValid && checkSelect( sexo, "Debes elegir un sexo");
+
+                        // From jquery.validate.js (by joern), contributed by Scott Gonzalez: http://projects.scottsplayground.com/email_address_validation/
+                        bValid = bValid && checkRegexp( email, /^((([a-z]|\d|[!#\$%&'\*\+\-\/=\?\^_`{\|}~]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])+(\.([a-z]|\d|[!#\$%&'\*\+\-\/=\?\^_`{\|}~]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])+)*)|((\x22)((((\x20|\x09)*(\x0d\x0a))?(\x20|\x09)+)?(([\x01-\x08\x0b\x0c\x0e-\x1f\x7f]|\x21|[\x23-\x5b]|[\x5d-\x7e]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(\\([\x01-\x09\x0b\x0c\x0d-\x7f]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]))))*(((\x20|\x09)*(\x0d\x0a))?(\x20|\x09)+)?(\x22)))@((([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])*([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])))\.)+(([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])*([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])))\.?$/i, "ej. mondel@cuentalo.com.uy" );
+
+                        if ( bValid ) {
+                            $('#registroForm').submit();
+                            $( this ).dialog( "close" );
+                        }
+                    },
+                    "Cancelar": function() {
+                        $( this ).dialog( "close" );
+                    }
+                },
+                close: function() {
+                    allFields.val( "" ).removeClass( "ui-state-error" );
+                }
             });
+        }
+
+		function updateTips( t ) {
+			var tips = $( ".validateTips" );
+            tips
+				.text( t )
+				.addClass( "ui-state-highlight" );
+			setTimeout(function() {
+				tips.removeClass( "ui-state-highlight", 1500 );
+			}, 500 );
+		}
+
+		function checkLength( o, n, min, max ) {
+			if ( o.val().length > max || o.val().length < min ) {
+				o.addClass( "ui-state-error" );
+				updateTips( "El largo del " + n + " debe estar entre " +
+					min + " y " + max + "." );
+				return false;
+			} else {
+				return true;
+			}
+		}
+
+		function checkRegexp( o, regexp, n ) {
+			if ( !( regexp.test( o.val() ) ) ) {
+				o.addClass( "ui-state-error" );
+				updateTips( n );
+				return false;
+			} else {
+				return true;
+			}
+		}
+
+        function checkSelect(o, msj) {
+            if (o.val() == '') {
+                o.addClass( "ui-state-error" );
+				updateTips( msj );
+				return false;
+			} else {
+				return true;
+            }
         }
 
         function validaRegistro() {
@@ -248,6 +325,7 @@ google_ad_height = 600;
             var apellido = $('#registro #usuario_apellido')
             var email = $('#registro #usuario_email')
             var contrasenia = $('#registro #usuario_contrasenia');
+            var sexo = $('#registro #usuario_sexo');
 
             if (nombre.val() == '')
                 errores.push('El nombre es obligatorio');
@@ -257,6 +335,8 @@ google_ad_height = 600;
                 errores.push('El email es obligatorio');
             if (contrasenia.val() == '')
                 errores.push('La contraseña es obligatoria');
+            if (sexo.val() == '')
+                errores.push('Debes elegir un sexo');
 
             if (errores.length > 0)
                 alert(errores.join('\n'));

@@ -1,10 +1,12 @@
 
+    <p class="validateTips">Todos los campos son obligatorios.</p>
+
     <form id="registroForm" action="{{ path('registro') }}" method="post" {{ form_enctype(form) }}>
 
         {{ form_errors(form) }}
 
         {{ form_rest(form) }}
 
-        <input type="button" value="Registrarme" onclick="validaRegistro()" />
+        <!--input type="button" value="Registrarme" onclick="validaRegistro()" /-->
 
     </form>

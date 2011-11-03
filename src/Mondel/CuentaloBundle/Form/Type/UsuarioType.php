@@ -25,6 +25,7 @@ class UsuarioType extends AbstractType {
                 ->add('sexo', 'choice', array(
                     'choices'   => array('m' => 'Masculino', 'f' => 'Femenino'),
                     'required'  => true,
+                    'empty_value' => 'Seleccione',
                 ));
                 //->add('recibe_noticias', null, array(
                 //    'label'     => 'Quiere recibir noticias por email ?',
