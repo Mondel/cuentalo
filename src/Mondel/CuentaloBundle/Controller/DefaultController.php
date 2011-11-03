@@ -49,7 +49,7 @@ class DefaultController extends Controller
 
         $paginator = new \Zend\Paginator\Paginator($adapter);
         $paginator->setCurrentPageNumber($this->get('request')->query->get('page', 1));
-        $paginator->setItemCountPerPage(10);
+        $paginator->setItemCountPerPage(5);
         $paginator->setPageRange(5);
 
         $ultimos_contenidos = $paginator;
