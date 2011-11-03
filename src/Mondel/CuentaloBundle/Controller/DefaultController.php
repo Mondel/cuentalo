@@ -75,23 +75,25 @@ class DefaultController extends Controller
             $error = $session->get(SecurityContext::AUTHENTICATION_ERROR);
         }
 
-        if ($request->getMethod() == 'POST') {
-            $form->bindRequest($request);
+        if ($customError == '') {
+            if ($request->getMethod() == 'POST') {
+                $form->bindRequest($request);
 
-            if ($form->isValid()) {
-                $contenido->setIp($request->getClientIp());
+                if ($form->isValid()) {
+                    $contenido->setIp($request->getClientIp());
 
-                $usuario = $this->get('security.context')->getToken()->getUser();
-                if ($this->get('security.context')->isGranted('IS_AUTHENTICATED_FULLY')) {
-                    $contenido->setUsuario($usuario);
-                    $contenido->setSexo($usuario->getSexo());
+                    $usuario = $this->get('security.context')->getToken()->getUser();
+                    if ($this->get('security.context')->isGranted('IS_AUTHENTICATED_FULLY')) {
+                        $contenido->setUsuario($usuario);
+                        $contenido->setSexo($usuario->getSexo());
+                    }
+
+                    $em = $this->getDoctrine()->getEntityManager();
+                    $em->persist($contenido);
+                    $em->flush();
+
+                    return $this->redirect($this->generateUrl('homepage'));
                 }
-
-                $em = $this->getDoctrine()->getEntityManager();
-                $em->persist($contenido);
-                $em->flush();
-
-                return $this->redirect($this->generateUrl('homepage'));
             }
         }
 
