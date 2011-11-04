@@ -3,3 +3,9 @@ RewriteCond %{HTTP_HOST} ^cuentalo\.com\.uy$ [OR]
 RewriteCond %{HTTP_HOST} ^www\.cuentalo\.com\.uy$
 RewriteCond %{REQUEST_URI} !^/web/
 RewriteRule (.*) /web/$1 [L]
+
+#MANTENIMIENTO
+#Options +FollowSymlinks
+#RewriteEngine On
+#RewriteCond %{REQUEST_URI} !/web/mantenimiento.html$
+#RewriteRule $ /web/mantenimiento.html [R=302,L]
