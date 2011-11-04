@@ -64,7 +64,7 @@ class Contenido
      * @var string $sexo
      *
      * @Assert\Choice({"m", "f"})
-     * @ORM\Column(name="sexo", type="string", length=1, nullable="true")
+     * @ORM\Column(name="sexo", type="string", length=1, nullable=true)
      */
     private $sexo;
 

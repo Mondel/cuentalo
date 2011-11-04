@@ -52,7 +52,7 @@ class Usuario implements UserInterface
      * @Assert\Email()
      * @Assert\MaxLength(50)
      * @Assert\NotBlank()
-     * @ORM\Column(name="email", type="string", length=50, unique="true")
+     * @ORM\Column(name="email", type="string", length=50, unique=true)
      */
     private $email;
 
@@ -67,7 +67,7 @@ class Usuario implements UserInterface
     /**
      * @var date $fecha_nacimiento
      *
-     * @ORM\Column(name="fecha_nacimiento", type="date", nullable="true")
+     * @ORM\Column(name="fecha_nacimiento", type="date", nullable=true)
      */
     private $fecha_nacimiento;
 
@@ -86,7 +86,7 @@ class Usuario implements UserInterface
     private $fecha_actualizacion;
 
     /**
-     * @ORM\Column(name="salt", type="string", length="255")
+     * @ORM\Column(name="salt", type="string", length=255)
      */
     private $salt;
 
@@ -110,14 +110,14 @@ class Usuario implements UserInterface
     /**
      * @var boolean $recibe_noticias
      *
-     * @ORM\Column(name="recibe_noticias", type="boolean", nullable="true")
+     * @ORM\Column(name="recibe_noticias", type="boolean", nullable=true)
      */
     private $recibe_noticias;
 
     /**
      * @var boolean $recibe_notificaciones
      *
-     * @ORM\Column(name="recibe_notificaciones", type="boolean", nullable="true")
+     * @ORM\Column(name="recibe_notificaciones", type="boolean", nullable=true)
      */
     private $recibe_notificaciones;
 
