@@ -24,7 +24,7 @@
 
 #content_menu_top {
     margin: 0 25px;
-    width: 580px;
+    width: 580px;z
 }
 
 #center .Wrap {
@@ -326,4 +326,13 @@
     top: 3px;
     margin: 0 210px;
     color: red;
+
+}
+
+
+#megusta {
+    top:15px;
+ text-align: center;
+
+
 }
