@@ -23,7 +23,7 @@
 
 #content_menu_top {
     margin: 0 25px;
-    width: 100%;
+    width: 580px;
 }
 
 #center .Wrap {
@@ -43,7 +43,7 @@
 
 #content_top div {
     float: left;
-    text-align: center;
+    text-align: right;
 }
 
 #logo {
@@ -329,4 +329,19 @@
 
 .flash-notice {
     text-align: center;
+}
+
+#loginIndex {
+    padding: 8px;
+    margin: 5px 0;
+}
+
+#loginIndex form input
+{
+    margin: 8px 0;
+}
+
+#Error {
+    text-align: center;
+    color: red;
 }

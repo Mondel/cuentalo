@@ -12,63 +12,21 @@
 
 {% block top %}
 
-    <div class="Wrap">
-
-        <div id="content_top">
-
-            <div id="logo">
-                <a href="{{ path('homepage') }}">
-                    <img src="{{ asset('bundles/mondelcuentalo/img/logo_cuentalo.gif') }}">
-                </a>
-            </div>
-
-            <div id="menu_top">
-                <div id="content_menu_top">
-                    {% if customError %}
-                        <div id="LoginError">{{ customError }}</div>
-                    {% endif %}
-                    {% if not is_granted('IS_AUTHENTICATED_REMEMBERED') %}
-                         {% include 'MondelCuentaloBundle:Usuario:loginIndex.html.twig' %}
-                    {% else %}
-                        Bienvenido {{usuario.nombre}}
-                    {% endif %}
-                </div>
-            </div>
-
-        </div>
-
-    </div>
+    
 
 {% endblock %}
 
 {% block left %}
 
-    <ul id="menu">
-        <li><a href="{{ path('homepage') }}">Todos</a></li>
-        <li><a href="{{ path('vista_secretos') }}">Secretos</a></li>
-        <li><a href="{{ path('vista_anecdotas') }}">Anecdotas</a></li>
-        <li><a href="{{ path('vista_mensajes') }}">Mensajes</a></li>
+    <div id="loginIndex">
         {% if not is_granted('IS_AUTHENTICATED_REMEMBERED') %}
-            <li><a href="#" onclick="registro()">Registrarse</a></li>
-        {% else %}
-            <li><a href="{{ path('logout') }}">Salir</a></li>
+            {% include 'MondelCuentaloBundle:Usuario:loginIndex.html.twig' %}
         {% endif %}
-        <li><a target="_blank" href="http://www.mondel.com.uy/contacto.php">Contactanos</a></li>
-    </ul>
-    <div id="addthis">
-        <div class="addthis_toolbox addthis_default_style ">
-            <a class="addthis_button_preferred_1"></a>
-            <a class="addthis_button_preferred_2"></a>
-            <a class="addthis_button_preferred_3"></a>
-            <a class="addthis_button_compact"></a>
-            <a class="addthis_counter addthis_bubble_style"></a>
-        </div>
-        <script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#pubid=fabid"></script>
     </div>
 
-    <div id="beta">
+    <!--div id="beta">
         <img src="{{ asset('bundles/mondelcuentalo/img/beta.gif') }}" />
-    </div>
+    </div-->
 
 {% endblock %}
 
@@ -271,7 +229,7 @@
         function validaContenido() {
             var area = $('#contenido_texto');
             if (area.val().length <= 100)
-                alert('El contenido de tu ' + $('#contenido_tipo option[value=' + $('#contenido_tipo').val() + ']').text() + ' debe ser mayor a 100 caracteres.');
+                $('#Error').text('El contenido de tu mensaje debe ser mayor a 100 caracteres.');
             else
                 $('#contenidoForm').submit();
         }
