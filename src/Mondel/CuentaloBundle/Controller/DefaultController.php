@@ -15,7 +15,7 @@ use Mondel\CuentaloBundle\Helpers\ObjectHelper;
 
 class DefaultController extends Controller
 {
-    public function indexAction($tipo='', $customError='')
+    public function indexAction($customError='')
     {
         $request = $this->getRequest();
         $session = $request->getSession();
@@ -35,13 +35,6 @@ class DefaultController extends Controller
         $em = $this->get('doctrine.orm.entity_manager');
         $dql = "SELECT c FROM MondelCuentaloBundle:Contenido c WHERE c.activo = '1' ORDER BY c.fecha_creacion DESC";
         $query = $em->createQuery($dql);
-
-        if (isset($tipo) && !empty($tipo) && $tipo != null) {
-            $ultimos_contenidos = $repository->findBy(array('tipo' => $tipo));
-
-            $dql = "SELECT c FROM MondelCuentaloBundle:Contenido c WHERE c.activo = '1' and c.tipo = '" . $tipo . "' ORDER BY c.fecha_creacion DESC";
-            $query = $em->createQuery($dql);
-        }
 
         $adapter = $this->get('knp_paginator.adapter');
         $adapter->setQuery($query);
@@ -83,7 +76,7 @@ class DefaultController extends Controller
                     $contenido->setIp($request->getClientIp());
 
                     $usuario = $this->get('security.context')->getToken()->getUser();
-                    if ($this->get('security.context')->isGranted('IS_AUTHENTICATED_FULLY')) {
+                    if ($this->get('security.context')->isGranted('IS_AUTHENTICATED_REMEMBERED')) {
                         $contenido->setUsuario($usuario);
                         $contenido->setSexo($usuario->getSexo());
                     }

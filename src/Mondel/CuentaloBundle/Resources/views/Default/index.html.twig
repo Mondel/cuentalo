@@ -27,8 +27,8 @@
                     {% if customError %}
                         <div id="LoginError">{{ customError }}</div>
                     {% endif %}
-                    {% if not is_granted('IS_AUTHENTICATED_FULLY') %}
-                         {% include 'MondelCuentaloBundle:Usuario:login.html.twig' %}
+                    {% if not is_granted('IS_AUTHENTICATED_REMEMBERED') %}
+                         {% include 'MondelCuentaloBundle:Usuario:loginIndex.html.twig' %}
                     {% else %}
                         Bienvenido {{usuario.nombre}}
                     {% endif %}
@@ -48,7 +48,7 @@
         <li><a href="{{ path('vista_secretos') }}">Secretos</a></li>
         <li><a href="{{ path('vista_anecdotas') }}">Anecdotas</a></li>
         <li><a href="{{ path('vista_mensajes') }}">Mensajes</a></li>
-        {% if not is_granted('IS_AUTHENTICATED_FULLY') %}
+        {% if not is_granted('IS_AUTHENTICATED_REMEMBERED') %}
             <li><a href="#" onclick="registro()">Registrarse</a></li>
         {% else %}
             <li><a href="{{ path('logout') }}">Salir</a></li>
@@ -76,6 +76,12 @@
 
     <div class="Wrap">
         <div id="Error">
+            {% if app.session.hasFlash('notice') %}
+                        <div class="flash-notice">
+                            {{ app.session.flash('notice') }}
+                        </div>
+                    {% endif %}
+
             {{ form_errors(form) }}
         </div>
         <div id="box">
@@ -85,9 +91,6 @@
                 {{ form_widget(form.texto, { 'attr': {'placeholder': 'Comparte tu secreto, anécdota o un mensaje al mundo...'} }) }}
 
                 <div id="options">
-
-                    {{ form_label(form.tipo) }}
-                    {{ form_widget(form.tipo) }}
 
                     {% if not is_granted('IS_AUTHENTICATED_FULLY') %}
                         {{ form_label(form.sexo) }}
@@ -124,7 +127,7 @@
 
                 <div class="Box_contenido">
                     <div class="Titulo">
-                        {{ mensaje.tipo | replace({'s': "Secreto", 'a': "Anécdota", 'm': "Mensaje"})  }} / {{ mensaje.fechaCreacion | date('d.m.y') }}
+                        {{ mensaje.fechaCreacion | date('d.m.y') }}
                         <span class="InfoTitulo">
                             {{ mensaje.fechaCreacion | created_ago }}
                             {% if mensaje.usuario != null %}
@@ -173,7 +176,7 @@
                                 {% endif %}
 
                                 <br/>
-                                <form action="{{ path('vista_contenido', {'id': mensaje.id, 'titulo': '', 'tipo': mensaje.tipo}) }}" method="post" {{ form_enctype(forms_comentario[loop.index]) }}>
+                                <form action="{{ path('vista_contenido', {'id': mensaje.id, 'titulo': ''}) }}" method="post" {{ form_enctype(forms_comentario[loop.index]) }}>
 
                                     {{ form_errors(forms_comentario[loop.index]) }}
 
@@ -278,7 +281,7 @@
             var nombre = $('#registro #usuario_nombre');
             var apellido = $('#registro #usuario_apellido')
             var email = $('#registro #usuario_email')
-            var contrasenia = $('#registro #usuario_contrasenia');
+            var contrasenia = $('#registro #usuario_contrasenia_contrasenia');
             var sexo = $('#registro #usuario_sexo');
 			var allFields = $( [] ).add( nombre ).add( apellido ).add( email ).add(contrasenia).add(sexo);
 

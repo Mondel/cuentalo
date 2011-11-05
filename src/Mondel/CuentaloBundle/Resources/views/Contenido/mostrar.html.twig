@@ -6,7 +6,7 @@
 
     <p>Votos: {{ contenido.votos | length }} - <a href="{{ path('votar', {'id': contenido.id}) }}">votar</a></p>
 
-    {% if not is_granted('IS_AUTHENTICATED_FULLY') %}
+    {% if not is_granted('IS_AUTHENTICATED_REMEMBERED') %}
 
         <p>Para poder comentar debes estar logueado, <a href="{{ path('registro') }}">Registrarte</a></p>
 

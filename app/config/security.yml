@@ -22,13 +22,19 @@ security:
             pattern:    ^/
             anonymous: ~
             form_login:
-                login_path:     /
+                login_path:     /login
                 check_path:     /login_check
             logout:
                 path:   /logout
                 target: /
             #http_basic:
                 #realm: "Secured Demo Area"
+            remember_me:
+                key:      aSecretKey
+                lifetime: 3600
+                path:     /
+                domain:   ~
+                #Defaults to the current domain from $_SERVER
         dev:
             pattern:  ^/(_(profiler|wdt)|css|images|js)/
             security: false

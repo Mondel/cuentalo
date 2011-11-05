@@ -57,6 +57,26 @@ class Usuario implements UserInterface
     private $email;
 
     /**
+     * @var string $email_alternativo
+     *
+     * @Assert\Email()
+     * @Assert\MaxLength(50)
+     * @Assert\NotBlank()
+     * @ORM\Column(name="email_alternativo", type="string", length=50)
+     */
+    private $email_alternativo;
+
+    /**
+     * @var string $nick
+     *
+     * @Assert\MinLength(3)
+     * @Assert\MaxLength(50)
+     * @Assert\NotBlank()
+     * @ORM\Column(name="nick", type="string", length=50, unique=true)
+     */
+    private $nick;
+
+    /**
      * @var string $sexo
      *
      * @Assert\Choice({"m", "f"})
@@ -126,11 +146,6 @@ class Usuario implements UserInterface
      */
     private $contenidos;
 
-    /**
-     * @ORM\OneToMany(targetEntity="Voto", mappedBy="usuario")
-     */
-    private $votos;
-
     /*
      * Implements UserInterface
      */
@@ -179,9 +194,9 @@ class Usuario implements UserInterface
     /**
      * @ORM\prePersist
      */
-    public function setEstadoActivo()
+    public function setEstadoInactivo()
     {
-        $this->activo = true;
+        $this->activo = false;
     }
 
     /**
@@ -189,7 +204,7 @@ class Usuario implements UserInterface
      */
     public function setFechaActualizacion()
     {
-        $this->fecha_actualizacion = new \Date();
+        $this->fecha_actualizacion = new \DateTime();
     }
 
     /*
@@ -198,7 +213,6 @@ class Usuario implements UserInterface
     public function __construct()
     {
         $this->contenidos = new \Doctrine\Common\Collections\ArrayCollection();
-    $this->votos = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     /**
@@ -215,10 +229,12 @@ class Usuario implements UserInterface
      * Set nombre
      *
      * @param string $nombre
+     * @return Usuario
      */
     public function setNombre($nombre)
     {
         $this->nombre = $nombre;
+        return $this;
     }
 
     /**
@@ -235,10 +251,12 @@ class Usuario implements UserInterface
      * Set apellido
      *
      * @param string $apellido
+     * @return Usuario
      */
     public function setApellido($apellido)
     {
         $this->apellido = $apellido;
+        return $this;
     }
 
     /**
@@ -255,10 +273,12 @@ class Usuario implements UserInterface
      * Set email
      *
      * @param string $email
+     * @return Usuario
      */
     public function setEmail($email)
     {
         $this->email = $email;
+        return $this;
     }
 
     /**
@@ -272,13 +292,59 @@ class Usuario implements UserInterface
     }
 
     /**
+     * Set email_alternativo
+     *
+     * @param string $emailAlternativo
+     * @return Usuario
+     */
+    public function setEmailAlternativo($emailAlternativo)
+    {
+        $this->email_alternativo = $emailAlternativo;
+        return $this;
+    }
+
+    /**
+     * Get email_alternativo
+     *
+     * @return string
+     */
+    public function getEmailAlternativo()
+    {
+        return $this->email_alternativo;
+    }
+
+    /**
+     * Set nick
+     *
+     * @param string $nick
+     * @return Usuario
+     */
+    public function setNick($nick)
+    {
+        $this->nick = $nick;
+        return $this;
+    }
+
+    /**
+     * Get nick
+     *
+     * @return string
+     */
+    public function getNick()
+    {
+        return $this->nick;
+    }
+
+    /**
      * Set sexo
      *
      * @param string $sexo
+     * @return Usuario
      */
     public function setSexo($sexo)
     {
         $this->sexo = $sexo;
+        return $this;
     }
 
     /**
@@ -295,10 +361,12 @@ class Usuario implements UserInterface
      * Set fecha_nacimiento
      *
      * @param date $fechaNacimiento
+     * @return Usuario
      */
     public function setFechaNacimiento($fechaNacimiento)
     {
         $this->fecha_nacimiento = $fechaNacimiento;
+        return $this;
     }
 
     /**
@@ -335,20 +403,24 @@ class Usuario implements UserInterface
      * Set salt
      *
      * @param string $salt
+     * @return Usuario
      */
     public function setSalt($salt)
     {
         $this->salt = $salt;
+        return $this;
     }
 
     /**
      * Set contrasenia
      *
      * @param string $contrasenia
+     * @return Usuario
      */
     public function setContrasenia($contrasenia)
     {
         $this->contrasenia = $contrasenia;
+        return $this;
     }
 
     /**
@@ -365,10 +437,12 @@ class Usuario implements UserInterface
      * Set activo
      *
      * @param boolean $activo
+     * @return Usuario
      */
     public function setActivo($activo)
     {
         $this->activo = $activo;
+        return $this;
     }
 
     /**
@@ -385,10 +459,12 @@ class Usuario implements UserInterface
      * Set recibe_noticias
      *
      * @param boolean $recibeNoticias
+     * @return Usuario
      */
     public function setRecibeNoticias($recibeNoticias)
     {
         $this->recibe_noticias = $recibeNoticias;
+        return $this;
     }
 
     /**
@@ -405,10 +481,12 @@ class Usuario implements UserInterface
      * Set recibe_notificaciones
      *
      * @param boolean $recibeNotificaciones
+     * @return Usuario
      */
     public function setRecibeNotificaciones($recibeNotificaciones)
     {
         $this->recibe_notificaciones = $recibeNotificaciones;
+        return $this;
     }
 
     /**
@@ -439,25 +517,5 @@ class Usuario implements UserInterface
     public function getContenidos()
     {
         return $this->contenidos;
-    }
-
-    /**
-     * Add votos
-     *
-     * @param Mondel\CuentaloBundle\Entity\Voto $votos
-     */
-    public function addVoto(\Mondel\CuentaloBundle\Entity\Voto $votos)
-    {
-        $this->votos[] = $votos;
-    }
-
-    /**
-     * Get votos
-     *
-     * @return Doctrine\Common\Collections\Collection
-     */
-    public function getVotos()
-    {
-        return $this->votos;
     }
 }

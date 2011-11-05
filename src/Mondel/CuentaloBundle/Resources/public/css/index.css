@@ -18,13 +18,12 @@
 }
 
 #menu_top {
-    width: 640px;
-
+    width: 820px;
 }
 
 #content_menu_top {
     margin: 0 25px;
-    width: 580px;
+    width: 100%;
 }
 
 #center .Wrap {
@@ -37,14 +36,14 @@
 }
 
 #content_top {
-    width: 807px;
+    width: 100%;
     padding-top: 25px;
     margin-left:-5px;
 }
 
 #content_top div {
     float: left;
-    text-align: right;
+    text-align: center;
 }
 
 #logo {
@@ -326,4 +325,8 @@
     top: 3px;
     margin: 0 210px;
     color: red;
+}
+
+.flash-notice {
+    text-align: center;
 }

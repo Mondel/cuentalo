@@ -17,14 +17,29 @@
                 <td>{{ form_errors(form.apellido) }}</td>
             </tr>
             <tr>
+                <td>{{ form_label(form.nick) }}</td>
+                <td>{{ form_widget(form.nick) }}</td>
+                <td>{{ form_errors(form.nick) }}</td>
+            </tr>
+            <tr>
                 <td>{{ form_label(form.email) }}</td>
                 <td>{{ form_widget(form.email) }}</td>
                 <td>{{ form_errors(form.email) }}</td>
             </tr>
             <tr>
-                <td>{{ form_label(form.contrasenia) }}</td>
-                <td>{{ form_widget(form.contrasenia) }}</td>
+                <td>{{ form_label(form.email_alternativo) }}</td>
+                <td>{{ form_widget(form.email_alternativo) }}</td>
+                <td>{{ form_errors(form.email_alternativo) }}</td>
+            </tr>
+            <tr>
+                <td>{{ form_label(form.contrasenia.contrasenia, 'Contraseña') }}</td>
+                <td>{{ form_widget(form.contrasenia.contrasenia) }}</td>
                 <td>{{ form_errors(form.contrasenia) }}</td>
+            </tr>
+            <tr>
+                <td>{{ form_label(form.contrasenia.repetirContrasenia, 'Repetir contraseña') }}</td>
+                <td>{{ form_widget(form.contrasenia.repetirContrasenia) }}</td>
+                <td></td>
             </tr>
             <tr>
                 <td>{{ form_label(form.sexo) }}</td>

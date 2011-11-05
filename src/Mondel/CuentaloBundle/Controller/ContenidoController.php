@@ -31,7 +31,7 @@ class ContenidoController extends Controller
 
         if ($request->getMethod() == 'POST') {
 
-            if (false === $this->get('security.context')->isGranted('IS_AUTHENTICATED_FULLY')) {
+            if (false === $this->get('security.context')->isGranted('IS_AUTHENTICATED_REMEMBERED')) {
                 throw new AccessDeniedException();
             }
 

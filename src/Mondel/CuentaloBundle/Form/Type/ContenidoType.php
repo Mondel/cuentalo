@@ -13,11 +13,7 @@ class ContenidoType extends AbstractType {
             $edades[$i - 10] = $i;
         }
 
-        $builder->add('tipo', 'choice', array(
-                    'choices'  => array('m' => 'Mensaje', 'a' => 'Anecdota', 's' => 'Secreto'),
-                    'required' => true,
-                ))
-                ->add('sexo', 'choice', array(
+        $builder->add('sexo', 'choice', array(
                     'choices'   => array('m' => 'Masculino', 'f' => 'Femenino'),
                 ))
                 ->add('texto', null ,array('max_length' => 555));

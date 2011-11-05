@@ -10,18 +10,18 @@ class UsuarioType extends AbstractType {
     public function buildForm(FormBuilder $builder, array $options) {
         $builder->add('nombre')
                 ->add('apellido')
-                //->add('fecha_nacimiento', null, array('years' => range(1900,2000)))
+                ->add('nick')
+                // ->add('fecha_nacimiento', null, array('years' => range(1900,2000)))
                 ->add('email')
-                ->add('contrasenia', 'password' , array('label' => 'Contraseña'))
-                /*
+                ->add('email_alternativo')
+                //->add('contrasenia', 'password' , array('label' => 'Contraseña'))
                 ->add('contrasenia', 'repeated', array(
                     'type'            => 'password',
                     'invalid_message' => 'Las contraseñas no coinciden.',
-                    'first_name'      => 'Contrasenia',
-                    'second_name'     => 'RepetirContrasenia',
-                    'options' => array('label' => 'Repetir Contraseña'),
+                    'first_name'      => 'contrasenia',
+                    'second_name'     => 'repetirContrasenia',
+                    'required'        => true,
                 ))
-                 */
                 ->add('sexo', 'choice', array(
                     'choices'   => array('m' => 'Masculino', 'f' => 'Femenino'),
                     'required'  => true,

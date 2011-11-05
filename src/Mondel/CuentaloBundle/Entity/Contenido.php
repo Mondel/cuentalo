@@ -28,14 +28,6 @@ class Contenido
     private $id;
 
     /**
-     * @var string $tipo
-     *
-     * @Assert\Choice({"m", "a", "s"})
-     * @ORM\Column(name="tipo", type="string", length=1)
-     */
-    private $tipo;
-
-    /**
      * @var string $texto
      *
      * @Assert\NotBlank()
@@ -88,15 +80,16 @@ class Contenido
      */
     private $usuario;
 
+     /**
+     * @ORM\ManyToOne(targetEntity="Categoria", inversedBy="contenidos")
+     * @ORM\JoinColumn(name="categoria_id", referencedColumnName="id")
+     */
+    private $categoria;
+
     /**
      * @ORM\OneToMany(targetEntity="Comentario", mappedBy="contenido")
      */
     private $comentarios;
-
-    /**
-     * @ORM\OneToMany(targetEntity="Voto", mappedBy="contenido")
-     */
-    private $votos;
 
     /**
      * @ORM\prePersist
@@ -125,16 +118,16 @@ class Contenido
     /*
      * Fin mis propiedes
      */
+    
     public function __construct()
     {
         $this->comentarios = new \Doctrine\Common\Collections\ArrayCollection();
-    $this->votos = new \Doctrine\Common\Collections\ArrayCollection();
     }
-
+    
     /**
      * Get id
      *
-     * @return integer
+     * @return integer 
      */
     public function getId()
     {
@@ -142,39 +135,21 @@ class Contenido
     }
 
     /**
-     * Set tipo
-     *
-     * @param string $tipo
-     */
-    public function setTipo($tipo)
-    {
-        $this->tipo = $tipo;
-    }
-
-    /**
-     * Get tipo
-     *
-     * @return string
-     */
-    public function getTipo()
-    {
-        return $this->tipo;
-    }
-
-    /**
      * Set texto
      *
      * @param text $texto
+     * @return Contenido
      */
     public function setTexto($texto)
     {
         $this->texto = $texto;
+        return $this;
     }
 
     /**
      * Get texto
      *
-     * @return text
+     * @return text 
      */
     public function getTexto()
     {
@@ -185,16 +160,18 @@ class Contenido
      * Set ip
      *
      * @param string $ip
+     * @return Contenido
      */
     public function setIp($ip)
     {
         $this->ip = $ip;
+        return $this;
     }
 
     /**
      * Get ip
      *
-     * @return string
+     * @return string 
      */
     public function getIp()
     {
@@ -204,7 +181,7 @@ class Contenido
     /**
      * Get pais
      *
-     * @return string
+     * @return string 
      */
     public function getPais()
     {
@@ -212,19 +189,43 @@ class Contenido
     }
 
     /**
+     * Set sexo
+     *
+     * @param string $sexo
+     * @return Contenido
+     */
+    public function setSexo($sexo)
+    {
+        $this->sexo = $sexo;
+        return $this;
+    }
+
+    /**
+     * Get sexo
+     *
+     * @return string 
+     */
+    public function getSexo()
+    {
+        return $this->sexo;
+    }
+
+    /**
      * Set activo
      *
      * @param boolean $activo
+     * @return Contenido
      */
     public function setActivo($activo)
     {
         $this->activo = $activo;
+        return $this;
     }
 
     /**
      * Get activo
      *
-     * @return boolean
+     * @return boolean 
      */
     public function getActivo()
     {
@@ -234,7 +235,7 @@ class Contenido
     /**
      * Get fecha_creacion
      *
-     * @return datetime
+     * @return datetime 
      */
     public function getFechaCreacion()
     {
@@ -245,20 +246,44 @@ class Contenido
      * Set usuario
      *
      * @param Mondel\CuentaloBundle\Entity\Usuario $usuario
+     * @return Contenido
      */
     public function setUsuario(\Mondel\CuentaloBundle\Entity\Usuario $usuario)
     {
         $this->usuario = $usuario;
+        return $this;
     }
 
     /**
      * Get usuario
      *
-     * @return Mondel\CuentaloBundle\Entity\Usuario
+     * @return Mondel\CuentaloBundle\Entity\Usuario 
      */
     public function getUsuario()
     {
         return $this->usuario;
+    }
+
+    /**
+     * Set categoria
+     *
+     * @param Mondel\CuentaloBundle\Entity\Categoria $categoria
+     * @return Contenido
+     */
+    public function setCategoria(\Mondel\CuentaloBundle\Entity\Categoria $categoria)
+    {
+        $this->categoria = $categoria;
+        return $this;
+    }
+
+    /**
+     * Get categoria
+     *
+     * @return Mondel\CuentaloBundle\Entity\Categoria 
+     */
+    public function getCategoria()
+    {
+        return $this->categoria;
     }
 
     /**
@@ -274,50 +299,10 @@ class Contenido
     /**
      * Get comentarios
      *
-     * @return Doctrine\Common\Collections\Collection
+     * @return Doctrine\Common\Collections\Collection 
      */
     public function getComentarios()
     {
         return $this->comentarios;
-    }
-
-    /**
-     * Add votos
-     *
-     * @param Mondel\CuentaloBundle\Entity\Voto $votos
-     */
-    public function addVoto(\Mondel\CuentaloBundle\Entity\Voto $votos)
-    {
-        $this->votos[] = $votos;
-    }
-
-    /**
-     * Get votos
-     *
-     * @return Doctrine\Common\Collections\Collection
-     */
-    public function getVotos()
-    {
-        return $this->votos;
-    }
-
-    /**
-     * Set sexo
-     *
-     * @param string $sexo
-     */
-    public function setSexo($sexo)
-    {
-        $this->sexo = $sexo;
-    }
-
-    /**
-     * Get sexo
-     *
-     * @return string
-     */
-    public function getSexo()
-    {
-        return $this->sexo;
     }
 }
