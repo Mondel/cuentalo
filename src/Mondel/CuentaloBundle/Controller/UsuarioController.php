@@ -6,7 +6,8 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken;
 use Symfony\Component\Security\Core\SecurityContext;
 
-use Mondel\CuentaloBundle\Entity\Usuario;
+use Mondel\CuentaloBundle\Entity\Usuario,
+    Mondel\CuentaloBundle\Entity\UsuarioActivacion;
 use Mondel\CuentaloBundle\Form\Type\UsuarioType;
 use Mondel\CuentaloBundle\Helpers\ObjectHelper;
 
@@ -70,9 +71,9 @@ class UsuarioController extends Controller
                 ;
                 $this->get('mailer')->send($message);
 
-                $this->get('session')->setFlash('notice', "Se ha enviado un email a tu casilla de correo (".$userExist->getUsername().")");
+                $this->get('session')->setFlash('noticia', "Se ha enviado un email a tu casilla de correo (".$userExist->getUsername().")");
             } else {
-                $this->get('session')->setFlash('notice', 'El correo que esta utilizando no esta registrado');
+                $this->get('session')->setFlash('noticia', 'El correo que esta utilizando no esta registrado');
             }
         } else {
             return $this->render('MondelCuentaloBundle:Usuario:recuperarPrevioContrasenia.html.twig');
@@ -96,43 +97,66 @@ class UsuarioController extends Controller
                 $repository = $this->getDoctrine()
                     ->getRepository('MondelCuentaloBundle:Usuario');
 
-                $userExist = $repository->findOneBy(array('email' => $usuario->getEmail()));
+                $userExist = $repository->findOneBy(array(
+                    'email' => $usuario->getEmail(),
+                    'activo' => true
+                ));
 
                 if ($userExist != null)
-                    return $this->forward('MondelCuentaloBundle:Default:index', array(
-                        'customError'  => 'El email que intenta registrar ya existe'
+                {
+                    $this->get('session')->setFlash('error', 'El email que intenta registrar ya fue registrado con anterioridad.');
+                }
+                else {
+                    $usuario->setSalt(md5(time()));
+
+                    $factory = $this->get('security.encoder_factory');
+                    $encoder = $factory->getEncoder($usuario);
+                    $password = $encoder->encodePassword(
+                            $usuario->getContrasenia(),
+                            $usuario->getSalt()
+                    );
+                    $usuario->setContrasenia($password);
+
+                    $em = $this->getDoctrine()->getEntityManager();
+                    $em->persist($usuario);
+
+
+                    $token = uniqid();
+
+                    $activaciones = $this->getDoctrine()
+                            ->getRepository('MondelCuentaloBundle:UsuarioActivacion');
+
+                    $activacion = $activaciones->findOneBy(array(
+                        'email' => $usuario->getEmail()
                     ));
 
-                $usuario->setSalt(md5(time()));
+                    if ($activacion != null) {
+                        $token = $activacion->getToken();
+                    } else {
+                        $usuarioActivacion = new UsuarioActivacion();
+                        $usuarioActivacion->setEmail($usuario->getEmail());
+                        $usuarioActivacion->setToken($token);
+                        $em->persist($usuarioActivacion);
+                    }
+                    $em->flush();
 
-                $factory = $this->get('security.encoder_factory');
-                $encoder = $factory->getEncoder($usuario);
-                $password = $encoder->encodePassword(
-                        $usuario->getContrasenia(),
-                        $usuario->getSalt()
-                );
-                $usuario->setContrasenia($password);
+                    // enviamos el email de confirmacion
+                    $message = \Swift_Message::newInstance()
+                        ->setSubject('Cuentalo: email de activación')
+                        ->setFrom('registros@cuentalo.com.uy')
+                        ->setTo($usuario->getUsername())
+                        ->setBody($this->renderView('MondelCuentaloBundle:Usuario:emailRegistro.html.twig', array('token' => $token)), 'text/html')
+                    ;
+                    $this->get('mailer')->send($message);
 
-                $em = $this->getDoctrine()->getEntityManager();
-                $em->persist($usuario);
-                $em->flush();
+                    $this->get('session')->setFlash('noticia', "Se ha enviado un email a tu casilla de correo (".$usuario->getUsername().")");
 
-                // enviamos el email de confirmacion
-                $message = \Swift_Message::newInstance()
-                    ->setSubject('Cuentalo: email de activación')
-                    ->setFrom('registros@cuentalo.com.uy')
-                    ->setTo($usuario->getUsername())
-                    ->setBody($this->renderView('MondelCuentaloBundle:Usuario:emailRegistro.html.twig'))
-                ;
-                $this->get('mailer')->send($message);
+                    // Logueamos al usuario
+                    // $token = new UsernamePasswordToken($usuario, null, 'main', $usuario->getRoles());
+                    // $this->get('security.context')->setToken($token);
 
-                $this->get('session')->setFlash('notice', "Se ha enviado un email a tu casilla de correo (".$usuario->getUsername().")");
-
-                // Logueamos al usuario
-                // $token = new UsernamePasswordToken($usuario, null, 'main', $usuario->getRoles());
-                // $this->get('security.context')->setToken($token);
-
-                return $this->redirect($this->generateUrl('homepage'));
+                    return $this->redirect($this->generateUrl('homepage'));
+                }
             }
         }
 
@@ -141,4 +165,37 @@ class UsuarioController extends Controller
                 array('form' => $form->createView())
         );
     }
+
+    public function registroActivarAction($token)
+    {
+        $em = $this->getDoctrine()->getEntityManager();
+        $repository = $this->getDoctrine()
+                    ->getRepository('MondelCuentaloBundle:UsuarioActivacion');
+
+        $activacion = $repository->findOneBy(array(
+            'token' => $token,
+        ));
+
+        if ($activacion != null) {
+            $email = $activacion->getEmail();
+
+            $repository = $this->getDoctrine()
+                    ->getRepository('MondelCuentaloBundle:Usuario');
+
+            $usuario = $repository->findOneBy(array(
+                'email' => $email,
+            ));
+
+            $usuario->setActivo(true);
+
+            $em->remove($activacion);
+        } else {
+            $this->get('session')->setFlash('error', 'Hubo un error al activar este usuario. El link que has seguido es incorrecto o ya fue utilizado.');
+        }
+
+        $em->flush();
+
+        return $this->redirect($this->generateUrl('homepage'));
+    }
+
 }

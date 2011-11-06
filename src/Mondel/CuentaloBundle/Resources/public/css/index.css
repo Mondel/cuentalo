@@ -14,7 +14,6 @@
 
 #menu li a:hover {
     color: #6a6969;
-
 }
 
 #menu_top {
@@ -321,8 +320,6 @@
 }
 
 #LoginError {
-    position: absolute;
-    top: 3px;
     margin: 0 210px;
     color: red;
 }
@@ -344,4 +341,9 @@
 #Error {
     text-align: center;
     color: red;
+}
+
+.Form table {
+    border-collapse: separate;
+    border-spacing: 20px;
 }

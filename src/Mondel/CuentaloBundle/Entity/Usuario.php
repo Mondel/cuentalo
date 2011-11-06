@@ -3,7 +3,8 @@
 namespace Mondel\CuentaloBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Security\Core\User\UserInterface,
+    Symfony\Component\Security\Core\User\AdvancedUserInterface;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Validator\Constraints\Date;
 
@@ -14,7 +15,7 @@ use Symfony\Component\Validator\Constraints\Date;
  * @ORM\Entity(repositoryClass="Mondel\CuentaloBundle\Entity\UsuarioRepository")
  * @ORM\HasLifecycleCallbacks()
  */
-class Usuario implements UserInterface
+class Usuario implements AdvancedUserInterface
 {
 
     /**
@@ -142,12 +143,19 @@ class Usuario implements UserInterface
     private $recibe_notificaciones;
 
     /**
+     * @var boolean $admin
+     *
+     * @ORM\Column(name="admin", type="boolean")
+     */
+    private $admin;
+
+    /**
      * @ORM\OneToMany(targetEntity="Contenido", mappedBy="usuario")
      */
     private $contenidos;
 
     /*
-     * Implements UserInterface
+     * Implements AdvancedUserInterface
      */
     public function equals(UserInterface $user)
     {
@@ -166,7 +174,10 @@ class Usuario implements UserInterface
 
     public function getRoles()
     {
-        return array('ROLE_USER');
+        if ($this->admin)
+            return array('ROLE_ADMIN');
+        else
+            return array('ROLE_USER');
     }
 
     public function getSalt()
@@ -178,8 +189,28 @@ class Usuario implements UserInterface
     {
         return $this->getEmail();
     }
+
+    public function isAccountNonExpired()
+    {
+        return true;
+    }
+
+    public function isAccountNonLocked()
+    {
+        return true;
+    }
+
+    public function isCredentialsNonExpired()
+    {
+        return true;
+    }
+
+    public function isEnabled()
+    {
+        return $this->activo;
+    }
     /*
-     * Fin Implements UserInterface
+     * Fin Implements AdvancedUserInterface
      */
 
     /**
@@ -197,6 +228,14 @@ class Usuario implements UserInterface
     public function setEstadoInactivo()
     {
         $this->activo = false;
+    }
+
+    /**
+     * @ORM\prePersist
+     */
+    public function setPermisos()
+    {
+        $this->admin = false;
     }
 
     /**
@@ -517,5 +556,27 @@ class Usuario implements UserInterface
     public function getContenidos()
     {
         return $this->contenidos;
+    }
+
+    /**
+     * Set admin
+     *
+     * @param boolean $admin
+     * @return Usuario
+     */
+    public function setAdmin($admin)
+    {
+        $this->admin = $admin;
+        return $this;
+    }
+
+    /**
+     * Get admin
+     *
+     * @return boolean
+     */
+    public function getAdmin()
+    {
+        return $this->admin;
     }
 }

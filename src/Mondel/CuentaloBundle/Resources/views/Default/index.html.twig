@@ -8,14 +8,6 @@
 
 {% endblock %}
 
-{% block title %} Portada {% endblock %}
-
-{% block top %}
-
-    
-
-{% endblock %}
-
 {% block left %}
 
     <div id="loginIndex">
@@ -34,11 +26,11 @@
 
     <div class="Wrap">
         <div id="Error">
-            {% if app.session.hasFlash('notice') %}
-                        <div class="flash-notice">
-                            {{ app.session.flash('notice') }}
-                        </div>
-                    {% endif %}
+            {% if app.session.hasFlash('noticia') %}
+                <div class="flash-notice">
+                    {{ app.session.flash('noticia') }}
+                </div>
+            {% endif %}
 
             {{ form_errors(form) }}
         </div>
@@ -166,26 +158,6 @@
     </div>
 {% endblock %}
 
-{% block right %}
-    <div id="adsense">
-        <script type="text/javascript"><!--
-        google_ad_client = "ca-pub-4717880844454319";
-        /* Adsense1 */
-        google_ad_slot = "4216094893";
-        google_ad_width = 160;
-        google_ad_height = 600;
-        //-->
-        </script>
-        <script type="text/javascript" src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
-        </script>
-    </div>
-    <div id="pubMondel">
-        <a target="_blank" href="http://www.mondel.com.uy">
-            <img src="{{ asset('bundles/mondelcuentalo/img/publicidad.gif') }}" alt="Mondel" />
-        </a>
-    </div>
-{% endblock%}
-
 {% block javascripts %}
     <script type="text/javascript">
 
@@ -228,7 +200,7 @@
 
         function validaContenido() {
             var area = $('#contenido_texto');
-            if (area.val().length <= 100)
+            if (area.val().length <= 50)
                 $('#Error').text('El contenido de tu mensaje debe ser mayor a 100 caracteres.');
             else
                 $('#contenidoForm').submit();

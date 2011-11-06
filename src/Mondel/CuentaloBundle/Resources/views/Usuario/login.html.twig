@@ -1,27 +1,45 @@
-{% if error %}
+{% extends 'MondelCuentaloBundle::layout.html.twig' %}
 
-    <div id="LoginError">Datos de ingreso incorrectos</div>
+{% block stylesheets %}
 
-{% endif %}
+    {{ parent() }}
 
-<form action="{{ path('login_check') }}" method="post">
+    <link rel="stylesheet" type="text/css" media="screen" href="{{ asset('bundles/mondelcuentalo/css/index.css') }}" />
 
-    <label for="username" class="LoginText">Email:</label>
-    <input type="text" id="username" name="_username" value="{{ last_username }}" class="LoginInput" />
+{% endblock %}
 
-    <label for="password" class="LoginText">Contraseña:</label>
-    <input type="password" id="password" name="_password" class="LoginInput" />
+{% block center %}
 
-    <input type="checkbox" id="remember_me" name="_remember_me" checked />
-    <label for="remember_me">Recordarme ?</label>
+    {% if error %}
 
-    {#
-        If you want to control the URL the user is redirected to on success (more details below)
-        <input type="hidden" name="_target_path" value="/account" />
-    #}
+        <div id="LoginError">Datos de ingreso incorrectos[{{ error.message }}]</div>
 
-    <input type="submit" name="login" class="ButtonLogin" value="Entrar" />
+    {% endif %}
 
-    <a href="{{ path('recuperar_contrasenia') }}">He olvidado la contraseña</a>
+    <div id="loginForm" class="Form">
+        <form action="{{ path('login_check') }}" method="post">
 
-</form>
+            <table>
+                <tr>
+                    <td><label for="username" class="LoginText">Email:</label></td>
+                    <td><input type="text" id="username" name="_username" value="{{ last_username }}" class="LoginInput" /></td>
+                </tr>
+                <tr>
+                    <td><label for="password" class="LoginText">Contraseña:</label></td>
+                    <td><input type="password" id="password" name="_password" class="LoginInput" /></td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <input type="checkbox" id="remember_me" name="_remember_me" checked />
+                        <label for="remember_me">Recordarme ?</label>
+                    </td>
+                </tr>
+                <tr>
+                    <td><input type="submit" name="login" class="ButtonLogin" value="Entrar" /></td>
+                    <td><a href="{{ path('recuperar_contrasenia') }}">He olvidado la contraseña</a></td>
+                </tr>
+            </table>
+
+        </form>
+    </div>
+{% endblock %}

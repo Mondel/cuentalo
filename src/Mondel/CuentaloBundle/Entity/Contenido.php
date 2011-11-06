@@ -31,7 +31,7 @@ class Contenido
      * @var string $texto
      *
      * @Assert\NotBlank()
-     * @Assert\MinLength(100)
+     * @Assert\MinLength(50)
      * @Assert\MaxLength(555)
      * @ORM\Column(name="texto", type="text")
      */
@@ -61,11 +61,12 @@ class Contenido
     private $sexo;
 
     /**
-     * @var boolean $activo
+     * @var string $estado
      *
-     * @ORM\Column(name="activo", type="boolean")
+     * @Assert\Choice({"a", "p", "r"})
+     * @ORM\Column(name="estado", type="string", length=1)
      */
-    private $activo;
+    private $estado;
 
     /**
      * @var datetime $fecha_creacion
@@ -110,24 +111,24 @@ class Contenido
     /**
      * @ORM\prePersist
      */
-    public function setEstadoActivo()
+    public function setEstadoPendiente()
     {
-        $this->activo = true;
+        $this->estado = "p";
     }
 
     /*
      * Fin mis propiedes
      */
-    
+
     public function __construct()
     {
         $this->comentarios = new \Doctrine\Common\Collections\ArrayCollection();
     }
-    
+
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -149,7 +150,7 @@ class Contenido
     /**
      * Get texto
      *
-     * @return text 
+     * @return text
      */
     public function getTexto()
     {
@@ -171,7 +172,7 @@ class Contenido
     /**
      * Get ip
      *
-     * @return string 
+     * @return string
      */
     public function getIp()
     {
@@ -181,7 +182,7 @@ class Contenido
     /**
      * Get pais
      *
-     * @return string 
+     * @return string
      */
     public function getPais()
     {
@@ -203,7 +204,7 @@ class Contenido
     /**
      * Get sexo
      *
-     * @return string 
+     * @return string
      */
     public function getSexo()
     {
@@ -211,31 +212,31 @@ class Contenido
     }
 
     /**
-     * Set activo
+     * Set estado
      *
-     * @param boolean $activo
+     * @param string $estado
      * @return Contenido
      */
-    public function setActivo($activo)
+    public function setEstado($estado)
     {
-        $this->activo = $activo;
+        $this->estado = $estado;
         return $this;
     }
 
     /**
-     * Get activo
+     * Get estado
      *
-     * @return boolean 
+     * @return string
      */
-    public function getActivo()
+    public function getEstado()
     {
-        return $this->activo;
+        return $this->estado;
     }
 
     /**
      * Get fecha_creacion
      *
-     * @return datetime 
+     * @return datetime
      */
     public function getFechaCreacion()
     {
@@ -257,7 +258,7 @@ class Contenido
     /**
      * Get usuario
      *
-     * @return Mondel\CuentaloBundle\Entity\Usuario 
+     * @return Mondel\CuentaloBundle\Entity\Usuario
      */
     public function getUsuario()
     {
@@ -279,7 +280,7 @@ class Contenido
     /**
      * Get categoria
      *
-     * @return Mondel\CuentaloBundle\Entity\Categoria 
+     * @return Mondel\CuentaloBundle\Entity\Categoria
      */
     public function getCategoria()
     {
@@ -299,7 +300,7 @@ class Contenido
     /**
      * Get comentarios
      *
-     * @return Doctrine\Common\Collections\Collection 
+     * @return Doctrine\Common\Collections\Collection
      */
     public function getComentarios()
     {

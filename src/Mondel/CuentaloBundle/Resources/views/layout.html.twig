@@ -13,6 +13,7 @@
 {% block body %}
 
     <div id="top">
+
         <div class="Wrap">
 
             <div id="content_top">
@@ -25,9 +26,6 @@
 
                 <div id="menu_top">
                     <div id="content_menu_top">
-                        {% if customError %}
-                            <div id="LoginError">{{ customError }}</div>
-                        {% endif %}
                         {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
                             Bienvenido {{usuario.nombre}}
                         {% endif %}
@@ -45,11 +43,8 @@
         <div id="left">
             <ul id="menu">
                 <li><a href="{{ path('homepage') }}">Todos</a></li>
-                <li><a href="{{ path('vista_secretos') }}">Secretos</a></li>
-                <li><a href="{{ path('vista_anecdotas') }}">Anecdotas</a></li>
-                <li><a href="{{ path('vista_mensajes') }}">Mensajes</a></li>
                 {% if not is_granted('IS_AUTHENTICATED_REMEMBERED') %}
-                    <li><a href="#" onclick="registro()">Registrarse</a></li>
+                    <li><a href="{{ path('registro') }}">Registrarse</a></li>
                 {% else %}
                     <li><a href="{{ path('logout') }}">Salir</a></li>
                 {% endif %}
@@ -78,6 +73,23 @@
         </div>
 
         <div id="right">
+            <div id="adsense">
+                <script type="text/javascript"><!--
+                google_ad_client = "ca-pub-4717880844454319";
+                /* Adsense1 */
+                google_ad_slot = "4216094893";
+                google_ad_width = 160;
+                google_ad_height = 600;
+                //-->
+                </script>
+                <script type="text/javascript" src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+                </script>
+            </div>
+            <div id="pubMondel">
+                <a target="_blank" href="http://www.mondel.com.uy">
+                    <img src="{{ asset('bundles/mondelcuentalo/img/publicidad.gif') }}" alt="Mondel" />
+                </a>
+            </div>
             {% block right %}{% endblock %}
         </div>
 

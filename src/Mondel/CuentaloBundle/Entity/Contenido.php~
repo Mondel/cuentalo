@@ -61,11 +61,12 @@ class Contenido
     private $sexo;
 
     /**
-     * @var boolean $activo
+     * @var string $estado
      *
-     * @ORM\Column(name="activo", type="boolean")
+     * @Assert\Choice({"a", "p", "r"})
+     * @ORM\Column(name="estado", type="string", length=1)
      */
-    private $activo;
+    private $estado;
 
     /**
      * @var datetime $fecha_creacion
@@ -110,15 +111,15 @@ class Contenido
     /**
      * @ORM\prePersist
      */
-    public function setEstadoActivo()
+    public function setEstadoPendiente()
     {
-        $this->activo = true;
+        $this->estado = "p";
     }
 
     /*
      * Fin mis propiedes
      */
-    
+
     public function __construct()
     {
         $this->comentarios = new \Doctrine\Common\Collections\ArrayCollection();
@@ -211,25 +212,25 @@ class Contenido
     }
 
     /**
-     * Set activo
+     * Set estado
      *
-     * @param boolean $activo
+     * @param string $estado
      * @return Contenido
      */
-    public function setActivo($activo)
+    public function setEstado($estado)
     {
-        $this->activo = $activo;
+        $this->estado = $estado;
         return $this;
     }
 
     /**
-     * Get activo
+     * Get estado
      *
-     * @return boolean 
+     * @return string 
      */
-    public function getActivo()
+    public function getEstado()
     {
-        return $this->activo;
+        return $this->estado;
     }
 
     /**
