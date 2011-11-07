@@ -4,15 +4,17 @@
 
     {{ parent() }}
 
-    <link rel="stylesheet" type="text/css" media="screen" href="{{ asset('bundles/mondelcuentalo/css/index.css') }}" />
+    <link rel="stylesheet" type="text/css" media="screen" href="{{ asset('bundles/mondelcuentalo/css/forms.css') }}" />
 
 {% endblock %}
 
-{% block center %}
+{% block content %}
+
+    {{ parent() }}
 
     {% if error %}
 
-        <div id="LoginError">Datos de ingreso incorrectos[{{ error.message }}]</div>
+        <div id="login_error">{{ error.message }}</div>
 
     {% endif %}
 
@@ -21,12 +23,12 @@
 
             <table>
                 <tr>
-                    <td><label for="username" class="LoginText">Email:</label></td>
-                    <td><input type="text" id="username" name="_username" value="{{ last_username }}" class="LoginInput" /></td>
+                    <td><label for="username" class="FormText">Email:</label></td>
+                    <td><input type="text" id="username" name="_username" value="{{ last_username }}" class="FormInput" /></td>
                 </tr>
                 <tr>
-                    <td><label for="password" class="LoginText">Contraseña:</label></td>
-                    <td><input type="password" id="password" name="_password" class="LoginInput" /></td>
+                    <td><label for="password" class="FormText">Contraseña:</label></td>
+                    <td><input type="password" id="password" name="_password" class="FormInput" /></td>
                 </tr>
                 <tr>
                     <td colspan="2">
@@ -35,11 +37,12 @@
                     </td>
                 </tr>
                 <tr>
-                    <td><input type="submit" name="login" class="ButtonLogin" value="Entrar" /></td>
+                    <td><input type="submit" name="login" class="ButtonForm" value="Entrar" /></td>
                     <td><a href="{{ path('recuperar_contrasenia') }}">He olvidado la contraseña</a></td>
                 </tr>
             </table>
 
         </form>
     </div>
+
 {% endblock %}

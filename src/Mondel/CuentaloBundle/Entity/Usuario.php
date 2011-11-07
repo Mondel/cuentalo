@@ -32,8 +32,7 @@ class Usuario implements AdvancedUserInterface
      *
      * @Assert\MaxLength(50)
      * @Assert\MinLength(3)
-     * @Assert\NotBlank()
-     * @ORM\Column(name="nombre", type="string", length=50)
+     * @ORM\Column(name="nombre", type="string", length=50, nullable=true)
      */
     private $nombre;
 
@@ -42,8 +41,7 @@ class Usuario implements AdvancedUserInterface
      *
      * @Assert\MaxLength(50)
      * @Assert\MinLength(3)
-     * @Assert\NotBlank()
-     * @ORM\Column(name="apellido", type="string", length=50)
+     * @ORM\Column(name="apellido", type="string", length=50, nullable=true)
      */
     private $apellido;
 

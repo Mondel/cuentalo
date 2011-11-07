@@ -12,67 +12,55 @@
 
 {% block body %}
 
-    <div id="top">
-
+    <header id="top">
         <div class="Wrap">
-
-            <div id="content_top">
-
-                <div id="logo">
-                    <a href="{{ path('homepage') }}">
-                        <img src="{{ asset('bundles/mondelcuentalo/img/logo_cuentalo.gif') }}">
-                    </a>
-                </div>
-
-                <div id="menu_top">
-                    <div id="content_menu_top">
-                        {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
-                            Bienvenido {{usuario.nombre}}
-                        {% endif %}
-                    </div>
-                </div>
-
+            <div id="logo">
+                <a href="{{ path('inicio') }}">
+                    <img src="{{ asset('bundles/mondelcuentalo/img/logo_cuentalo.gif') }}">
+                </a>
             </div>
-
+            <div id="menu_top">
+                <div id="content_menu_top">
+                    {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
+                        Bienvenido {{ app.security.getToken().getUser().nick }}
+                    {% endif %}
+                </div>
+            </div>
         </div>
-        {% block top %}{% endblock %}
-    </div>
+    </header>
 
-    <div id="content">
-
-        <div id="left">
+    <section id="content">
+        <nav id="left">
             <ul id="menu">
-                <li><a href="{{ path('homepage') }}">Todos</a></li>
+                <li><a href="{{ path('inicio') }}">Todos</a></li>
                 {% if not is_granted('IS_AUTHENTICATED_REMEMBERED') %}
                     <li><a href="{{ path('registro') }}">Registrarse</a></li>
                 {% else %}
                     <li><a href="{{ path('logout') }}">Salir</a></li>
                 {% endif %}
-                <li><a target="_blank" href="http://www.mondel.com.uy/contacto.php">Contactanos</a></li>
+                <li><a target="_blank" href="http://www.mondel.com.uy/contacto.php">Cont&aacute;ctanos</a></li>
             </ul>
+        </nav>
 
-            {% block left %}
-
-
-            {% endblock %}
-
-            <div id="addthis">
-                <div class="addthis_toolbox addthis_default_style ">
-                    <a class="addthis_button_preferred_1"></a>
-                    <a class="addthis_button_preferred_2"></a>
-                    <a class="addthis_button_preferred_3"></a>
-                    <a class="addthis_button_compact"></a>
-                    <a class="addthis_counter addthis_bubble_style"></a>
+        <section id="center">
+            {% block content %}
+                <div class="Wrap">
+                    <div id="message">
+                        {% if app.session.hasFlash('notice') %}
+                            <div class="Noticia">
+                                {{ app.session.flash('notice') }}
+                            </div>
+                        {% elseif app.session.hasFlash('error') %}
+                            <div class="Error">
+                                {{ app.session.flash('error') }}
+                            </div>
+                        {% endif %}
+                    </div>
                 </div>
-                <script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#pubid=fabid"></script>
-            </div>
-        </div>
+            {% endblock %}
+        </section>
 
-        <div id="center">
-            {% block center %}{% endblock %}
-        </div>
-
-        <div id="right">
+        <aside id="right">
             <div id="adsense">
                 <script type="text/javascript"><!--
                 google_ad_client = "ca-pub-4717880844454319";
@@ -82,20 +70,17 @@
                 google_ad_height = 600;
                 //-->
                 </script>
-                <script type="text/javascript" src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
-                </script>
+                <script type="text/javascript" src="http://pagead2.googlesyndication.com/pagead/show_ads.js"></script>
             </div>
-            <div id="pubMondel">
+            <div id="pub_mondel">
                 <a target="_blank" href="http://www.mondel.com.uy">
                     <img src="{{ asset('bundles/mondelcuentalo/img/publicidad.gif') }}" alt="Mondel" />
                 </a>
             </div>
-            {% block right %}{% endblock %}
-        </div>
+        </aside>
+    </section>
 
-    </div>
-
-    <div id="FooterAds">
+    <footer id="footer">
         <script type="text/javascript"><!--
         google_ad_client = "ca-pub-4717880844454319";
         /* Footer nuevo */
@@ -104,9 +89,25 @@
         google_ad_height = 90;
         //-->
         </script>
-        <script type="text/javascript"
-        src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
-        </script>
-    </div>
+        <script type="text/javascript" src="http://pagead2.googlesyndication.com/pagead/show_ads.js"></script>
+    </footer>
+
+{% endblock %}
+
+{% block javascripts %}
+
+    <script type="text/javascript" src="{{ asset('bundles/mondelcuentalo/js/jquery.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('bundles/mondelcuentalo/js/jquery-ui.min.js') }}"></script>
+    <script type="text/javascript">
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'UA-26661824-1']);
+        _gaq.push(['_trackPageview']);
+
+        (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+        })();
+    </script>
 
 {% endblock %}

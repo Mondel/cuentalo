@@ -8,8 +8,8 @@ use Symfony\Component\Form\FormBuilder;
 class UsuarioType extends AbstractType {
 
     public function buildForm(FormBuilder $builder, array $options) {
-        $builder->add('nombre')
-                ->add('apellido')
+        $builder//->add('nombre')
+                //->add('apellido')
                 ->add('nick')
                 // ->add('fecha_nacimiento', null, array('years' => range(1900,2000)))
                 ->add('email')

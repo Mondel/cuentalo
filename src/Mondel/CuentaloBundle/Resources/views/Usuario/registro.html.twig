@@ -4,58 +4,44 @@
 
     {{ parent() }}
 
-    <link rel="stylesheet" type="text/css" media="screen" href="{{ asset('bundles/mondelcuentalo/css/index.css') }}" />
+    <link rel="stylesheet" type="text/css" media="screen" href="{{ asset('bundles/mondelcuentalo/css/forms.css') }}" />
 
 {% endblock %}
 
-{% block center %}
+{% block content %}
+
+    {{ parent() }}
 
     <form action="{{ path('registro') }}" method="post" {{ form_enctype(form) }}>
 
-        <div id="registroForm" class="Form">
-
-            {% if app.session.hasFlash('error') %}
-                <div class="flash-error">
-                    {{ app.session.flash('error') }}
-                </div>
-            {% endif %}
+        <div id="registro_form" class="Form">
 
             {{ form_errors(form) }}
 
             <table>
                 <tr>
-                    <td>{{ form_label(form.nombre) }}</td>
-                    <td>{{ form_widget(form.nombre) }}</td>
-                    <td>{{ form_errors(form.nombre) }}</td>
-                </tr>
-                <tr>
-                    <td>{{ form_label(form.apellido) }}</td>
-                    <td>{{ form_widget(form.apellido) }}</td>
-                    <td>{{ form_errors(form.apellido) }}</td>
-                </tr>
-                <tr>
                     <td>{{ form_label(form.nick) }}</td>
-                    <td>{{ form_widget(form.nick) }}</td>
+                    <td>{{ form_widget(form.nick, { 'attr': {'class': 'FormInput'} }) }}</td>
                     <td>{{ form_errors(form.nick) }}</td>
                 </tr>
                 <tr>
                     <td>{{ form_label(form.email) }}</td>
-                    <td>{{ form_widget(form.email) }}</td>
+                    <td>{{ form_widget(form.email, { 'attr': {'class': 'FormInput'} }) }}</td>
                     <td>{{ form_errors(form.email) }}</td>
                 </tr>
                 <tr>
                     <td>{{ form_label(form.email_alternativo) }}</td>
-                    <td>{{ form_widget(form.email_alternativo) }}</td>
+                    <td>{{ form_widget(form.email_alternativo, { 'attr': {'class': 'FormInput'} }) }}</td>
                     <td>{{ form_errors(form.email_alternativo) }}</td>
                 </tr>
                 <tr>
                     <td>{{ form_label(form.contrasenia.contrasenia, 'Contraseña') }}</td>
-                    <td>{{ form_widget(form.contrasenia.contrasenia) }}</td>
+                    <td>{{ form_widget(form.contrasenia.contrasenia, { 'attr': {'class': 'FormInput'} }) }}</td>
                     <td>{{ form_errors(form.contrasenia) }}</td>
                 </tr>
                 <tr>
                     <td>{{ form_label(form.contrasenia.repetirContrasenia, 'Repetir contraseña') }}</td>
-                    <td>{{ form_widget(form.contrasenia.repetirContrasenia) }}</td>
+                    <td>{{ form_widget(form.contrasenia.repetirContrasenia, { 'attr': {'class': 'FormInput'} }) }}</td>
                     <td></td>
                 </tr>
                 <tr>
@@ -67,7 +53,7 @@
 
             {{ form_rest(form) }}
 
-            <input type="submit" value="Registrarme" onclick="validaRegistro()" />
+            <input type="submit" value="Registrarme" class="ButtonForm" />
         </div>
     </form>
 

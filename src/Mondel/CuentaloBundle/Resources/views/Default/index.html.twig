@@ -8,41 +8,19 @@
 
 {% endblock %}
 
-{% block left %}
+{% block content %}
 
-    <div id="loginIndex">
-        {% if not is_granted('IS_AUTHENTICATED_REMEMBERED') %}
-            {% include 'MondelCuentaloBundle:Usuario:loginIndex.html.twig' %}
-        {% endif %}
-    </div>
-
-    <!--div id="beta">
-        <img src="{{ asset('bundles/mondelcuentalo/img/beta.gif') }}" />
-    </div-->
-
-{% endblock %}
-
-{% block center %}
+    {{ parent() }}
 
     <div class="Wrap">
-        <div id="Error">
-            {% if app.session.hasFlash('noticia') %}
-                <div class="flash-notice">
-                    {{ app.session.flash('noticia') }}
-                </div>
-            {% endif %}
-
-            {{ form_errors(form) }}
-        </div>
         <div id="box">
-            <form id="contenidoForm" action="{{ path('homepage') }}" method="post" {{ form_enctype(form) }}>
+            <form id="contenido_form" action="{{ path('inicio') }}" method="post" {{ form_enctype(form) }}>
 
-                {#{ form_errors(form.texto) }#}
                 {{ form_widget(form.texto, { 'attr': {'placeholder': 'Comparte tu secreto, anécdota o un mensaje al mundo...'} }) }}
 
                 <div id="options">
 
-                    {% if not is_granted('IS_AUTHENTICATED_FULLY') %}
+                    {% if not is_granted('IS_AUTHENTICATED_REMEMBERED') %}
                         {{ form_label(form.sexo) }}
                         {{ form_widget(form.sexo) }}
                     {% else %}
@@ -52,11 +30,6 @@
                         </div>
                     {% endif %}
 
-
-                    <div id="right_options">
-
-                    </div>
-
                 </div>
 
                 {{ form_rest(form) }}
@@ -65,7 +38,7 @@
 
                     <p>Caracteres: <span id="count_caracteres">555</span></p>
 
-                    <input type="button" value="Compartir" class="Button" onclick="validaContenido()" />
+                    <input type="button" value="Compartir" class="ButtonShare" onclick="validaContenido()" />
 
                 </div>
 
@@ -75,7 +48,7 @@
         <div id="stream">
             {% for mensaje in ultimos_contenidos %}
 
-                <div class="Box_contenido">
+                <div class="Post">
                     <div class="Titulo">
                         {{ mensaje.fechaCreacion | date('d.m.y') }}
                         <span class="InfoTitulo">
@@ -126,15 +99,15 @@
                                 {% endif %}
 
                                 <br/>
-                                <form action="{{ path('vista_contenido', {'id': mensaje.id, 'titulo': ''}) }}" method="post" {{ form_enctype(forms_comentario[loop.index]) }}>
+                                <!--form action="{{ path('vista_contenido', {'id': mensaje.id, 'titulo': ''}) }}" method="post" {{ form_enctype(forms_comentario[loop.index]) }}>
 
                                     {{ form_errors(forms_comentario[loop.index]) }}
 
                                     {{ form_rest(forms_comentario[loop.index]) }}
-
+-->
                                     <!--input type="submit" value="Comentar" /-->
 
-                                </form>
+                                <!--/form-->
                             {% else %}
                                 Para ver los comentarios debes estar <a href="#" onclick="registro();return false;">registrado</a> o <a class="Logueado" href="#" >iniciar sesi&oacute;n</a>
                             {% endif %}
@@ -153,12 +126,12 @@
         </div>
     </div>
 
-    <div id="registro" style="display: none;">
-        {% include 'MondelCuentaloBundle:Usuario:registro.html.twig' with { 'form' : formR } %}
-    </div>
 {% endblock %}
 
 {% block javascripts %}
+
+    {{ parent() }}
+
     <script type="text/javascript">
 
         $(document).ready(function(){
@@ -201,7 +174,7 @@
         function validaContenido() {
             var area = $('#contenido_texto');
             if (area.val().length <= 50)
-                $('#Error').text('El contenido de tu mensaje debe ser mayor a 100 caracteres.');
+                $('#Error').text('El contenido de tu mensaje debe ser mayor a 50 caracteres.');
             else
                 $('#contenidoForm').submit();
         }

@@ -33,7 +33,7 @@ class DefaultController extends Controller
                 );
 
         $em = $this->get('doctrine.orm.entity_manager');
-        $dql = "SELECT c FROM MondelCuentaloBundle:Contenido c WHERE c.estado = 'a' ORDER BY c.fecha_creacion DESC";
+        $dql = "SELECT c FROM MondelCuentaloBundle:Contenido c WHERE c.activo = '1' ORDER BY c.fecha_creacion DESC";
         $query = $em->createQuery($dql);
 
         $adapter = $this->get('knp_paginator.adapter');
@@ -85,9 +85,7 @@ class DefaultController extends Controller
                     $em->persist($contenido);
                     $em->flush();
 
-                    $this->get('session')->setFlash('noticia', 'Tu mensaje ha sido enviado a los moderadores. Si es aprovado estará publicado en breve.');
-
-                    return $this->redirect($this->generateUrl('homepage'));
+                    return $this->redirect($this->generateUrl('inicio'));
                 }
             }
         }

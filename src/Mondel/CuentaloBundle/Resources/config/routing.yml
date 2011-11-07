@@ -1,16 +1,16 @@
-homepage:
+inicio:
     pattern:  /
     defaults: { _controller: MondelCuentaloBundle:Default:index }
 
 login:
-    pattern:  /login
+    pattern:  /ingresar
     defaults: { _controller: MondelCuentaloBundle:Usuario:login }
 
 login_check:
     pattern:  /login_check
 
 logout:
-    pattern:  /logout
+    pattern:  /salir
 
 registro:
     pattern:  /registro
@@ -23,3 +23,7 @@ recuperar_contrasenia:
 usuario_activacion:
     pattern:  /activar/{token}
     defaults: { _controller: MondelCuentaloBundle:Usuario:registroActivar }
+
+vista_contenido:
+    pattern:  /tipo/id
+    defaults: { _controller: MondelCuentaloBundle:Contenido:mostrar }

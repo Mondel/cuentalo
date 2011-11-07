@@ -49,7 +49,7 @@ class ContenidoController extends Controller
             }
         }
 
-        return $this->redirect($this->generateUrl('homepage'));
+        return $this->redirect($this->generateUrl('inicio'));
         /*return $this->render(
             'MondelCuentaloBundle:Contenido:mostrar.html.twig',
             array('contenido' => $contenido, 'form' => $form->createView())

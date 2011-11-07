@@ -1,54 +1,17 @@
-#menu {
-    line-height: 25px;
-}
-
-#menu li {
-    background: url('../img/arrow.png') 75% 70% no-repeat;
-    padding-top: 5px;
-}
-
-#menu li a {
-    text-decoration: none;
-    color:#000000;
-}
-
-#menu li a:hover {
-    color: #6a6969;
-}
-
-#menu_top {
-    width: 820px;
-}
-
-#content_menu_top {
-    margin: 0 25px;
-    width: 580px;
-}
 
 #center .Wrap {
     margin: 0 25px;
 }
 
-#top .Wrap {
-    margin: 0 auto;
-    width: 1000px;
+#center .Wrap #message {
+
 }
 
-#content_top {
-    width: 100%;
-    padding-top: 25px;
-    margin-left:-5px;
+.Noticia {
+
 }
 
-#content_top div {
-    float: left;
-    text-align: right;
-}
-
-#logo {
-    height:45px;
-    width: 165px;
-    margin-top:-15px;
+.Error {
 
 }
 
@@ -80,8 +43,8 @@
     border: none;
 }
 
-#right_options {
-    float: right;
+#pub_mondel {
+    margin: 10px 20px;
 }
 
 #box_bottom {
@@ -102,31 +65,27 @@
     float: right;
 }
 
-
-.Box_contenido {
-    /*background: url('../img/boxmasculino.jpg');
-    height: 199px;*/
+.Post {
     background: #FFFFFF;
     margin: 25px 2px;
-    width: 582px;
     min-height:60px;
-    /* max-height:150px; */
+    width: 582px;
 }
 
-.Box_contenido .Titulo {
+.Post .Titulo {
     padding: 7px 8px;
     border: 1px solid #d7d7d7;
 }
 
-.Box_contenido .Titulo .InfoTitulo {
+.Post .Titulo .InfoTitulo {
     float: right;
 }
 
-.Box_contenido .Titulo .InfoTitulo .IconoSexo {
+.Post .Titulo .InfoTitulo .IconoSexo {
     width: 15px;
 }
 
-.Box_contenido .Contenido {
+.Post .Contenido {
     font-size: 13px;
     padding: 0 8px;
     border-left: 1px solid #d7d7d7;
@@ -137,37 +96,38 @@
     overflow: hidden;
 }
 
-.Box_contenido .Datos {
+.Post .Datos {
     font-size: 13px;
     border-left: 1px solid #D7D7D7;
     border-right: 1px solid #D7D7D7;
     border-bottom: 1px solid #D7D7D7;
 }
 
-.Box_contenido .Datos .TituloComentarios {
+.Post .Datos .TituloComentarios {
     background: #d7d7d7;
     color: #4d4d4d;
     padding: 2px 5px;
 }
 
-.Box_contenido .Datos .Comentarios {
+.Post .Datos .Comentarios {
     padding: 5px 8px;
 }
-.Box_contenido .Datos .Comentarios a{
+
+.Post .Datos .Comentarios a{
     color: #6A6969;
 }
 
-.Box_contenido .Datos .Comentarios .IconoSexo {
+.Post .Datos .Comentarios .IconoSexo {
     width: 12px;
 }
 
-.Box_contenido .Datos .Comentarios .InputComentarios{
+.Post .Datos .Comentarios .InputComentarios{
     border: 1px solid #929191;
     margin-top: 10px;
     width: 100%;
 }
 
-.Button {
+.ButtonShare {
 	-moz-box-shadow:inset 0px 1px 0px 0px #ffffff;
 	-webkit-box-shadow:inset 0px 1px 0px 0px #ffffff;
 	box-shadow:inset 0px 1px 0px 0px #ffffff;
@@ -189,7 +149,7 @@
 	text-shadow:1px 1px 0px #ffffff;
 }
 
-.Button:hover {
+.ButtonShare:hover {
 	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #f6f6f6), color-stop(1, #ffffff) );
 	background:-moz-linear-gradient( center top, #f6f6f6 5%, #ffffff 100% );
 	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#f6f6f6', endColorstr='#ffffff');
@@ -197,83 +157,9 @@
     cursor: pointer;
 }
 
-.Button:active {
+.ButtonShare:active {
 	position:relative;
 	top:1px;
-}
-
-.LoginInput {
-    background: url('../img/inputype.gif');
-    border: none;
-    color: #929191;
-    height: 22px;
-    margin-right: 15px;
-    width: 150px;
-}
-
-.LoginText {
-    color: #000;
-}
-
-
-
-
-
-
-/* clean gray
-*******************************************************************************/
-.ButtonLogin {
-    background-color: #eeeeee;
-    background-image: -webkit-gradient(linear, left top, left bottom, from(#eeeeee), to(#cccccc));
-    /* Saf4+, Chrome */
-    background-image: -webkit-linear-gradient(top, #eeeeee, #cccccc);
-    background-image: -moz-linear-gradient(top, #eeeeee, #cccccc);
-    background-image: -ms-linear-gradient(top, #eeeeee, #cccccc);
-    background-image: -o-linear-gradient(top, #eeeeee, #cccccc);
-    background-image: linear-gradient(top, #eeeeee, #cccccc);
-    border: 1px solid #ccc;
-    border-bottom: 1px solid #bbb;
-    -webkit-border-radius: 3px;
-    -moz-border-radius: 3px;
-    -ms-border-radius: 3px;
-    -o-border-radius: 3px;
-    border-radius: 3px;
-    color: #333;
-    font: bold 11px "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", Geneva, Verdana, sans-serif;
-    padding: 0 0;
-    text-align: center;
-    text-shadow: 0 1px 0 #eee;
-    width: 100px;
-    height: 23px;
-}
-
-.ButtonLogin:hover {
-    background-color: #dddddd;
-    background-image: -webkit-gradient(linear, left top, left bottom, from(#dddddd), to(#bbbbbb));
-    /* Saf4+, Chrome */
-    background-image: -webkit-linear-gradient(top, #dddddd, #bbbbbb);
-    background-image: -moz-linear-gradient(top, #dddddd, #bbbbbb);
-    background-image: -ms-linear-gradient(top, #dddddd, #bbbbbb);
-    background-image: -o-linear-gradient(top, #dddddd, #bbbbbb);
-    background-image: linear-gradient(top, #dddddd, #bbbbbb);
-    border: 1px solid #bbb;
-    border-bottom: 1px solid #999;
-    cursor: pointer;
-    text-shadow: 0 1px 0 #ddd;
-}
-
-.ButtonLogin:active {
-    border: 1px solid #aaa;
-    border-bottom: 1px solid #888;
-    -webkit-box-shadow: inset 0 0 5px 2px #aaaaaa, 0 1px 0 0 #eeeeee;
-    -moz-box-shadow: inset 0 0 5px 2px #aaaaaa, 0 1px 0 0 #eeeeee;
-    -ms-box-shadow: inset 0 0 5px 2px #aaaaaa, 0 1px 0 0 #eeeeee;
-    -o-box-shadow: inset 0 0 5px 2px #aaaaaa, 0 1px 0 0 #eeeeee;
-    box-shadow: inset 0 0 5px 2px #aaaaaa, 0 1px 0 0 #eeeeee;
-}
-
-.EliminarItem {
-    float: right;
 }
 
 #stream .pagination {
@@ -286,13 +172,17 @@
     color: #6A6969;
 }
 
-#registro input,
-#registro select {
-     border: 1px solid #D7D7D7;
-     height: 35px;
-     margin: 10px;
-     width: 200px;
- }
+
+/* ------------------------------------------ */
+
+
+.EliminarItem {
+    float: right;
+}
+
+
+
+
 
  #adsense
  {
@@ -300,29 +190,8 @@
      margin: 0 20px;
  }
 
- #pubMondel {
-     margin: 10px 20px;
- }
-
-.ui-dialog .ui-state-error { padding: .3em; }
-.validateTips { border: 1px solid transparent; padding: 0.3em; }
-.ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default { color: gray; }
-.ui-state-error, .ui-widget-content .ui-state-error, .ui-widget-header .ui-state-error { color: black; }
-.ui-widget-header { border: none; }
 
 
-#addthis {
-    margin: 20px 5px;
-}
-
-#FooterAds {
-    text-align: center;
-}
-
-#LoginError {
-    margin: 0 210px;
-    color: red;
-}
 
 .flash-notice {
     text-align: center;
@@ -343,7 +212,3 @@
     color: red;
 }
 
-.Form table {
-    border-collapse: separate;
-    border-spacing: 20px;
-}

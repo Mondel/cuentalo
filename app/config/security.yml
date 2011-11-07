@@ -22,10 +22,10 @@ security:
             pattern:    ^/
             anonymous: ~
             form_login:
-                login_path:     /login
+                login_path:     /ingresar
                 check_path:     /login_check
             logout:
-                path:   /logout
+                path:   /salir
                 target: /
             #http_basic:
                 #realm: "Secured Demo Area"
@@ -41,6 +41,6 @@ security:
 
     access_control:
         - { path: ^/, roles: IS_AUTHENTICATED_ANONYMOUSLY }
-        - { path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/ingresar, roles: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/administrar, roles: ROLE_ADMIN }
         #- { path: ^/_internal, roles: IS_AUTHENTICATED_ANONYMOUSLY, ip: 127.0.0.1 }

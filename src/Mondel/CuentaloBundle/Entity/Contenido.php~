@@ -31,7 +31,7 @@ class Contenido
      * @var string $texto
      *
      * @Assert\NotBlank()
-     * @Assert\MinLength(100)
+     * @Assert\MinLength(50)
      * @Assert\MaxLength(555)
      * @ORM\Column(name="texto", type="text")
      */
@@ -61,12 +61,11 @@ class Contenido
     private $sexo;
 
     /**
-     * @var string $estado
+     * @var boolean $activo
      *
-     * @Assert\Choice({"a", "p", "r"})
-     * @ORM\Column(name="estado", type="string", length=1)
+     * @ORM\Column(name="activo", type="boolean")
      */
-    private $estado;
+    private $activo;
 
     /**
      * @var datetime $fecha_creacion
@@ -111,15 +110,16 @@ class Contenido
     /**
      * @ORM\prePersist
      */
-    public function setEstadoPendiente()
+    public function setEstadoActivo()
     {
-        $this->estado = "p";
+        $this->activo = true;
     }
 
     /*
      * Fin mis propiedes
      */
 
+   
     public function __construct()
     {
         $this->comentarios = new \Doctrine\Common\Collections\ArrayCollection();
@@ -212,25 +212,25 @@ class Contenido
     }
 
     /**
-     * Set estado
+     * Set activo
      *
-     * @param string $estado
+     * @param boolean $activo
      * @return Contenido
      */
-    public function setEstado($estado)
+    public function setActivo($activo)
     {
-        $this->estado = $estado;
+        $this->activo = $activo;
         return $this;
     }
 
     /**
-     * Get estado
+     * Get activo
      *
-     * @return string 
+     * @return boolean 
      */
-    public function getEstado()
+    public function getActivo()
     {
-        return $this->estado;
+        return $this->activo;
     }
 
     /**
