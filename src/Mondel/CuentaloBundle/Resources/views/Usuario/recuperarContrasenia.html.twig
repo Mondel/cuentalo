@@ -1,7 +1,25 @@
+{% extends 'MondelCuentaloBundle::layout.html.twig' %}
 
-<p>
-    Para recuperar su contraseña escriba su email con el que se registro y le enviaremos una contraseña "random" para que pueda ingresar al sitio y cambiar la contraseña por su preferida.
-</p>
-
-Email <input name="_email" />
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" type="text/css" media="screen" href="{{ asset('bundles/mondelcuentalo/css/forms.css') }}" />
+{% endblock %}
+{% block content %}
+    {{ parent() }}
+    <p>El proceso de recuperacion de contrase&ntilde;a funciona de la siguiente manera.</p>
+    <br/>
+    <ul>
+        <li>* Usted nos envía el email de su cuenta</li>
+        <li>* Nosotros le enviamos una contrase&ntilde;a aleatoria a su email</li>
+        <li>* Usted ingresa al sitio y puede volver a ingresar la contrase&ntilde;a deseada</li>
+    </ul>
+    <br/>
+    <div class="Form">
+        <form action="{{ path('_contrasenia_recuperar') }}" method="post">
+            {{ form_widget(form.email, { 'attr': {'class': 'FormInput', 'placeholder': 'email...'} }) }}
+            {{ form_rest(form) }}
+            <input type="submit" value="Enviar" class="ButtonForm" />
+        </form>
+    </div>
+{% endblock %}
 

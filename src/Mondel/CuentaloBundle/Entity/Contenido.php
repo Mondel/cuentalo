@@ -92,6 +92,11 @@ class Contenido
     private $comentarios;
 
     /**
+     * @ORM\OneToMany(targetEntity="Voto", mappedBy="voto")
+     */
+    private $votos;
+
+    /**
      * @ORM\prePersist
      */
     public function setFechaCreacion()
@@ -119,16 +124,16 @@ class Contenido
      * Fin mis propiedes
      */
 
-   
+
     public function __construct()
     {
         $this->comentarios = new \Doctrine\Common\Collections\ArrayCollection();
     }
-    
+
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -150,7 +155,7 @@ class Contenido
     /**
      * Get texto
      *
-     * @return text 
+     * @return text
      */
     public function getTexto()
     {
@@ -172,7 +177,7 @@ class Contenido
     /**
      * Get ip
      *
-     * @return string 
+     * @return string
      */
     public function getIp()
     {
@@ -182,7 +187,7 @@ class Contenido
     /**
      * Get pais
      *
-     * @return string 
+     * @return string
      */
     public function getPais()
     {
@@ -204,7 +209,7 @@ class Contenido
     /**
      * Get sexo
      *
-     * @return string 
+     * @return string
      */
     public function getSexo()
     {
@@ -226,7 +231,7 @@ class Contenido
     /**
      * Get activo
      *
-     * @return boolean 
+     * @return boolean
      */
     public function getActivo()
     {
@@ -236,7 +241,7 @@ class Contenido
     /**
      * Get fecha_creacion
      *
-     * @return datetime 
+     * @return datetime
      */
     public function getFechaCreacion()
     {
@@ -258,7 +263,7 @@ class Contenido
     /**
      * Get usuario
      *
-     * @return Mondel\CuentaloBundle\Entity\Usuario 
+     * @return Mondel\CuentaloBundle\Entity\Usuario
      */
     public function getUsuario()
     {
@@ -280,7 +285,7 @@ class Contenido
     /**
      * Get categoria
      *
-     * @return Mondel\CuentaloBundle\Entity\Categoria 
+     * @return Mondel\CuentaloBundle\Entity\Categoria
      */
     public function getCategoria()
     {
@@ -300,10 +305,30 @@ class Contenido
     /**
      * Get comentarios
      *
-     * @return Doctrine\Common\Collections\Collection 
+     * @return Doctrine\Common\Collections\Collection
      */
     public function getComentarios()
     {
         return $this->comentarios;
+    }
+
+    /**
+     * Add votos
+     *
+     * @param Mondel\CuentaloBundle\Entity\Voto $votos
+     */
+    public function addVoto(\Mondel\CuentaloBundle\Entity\Voto $votos)
+    {
+        $this->votos[] = $votos;
+    }
+
+    /**
+     * Get votos
+     *
+     * @return Doctrine\Common\Collections\Collection
+     */
+    public function getVotos()
+    {
+        return $this->votos;
     }
 }

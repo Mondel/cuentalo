@@ -1,28 +1,48 @@
-inicio:
+_inicio:
     pattern:  /
-    defaults: { _controller: MondelCuentaloBundle:Default:index }
+    defaults: { _controller: MondelCuentaloBundle:Default:inicio }
 
-login:
+_ingresar:
     pattern:  /ingresar
-    defaults: { _controller: MondelCuentaloBundle:Usuario:login }
+    defaults: { _controller: MondelCuentaloBundle:Usuario:ingreso }
 
-login_check:
-    pattern:  /login_check
+_ingresar_chequeo:
+    pattern:  /ingresar_chequeo
 
-logout:
+_salir:
     pattern:  /salir
 
-registro:
-    pattern:  /registro
+_registrar:
+    pattern:  /registrarme
     defaults: { _controller: MondelCuentaloBundle:Usuario:registro }
 
-recuperar_contrasenia:
-    pattern:  /recuperar
+# usuario
+
+_contrasenia_recuperar:
+    pattern:  /recuperar/contraseña
     defaults: { _controller: MondelCuentaloBundle:Usuario:recuperarContrasenia }
 
-usuario_activacion:
-    pattern:  /activar/{token}
-    defaults: { _controller: MondelCuentaloBundle:Usuario:registroActivar }
+_usuario_activacion:
+    pattern:  /usuario/activar/{token}
+    defaults: { _controller: MondelCuentaloBundle:Usuario:usuarioActivacion }
+
+# contenido
+
+_contenido_crear:
+    pattern:  /contenido/crear
+    defaults: { _controller: MondelCuentaloBundle:Contenido:crear }
+    requirements: { _method: POST }
+
+_contenido_mostrar:
+    pattern:  /contenido/{id}
+    defaults:  { _controller: MondelCuentaloBundle:Contenido:mostrar }
+
+_contenido_comentar:
+    pattern:  /contenido/{id}/comentar
+    defaults:  { _controller: MondelCuentaloBundle:Contenido:comentar }
+    requirements: { _method: POST }
+
+###########
 
 vista_contenido:
     pattern:  /tipo/id

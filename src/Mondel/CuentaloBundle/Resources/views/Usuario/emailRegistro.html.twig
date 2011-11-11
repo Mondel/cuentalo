@@ -1,4 +1,16 @@
-<p>Gracias por registrarte.</p>
-<p>
-    Para activar tu cuenta debes seguir el siguiente link: <a href="{{ path('usuario_activacion', {'token' : token}) }}">Activar</a>
-</p>
+<img src="http://www.cuentalo.com.uy/bundles/mondelcuentalo/img/head_notificacion_mail.gif" />
+<div style="width: 620px;">
+    <p>Hola, {{ nombre }}!</p>
+    <p>
+        Gracias por registrarte esperamos que disfrutes mucho el pertenecer
+        a una comunidad de entretenimiento como lo es “cuentalo”.
+        Activa tu cuenta ingresando al siguiente link:
+        <a href="{{ url('_usuario_activacion', {'token' : token}) }}">Activar</a>
+        Te agradecemos si ingresas al sitio y configuras una nueva.
+    </p>
+    <p>
+        Saludos<br/>
+        El Equipo de Cuentalo
+    </p>
+</div>
+<img src="http://www.cuentalo.com.uy/bundles/mondelcuentalo/img/footer_notificacion_mail.gif" />

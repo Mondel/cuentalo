@@ -83,7 +83,7 @@ class Voto
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -103,7 +103,7 @@ class Voto
     /**
      * Get ip
      *
-     * @return string 
+     * @return string
      */
     public function getIp()
     {
@@ -113,7 +113,7 @@ class Voto
     /**
      * Get pais
      *
-     * @return string 
+     * @return string
      */
     public function getPais()
     {
@@ -123,7 +123,7 @@ class Voto
     /**
      * Get fecha_creacion
      *
-     * @return datetime 
+     * @return datetime
      */
     public function getFechaCreacion()
     {
@@ -143,7 +143,7 @@ class Voto
     /**
      * Get usuario
      *
-     * @return Mondel\CuentaloBundle\Entity\Usuario 
+     * @return Mondel\CuentaloBundle\Entity\Usuario
      */
     public function getUsuario()
     {
@@ -163,7 +163,7 @@ class Voto
     /**
      * Get contenido
      *
-     * @return Mondel\CuentaloBundle\Entity\Contenido 
+     * @return Mondel\CuentaloBundle\Entity\Contenido
      */
     public function getContenido()
     {

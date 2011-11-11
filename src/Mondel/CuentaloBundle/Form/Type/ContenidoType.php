@@ -8,15 +8,18 @@ use Symfony\Component\Form\FormBuilder;
 class ContenidoType extends AbstractType {
 
     public function buildForm(FormBuilder $builder, array $options) {
-        $edades = array();
-        for($i = 10; $i < 90; $i++) {
-            $edades[$i - 10] = $i;
-        }
-
-        $builder->add('sexo', 'choice', array(
-                    'choices'   => array('m' => 'Masculino', 'f' => 'Femenino'),
-                ))
-                ->add('texto', null ,array('max_length' => 555));
+        $builder->add('categoria')
+                ->add('sexo', 'choice',
+                        array(
+                            'choices'       => array('m' => 'Masculino', 'f' => 'Femenino'),
+                            'empty_value'   => 'Seleccione'
+                        )
+                )
+                ->add('texto', null, array(
+                    'max_length'        => 555,
+                    'required'          => true,
+                    'error_bubbling'    => true
+                ));
     }
 
     public function getDefaultOptions(array $options) {

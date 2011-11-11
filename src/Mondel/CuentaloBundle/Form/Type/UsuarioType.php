@@ -8,13 +8,12 @@ use Symfony\Component\Form\FormBuilder;
 class UsuarioType extends AbstractType {
 
     public function buildForm(FormBuilder $builder, array $options) {
-        $builder//->add('nombre')
-                //->add('apellido')
+        $builder->add('nombre')
+                ->add('apellido')
                 ->add('nick')
-                // ->add('fecha_nacimiento', null, array('years' => range(1900,2000)))
+                ->add('fecha_nacimiento', null, array('years' => range(1900, 2000)))
                 ->add('email')
                 ->add('email_alternativo')
-                //->add('contrasenia', 'password' , array('label' => 'Contraseña'))
                 ->add('contrasenia', 'repeated', array(
                     'type'            => 'password',
                     'invalid_message' => 'Las contraseñas no coinciden.',
@@ -26,15 +25,16 @@ class UsuarioType extends AbstractType {
                     'choices'   => array('m' => 'Masculino', 'f' => 'Femenino'),
                     'required'  => true,
                     'empty_value' => 'Seleccione',
-                ));
-                //->add('recibe_noticias', null, array(
-                //    'label'     => 'Quiere recibir noticias por email ?',
-                //    'required'  => false
-                //))
-                //->add('recibe_notificaciones', null, array(
-                //    'label'     => 'Quiere recibir notificaciones por email ?',
-                //    'required'  => false
-                //));
+                ))
+                ->add('recibe_noticias', null, array(
+                    'label'     => 'Quiere recibir noticias por email ?',
+                    'required'  => false
+                ))
+                ->add('recibe_notificaciones', null, array(
+                    'label'     => 'Quiere recibir notificaciones por email ?',
+                    'required'  => false
+                ))
+        ;
     }
 
     public function getDefaultOptions(array $options) {

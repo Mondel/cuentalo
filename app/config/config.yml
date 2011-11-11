@@ -4,7 +4,7 @@ imports:
 
 framework:
     #esi:             ~
-    #translator:      { fallback: en }
+    translator:      { fallback: es }
     secret:          %secret%
     charset:         UTF-8
     router:          { resource: "%kernel.root_dir%/config/routing.yml" }
@@ -27,6 +27,10 @@ assetic:
     use_controller: false
     filters:
         cssrewrite: ~
+        yui_css:
+            jar:    %kernel.root_dir%/Resources/java/yuicompressor.jar
+        yui_js:
+            jar:    %kernel.root_dir%/Resources/java/yuicompressor.jar
         # closure:
         #     jar: %kernel.root_dir%/java/compiler.jar
         # yui_css:
@@ -57,6 +61,3 @@ swiftmailer:
 jms_security_extra:
     secure_controllers:  true
     secure_all_services: false
-
-knp_paginator:
-    templating: ~ # enables view helper and twig

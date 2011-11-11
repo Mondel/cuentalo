@@ -1,23 +1,14 @@
 {% extends 'MondelCuentaloBundle::layout.html.twig' %}
 
 {% block stylesheets %}
-
     {{ parent() }}
-
     <link rel="stylesheet" type="text/css" media="screen" href="{{ asset('bundles/mondelcuentalo/css/forms.css') }}" />
-
 {% endblock %}
-
 {% block content %}
-
     {{ parent() }}
-
-    <form action="{{ path('registro') }}" method="post" {{ form_enctype(form) }}>
-
+    <form action="{{ path('_registrar') }}" method="post" {{ form_enctype(form) }}>
         <div id="registro_form" class="Form">
-
             {{ form_errors(form) }}
-
             <table>
                 <tr>
                     <td>{{ form_label(form.nick) }}</td>
@@ -50,11 +41,8 @@
                     <td>{{ form_errors(form.sexo) }}</td>
                 </tr>
             </table>
-
-            {{ form_rest(form) }}
-
+            {{ form_widget(form._token) }}
             <input type="submit" value="Registrarme" class="ButtonForm" />
         </div>
     </form>
-
 {% endblock %}
