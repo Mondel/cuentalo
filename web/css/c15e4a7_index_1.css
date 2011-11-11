@@ -1,0 +1,199 @@
+
+#box {
+    background: url('bundles/mondelcuentalo/img/box.png');
+    height: 202px;
+    width: 587px;
+}
+
+#box textarea {
+    background-color: transparent;
+    border-color: transparent;
+    color: #929191;
+    font-size: 13px;
+    height: 117px;
+    margin: 5px;
+    resize: none;
+    width: 573px;
+}
+
+#options {
+    font-size: 12px;
+    height: 17px;
+    margin-left: 10px;
+    width: 560px;
+}
+
+#options select {
+    background: transparent;
+    border: none;
+}
+
+#pub_mondel {
+    margin: 10px 20px;
+}
+
+#box_bottom {
+    margin: 7px 10px;
+}
+
+#box_bottom p {
+    float: left;
+    font-size: 14px;
+    margin: 10px 0;
+}
+
+#box_bottom input {
+    float: right;
+}
+
+.Right {
+    float: right;
+}
+
+.Post {
+    background: #FFFFFF;
+    margin: 25px 2px;
+    min-height:60px;
+    width: 582px;
+}
+
+.Post .Titulo {
+    padding: 7px 8px;
+    border: 1px solid #d7d7d7;
+}
+
+.Post .Titulo .InfoTitulo {
+    float: right;
+}
+
+.Post .Titulo .InfoTitulo .IconoSexo {
+    width: 15px;
+}
+
+.Post .Contenido {
+    font-size: 13px;
+    padding: 0 8px;
+    border-left: 1px solid #d7d7d7;
+    border-right: 1px solid #d7d7d7;
+    border-bottom: 1px solid #d7d7d7;
+    min-height:60px;
+    max-height:150px;
+    overflow: hidden;
+}
+
+.Post .Datos {
+    font-size: 13px;
+    border-left: 1px solid #D7D7D7;
+    border-right: 1px solid #D7D7D7;
+    border-bottom: 1px solid #D7D7D7;
+}
+
+.Post .Datos .TituloComentarios {
+    background: #d7d7d7;
+    color: #4d4d4d;
+    padding: 2px 5px;
+}
+
+.Post .Datos .Comentarios {
+    padding: 5px 8px;
+}
+
+.Post .Datos .Comentarios a{
+    color: #6A6969;
+}
+
+.Post .Datos .Comentarios .IconoSexo {
+    width: 12px;
+}
+
+.Post .Datos .Comentarios .InputComentarios{
+    border: 1px solid #929191;
+    margin-top: 10px;
+    width: 100%;
+}
+
+.ButtonShare {
+	-moz-box-shadow:inset 0px 1px 0px 0px #ffffff;
+	-webkit-box-shadow:inset 0px 1px 0px 0px #ffffff;
+	box-shadow:inset 0px 1px 0px 0px #ffffff;
+	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #ffffff), color-stop(1, #f6f6f6) );
+	background:-moz-linear-gradient( center top, #ffffff 5%, #f6f6f6 100% );
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', endColorstr='#f6f6f6');
+	background-color:#ffffff;
+	-moz-border-radius:15px;
+	-webkit-border-radius:15px;
+	border-radius:15px;
+	border:1px solid #dcdcdc;
+	display:inline-block;
+	color:#666666;
+	font-family:arial;
+	font-size:15px;
+	font-weight:normal;
+	padding:6px 24px;
+	text-decoration:none;
+	text-shadow:1px 1px 0px #ffffff;
+}
+
+.ButtonShare:hover {
+	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #f6f6f6), color-stop(1, #ffffff) );
+	background:-moz-linear-gradient( center top, #f6f6f6 5%, #ffffff 100% );
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#f6f6f6', endColorstr='#ffffff');
+	background-color:#f6f6f6;
+    cursor: pointer;
+}
+
+.ButtonShare:active {
+	position:relative;
+	top:1px;
+}
+
+#stream .pagination {
+    color: #6A6969;
+    margin: 20px 0;
+    text-align: center;
+}
+
+#stream .pagination a {
+    color: #6A6969;
+}
+
+
+/* ------------------------------------------ */
+
+
+.EliminarItem {
+    float: right;
+}
+
+
+
+
+
+ #adsense
+ {
+     /*position: fixed;*/
+     margin: 0 20px;
+ }
+
+
+
+
+.flash-notice {
+    text-align: center;
+}
+
+#loginIndex {
+    padding: 8px;
+    margin: 5px 0;
+}
+
+#loginIndex form input
+{
+    margin: 8px 0;
+}
+
+#Error {
+    text-align: center;
+    color: red;
+}
+
