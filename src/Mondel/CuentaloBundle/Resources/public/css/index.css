@@ -58,15 +58,16 @@
 }
 
 .Post .Titulo {
-    padding: 7px 8px;
     border: 1px solid #d7d7d7;
+    font-size: 14px;
+    padding: 7px 8px;
 }
 
 .Post .Titulo .InfoTitulo {
     float: right;
 }
 
-.Post .Titulo .InfoTitulo .IconoSexo {
+.Post .Titulo .IconoSexo {
     width: 15px;
 }
 

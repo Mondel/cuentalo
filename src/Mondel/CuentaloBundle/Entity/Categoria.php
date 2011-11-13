@@ -3,12 +3,14 @@
 namespace Mondel\CuentaloBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Mondel\CuentaloBundle\Entity\Categoria
  *
  * @ORM\Table()
  * @ORM\Entity(repositoryClass="Mondel\CuentaloBundle\Entity\CategoriaRepository")
+ * @ORM\HasLifecycleCallbacks()
  */
 class Categoria
 {
@@ -24,6 +26,9 @@ class Categoria
     /**
      * @var string $nombre
      *
+     * @Assert\MaxLength(50)
+     * @Assert\MinLength(3)
+     * @Assert\NotBlank()
      * @ORM\Column(name="nombre", type="string", length=100)
      */
     private $nombre;
@@ -40,11 +45,26 @@ class Categoria
      */
     private $contenidos;
 
+    /**
+     * @ORM\prePersist
+     */
+    public function setEstadoActivo()
+    {
+        $this->activo = true;
+    }
 
+    /*
+     * Fin mis propiedades
+     */
+    public function __construct()
+    {
+        $this->contenidos = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+    
     /**
      * Get id
      *
-     * @return integer
+     * @return integer 
      */
     public function getId()
     {
@@ -66,7 +86,7 @@ class Categoria
     /**
      * Get nombre
      *
-     * @return string
+     * @return string 
      */
     public function getNombre()
     {
@@ -88,17 +108,13 @@ class Categoria
     /**
      * Get activo
      *
-     * @return boolean
+     * @return boolean 
      */
     public function getActivo()
     {
         return $this->activo;
     }
-    public function __construct()
-    {
-        $this->contenidos = new \Doctrine\Common\Collections\ArrayCollection();
-    }
-    
+
     /**
      * Add contenidos
      *

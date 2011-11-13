@@ -31,24 +31,26 @@
             {% for mensaje in contenidos %}
                 <div class="Post">
                     <div class="Titulo">
-                        {{ mensaje.fechaCreacion | date('d.m.y') }}
-                        <span class="InfoTitulo">
-                            {{ mensaje.fechaCreacion | created_ago }}
-                            {% if mensaje.usuario != null %}
-                                {% if mensaje.usuario.sexo == 'm' %}
+                        {% if mensaje.usuario != null %}
+                            {% if mensaje.usuario.sexo == 'm' %}
+                                <img class="IconoSexo" src="{{ asset('bundles/mondelcuentalo/img/masculino.png') }}" />
+                            {% else %}
+                                <img class="IconoSexo" src="{{ asset('bundles/mondelcuentalo/img/femenino.png') }}" />
+                            {% endif %}
+                        {% else %}
+                            {% if mensaje.sexo != null %}
+                                {% if mensaje.sexo == 'm' %}
                                     <img class="IconoSexo" src="{{ asset('bundles/mondelcuentalo/img/masculino.png') }}" />
                                 {% else %}
                                     <img class="IconoSexo" src="{{ asset('bundles/mondelcuentalo/img/femenino.png') }}" />
                                 {% endif %}
-                            {% else %}
-                                {% if mensaje.sexo != null %}
-                                    {% if mensaje.sexo == 'm' %}
-                                        <img class="IconoSexo" src="{{ asset('bundles/mondelcuentalo/img/masculino.png') }}" />
-                                    {% else %}
-                                        <img class="IconoSexo" src="{{ asset('bundles/mondelcuentalo/img/femenino.png') }}" />
-                                    {% endif %}
-                                {% endif %}
                             {% endif %}
+                        {% endif %}
+                        {{ mensaje.categoria.nombre }}
+                        -
+                        {{ mensaje.fechaCreacion | created_ago }}
+                        <span class="InfoTitulo">
+                            X
                         </span>
                     </div>
                     <div class="Contenido">{{ mensaje.texto }}</div>
