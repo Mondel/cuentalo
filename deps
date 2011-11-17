@@ -1,24 +1,4 @@
-[symfony]
-    git=http://github.com/symfony/symfony.git
-
-[twig]
-    git=http://github.com/fabpot/Twig.git
-    version=origin/master
-
-[monolog]
-    git=http://github.com/Seldaek/monolog.git
-    version=1.0.2
-
-[doctrine-common]
-    git=http://github.com/doctrine/common.git
-    version=origin/master
-
-[doctrine-dbal]
-    git=http://github.com/doctrine/dbal.git
-    version=origin/master
-
-[doctrine]
-    git=http://github.com/doctrine/doctrine2.git
+ctrine/doctrine2.git
     version=origin/master
 
 [swiftmailer]
