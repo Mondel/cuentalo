@@ -1,5 +1,5 @@
 imports:
-    - { resource: parameters.yml }
+    - { resource: parameters.ini }
     - { resource: security.yml }
 
 framework:
@@ -11,10 +11,10 @@ framework:
     form:            true
     csrf_protection: true
     validation:      { enable_annotations: true }
-    templating:      { engines: ['twig'] } #assets_version: SomeVersionScheme
-    default_locale:  %locale%
+    templating:      { engines: ['twig'] } #assets_version: SomeVersionScheme        
     session:
         auto_start:  true
+        default_locale:  %locale%        
 
 # Twig Configuration
 twig:

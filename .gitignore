@@ -5,6 +5,7 @@
 /app/logs/*
 /vendor/
 /app/config/parameters.yml
+/app/config/parameters.ini
 /nbproject/
 .buildpath
 .project
