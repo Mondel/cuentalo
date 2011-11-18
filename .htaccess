@@ -8,4 +8,6 @@ RewriteRule (.*) /web/$1 [L]
 #Options +FollowSymlinks
 #RewriteEngine On
 #RewriteCond %{REQUEST_URI} !/web/mantenimiento.html$
+#RewriteCond %{REMOTE_HOST} !^999\.999\.999\.999 #N
+#RewriteCond %{REMOTE_HOST} !^999\.999\.999\.999 #F
 #RewriteRule $ /web/mantenimiento.html [R=302,L]
