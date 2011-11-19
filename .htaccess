@@ -6,7 +6,11 @@
 
 #MANTENIMIENTO
 RewriteEngine On
-#RewriteCond %{REMOTE_HOST} !^999\.999\.999\.999 #N
-#RewriteCond %{REMOTE_HOST} !^999\.999\.999\.999 #F
+###
+#N
+#RewriteCond %{REMOTE_HOST} !^999\.999\.999\.999
+#F
+#RewriteCond %{REMOTE_HOST} !^999\.999\.999\.999
+###
 RewriteCond %{REQUEST_URI} !/web/mantenimiento/index.html$
 RewriteRule $ /web/mantenimiento/index.html [R=302,L]
