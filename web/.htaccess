@@ -1,16 +1,13 @@
 <IfModule mod_rewrite.c>
     RewriteEngine On
+    
+    #ARRIBA
     RewriteCond %{REQUEST_FILENAME} !-f
     RewriteRule ^(.*)$ app.php [QSA,L]
 	
-    #MANTENIMIENTO
-    RewriteEngine On
-    ###
-    #N
+    #MANTENIMIENTO        
+    #RewriteCond %{REMOTE_HOST} !^999\.999\.999\.999    
     #RewriteCond %{REMOTE_HOST} !^999\.999\.999\.999
-    #F
-    #RewriteCond %{REMOTE_HOST} !^999\.999\.999\.999
-    ###
-    RewriteCond %{REQUEST_URI} !/web/mantenimiento/index.html$
-    RewriteRule $ /web/mantenimiento/index.html [R=302,L]
+    #RewriteCond %{REQUEST_URI} !/web/mantenimiento/index.html$
+    #RewriteRule $ /web/mantenimiento/index.html [R=302,L]
 </IfModule>
