@@ -1,16 +1,5 @@
-#RewriteEngine On
-#RewriteCond %{HTTP_HOST} ^cuentalo\.com\.uy$ [OR]
-#RewriteCond %{HTTP_HOST} ^www\.cuentalo\.com\.uy$
-#RewriteCond %{REQUEST_URI} !^/web/
-#RewriteRule (.*) /web/$1 [L]
-
-#MANTENIMIENTO
 RewriteEngine On
-###
-#N
-#RewriteCond %{REMOTE_HOST} !^999\.999\.999\.999
-#F
-#RewriteCond %{REMOTE_HOST} !^999\.999\.999\.999
-###
-RewriteCond %{REQUEST_URI} !/web/mantenimiento/index.html$
-RewriteRule $ /web/mantenimiento/index.html [R=302,L]
+RewriteCond %{HTTP_HOST} ^cuentalo\.com\.uy$ [OR]
+RewriteCond %{HTTP_HOST} ^www\.cuentalo\.com\.uy$
+RewriteCond %{REQUEST_URI} !^/web/
+RewriteRule (.*) /web/$1 [L]
