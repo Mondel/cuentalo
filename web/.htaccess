@@ -3,7 +3,7 @@
 	
     #MANTENIMIENTO
     #Para dejar en mantenimiento solamente descomenta 
-    #las siguientes 4 lineas, las dos primeras son las
+    #las siguientes 7 lineas, las dos primeras son las
     #ip que pueden ingresar igual al sitio
     
     #RewriteCond %{REMOTE_HOST} !^999\.999\.999\.999    
