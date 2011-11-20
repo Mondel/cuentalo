@@ -19,14 +19,7 @@ class UsuarioRegistro
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      */
-    private $id;
-
-    /**
-     * @var string $contrasenia
-     *
-     * @ORM\Column(name="contrasenia", type="string", length=255)
-     */
-    private $contrasenia;
+    private $id;    
 
     /**
      * @var datetime $fecha
@@ -47,15 +40,11 @@ class UsuarioRegistro
      *
      * @ORM\Column(name="ip", type="string", length=50)
      */
-    private $ip;
+    private $ip;    
 
-    /**
-     * @var boolean $correcto
-     *
-     * @ORM\Column(name="correcto", type="boolean")
-     */
-    private $correcto;
-
+    /*
+     * Fin mis propiedades
+     */    
 
     /**
      * Get id
@@ -68,37 +57,13 @@ class UsuarioRegistro
     }
 
     /**
-     * Set contrasenia
-     *
-     * @param string $contrasenia
-     * @return UsuarioRegistro
-     */
-    public function setContrasenia($contrasenia)
-    {
-        $this->contrasenia = $contrasenia;
-        return $this;
-    }
-
-    /**
-     * Get contrasenia
-     *
-     * @return string 
-     */
-    public function getContrasenia()
-    {
-        return $this->contrasenia;
-    }
-
-    /**
      * Set fecha
      *
      * @param datetime $fecha
-     * @return UsuarioRegistro
      */
     public function setFecha($fecha)
     {
         $this->fecha = $fecha;
-        return $this;
     }
 
     /**
@@ -115,12 +80,10 @@ class UsuarioRegistro
      * Set email
      *
      * @param string $email
-     * @return UsuarioRegistro
      */
     public function setEmail($email)
     {
         $this->email = $email;
-        return $this;
     }
 
     /**
@@ -137,12 +100,10 @@ class UsuarioRegistro
      * Set ip
      *
      * @param string $ip
-     * @return UsuarioRegistro
      */
     public function setIp($ip)
     {
         $this->ip = $ip;
-        return $this;
     }
 
     /**
@@ -153,27 +114,5 @@ class UsuarioRegistro
     public function getIp()
     {
         return $this->ip;
-    }
-
-    /**
-     * Set correcto
-     *
-     * @param boolean $correcto
-     * @return UsuarioRegistro
-     */
-    public function setCorrecto($correcto)
-    {
-        $this->correcto = $correcto;
-        return $this;
-    }
-
-    /**
-     * Get correcto
-     *
-     * @return boolean 
-     */
-    public function getCorrecto()
-    {
-        return $this->correcto;
     }
 }

@@ -1,11 +1,10 @@
 {% extends 'MondelCuentaloBundle::layout.html.twig' %}
 
 {% block stylesheets %}
-
     {{ parent() }}
-
-    <link rel="stylesheet" type="text/css" media="screen" href="{{ asset('bundles/mondelcuentalo/css/forms.css') }}" />
-
+    {% stylesheets '@MondelCuentaloBundle/Resources/public/css/forms.css' filter='yui_css' %}
+    <link rel="stylesheet" type="text/css" media="screen" href="{{ asset_url }}" />
+    {% endstylesheets %}
 {% endblock %}
 
 {% block menu_top %}{% endblock %}

@@ -31,16 +31,12 @@ class UsuarioController extends Controller
         } else {
             $error = $sesion->get(SecurityContext::AUTHENTICATION_ERROR);
         }
-
-        print_r($sesion->get(SecurityContext::LAST_USERNAME));    //USUARIO
-        print_r($error->getExtraInformation()->getCredentials()); //PASSWORD
-
-        $usuarioRegistro = new UsuarioRegistro();
+        
+        $usuarioRegistro = new UsuarioRegistro();        
         $usuarioRegistro->setEmail($sesion->get(SecurityContext::LAST_USERNAME));
-        $usuarioRegistro->setContrasenia($error->getExtraInformation()->getCredentials());
         $usuarioRegistro->setIp($peticion->getClientIp());
         $usuarioRegistro->setFecha(new \DateTime());
-
+        
         $manager = $this->getDoctrine()->getEntityManager();
         $manager->persist($usuarioRegistro);
         $manager->flush();
