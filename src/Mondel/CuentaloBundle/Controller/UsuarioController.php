@@ -32,14 +32,16 @@ class UsuarioController extends Controller
             $error = $sesion->get(SecurityContext::AUTHENTICATION_ERROR);
         }
         
-        $usuarioRegistro = new UsuarioRegistro();        
-        $usuarioRegistro->setEmail($sesion->get(SecurityContext::LAST_USERNAME));
-        $usuarioRegistro->setIp($peticion->getClientIp());
-        $usuarioRegistro->setFecha(new \DateTime());
-        
-        $manager = $this->getDoctrine()->getEntityManager();
-        $manager->persist($usuarioRegistro);
-        $manager->flush();
+        if ($sesion->get(SecurityContext::LAST_USERNAME) != '') {
+	        $usuarioRegistro = new UsuarioRegistro();        
+	        $usuarioRegistro->setEmail($sesion->get(SecurityContext::LAST_USERNAME));
+	        $usuarioRegistro->setIp($peticion->getClientIp());
+	        $usuarioRegistro->setFecha(new \DateTime());
+	        
+	        $manager = $this->getDoctrine()->getEntityManager();
+	        $manager->persist($usuarioRegistro);
+	        $manager->flush();
+        }
 
         return $this->render('MondelCuentaloBundle:Usuario:ingreso.html.twig', array(
             'last_username' => $sesion->get(SecurityContext::LAST_USERNAME),
