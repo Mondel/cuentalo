@@ -194,7 +194,7 @@ class UsuarioController extends Controller
                                 'contrasenia' => $nueva_contrasenia,
                                 'nombre' => $usuario_nombre,
                             )
-                    ))
+                    ), 'text/html')
                 ;
                 $this->get('mailer')->send($mensaje);
 
