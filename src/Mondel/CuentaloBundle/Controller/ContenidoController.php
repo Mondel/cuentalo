@@ -25,7 +25,7 @@ class ContenidoController extends Controller
 
         if ($formulario->isValid()) {
 
-            $contenido->setIp($peticion->getClientIp());
+            $contenido->setIp($peticion->getClientIp());            
 
             $em = $this->getDoctrine()->getEntityManager();
             $em->persist($contenido);

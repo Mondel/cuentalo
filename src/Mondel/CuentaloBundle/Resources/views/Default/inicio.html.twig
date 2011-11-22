@@ -11,7 +11,7 @@
     <div class="Wrap">
         <div id="box">
             <form id="contenido_form" action="{{ path('_contenido_crear') }}" method="post" {{ form_enctype(form) }}>
-                {{ form_widget(form.texto, { 'attr': { 'placeholder': 'Comparte tu secreto, anécdota o un mensaje al mundo...' } }) }}
+				{{ form_widget(form.texto, { 'attr': { 'placeholder': 'Comparte tu secreto, anécdota o un mensaje al mundo...' } }) }}
                 <div id="options">
                     {% if not is_granted('ROLE_USER') %}
                         {{ form_label(form.sexo) }}
@@ -50,7 +50,11 @@
                         -
                         {{ mensaje.fechaCreacion | created_ago }}
                         <span class="InfoTitulo">
-                            X
+                        	{% if is_granted('ROLE_USER') %}
+	                            {% if mensaje.usuario and (mensaje.usuario.nick == app.security.token.user.nick) %}
+	                            	X
+	                            {% endif %}
+	                        {% endif %}
                         </span>
                     </div>
                     <div class="Contenido">{{ mensaje.texto }}</div>
@@ -79,7 +83,7 @@
                                 <br/>
                                 <form action="{{ path('_contenido_comentar', {'id': mensaje.id}) }}" method="post" {{ form_enctype(formularios_comentarios[mensaje.id]) }}>
                                     {{ form_errors(formularios_comentarios[mensaje.id]) }}
-                                    {{ form_widget(formularios_comentarios[mensaje.id].texto, { 'attr': {'placeholder': 'deja tu comentario...'} }) }}
+                                    {{ form_widget(formularios_comentarios[mensaje.id].texto, { 'attr': {'placeholder': 'escribe tu comentario y presiona enter...', 'class': 'InputComentarios'} }) }}
                                     {{ form_rest(formularios_comentarios[mensaje.id]) }}
                                 </form>
                             {% else %}

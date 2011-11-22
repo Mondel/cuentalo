@@ -5,10 +5,12 @@ function validaContenido(input, min_length, max_length, errors, form) {
     else if (input.val().length > max_length)
         error = 'El contenido de tu mensaje debe ser menor a ' + max_length;
 
-    if(error == '')
+    if(error == '') {
         form.submit();
-    else
+    	return false;
+    } else {
         errors.text(error);
+    }
 }
 
 function textChange() {
@@ -20,13 +22,10 @@ function textChange() {
 
 $(document).ready(function(){
 
-    $('#contenido_form_submit').click(function () { validaContenido($('#contenido_texto'), 50, 555, $('#message'), $('#contenido_form')) });
-
-    $('.Logueado').click(function() {
-        $('#username').css("border", "1px solid red");
-        $('#password').css("border", "1px solid red");
-        $('#username').focus();
-    });
+    //$('#contenido_form').submit(function () { 
+    	//return false;
+    	//validaContenido($('#contenido_texto'), 50, 555, $('#message'), $('#contenido_form')) 
+	//});
 
     textChange();
 
@@ -39,11 +38,9 @@ $(document).ready(function(){
     });
 
     $('input[name="comentario[texto]"]').each(function(index) {
-        $(this).attr("placeholder","deja tu comentario...");
-        $(this).addClass('InputComentarios');
         $(this).keypress(function(event) {
             if ( event.which == 13 ) {
-                $(this).parent().parent().submit();
+                $(this).parent('form').submit();
             }
         });
     });

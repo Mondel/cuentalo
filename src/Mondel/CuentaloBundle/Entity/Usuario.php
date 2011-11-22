@@ -242,8 +242,8 @@ class Usuario implements AdvancedUserInterface
     public function setFechaActualizacion()
     {
         $this->fecha_actualizacion = new \DateTime();
-    }
-
+    }   
+    
     /*
      * Fin mis propiedades
      */
