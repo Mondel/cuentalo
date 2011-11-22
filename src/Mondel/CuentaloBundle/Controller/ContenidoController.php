@@ -27,6 +27,11 @@ class ContenidoController extends Controller
 
             $contenido->setIp($peticion->getClientIp());            
 
+            if ($this->get('security.context')->isGranted("ROLE_USER")) {
+            	$usuario = $this->get('security.context')->getToken()->getUser();
+            	$contenido->setUsuario($usuario);
+            }
+            
             $em = $this->getDoctrine()->getEntityManager();
             $em->persist($contenido);
             $em->flush();
