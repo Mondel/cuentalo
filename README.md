@@ -11,5 +11,6 @@ Pasos para instalar cuentalo:
 4. Arreglar permisos de app/logs y app/cache (http://symfony.com/doc/current/book/installation.html)
 5. Configurar un app/config/parameters.ini(no versionado) similar al ejemplo app/config/parameters.dist.ini
 6. Ejecutar php bin/vendors install
-7. Ejecutar php app/console doctrine:database:create
-8. Ejectuar php app/console doctrine:schema:create 
+7. Como da error en nuestro server, ejecutar: php vendor/bundles/Sensio/Bundle/DistributionBundle/Resources/bin/build_bootstrap.php 
+8. Ejecutar php app/console doctrine:database:create
+9. Ejectuar php app/console doctrine:schema:create 
