@@ -25,7 +25,7 @@
                     <div id="content_menu_top">
                         {% if is_granted('ROLE_USER') %}
                             <div id="nick_user">
-                                Bienvenido {{ app.security.token.user.nombre ? app.security.token.user.nombre : app.security.token.user.nick }}
+                                Bienvenido {{ app.security.token.user.nombre ? app.security.token.user.nombre : app.security.token.user.nick }} (<a href="{{ path('_salir') }}" title="Salir">Salir</a>)
                             </div>
                         {% else %}
                             {% include 'MondelCuentaloBundle:Usuario:ingresoInicio.html.twig' %}
@@ -41,8 +41,10 @@
                 <li><a href="{{ path('_inicio') }}">Inicio</a></li>
                 {% if not is_granted('ROLE_USER') %}
                     <li><a href="{{ path('_registrar') }}">Registrarme</a></li>
+                {#}
                 {% else %}
                     <li><a href="{{ path('_salir') }}">Salir</a></li>
+                    #}
                 {% endif %}
                 <li><a target="_blank" href="http://www.mondel.com.uy/contacto.php">Cont&aacute;ctanos</a></li>
             </ul>
