@@ -1,0 +1,11 @@
+{% extends 'MondelCuentaloBundle::layout.html.twig' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    {% stylesheets '@MondelCuentaloBundle/Resources/public/css/index.css' filter='yui_css' %}
+    <link rel="stylesheet" type="text/css" media="screen" href="{{ asset_url }}" />
+    {% endstylesheets %}
+{% endblock %}
+{% block content %}
+	{% include 'MondelCuentaloBundle:Contenido:mostrar.html.twig' %}
+{% endblock %}
