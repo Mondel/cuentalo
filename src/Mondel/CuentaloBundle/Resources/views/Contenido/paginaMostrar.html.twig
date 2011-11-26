@@ -7,5 +7,6 @@
     {% endstylesheets %}
 {% endblock %}
 {% block content %}
+	{{ parent() }}
 	{% include 'MondelCuentaloBundle:Contenido:mostrar.html.twig' %}
 {% endblock %}

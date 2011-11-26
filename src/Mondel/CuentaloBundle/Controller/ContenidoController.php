@@ -86,15 +86,19 @@ class ContenidoController extends Controller
     	if (!$comentario)
     		throw $this->createNotFoundException('El comentario que intentas eliminar no existe');
     	
+    	$idContenido = $comentario->getContenido()->getId();    	
+    	
     	if ($this->get('security.context')->getToken()->getUser()->getId() == $comentario->getUsuario()->getId()) {
     		$manager->remove($comentario);
     		$manager->flush();
     		$this->get('session')->setFlash('notice', 'Se ha eliminado el comentario correctamente');
     	} else {
     		throw $this->createNotFoundException('El comentario que intentas eliminar no es tuyo');
-    	}
-    	   	   	
-		return $this->redirect($this->generateUrl('_inicio'));        	
+    	}    	   	   	
+    	return $this->redirect($this->generateUrl(
+    			'_contenido_pagina_mostrar',
+    			array('id' => $idContenido)
+    	));        	
     }
     
     public function paginaMostrarAction($id)
