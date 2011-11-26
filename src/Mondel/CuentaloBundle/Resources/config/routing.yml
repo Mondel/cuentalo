@@ -34,13 +34,22 @@ _contenido_crear:
     requirements: { _method: POST }
 
 _contenido_mostrar:
-    pattern:  /contenido/{id}
+    pattern:  /contenido/{id}/mostrar
     defaults:  { _controller: MondelCuentaloBundle:Contenido:mostrar }
+
+_contenido_pagina_mostrar:
+    pattern:  /contenido/{id}
+    defaults:  { _controller: MondelCuentaloBundle:Contenido:paginaMostrar }
 
 _contenido_comentar:
     pattern:  /contenido/{id}/comentar
     defaults:  { _controller: MondelCuentaloBundle:Contenido:comentar }
     requirements: { _method: POST }
+    
+_contenido_listar:
+    pattern:  /contenido/{inicio}/{cantidad}
+    defaults:  { _controller: MondelCuentaloBundle:Contenido:listar }
+    requirements: { inicio: \d+, cantidad: \d+ }    
 
 ###########
 

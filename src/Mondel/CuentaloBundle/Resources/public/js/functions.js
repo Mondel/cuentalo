@@ -20,6 +20,18 @@ function textChange() {
     num.text(valor);
 }
 
+function obtenerContenidos() {    
+    $('.PostLoading').html('<img src="bundles/mondelcuentalo/img/ajax-loader.gif"/>');
+	$.get("contenido/" + $(".Post:last").attr("id") + "/5",   
+ 
+    function(data){
+        if (data != "") {
+        	$(".Post:last").after(data);        	
+        }
+        $('.PostLoading').empty();
+    });
+};
+
 $(document).ready(function(){
 
     //$('#contenido_form').submit(function () { 
@@ -27,6 +39,12 @@ $(document).ready(function(){
     	//validaContenido($('#contenido_texto'), 50, 555, $('#message'), $('#contenido_form')) 
 	//});
 
+	$(window).scroll(function(){
+        if  ($(window).scrollTop() == $(document).height() - $(window).height()){
+           obtenerContenidos();
+        }
+	});
+	
     textChange();
 
     $('#contenido_texto').keyup(function() {

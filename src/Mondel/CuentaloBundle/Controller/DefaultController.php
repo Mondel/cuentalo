@@ -17,14 +17,20 @@ class DefaultController extends Controller
         $peticion = $this->getRequest();
         $sesion = $peticion->getSession();
 
-        $repositorio = $this->getDoctrine()
-                ->getRepository('MondelCuentaloBundle:Contenido');
-
-        $contenidos = $repositorio->findBy(
-                array('activo' => '1'),
-                array('fecha_creacion' => 'DESC')
-        );
-
+        $manager = $this->getDoctrine()->getEntityManager();
+        
+        $query_builder = $manager->createQueryBuilder();
+        
+        $query_builder->add('select', 'c')
+	        ->add('from', 'Mondel\CuentaloBundle\Entity\Contenido c')
+	        ->add('where', 'c.activo = ?1')
+	        ->add('orderBy', 'c.fecha_creacion DESC')        
+	        ->setMaxResults(5)
+	        ->setParameters(array(1 => 1));
+        
+        $contenidos = $query_builder->getQuery()
+        	->getResult();
+        
         // Creo los formularios de comentarios para cada contenido
         $formularios_comentarios = array();
         foreach ($contenidos as $contenido) {

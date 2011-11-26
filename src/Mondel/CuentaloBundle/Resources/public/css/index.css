@@ -107,10 +107,14 @@
     width: 12px;
 }
 
-.Post .Datos .Comentarios .InputComentarios{
+.Post .Datos .Comentarios .InputComentarios {
     border: 1px solid #929191;
     margin-top: 10px;
     width: 100%;
+}
+
+.PostLoading {
+	text-align: center;
 }
 
 .ButtonShare {

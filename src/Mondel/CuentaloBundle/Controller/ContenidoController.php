@@ -67,12 +67,12 @@ class ContenidoController extends Controller
             $manager->flush();
         }
         return $this->redirect($this->generateUrl(
-                '_contenido_mostrar',
+                '_contenido_pagina_mostrar',
                 array('id' => $id)
         ));
     }
 
-    public function mostrarAction($id)
+    public function paginaMostrarAction($id)
     {
         $contenido = $this->getDoctrine()->getRepository('MondelCuentaloBundle:Contenido')->find($id);
 
@@ -83,45 +83,63 @@ class ContenidoController extends Controller
         $formulario = $this->createForm(new ComentarioType(), $comentario);
 
         return $this->render(
-            'MondelCuentaloBundle:Contenido:mostrar.html.twig',
+            'MondelCuentaloBundle:Contenido:paginaMostrar.html.twig',
             array(
                 'contenido'  => $contenido,
-                'formulario' => $formulario->createView()
+                'formularios_comentarios' => array($id => $formulario->createView())
             )
         );
     }
-
-    public function mostrarMensajesAction()
+    
+    public function mostrarAction($id)
     {
-        $contenido = $this->getDoctrine()
-                ->getRepository('MondelCuentaloBundle:Contenido')
-                ->findBy(array('tipo' => 'm'));
+    	$contenido = $this->getDoctrine()->getRepository('MondelCuentaloBundle:Contenido')->find($id);
+    
+    	if (!$contenido)
+    		throw $this->createNotFoundException('El post que intentas ver no existe');
+    
+    	$comentario = new Comentario();
+    	$formulario = $this->createForm(new ComentarioType(), $comentario);
+    
+    	return $this->render(
+    			'MondelCuentaloBundle:Contenido:mostrar.html.twig',
+    			array(
+    					'contenido'  => $contenido,
+    					'formularios_comentarios' => array($id => $formulario->createView())
+    			)
+    	);
+    }
+    
+    public function listarAction($inicio,$cantidad)
+    {
+        $manager = $this->getDoctrine()->getEntityManager();       
 
-        $request = $this->getRequest();
-
-        if ($request->getMethod() == 'POST') {
-
-            if (false === $this->get('security.context')->isGranted('ROLE_USER')) {
-                throw new AccessDeniedException();
-            }
-
-            $form->bindRequest($request);
-            if ($form->isValid()) {
-                $comentario->setIp($request->getClientIp());
-
-                $usuario = $this->get('security.context')->getToken()->getUser();
-                $comentario->setUsuario($usuario);
-                $comentario->setContenido($contenido);
-
-                $em = $this->getDoctrine()->getEntityManager();
-                $em->persist($comentario);
-                $em->flush();
-            }
+        $query_builder = $manager->createQueryBuilder();
+         
+        $query_builder->add('select', 'c')
+        	->add('from', 'Mondel\CuentaloBundle\Entity\Contenido c')
+        	->add('where', 'c.activo = ?1 and c.id < ?2')
+        	->add('orderBy', 'c.fecha_creacion DESC')
+        	->setMaxResults($cantidad)
+        	->setParameters(array(1 => 1, 2 => $inicio));
+        
+        $contenidos = $query_builder->getQuery()
+        	->getResult();
+         
+        // Creo los formularios de comentarios para cada contenido
+        $formularios_comentarios = array();
+        foreach ($contenidos as $contenido) {
+        	$comentario = new Comentario();
+        	$formulario_comentario = $this->createForm(new ComentarioType(), $comentario);
+        	$formularios_comentarios[$contenido->getId()] = $formulario_comentario->createView();
         }
-
+        
         return $this->render(
-            'MondelCuentaloBundle:Contenido:mostrar.html.twig',
-            array('contenido' => $contenido, 'form' => $form->createView())
+            'MondelCuentaloBundle:Contenido:listar.html.twig',
+            array(
+            		'contenidos' => $contenidos,
+            		'formularios_comentarios' => $formularios_comentarios
+            		)
         );
 
     }

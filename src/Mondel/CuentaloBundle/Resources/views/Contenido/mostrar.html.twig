@@ -1,68 +1,72 @@
-{% extends 'MondelCuentaloBundle::layout.html.twig' %}
-
-{% block stylesheets %}
-    {{ parent() }}
-    {% stylesheets '@MondelCuentaloBundle/Resources/public/css/index.css' filter='yui_css' %}
-    <link rel="stylesheet" type="text/css" media="screen" href="{{ asset_url }}" />
-    {% endstylesheets %}
-{% endblock %}
-{% block content %}
-    <div class="Post">
-        <div class="Titulo">
-            {{ contenido.fechaCreacion | date('d.m.y') }}
-            <span class="InfoTitulo">
-                {{ contenido.fechaCreacion | created_ago }}
-                {% if contenido.usuario != null %}
-                    {% if contenido.usuario.sexo == 'm' %}
-                        <img class="IconoSexo" src="{{ asset('bundles/mondelcuentalo/img/masculino.png') }}" />
-                    {% else %}
-                        <img class="IconoSexo" src="{{ asset('bundles/mondelcuentalo/img/femenino.png') }}" />
-                    {% endif %}
-                {% else %}
-                    {% if contenido.sexo != null %}
-                        {% if contenido.sexo == 'm' %}
-                            <img class="IconoSexo" src="{{ asset('bundles/mondelcuentalo/img/masculino.png') }}" />
-                        {% else %}
-                            <img class="IconoSexo" src="{{ asset('bundles/mondelcuentalo/img/femenino.png') }}" />
-                        {% endif %}
-                    {% endif %}
-                {% endif %}
-            </span>
-        </div>
-        <div class="Contenido">{{ contenido.texto }}</div>
-        <div class="Datos">
-            <div class="TituloComentarios">Comentarios</div>
-            <div class="Comentarios">
-                {% if is_granted('ROLE_USER') %}
-                    {% if contenido.comentarios | length > 0 %}
-                        {% for comentario in contenido.comentarios %}
-                            {% if comentario.usuario.sexo == 'm' %}
-                                <img class="IconoSexo" src="{{ asset('bundles/mondelcuentalo/img/masculino.png') }}" />
-                            {% else %}
-                                <img class="IconoSexo" src="{{ asset('bundles/mondelcuentalo/img/femenino.png') }}" />
-                            {% endif %}
-                            {{ comentario.usuario.nombre }}:
-                            {{ comentario.texto }}
-                            <br/>
-                            {{ comentario.fechaCreacion | created_ago }}
-                            {% if not loop.last %}
-                                <hr/>
-                            {% endif %}
-                        {%endfor%}
-                    {% else %}
-                        No hay comentarios
-                    {% endif %}
-                    <br/>
-                    <form action="{{ path('_contenido_comentar', {'id': contenido.id}) }}" method="post" {{ form_enctype(formulario) }}>
-                        {{ form_errors(formulario) }}
-                        {{ form_widget(formulario.texto, { 'attr': {'placeholder': 'deja tu comentario...'} }) }}
-                        {{ form_rest(formulario) }}
-                    </form>
-                {% else %}
-                    Para ver los comentarios debes estar <a href="{{ path('_registrar') }}">registrado</a> o <a href="{{ path('_ingresar') }}">iniciar sesi&oacute;n</a>
-                {% endif %}
-            </div>
-        </div>
-    </div>
-
-{% endblock %}
+<div class="Post" id="{{ contenido.id }}">
+	<div class="Titulo">
+		{% if contenido.usuario != null %}
+			{% if contenido.usuario.sexo == 'm' %}
+				<img class="IconoSexo" src="{{ asset('bundles/mondelcuentalo/img/masculino.png') }}" />
+			{% else %}
+				<img class="IconoSexo" src="{{ asset('bundles/mondelcuentalo/img/femenino.png') }}" />
+			{% endif %}
+		{% else %}
+			{% if contenido.sexo != null %}
+				{% if contenido.sexo == 'm' %}
+					<img class="IconoSexo" src="{{ asset('bundles/mondelcuentalo/img/masculino.png') }}" />
+				{% else %}
+					<img class="IconoSexo" src="{{ asset('bundles/mondelcuentalo/img/femenino.png') }}" />
+				{% endif %}
+			{% endif %}
+		{% endif %}
+		{{ contenido.categoria.nombre }} - {{ contenido.fechaCreacion | created_ago }}
+		<span class="InfoTitulo">
+			{% if is_granted('ROLE_USER') %}
+				{% if contenido.usuario and (contenido.usuario.nick == app.security.token.user.nick) %}
+					X 
+				{% endif %}
+			{% endif %}
+		</span>
+	</div>
+	<div class="Contenido">
+		{{ contenido.texto }}
+	</div>
+	<div class="Datos">
+		<div class="TituloComentarios">Comentarios</div>
+		<div class="Comentarios">
+			{% if is_granted('ROLE_USER') %}
+				{% if contenido.comentarios | length > 0 %}
+					{% for comentario in contenido.comentarios %}
+						<div class="Comentario">
+							<div class="ComentarioDatos">
+								{% if comentario.usuario.sexo == 'm' %}
+									<img class="IconoSexo" src="{{ asset('bundles/mondelcuentalo/img/masculino.png') }}" />
+								{% else %}
+									<img class="IconoSexo" src="{{ asset('bundles/mondelcuentalo/img/femenino.png') }}" />
+								{% endif %}
+								{{ comentario.usuario.nick }}: {{ comentario.texto }}
+								<br />
+								{{ comentario.fechaCreacion | created_ago }}
+								{% if not loop.last %}
+									<hr />
+								{% endif %}
+							</div>
+							<div class="ComentarioAccion">
+								{% if is_granted('ROLE_USER') %}
+									{% if comentario.usuario and (comentario.usuario.nick == app.security.token.user.nick) %}
+										X 
+									{% endif %}
+								{% endif %}
+							</div>							
+						</div>
+					{%endfor%}
+				{% else %}
+					No hay comentarios
+				{% endif %}				
+				<form action="{{ path('_contenido_comentar', {'id': contenido.id}) }}" method="post" {{ form_enctype(formularios_comentarios[contenido.id]) }}>
+					{{ form_errors(formularios_comentarios[contenido.id]) }}
+				 	{{ form_widget(formularios_comentarios[contenido.id].texto, { 'attr': {'placeholder': 'escribe tu comentario y presiona enter...', 'class': 'InputComentarios'} }) }}
+				 	{{ form_rest(formularios_comentarios[contenido.id]) }}
+				</form>
+			{% else %}
+				Para ver los comentarios debes estar <a href="{{ path('_registrar') }}">registrado</a> o <a href="{{ path('_ingresar') }}">iniciar sesi&oacute;n</a>
+			{% endif %}
+		</div>
+	</div>
+</div>
