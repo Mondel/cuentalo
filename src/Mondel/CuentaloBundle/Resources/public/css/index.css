@@ -130,7 +130,7 @@
 	width: 550px;
 }
 .ComentarioAccion {
-	float: rigth;
+	float: rigth;	
 }
 
 .ButtonShare {
@@ -182,15 +182,14 @@
 /* ------------------------------------------ */
 
 
-.EliminarItem {
-	color: 
+.EliminarItem {	
     float: right;
     font-weight: bold;
 }
 
-
-
-
+.EliminarItem a {	
+    text-decoration: none;
+}
 
  #adsense
  {
