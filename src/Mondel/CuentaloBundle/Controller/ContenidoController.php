@@ -46,6 +46,9 @@ class ContenidoController extends Controller
         $peticion = $this->getRequest();
         $manager = $this->getDoctrine()->getEntityManager();
 
+       if (false === $this->get('security.context')->isGranted('ROLE_USER'))
+            throw new AccessDeniedException();
+        
         $contenido = $manager->getRepository('MondelCuentaloBundle:Contenido')->find($id);
 
         if (!$contenido)
@@ -72,6 +75,28 @@ class ContenidoController extends Controller
         ));
     }
 
+    public function comentarioEliminarAction($id)
+    {
+    	$manager = $this->getDoctrine()->getEntityManager();
+    	$comentario = $manager->getRepository('MondelCuentaloBundle:Comentario')->find($id);
+    	
+		if (false === $this->get('security.context')->isGranted('ROLE_USER'))
+            throw new AccessDeniedException();
+    	
+    	if (!$comentario)
+    		throw $this->createNotFoundException('El comentario que intentas eliminar no existe');
+    	
+    	if ($this->get('security.context')->getToken()->getUser()->getId() == $comentario->getUsuario()->getId()) {
+    		$manager->remove($comentario);
+    		$manager->flush();
+    		$this->get('session')->setFlash('notice', 'Se ha eliminado el comentario correctamente');
+    	} else {
+    		throw $this->createNotFoundException('El comentario que intentas eliminar no es tuyo');
+    	}
+    	   	   	
+		return $this->redirect($this->generateUrl('_inicio'));        	
+    }
+    
     public function paginaMostrarAction($id)
     {
         $contenido = $this->getDoctrine()->getRepository('MondelCuentaloBundle:Contenido')->find($id);

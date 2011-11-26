@@ -117,6 +117,22 @@
 	text-align: center;
 }
 
+.Comentario {
+	float: left;
+	width: 567px;
+}
+.Comentario hr {
+	float: left;
+	width: 564px;
+}
+.ComentarioDatos {
+	float:left;
+	width: 550px;
+}
+.ComentarioAccion {
+	float: rigth;
+}
+
 .ButtonShare {
 	-moz-box-shadow:inset 0px 1px 0px 0px #ffffff;
 	-webkit-box-shadow:inset 0px 1px 0px 0px #ffffff;
@@ -167,7 +183,9 @@
 
 
 .EliminarItem {
+	color: 
     float: right;
+    font-weight: bold;
 }
 
 

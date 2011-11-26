@@ -51,6 +51,11 @@ _contenido_listar:
     defaults:  { _controller: MondelCuentaloBundle:Contenido:listar }
     requirements: { inicio: \d+, cantidad: \d+ }    
 
+_comentario_eliminar:
+    pattern:  /comentario/{id}/eliminar
+    defaults:  { _controller: MondelCuentaloBundle:Contenido:comentarioEliminar }
+    requirements: { id: \d+ }
+
 ###########
 
 vista_contenido:

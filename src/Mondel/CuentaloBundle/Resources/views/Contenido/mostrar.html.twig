@@ -18,7 +18,7 @@
 		{{ contenido.categoria.nombre }} - {{ contenido.fechaCreacion | created_ago }}
 		<span class="InfoTitulo">
 			{% if is_granted('ROLE_USER') %}
-				{% if contenido.usuario and (contenido.usuario.nick == app.security.token.user.nick) %}
+				{% if contenido.usuario and (contenido.usuario.id == app.security.token.user.id) %}
 					X 
 				{% endif %}
 			{% endif %}
@@ -34,7 +34,7 @@
 				{% if contenido.comentarios | length > 0 %}
 					{% for comentario in contenido.comentarios %}
 						<div class="Comentario">
-							<div class="ComentarioDatos">
+							<div class="ComentarioDatos">								
 								{% if comentario.usuario.sexo == 'm' %}
 									<img class="IconoSexo" src="{{ asset('bundles/mondelcuentalo/img/masculino.png') }}" />
 								{% else %}
@@ -43,17 +43,19 @@
 								{{ comentario.usuario.nick }}: {{ comentario.texto }}
 								<br />
 								{{ comentario.fechaCreacion | created_ago }}
-								{% if not loop.last %}
-									<hr />
-								{% endif %}
 							</div>
 							<div class="ComentarioAccion">
-								{% if is_granted('ROLE_USER') %}
-									{% if comentario.usuario and (comentario.usuario.nick == app.security.token.user.nick) %}
-										X 
+								<div class="EliminarItem">
+									{% if is_granted('ROLE_USER') %}
+										{% if comentario.usuario and (comentario.usuario.id == app.security.token.user.id) %}
+											<a href="{{ path('_comentario_eliminar', { 'id': comentario.id }) }}" alt="Eliminar Comentario" onclick="return comentarioEliminar()">X</a>
+										{% endif %}
 									{% endif %}
-								{% endif %}
-							</div>							
+								</div>
+							</div>	
+							{% if not loop.last %}
+								<hr />
+							{% endif %}												
 						</div>
 					{%endfor%}
 				{% else %}

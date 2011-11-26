@@ -32,6 +32,10 @@ function obtenerContenidos() {
     });
 };
 
+function comentarioEliminar() {
+	return confirm('Esta seguro que desea eliminar este comentario ?');
+}
+
 $(document).ready(function(){
 
     //$('#contenido_form').submit(function () { 
