@@ -8,6 +8,7 @@
 {% endblock %}
 {% block content %}
     {{ parent() }}
+    <input type="hidden" id="cid" value="{{ cid }}"/>
     <div class="Wrap">
         <div id="box">
             <form id="contenido_form" action="{{ path('_contenido_crear') }}" method="post" {{ form_enctype(form) }}>

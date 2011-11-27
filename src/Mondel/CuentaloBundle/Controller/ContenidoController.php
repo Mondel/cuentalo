@@ -139,18 +139,31 @@ class ContenidoController extends Controller
     	);
     }
     
-    public function listarAction($inicio,$cantidad)
+    public function listarAction($categoria,$inicio,$cantidad)
     {
         $manager = $this->getDoctrine()->getEntityManager();       
 
         $query_builder = $manager->createQueryBuilder();
-         
-        $query_builder->add('select', 'c')
-        	->add('from', 'Mondel\CuentaloBundle\Entity\Contenido c')
-        	->add('where', 'c.activo = ?1 and c.id < ?2')
-        	->add('orderBy', 'c.fecha_creacion DESC')
-        	->setMaxResults($cantidad)
-        	->setParameters(array(1 => 1, 2 => $inicio));
+        
+        if ($categoria == '0') {
+	        $query_builder->add('select', 'c')
+	        	->add('from', 'Mondel\CuentaloBundle\Entity\Contenido c')
+	        	->add('where', 'c.activo = ?1 and c.id < ?2')
+	        	->add('orderBy', 'c.fecha_creacion DESC')
+	        	->setMaxResults($cantidad)
+	        	->setParameters(array(1 => 1, 2 => $inicio));
+        } else {
+        	$query_builder->add('select', 'c')
+	        	->add('from', 'Mondel\CuentaloBundle\Entity\Contenido c')
+	        	->add('where', 'c.activo = ?1 and c.id < ?2 and c.categoria = ?3')
+	        	->add('orderBy', 'c.fecha_creacion DESC')
+	        	->setMaxResults($cantidad)
+	        	->setParameters(array(
+	        			1 => 1, 
+	        			2 => $inicio,
+	        			3 => $this->getDoctrine()->getRepository('MondelCuentaloBundle:Categoria')->find($categoria)	        			
+	        			));
+        }
         
         $contenidos = $query_builder->getQuery()
         	->getResult();
@@ -173,6 +186,53 @@ class ContenidoController extends Controller
 
     }
 
+    public function categoriaListarAction($categoria)
+    {
+    	$categoria = $this->getDoctrine()
+    		->getRepository('MondelCuentaloBundle:Categoria')
+    			->findOneBy(array('nombre' => $categoria));
+    	
+    	if (!$categoria)
+    		throw $this->createNotFoundException('Esta categoría no existe');
+    	
+    	$manager = $this->getDoctrine()->getEntityManager();
+    	
+    	$query_builder = $manager->createQueryBuilder();
+    	
+    	$query_builder->add('select', 'c')
+    		->add('from', 'Mondel\CuentaloBundle\Entity\Contenido c')
+    		->add('where', 'c.activo = ?1 and c.categoria = ?2')
+    		->add('orderBy', 'c.fecha_creacion DESC')
+    		->setMaxResults(5)
+    		->setParameters(array(1 => 1, 2 => $categoria));
+    	
+    	$contenidos = $query_builder->getQuery()
+    		->getResult();
+    	
+    	// Creo los formularios de comentarios para cada contenido
+    	$formularios_comentarios = array();
+    	foreach ($contenidos as $contenido) {
+    		$comentario = new Comentario();
+    		$formulario_comentario = $this->createForm(new ComentarioType(), $comentario);
+    		$formularios_comentarios[$contenido->getId()] = $formulario_comentario->createView();
+    	}
+	    	
+    	// Creo el formulario para pasarle al crear de Contenido
+    	$contenido = new Contenido();
+    	$formulario_contenido = $this->createForm(new ContenidoType(), $contenido);
+    	
+    	return $this->render(
+    			'MondelCuentaloBundle:Default:inicio.html.twig',
+    			array(
+    					'contenidos'    => $contenidos,
+    					'form'          => $formulario_contenido->createView(),
+    					'formularios_comentarios' => $formularios_comentarios,
+    					'cid'			=> $categoria->getId() 
+    			)
+    	);
+    	
+    }
+    
     public function votarAction($id)
     {
         if (false === $this->get('security.context')->isGranted('ROLE_USER')) {

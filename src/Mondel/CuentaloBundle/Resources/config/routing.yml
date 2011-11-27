@@ -40,6 +40,7 @@ _contenido_mostrar:
 _contenido_pagina_mostrar:
     pattern:  /contenido/{id}
     defaults:  { _controller: MondelCuentaloBundle:Contenido:paginaMostrar }
+    requirements:  { id: \d+ }
 
 _contenido_comentar:
     pattern:  /contenido/{id}/comentar
@@ -47,9 +48,13 @@ _contenido_comentar:
     requirements: { _method: POST }
     
 _contenido_listar:
-    pattern:  /contenido/{inicio}/{cantidad}
+    pattern:  /contenido/{categoria}/{inicio}/{cantidad}
     defaults:  { _controller: MondelCuentaloBundle:Contenido:listar }
     requirements: { inicio: \d+, cantidad: \d+ }    
+
+_contenido_categoria_listar:
+    pattern:  /{categoria}
+    defaults:  { _controller: MondelCuentaloBundle:Contenido:categoriaListar }
 
 _comentario_eliminar:
     pattern:  /comentario/{id}/eliminar

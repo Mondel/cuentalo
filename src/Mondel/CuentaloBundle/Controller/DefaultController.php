@@ -48,7 +48,8 @@ class DefaultController extends Controller
                 array(
                     'contenidos'    => $contenidos,
                     'form'          => $formulario_contenido->createView(),
-                    'formularios_comentarios' => $formularios_comentarios
+                    'formularios_comentarios' => $formularios_comentarios,
+                	'cid'		=> '0'
                 )
         );
     }

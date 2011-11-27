@@ -22,7 +22,7 @@ function textChange() {
 
 function obtenerContenidos() {    
     $('.PostLoading').html('<img src="bundles/mondelcuentalo/img/ajax-loader.gif"/>');
-	$.get("contenido/" + $(".Post:last").attr("id") + "/5",   
+	$.get("contenido/" + $("#cid").val() + "/" + $(".Post:last").attr("id") + "/5",   
  
     function(data){
         if (data != "") {
