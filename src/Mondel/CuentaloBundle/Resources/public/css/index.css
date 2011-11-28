@@ -183,6 +183,7 @@
 
 
 .EliminarItem {	
+	display: none;
     float: right;
     font-weight: bold;
 }

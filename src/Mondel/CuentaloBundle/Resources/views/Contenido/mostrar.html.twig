@@ -17,11 +17,13 @@
 		{% endif %}
 		{{ contenido.categoria.nombre }} - {{ contenido.fechaCreacion | created_ago }}
 		<span class="InfoTitulo">
+			{#
 			{% if is_granted('ROLE_USER') %}
 				{% if contenido.usuario and (contenido.usuario.id == app.security.token.user.id) %}
 					X 
 				{% endif %}
 			{% endif %}
+			#}
 		</span>
 	</div>
 	<div class="Contenido">
