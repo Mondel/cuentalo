@@ -42,14 +42,7 @@ class Comentario
      * @Assert\MaxLength(20)
      * @ORM\Column(name="ip", type="string", length=20)
      */
-    private $ip;
-
-    /**
-     * @var string $pais
-     *
-     * @ORM\Column(name="pais", type="string", length=50)
-     */
-    private $pais;
+    private $ip;    
 
     /**
      * @var boolean $activo
@@ -76,15 +69,7 @@ class Comentario
      * @ORM\JoinColumn(name="contenido_id", referencedColumnName="id")
      */
     private $contenido;
-
-    /**
-     * @ORM\prePersist
-     */
-    public function setPais()
-    {
-        $this->pais = NetworkHelper::getCountryNameByIp($this->getIp());
-    }
-
+    
     /**
      * @ORM\prePersist
      */

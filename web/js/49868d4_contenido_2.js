@@ -1,0 +1,1 @@
+$(document).ready(function(){$('input[name="comentario[texto]"]').each(function(a){$(this).keypress(function(b){if(b.which==13){$(this).parent("form").submit()}})});$(".Comentario").hover(function(){$(this).find(".EliminarItem").css("display","block")},function(){$(this).find(".EliminarItem").css("display","none")})});
