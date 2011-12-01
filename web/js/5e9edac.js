@@ -1,0 +1,1 @@
+$(function(){var a=$("#login_button");var c=$("#login_box");var b=$("#login_form");a.removeAttr("href");a.mouseup(function(d){c.toggle();a.toggleClass("Active")});b.mouseup(function(){return false});$(this).mouseup(function(d){if(!($(d.target).parent("#login_button").length>0)){a.removeClass("Active");c.hide()}})});
