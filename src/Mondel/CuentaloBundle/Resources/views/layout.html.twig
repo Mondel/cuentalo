@@ -14,27 +14,49 @@
 {% endblock %}
 {% block body %}
     <header id="top">
-        <div class="Wrap">
-            <div id="logo">
-                <a href="{{ path('_inicio') }}">
-                    <img src="{{ asset('bundles/mondelcuentalo/img/logo_cuentalo.gif') }}">
-                </a>
-            </div>
-            {% block menu_top %}
-                <div id="menu_top">
-                    <div id="content_menu_top">
-                        {% if is_granted('ROLE_USER') %}
-                            <div id="nick_user">
-                                Bienvenido {{ app.security.token.user.nombre ? app.security.token.user.nombre : app.security.token.user.nick }} (<a href="{{ path('_salir') }}" title="Salir">Salir</a>)
-                            </div>
-                        {% else %}
-                            {% include 'MondelCuentaloBundle:Usuario:ingresoInicio.html.twig' %}
-                        {% endif %}
-                    </div>
-                </div>
-            {% endblock %}
-        </div>
+    	<div class="Wrap">
+	    	<div id="logo">
+	    		<a href="{{ path('_inicio') }}" title="Cuentalo">
+					<img src="{{ asset('bundles/mondelcuentalo/img/logo_cuentalo.png') }}" alt="Cuentalo">
+				</a>
+	    	</div>
+	    	{% if not is_granted('ROLE_USER') %}
+		    	<div id="login">
+		    		<div id="login_container">
+		                <a id="login_button"><span>Entrar</span><em></em></a>
+		                <div class="Clear"></div>
+		                <div id="login_box">                
+		                    <form id="login_form" action="{{ path('_ingresar_chequeo') }}" method="post">
+		                        <fieldset id="body">
+		                            <fieldset>
+		                                <label for="username">Email</label>
+		                                <input type="text" name="_username" id="username">
+		                            </fieldset>
+		                            <fieldset>
+		                                <label for="password">Contrase&ntilde;a</label>
+		                                <input type="password" name="_password" id="password">
+		                            </fieldset>
+		                            <input type="submit" id="login" value="Entrar">
+		                            <label for="remember_me"><input type="checkbox" id="remember_me" name="_remember_me" checked>No cerrar sesi&oacute;n</label>
+		                        </fieldset>
+		                        <span><a href="{{ path('_contrasenia_recuperar') }}">He perdido mi contrase&ntilde;a</a></span>
+		                    </form>
+		                </div>
+		            </div>
+		    	</div>
+	    	{% endif %}
+    	</div>
     </header>
+    <nav id="navigation">
+    	<ul>
+    		<li><a href="{{ path('_inicio') }}" title="Todas">todas</a><span>|</span></li>
+    		<li><a href="{{ path('_contenido_categoria_listar', {'categoria': 'Anecdota' }) }}" title="Anecdotas">an&eacute;cdotas</a><span>|</span></li>
+    		<li><a href="{{ path('_contenido_categoria_listar', {'categoria': 'Anoche' }) }}" title="Anoche">anoche</a><span>|</span></li>
+    		<li><a href="{{ path('_contenido_categoria_listar', {'categoria': 'Chiste' }) }}" title="Chistes">chistes</a><span>|</span></li>
+    		<li><a href="{{ path('_contenido_categoria_listar', {'categoria': 'Mensaje' }) }}" title="Mensajes">mensajes</a><span>|</span></li>
+    		<li><a href="{{ path('_contenido_categoria_listar', {'categoria': 'Secreto' }) }}" title="Secretos">secretos</a></li>
+    	</ul>  
+    </nav> 
     <section id="content">
         <nav id="left">
             <ul id="menu">
@@ -116,4 +138,9 @@
             var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
         })();
     </script>
+    {% javascripts '@MondelCuentaloBundle/Resources/public/js/layout.js'    			   
+                   filter='yui_js'
+	%}
+    <script src="{{ asset_url }}"></script>
+    {% endjavascripts %}
 {% endblock %}
