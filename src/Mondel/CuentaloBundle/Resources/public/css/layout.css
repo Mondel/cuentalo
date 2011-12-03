@@ -371,7 +371,9 @@ input:focus {
 	clear: both;
 }
 
-
-
+/* HTML5 para IE */
+article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section{
+    display: block;
+}
 
 
