@@ -142,13 +142,8 @@
                    filter='yui_js'
 	%}
     <script src="{{ asset_url }}"></script>
-    {% endjavascripts %}
-    <!--[if IE]>
-	<script type="text/javascript">
-	var e = ("abbr,article,aside,audio,canvas,datalist,details,figure,footer,header,hgroup,mark,menu,meter,nav,output,progress,section,time,video").split(',');
-	for (var i=0; i<e.length; i++) {
-	document.createElement(e[i]);
-	}
-	</script>
+    {% endjavascripts %}    
+    <!--[if lt IE 9]>
+	<script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
 	<![endif]-->
 {% endblock %}
