@@ -34,7 +34,7 @@
 }
 
 #box_bottom {
-    float:rigth;
+    margin-top: 15px;
 }
 
 #box_bottom p {
@@ -161,7 +161,7 @@ button.red:hover,
 }
 
 /*------------------------------------*\
-Comienzan Botones en CSS3
+Comienza Botones en CSS3
 /*------------------------------------*\
 	$WRAPPER
 \*------------------------------------*/
