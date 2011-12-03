@@ -48,29 +48,29 @@
     	</div>
     </header>
     <nav id="navigation">
-    	<?php//<ul>
-    		//<li><a href="{{ path('_inicio') }}" title="Todas">todas</a><span>|</span></li>
-    		//<li><a href="{{ path('_contenido_categoria_listar', {'categoria': 'Anecdota' }) }}" title="Anecdotas">an&eacute;cdotas</a><span>|</span></li>
-    		//<li><a href="{{ path('_contenido_categoria_listar', {'categoria': 'Anoche' }) }}" title="Anoche">anoche</a><span>|</span></li>
-    		//<li><a href="{{ path('_contenido_categoria_listar', {'categoria': 'Chiste' }) }}" title="Chistes">chistes</a><span>|</span></li>
-    		//<li><a href="{{ path('_contenido_categoria_listar', {'categoria': 'Mensaje' }) }}" title="Mensajes">mensajes</a><span>|</span></li>
-    		//<li><a href="{{ path('_contenido_categoria_listar', {'categoria': 'Secreto' }) }}" title="Secretos">secretos</a></li>
-    //	</ul>  ?>
+    	<ul>
+    		<li><a href="{{ path('_inicio') }}" title="Todas">todas</a><span>|</span></li>
+    		<li><a href="{{ path('_contenido_categoria_listar', {'categoria': 'Anecdota' }) }}" title="Anecdotas">an&eacute;cdotas</a><span>|</span></li>
+    		<li><a href="{{ path('_contenido_categoria_listar', {'categoria': 'Anoche' }) }}" title="Anoche">anoche</a><span>|</span></li>
+    		<li><a href="{{ path('_contenido_categoria_listar', {'categoria': 'Chiste' }) }}" title="Chistes">chistes</a><span>|</span></li>
+    		<li><a href="{{ path('_contenido_categoria_listar', {'categoria': 'Mensaje' }) }}" title="Mensajes">mensajes</a><span>|</span></li>
+    		<li><a href="{{ path('_contenido_categoria_listar', {'categoria': 'Secreto' }) }}" title="Secretos">secretos</a></li>
+    	</ul>  
     </nav> 
     <section id="content">
         <nav id="left">
-          <?php//  <ul id="menu">
-                //<li><a href="{{ path('_inicio') }}">Inicio</a></li>
-                //{% if not is_granted('ROLE_USER') %}
-                  //  <li><a href="{{ path('_registrar') }}">Registrarme</a></li>                
-                //{% endif %}
-                //<li><a href="{{ path('_contenido_categoria_listar', {'categoria': 'Anecdota' }) }}" title="Anecdotas">Anecdotas</a>
-                //<li><a href="{{ path('_contenido_categoria_listar', {'categoria': 'Anoche' }) }}" title="Anoche">Anoche</a>
-                //<li><a href="{{ path('_contenido_categoria_listar', {'categoria': 'Chiste' }) }}" title="Chistes">Chistes</a>
-                //<li><a href="{{ path('_contenido_categoria_listar', {'categoria': 'Mensaje' }) }}" title="Mensajes">Mensajes</a>
-                //<li><a href="{{ path('_contenido_categoria_listar', {'categoria': 'Secreto' }) }}" title="Secretos">Secretos</a>                
-                //<li><a target="_blank" href="http://www.mondel.com.uy/contacto.php">Cont&aacute;ctanos</a></li>
-            //</ul>?>
+            <ul id="menu">
+                <li><a href="{{ path('_inicio') }}">Inicio</a></li>
+                {% if not is_granted('ROLE_USER') %}
+                    <li><a href="{{ path('_registrar') }}">Registrarme</a></li>                
+                {% endif %}
+                <li><a href="{{ path('_contenido_categoria_listar', {'categoria': 'Anecdota' }) }}" title="Anecdotas">Anecdotas</a>
+                <li><a href="{{ path('_contenido_categoria_listar', {'categoria': 'Anoche' }) }}" title="Anoche">Anoche</a>
+                <li><a href="{{ path('_contenido_categoria_listar', {'categoria': 'Chiste' }) }}" title="Chistes">Chistes</a>
+                <li><a href="{{ path('_contenido_categoria_listar', {'categoria': 'Mensaje' }) }}" title="Mensajes">Mensajes</a>
+                <li><a href="{{ path('_contenido_categoria_listar', {'categoria': 'Secreto' }) }}" title="Secretos">Secretos</a>                
+                <li><a target="_blank" href="http://www.mondel.com.uy/contacto.php">Cont&aacute;ctanos</a></li>
+            </ul>
         </nav>
         <section id="center">
             {% block content %}
