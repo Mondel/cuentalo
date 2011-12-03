@@ -12,7 +12,7 @@
     <div class="Wrap">
         <div id="box">
             <form id="contenido_form" action="{{ path('_contenido_crear') }}" method="post" {{ form_enctype(form) }}>
-				{{ form_widget(form.texto, { 'attr': { 'placeholder': 'Comparte tu secreto, anécdota o un mensaje al mundo...' } }) }}
+				{{ form_widget(form.texto, { 'attr': { 'placeholder': 'Escribe lo que deseas compartir, máximo 555 caracteres...' } }) }}
                 <div id="options">
                     {% if not is_granted('ROLE_USER') %}
                         {{ form_label(form.sexo) }}
@@ -24,7 +24,7 @@
                 {{ form_widget(form._token) }}
                 <div id="box_bottom">
                     <p>Caracteres: <span id="count_caracteres">555</span></p>
-                    <input type="submit" value="Compartir" class="ButtonShare" />
+                  <button class="action green">  </button> <input type="submit" value="Compartir" class="ButtonShare" />
                 </div>
             </form>
         </div>

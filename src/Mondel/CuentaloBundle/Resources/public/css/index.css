@@ -134,39 +134,30 @@
 	float: rigth;	
 }
 
-.ButtonShare {
-	-moz-box-shadow:inset 0px 1px 0px 0px #ffffff;
-	-webkit-box-shadow:inset 0px 1px 0px 0px #ffffff;
-	box-shadow:inset 0px 1px 0px 0px #ffffff;
-	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #ffffff), color-stop(1, #f6f6f6) );
-	background:-moz-linear-gradient( center top, #ffffff 5%, #f6f6f6 100% );
-	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', endColorstr='#f6f6f6');
-	background-color:#ffffff;
-	-moz-border-radius:15px;
-	-webkit-border-radius:15px;
-	border-radius:15px;
-	border:1px solid #dcdcdc;
-	display:inline-block;
-	color:#666666;
-	font-family:arial;
-	font-size:15px;
-	font-weight:normal;
-	padding:6px 24px;
-	text-decoration:none;
-	text-shadow:1px 1px 0px #ffffff;
+button.green, 
+.button.green {
+	border: 1px solid #29691D !important;
+	
+	background: #3A8E00;
+	background: -webkit-linear-gradient(top, #3C9300, #398A00);
+	background: -moz-linear-gradient(top, #3C9300, #398A00);
+	background: -ms-linear-gradient(top, #3C9300, #398A00);
+	background: -o-linear-gradient(top, #3C9300, #398A00);
+	
+	-webkit-transition: border .20s;
+	-moz-transition: border .20s;
+	-o-transition: border .20s;
+	transition: border .20s;
 }
-
-.ButtonShare:hover {
-	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #f6f6f6), color-stop(1, #ffffff) );
-	background:-moz-linear-gradient( center top, #f6f6f6 5%, #ffffff 100% );
-	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#f6f6f6', endColorstr='#ffffff');
-	background-color:#f6f6f6;
-    cursor: pointer;
-}
-
-.ButtonShare:active {
-	position:relative;
-	top:1px;
+button.green:hover, 
+.button.green:hover {
+	border: 1px solid #2D6200 !important;
+	
+	background: #3F83F1;
+	background: -webkit-linear-gradient(top, #3C9300, #368200);
+	background: -moz-linear-gradient(top, #3C9300, #368200);
+	background: -ms-linear-gradient(top, #3C9300, #368200);
+	background: -o-linear-gradient(top, #3C9300, #368200);
 }
 
 #stream .pagination {
