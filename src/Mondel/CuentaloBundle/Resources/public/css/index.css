@@ -25,8 +25,8 @@
 }
 
 #options select {
-    background: transparent;
-    border: none;
+    /*background: transparent;
+    border: none;*/    
 }
 
 #pub_mondel {
@@ -35,16 +35,13 @@
 
 #box_bottom {
     margin-top: 15px;
+    padding: 6px 0;
 }
 
-#box_bottom p {
-    float: left;
-    font-size: 14px;
-    margin: 10px 0;
-}
-
-#box_bottom input {
-    float: right;
+#box_bottom span#count_caracteres {
+    font-size: 35px;
+	float: left;
+	margin-left: 10px;
 }
 
 .Right {

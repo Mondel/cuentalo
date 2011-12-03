@@ -10,7 +10,7 @@ class ContenidoType extends AbstractType {
 
     public function buildForm(FormBuilder $builder, array $options) {
         $builder->add('categoria', 'entity', array(
-                    'empty_value'   => 'Seleccione',
+                    'empty_value'   => 'Categoría',
                     'property'      => 'nombre',
                     'class'         => 'MondelCuentaloBundle:Categoria',
                     'query_builder' => function(EntityRepository $er) {
@@ -21,7 +21,7 @@ class ContenidoType extends AbstractType {
                 ->add('sexo', 'choice',
                         array(
                             'choices'       => array('m' => 'Masculino', 'f' => 'Femenino'),
-                            'empty_value'   => 'Seleccione'                        	
+                            'empty_value'   => 'Sexo'                        	
                         )
                 )
                 ->add('texto', null, array(

@@ -45,10 +45,10 @@ body {
 
 /* Login Button Text */
 #login_button span {
-    color:#445058; 
+    color:#FFF; 
     font-size:14px; 
     font-weight:bold;
-    padding:7px 29px 9px 10px;
+    padding:7px 12px 9px 10px;
     display:block;
 }
 
@@ -332,6 +332,7 @@ input:focus {
 #left {
     float: left;
     width: 165px;
+    min-height: 1px; 
 }
 
 #menu {
@@ -370,10 +371,4 @@ input:focus {
 .Clear {
 	clear: both;
 }
-
-/* HTML5 para IE */
-article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section{
-    display: block;
-}
-
 
