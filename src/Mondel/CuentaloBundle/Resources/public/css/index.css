@@ -1,8 +1,9 @@
 
 #box {
     background: url('../../bundles/mondelcuentalo/img/box.png');
-    height: 202px;
-    width: 587px;
+	background-repeat:no-repeat;
+    height: 223px;
+    width: 580px;
 }
 
 #box textarea {
