@@ -343,10 +343,6 @@ button.action:hover,
     height: 40px;
 }
 
-#message_register .Wrap {
-    width: 830px;
-}
-
 #message_register .Icon {
 	background: url('../../bundles/mondelcuentalo/img/oops.png');
 	float: left;
