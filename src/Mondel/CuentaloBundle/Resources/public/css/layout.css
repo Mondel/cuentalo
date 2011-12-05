@@ -25,7 +25,7 @@ body {
 
 #registrate {
     background: url('../../bundles/mondelcuentalo/img/divmensaje.png');
-    background-repeat:repeat-y; 
+    background-repeat:repeat-x; 
     height: 43px;    
     width: 100%;
 }
