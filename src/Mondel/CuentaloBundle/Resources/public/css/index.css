@@ -51,7 +51,7 @@
 }
 
 .Right {
-    float: right;
+    float: right !important;
 }
 
 .Post {
