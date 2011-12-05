@@ -98,7 +98,7 @@
 }
 
 .Post .Datos .Comentarios a{
-    color: #6A6969;
+    color: #444444;
 }
 
 .Post .Datos .Comentarios .IconoSexo {
@@ -275,13 +275,13 @@ button.action:hover,
 
 
 #stream .pagination {
-    color: #6A6969;
+    color: #444444;
     margin: 20px 0;
     text-align: center;
 }
 
 #stream .pagination a {
-    color: #6A6969;
+    color: #444444;
 }
 
 
