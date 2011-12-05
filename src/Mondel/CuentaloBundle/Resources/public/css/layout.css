@@ -28,6 +28,8 @@ body {
     background-repeat:repeat-x; 
     height: 40px;    
     width: 100%;
+		margin: 0;
+    padding: 0;
 }
 
 #txtregistrate {
@@ -38,6 +40,7 @@ body {
 	font-size:12px;
 	margin: 0;
     padding: 0;
+	font-weight:bold;
 }
 
 
