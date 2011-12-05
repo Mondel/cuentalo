@@ -23,6 +23,15 @@ body {
     width: 202px;
 }
 
+#registrate {
+    background: url('../../bundles/mondelcuentalo/img/divmensaje.png');
+    background-repeat:repeat-y; 
+    height: 43px;    
+    width: 100%;
+}
+
+ 
+
 /* Login Container (default to float:right) */
 #login_container {
     position:relative;
