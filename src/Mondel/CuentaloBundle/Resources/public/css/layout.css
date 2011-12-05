@@ -33,8 +33,9 @@ body {
 #txtregistrate {
     height: 43px;    
     width: 1000px;
-	text-align:left
+	text-align:left;
 	color:#FFFFFF;
+	font-size:12px;
 }
 
   margin: 0;
