@@ -337,3 +337,24 @@ button.action:hover,
     text-align: center;
 }
 
+
+#message_register {
+    background: #404040;     
+    height: 40px;
+}
+
+#message_register .Icon {
+	background: url('../../bundles/mondelcuentalo/img/oops.png');
+	float: left;
+	height: 39px;
+	width: 40px;
+	
+}
+
+#message_register .Message {    
+	color:#FFF;
+	float: left;
+	font-size:12px;
+	font-weight:bold;	
+    padding: 12px;	
+}

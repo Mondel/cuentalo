@@ -57,15 +57,9 @@
     		<li><a href="{{ path('_contenido_categoria_listar', {'categoria': 'Secreto' }) }}" title="Secretos">secretos</a></li>
     	</ul>  
     </nav> 
-	 <div id="registrate">
-	 <div id="txtregistrate">
-	<img src="{{ asset('bundles/mondelcuentalo/img/oops.png') }}" alt="Oops registrate para comentar">
-	Oops! Parece que a&uacute;n no estas registrado, registrate y comienza comentar las publicaciones de los usuarios sin revelar tus datos.
-	 </div></div>
-    <section id="content">
-        <nav id="left">
-          
-        </nav>
+    {% block message %}{% endblock %} 				
+    <section id="content">    	
+    	<aside id="left"></aside>
         <section id="center">
             {% block content %}
                 <div class="Wrap">

@@ -11,7 +11,7 @@ body {
     height: 56px;
 }
 
-#top .Wrap {
+.Wrap {
 	height: 100%;
     margin: 0 auto;    
     width: 1000px;
@@ -23,25 +23,7 @@ body {
     width: 202px;
 }
 
-#registrate {
-    background: url('../../bundles/mondelcuentalo/img/divmensaje.png');
-    background-repeat:repeat-x; 
-    height: 40px;    
-    width: 100%;
-		margin: 0;
-    padding: 0;
-}
 
-#txtregistrate {
-    height: 43px;    
-    width: 1000px;
-	text-align:left;
-	color:#FFFFFF;
-	font-size:12px;
-	margin: 0;
-    padding: 0;
-	font-weight:bold;
-}
 
 
  
