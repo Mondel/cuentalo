@@ -27,8 +27,21 @@
 		</span>
 	</div>
 	<div class="Contenido">
-		{{ contenido.texto }}
+		{{ contenido.texto }}		
 	</div>
+	<div class="Acciones">
+		<div class="Compartir">
+			<a target="_blank" href="javascript:void(0);" onclick="window.open('https://www.facebook.com/sharer.php?u={{ url('_contenido_pagina_mostrar', { 'id': contenido.id }) }}', this.target, 'width=500,height=250');">
+				<div class="Facebook"></div>
+			</a>
+			<a target="_blank" href="javascript:void(0);" onclick="window.open('https://twitter.com/share?url={{ url('_contenido_pagina_mostrar', { 'id': contenido.id }) }}', this.target, 'width=500,height=250');">
+				<div class="Twitter"></div>
+			</a>
+			
+			
+			<div class="GooglePlus"></div>
+		</div>
+	</div>		
 	<div class="Datos">
 		<div class="TituloComentarios">Comentarios</div>
 		<div class="Comentarios">

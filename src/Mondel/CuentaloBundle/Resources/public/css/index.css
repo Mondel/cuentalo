@@ -61,8 +61,8 @@
     width: 582px;
 }
 
-.Post .Titulo {
-    border: 1px solid #d7d7d7;
+.Post .Titulo {	
+    border: 1px solid #91B658;
     font-size: 14px;
     padding: 7px 8px;
 }
@@ -78,19 +78,50 @@
 .Post .Contenido {
     font-size: 13px;
     padding: 0 8px;
-    border-left: 1px solid #d7d7d7;
-    border-right: 1px solid #d7d7d7;
-    border-bottom: 1px solid #d7d7d7;
+    border-left: 1px solid #91B658;
+    border-right: 1px solid #91B658;
+    border-bottom: 1px solid #91B658;
     min-height:60px;
     max-height:150px;
     overflow: hidden;
 }
 
+.Post .Acciones {
+	border-left: 1px solid #91B658;
+    border-right: 1px solid #91B658;
+	height: 33px;
+}
+
+.Post .Compartir {
+	float: right;
+}
+
+.Post .Compartir .Facebook,
+.Post .Compartir .Twitter,
+.Post .Compartir .GooglePlus {
+	float: left;
+    height: 22px;
+    margin: 5px;
+    width: 22px;    
+}
+
+.Post .Compartir .Facebook {
+	background: url('../../bundles/mondelcuentalo/img/facebook.png');	
+}
+
+.Post .Compartir .Twitter {
+	background: url('../../bundles/mondelcuentalo/img/twitter.png');	
+}
+
+.Post .Compartir .GooglePlus {
+	background: url('../../bundles/mondelcuentalo/img/googleplus.png');	
+}
+
 .Post .Datos {
     font-size: 13px;
-    border-left: 1px solid #D7D7D7;
-    border-right: 1px solid #D7D7D7;
-    border-bottom: 1px solid #D7D7D7;
+    border-left: 1px solid #91B658;
+    border-right: 1px solid #91B658;
+    border-bottom: 1px solid #91B658;
 }
 
 .Post .Datos .TituloComentarios {
