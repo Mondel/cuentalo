@@ -26,7 +26,7 @@ body {
 #registrate {
     background: url('../../bundles/mondelcuentalo/img/divmensaje.png');
     background-repeat:repeat-x; 
-    height: 43px;    
+    height: 40px;    
     width: 100%;
 }
 
@@ -36,10 +36,11 @@ body {
 	text-align:left;
 	color:#FFFFFF;
 	font-size:12px;
+	margin: 0;
+    padding: 0;
 }
 
-  margin: 0;
-  padding: 0;
+
  
 
 /* Login Container (default to float:right) */
