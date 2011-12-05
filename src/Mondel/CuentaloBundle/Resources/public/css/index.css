@@ -358,8 +358,3 @@ button.action:hover,
 	font-weight:bold;	
     padding: 12px;	
 }
-
-#message_register .Message a,
-#message_register .Message a:visited {    
-	color:#FFF;	
-}
