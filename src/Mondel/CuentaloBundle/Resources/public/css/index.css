@@ -1,7 +1,10 @@
 
 #box {
+    /*
     background: url('../../bundles/mondelcuentalo/img/box.png');
 	background-repeat:no-repeat;
+	*/
+	border: 2px solid #91b658;
     height: 223px;
     width: 580px;
 }
@@ -34,6 +37,8 @@
 }
 
 #box_bottom {
+	border-top: 1px solid #91B658;
+	height: 45px;
     margin-top: 15px;
     padding: 6px 0;
 }
