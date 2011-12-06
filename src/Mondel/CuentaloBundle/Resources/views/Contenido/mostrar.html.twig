@@ -31,11 +31,15 @@
 	</div>
 	<div class="Acciones">
 		<div class="Compartir">
-			<a target="_blank" href="javascript:void(0);" onclick="window.open('https://www.facebook.com/sharer.php?u={{ url('_contenido_pagina_mostrar', { 'id': contenido.id }) }}', this.target, 'width=500,height=250');">
-				<div class="Facebook"></div>
-			</a>		
-			<a href="https://twitter.com/share" class="twitter-share-button" data-url="{{ url('_contenido_pagina_mostrar', { 'id': contenido.id }) }}" data-text="¡Mira que mensaje tan increíble estuve leyendo!" data-count="none" data-lang="es">Twittear</a>
-			<g:plusone size="medium" annotation="none" href="{{ url('_contenido_pagina_mostrar', { 'id': contenido.id }) }}"></g:plusone>			
+			<div>			
+				<iframe src="https://www.facebook.com/plugins/like.php?href={{ url('_contenido_pagina_mostrar', { 'id': contenido.id }) }}&amp;send=false&amp;layout=button_count&amp;width=70&amp;show_faces=true&amp;action=like&amp;colorscheme=light&amp;font=arial&amp;height=20&amp;appId=323151647711385" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:70px; height:20px;" allowTransparency="true"></iframe>
+			</div>
+			<div>
+				<iframe src="https://platform.twitter.com/widgets/tweet_button.html?url={{ url('_contenido_pagina_mostrar', { 'id': contenido.id }) }}&amp;text=¡Mira que mensaje tan increíble estuve leyendo!&amp;count=none&amp;lang=es" allowtransparency="true" frameborder="0" scrolling="no" style="width:65px; height:20px;"></iframe>
+			</div>
+			<div>
+				<g:plusone size="medium" annotation="none" href="{{ url('_contenido_pagina_mostrar', { 'id': contenido.id }) }}"></g:plusone>
+			</div>			
 		</div>
 	</div>		
 	<div class="Datos">

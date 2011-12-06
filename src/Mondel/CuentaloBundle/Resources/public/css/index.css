@@ -94,27 +94,12 @@
 
 .Post .Compartir {
 	float: right;
+	padding: 6px;
 }
 
-.Post .Compartir .Facebook,
-.Post .Compartir .Twitter,
-.Post .Compartir .GooglePlus {
+.Post .Compartir div {
 	float: left;
-    height: 22px;
-    margin: 5px;
-    width: 22px;    
-}
-
-.Post .Compartir .Facebook {
-	background: url('../../bundles/mondelcuentalo/img/facebook.png');	
-}
-
-.Post .Compartir .Twitter {
-	background: url('../../bundles/mondelcuentalo/img/twitter.png');	
-}
-
-.Post .Compartir .GooglePlus {
-	background: url('../../bundles/mondelcuentalo/img/googleplus.png');	
+	padding: 0 5px;
 }
 
 .Post .Datos {
