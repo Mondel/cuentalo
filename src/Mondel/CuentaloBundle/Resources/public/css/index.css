@@ -89,7 +89,7 @@
 .Post .Acciones {
 	border-left: 1px solid #91B658;
     border-right: 1px solid #91B658;
-	height: 33px;
+	height: 45px;
 }
 
 .Post .Compartir {
@@ -104,8 +104,8 @@
 
 .Post .Compartir div.FB {
 	height: 25px;
-	overflow: hidden;
-	width: 140px;	
+	/*overflow: hidden;*/
+	/*width: 140px;*/	
 }
 
 .Post .Datos {
