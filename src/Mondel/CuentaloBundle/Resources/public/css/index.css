@@ -103,7 +103,9 @@
 }
 
 .Post .Compartir div.FB {
-	width: 163px;
+	height: 25px;
+	overflow: hidden;
+	width: 140px;	
 }
 
 .Post .Datos {
