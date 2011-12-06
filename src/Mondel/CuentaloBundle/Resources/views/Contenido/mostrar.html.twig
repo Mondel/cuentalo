@@ -33,13 +33,11 @@
 		<div class="Compartir">
 			<a target="_blank" href="javascript:void(0);" onclick="window.open('https://www.facebook.com/sharer.php?u={{ url('_contenido_pagina_mostrar', { 'id': contenido.id }) }}', this.target, 'width=500,height=250');">
 				<div class="Facebook"></div>
-			</a>
-			<a target="_blank" href="javascript:void(0);" onclick="window.open('https://twitter.com/share?url={{ url('_contenido_pagina_mostrar', { 'id': contenido.id }) }}', this.target, 'width=500,height=250');">
-				<div class="Twitter"></div>
-			</a>
+			</a>			
 			
+			<a href="https://twitter.com/share" class="twitter-share-button" data-url="{{ url('_contenido_pagina_mostrar', { 'id': contenido.id }) }}" data-text="¡Mira que mensaje tan increíble estuve leyendo!" data-count="none" data-lang="es">Twittear</a>
 			
-			<div class="GooglePlus"></div>
+			<g:plusone size="medium" annotation="none" href="{{ url('_contenido_pagina_mostrar', { 'id': contenido.id }) }}"></g:plusone>			
 		</div>
 	</div>		
 	<div class="Datos">
