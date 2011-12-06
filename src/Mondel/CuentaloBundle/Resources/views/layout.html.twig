@@ -98,8 +98,30 @@
 {% block javascripts %}
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/jquery-ui.min.js"></script>
-    <!-- script src="https://platform.twitter.com/widgets.js"></script-->
-    <script src="https://apis.google.com/js/plusone.js"></script>	
+    <div id="fb-root"></div>
+	<script>
+		(function(d, s, id) {
+  			var js, fjs = d.getElementsByTagName(s)[0];
+  			if (d.getElementById(id)) {return;}
+  			js = d.createElement(s); js.id = id;
+  			js.src = "https://connect.facebook.net/es_LA/all.js#xfbml=1&appId=114757948564484";
+  			fjs.parentNode.insertBefore(js, fjs);
+		}(document, 'script', 'facebook-jssdk'));
+	</script>    
+	<script>
+		(function() {
+	    	var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+	    	po.src = 'https://apis.google.com/js/plusone.js';
+		    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+	  	})();
+	</script>	
+	<script>
+		(function() {
+	    	var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+	    	po.src = 'https://platform.twitter.com/widgets.js';
+		    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+	  	})();
+	</script>	
     {% javascripts '@MondelCuentaloBundle/Resources/public/js/layout.js'    			   
                    filter='yui_js'
 	%}

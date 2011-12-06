@@ -99,7 +99,11 @@
 
 .Post .Compartir div {
 	float: left;
-	padding: 0 5px;
+	padding: 0 4px;
+}
+
+.Post .Compartir div.FB {
+	width: 137px;
 }
 
 .Post .Datos {
