@@ -31,11 +31,7 @@
 	</div>
 	<div class="Acciones">
 		<div class="Compartir">
-			<div>
-				<iframe src="http://www.facebook.com/widgets/like.php?&layout=button_count&href={{ url('_contenido_pagina_mostrar', { 'id': contenido.id }) }}"
-        			scrolling="no" frameborder="0"
-        			style="border:none; width:450px; height:80px"></iframe>
-        		
+			<div>				
         		 <fb:like href="{{ url('_contenido_pagina_mostrar', { 'id': contenido.id }) }}" layout="button_count"
   show_faces="false" width="240" height="40"
   action="like" colorscheme="light"></fb:like>

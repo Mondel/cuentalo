@@ -112,6 +112,23 @@
 	    	po.src = 'https://platform.twitter.com/widgets.js';
 		    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
 	  	})();
+	</script>
+	<div id="fb-root"></div>
+	<script>
+		window.fbAsyncInit = function() {
+			FB.init({appId: '114757948564484', status: true, cookie: true,xfbml: true});
+			FB.Event.subscribe('edge.create', function(url) {
+		  		_gaq.push(['_trackSocial', 'facebook', 'like', url]);
+			});
+			FB.Event.subscribe('edge.remove', function(url) {
+		  		_gaq.push(['_trackSocial', 'facebook', 'unlike', url]);
+			});
+		};
+		(function() {
+			var e = document.createElement('script'); e.async = true;
+			e.src = document.location.protocol + '//connect.facebook.net/en_US/all.js';
+			document.getElementById('fb-root').appendChild(e);
+		}());
 	</script>	
     {% javascripts '@MondelCuentaloBundle/Resources/public/js/layout.js'    			   
                    filter='yui_js'
