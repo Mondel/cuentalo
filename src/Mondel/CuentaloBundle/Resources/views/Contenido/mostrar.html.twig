@@ -32,23 +32,12 @@
 	<div class="Acciones">
 		<div class="Compartir">
 			<div>
-			<div id="fb-root"></div>
-<script>(function(d, s, id) {
-  var js, fjs = d.getElementsByTagName(s)[0];
-  if (d.getElementById(id)) {return;}
-  js = d.createElement(s); js.id = id;
-  js.src = "//connect.facebook.net/es_LA/all.js#xfbml=1&appId=308972969131759";
-  fjs.parentNode.insertBefore(js, fjs);
-}(document, 'script', 'facebook-jssdk'));</script>
-<div class="fb-like" data-send="true" data-layout="button_count" data-width="450" data-show-faces="false" data-font="arial"></div>
-				<a href="https://twitter.com/share" class="twitter-share-button" data-url="{{ url('_contenido_pagina_mostrar', { 'id': contenido.id }) }}" data-text="¡Mira que mensaje tan increíble estuve leyendo!" data-count="none" data-via="Cuentalouy" data-related="MondelUruguay" data-lang="es">Twittear</a>				
+			<a href="https://www.facebook.com/plugins/like.php?href={{ url('_contenido_pagina_mostrar', { 'id': contenido.id }) }}" target="_blank" onclick="window.open(this.href,this.target, 'width=600, height=400'); return false;">
+			<a href="https://twitter.com/share" class="twitter-share-button" data-url="{{ url('_contenido_pagina_mostrar', { 'id': contenido.id }) }}" data-text="¡Mira que mensaje tan increíble estuve leyendo!" data-count="none" data-via="Cuentalouy" data-related="MondelUruguay" data-lang="es">Twittear</a>				
 			</div>
 			<div>
 				<g:plusone size="medium" annotation="none" href="{{ url('_contenido_pagina_mostrar', { 'id': contenido.id }) }}"></g:plusone>
 			</div>	
-			<!-- div>
-				<iframe src="https://www.facebook.com/plugins/like.php?href={{ url('_contenido_pagina_mostrar', { 'id': contenido.id }) }}&amp;send=false&amp;layout=button_count&amp;width=450&amp;show_faces=false&amp;action=like&amp;colorscheme=light&amp;font=arial&amp;height=21&amp;appId=323151647711385" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:450px; height:21px;" allowTransparency="true"></iframe>				
-			</div-->
 		</div>
 	</div>		
 	<div class="Datos">
