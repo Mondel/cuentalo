@@ -32,8 +32,12 @@
 	<div class="Acciones">
 		<div class="Compartir">
 			<div>
-			<a href="https://www.facebook.com/plugins/like.php?href={{ url('_contenido_pagina_mostrar', { 'id': contenido.id }) }}" target="_blank" onclick="window.open(this.href,this.target, 'width=600, height=400'); return false;">
-			<a href="https://twitter.com/share" class="twitter-share-button" data-url="{{ url('_contenido_pagina_mostrar', { 'id': contenido.id }) }}" data-text="¡Mira que mensaje tan increíble estuve leyendo!" data-count="none" data-via="Cuentalouy" data-related="MondelUruguay" data-lang="es">Twittear</a>				
+				<iframe src="http://www.facebook.com/plugins/like.php?href={{ url('_contenido_pagina_mostrar', { 'id': contenido.id }) }}"
+        			scrolling="no" frameborder="0"
+        			style="border:none; width:450px; height:80px"></iframe>
+			</div>
+			<div>			
+				<a href="https://twitter.com/share" class="twitter-share-button" data-url="{{ url('_contenido_pagina_mostrar', { 'id': contenido.id }) }}" data-text="¡Mira que mensaje tan increíble estuve leyendo!" data-count="none" data-via="Cuentalouy" data-related="MondelUruguay" data-lang="es">Twittear</a>				
 			</div>
 			<div>
 				<g:plusone size="medium" annotation="none" href="{{ url('_contenido_pagina_mostrar', { 'id': contenido.id }) }}"></g:plusone>
