@@ -69,6 +69,7 @@
 										{% if comentario.usuario and (comentario.usuario.id == app.security.token.user.id) %}
 											<a href="{{ path('_comentario_eliminar', { 'id': comentario.id }) }}" alt="Eliminar Comentario" onclick="return comentarioEliminar()">X</a>
 										{% endif %}
+										{% endif %}
 								</div>
 							</div>	
 							{% if not loop.last %}
