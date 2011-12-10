@@ -3,6 +3,7 @@
 {% block stylesheets %}
     {{ parent() }}
     {% stylesheets '@MondelCuentaloBundle/Resources/public/css/forms.css' filter='yui_css' %}
+
     <link rel="stylesheet" type="text/css" media="screen" href="{{ asset_url }}" />
     {% endstylesheets %}    
 {% endblock %}
