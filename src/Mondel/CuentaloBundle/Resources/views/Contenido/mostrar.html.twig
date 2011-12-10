@@ -50,7 +50,6 @@
 	<div class="Datos">
 		<div class="TituloComentarios">Comentarios</div>
 		<div class="Comentarios">
-		
 				{% if contenido.comentarios | length > 0 %}
 					{% for comentario in contenido.comentarios %}
 						<div class="Comentario">
@@ -70,7 +69,7 @@
 										{% if comentario.usuario and (comentario.usuario.id == app.security.token.user.id) %}
 											<a href="{{ path('_comentario_eliminar', { 'id': comentario.id }) }}" alt="Eliminar Comentario" onclick="return comentarioEliminar()">X</a>
 										{% endif %}
-					                 	{% endif %}
+		
 								</div>
 							</div>	
 							{% if not loop.last %}
