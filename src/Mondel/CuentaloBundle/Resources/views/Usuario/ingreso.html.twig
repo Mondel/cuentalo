@@ -1,27 +1,18 @@
 {% extends 'MondelCuentaloBundle::layout.html.twig' %}
-
 {% block stylesheets %}
     {{ parent() }}
     {% stylesheets '@MondelCuentaloBundle/Resources/public/css/forms.css' filter='yui_css' %}
     <link rel="stylesheet" type="text/css" media="screen" href="{{ asset_url }}" />
     {% endstylesheets %}
 {% endblock %}
-
 {% block menu_top %}{% endblock %}
-
 {% block content %}
-
     {{ parent() }}
-
-    {% if error %}
-
+     {% if error %}
         <div id="login_error">{{ error.message | trans }}</div>
-
-    {% endif %}
-
+   {% endif %}
     <div id="loginForm" class="Form">
         <form action="{{ path('_ingresar_chequeo') }}" method="post">
-
             <table>
                 <tr>
                     <td><label for="username" class="FormText">Email:</label></td>
@@ -44,8 +35,6 @@
                     <td><a href="{{ path('_contrasenia_recuperar') }}">He olvidado la contraseña</a></td>
                 </tr>
             </table>
-
         </form>
     </div>
-
 {% endblock %}
