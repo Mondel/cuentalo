@@ -51,10 +51,7 @@
 	<div class="Datos">
 		<div class="TituloComentarios">Comentarios</div>
 		<div class="Comentarios">
-			{% if is_granted('ROLE_USER') %}
-				{% if contenido.comentarios | length > 1 %}
-					{% for comentario in contenido.comentarios %}
-						<div class="Comentario">
+							<div class="Comentario">
 							<div class="ComentarioDatos">								
 								{% if comentario.usuario.sexo == 'm' %}
 									<img class="IconoSexo" src="{{ asset('bundles/mondelcuentalo/img/masculino.png') }}" />
@@ -71,7 +68,7 @@
 										{% if comentario.usuario and (comentario.usuario.id == app.security.token.user.id) %}
 											<a href="{{ path('_comentario_eliminar', { 'id': comentario.id }) }}" alt="Eliminar Comentario" onclick="return comentarioEliminar()">X</a>
 										{% endif %}
-									{% endif %}
+						
 								</div>
 							</div>	
 							{% if not loop.last %}
