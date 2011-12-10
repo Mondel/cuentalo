@@ -50,7 +50,7 @@
 	<div class="Datos">
 		<div class="TituloComentarios">Comentarios</div>
 		<div class="Comentarios">
-
+			{% if is_granted('ROLE_USER') %}
 				{% if contenido.comentarios | length > 0 %}
 					{% for comentario in contenido.comentarios %}
 						<div class="Comentario">
@@ -86,9 +86,6 @@
 				 	{{ form_widget(formularios_comentarios[contenido.id].texto, { 'attr': {'placeholder': 'escribe tu comentario y presiona enter...', 'class': 'InputComentarios'} }) }}
 				 	{{ form_rest(formularios_comentarios[contenido.id]) }}
 				</form>
-			{% else %}
-				Para ver los comentarios debes estar <a href="{{ path('_registrar') }}">registrado</a> o <a href="{{ path('_ingresar') }}">iniciar sesi&oacute;n</a>
-			{% endif %}
 		</div>
 	</div>
 </div>
