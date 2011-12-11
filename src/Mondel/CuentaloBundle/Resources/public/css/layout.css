@@ -231,8 +231,6 @@ input:focus {
     bottom:-1px;
 }
 
-
-
 #navigation {
 	background: url('../../bundles/mondelcuentalo/img/bg_header.png');
     box-shadow: 0 1px 5px #8f8f8f;   
@@ -257,8 +255,6 @@ input:focus {
 	padding: 0 5px;
 }
 
-
-
 #facebook {
 	width:182px;
 	height:40px;
@@ -270,8 +266,8 @@ input:focus {
     font-weight:bold;
     line-height:45px;
     font-size: 14px;
+    margin-top:15px;
 }
-
 
 #titulo_adsense {
 	width:182px;
@@ -288,10 +284,11 @@ input:focus {
 }
 
 
-
-
-
-
+#menu_izquierdo {
+    float: left;
+    width: 182px;
+    height:227px;
+}
 
 
 #menu_top {
