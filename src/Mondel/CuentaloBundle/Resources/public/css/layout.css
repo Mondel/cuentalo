@@ -213,7 +213,7 @@ input:focus {
 
 #facebook {
 	width:180px;
-	heigth:45px;
+	height:40px;
 	float:left;
     background: #91b658;
     text-decoration: none;
@@ -227,7 +227,7 @@ input:focus {
 
 #titulo_adsense {
 	width:180px;
-	height:45px;
+	height:40px;
 	float:left;
     background: #91b658;
     text-decoration: none;
@@ -238,43 +238,7 @@ input:focus {
     font-size: 14px;
     position:fixed;
 }
-#contenedor_adsense {
-	float:left;
-    position:fixed;
-    width:180px;
-    height:100%;
-   
-}
 
-
-#adsense_modulo1 {
-	float:left;
-    margin-top:15px;
-    width:180px;
-    height:100%;
-   
-}
-#adsense_modulo2 {
-	float:left;
-    margin-top:15px;
-    width:180px;
-    height:100%;
-
-}
-#adsense_modulo3 {
-	float:left;
-    margin-top:15px;
-    width:180px;
-    height:100%;
- 
-}
-#adsense_modulo4 {
-	float:left;
-    margin-top:15px;
-    width:180px;
-    height:100%;
-   
-}
 
 
 
