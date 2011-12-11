@@ -239,11 +239,27 @@ input:focus {
     position:fixed;
 }
 
-#adsense_modulo {
+#adsense_modulo1 {
 	float:left;
     margin-top:15px;
     position:fixed;
 }
+#adsense_modulo2 {
+	float:left;
+    margin-top:15px;
+    position:fixed;
+}
+#adsense_modulo3 {
+	float:left;
+    margin-top:15px;
+    position:fixed;
+}
+#adsense_modulo4 {
+	float:left;
+    margin-top:15px;
+    position:fixed;
+}
+
 
 
 
