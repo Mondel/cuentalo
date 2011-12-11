@@ -241,6 +241,8 @@ input:focus {
 #contenedor_adsense {
 	float:left;
     position:fixed;
+    width:180px;
+    heigth:100%;
    
 }
 
@@ -248,21 +250,29 @@ input:focus {
 #adsense_modulo1 {
 	float:left;
     margin-top:15px;
+    width:180px;
+    heigth:100%;
    
 }
 #adsense_modulo2 {
 	float:left;
     margin-top:15px;
+    width:180px;
+    heigth:100%;
 
 }
 #adsense_modulo3 {
 	float:left;
     margin-top:15px;
+    width:180px;
+    heigth:100%;
  
 }
 #adsense_modulo4 {
 	float:left;
     margin-top:15px;
+    width:180px;
+    heigth:100%;
    
 }
 
