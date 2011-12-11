@@ -44,8 +44,7 @@ _contenido_pagina_mostrar:
 
 _contenido_comentar:
     pattern:  /contenido/{id}/comentar
-    defaults:  { _controller: MondelCuentaloBundle:Contenido:comentar }
-    requirements: { _method: POST }
+    defaults:  { _controller: MondelCuentaloBundle:Contenido:comentar }    
     
 _contenido_listar:
     pattern:  /contenido/{categoria}/{inicio}/{cantidad}

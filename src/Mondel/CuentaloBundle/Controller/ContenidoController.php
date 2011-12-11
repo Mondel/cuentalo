@@ -46,7 +46,7 @@ class ContenidoController extends Controller
         $peticion = $this->getRequest();
         $manager = $this->getDoctrine()->getEntityManager();
 
-       if (false === $this->get('security.context')->isGranted('ROLE_USER'))
+       	if (false === $this->get('security.context')->isGranted('ROLE_USER'))
             throw new AccessDeniedException();
         
         $contenido = $manager->getRepository('MondelCuentaloBundle:Contenido')->find($id);
