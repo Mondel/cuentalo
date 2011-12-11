@@ -269,6 +269,21 @@ input:focus {
     margin-top:20px;
 }
 
+#menu_usuarios {
+	width:182px;
+	height:40px;
+	float:left;
+    background: #91b658;
+    text-decoration: none;
+    color:#ffffff;
+    text-align:center;
+    font-weight:bold;
+    line-height:45px;
+    font-size: 14px;
+}
+
+
+
 #titulo_adsense {
 	width:182px;
 	height:40px;
