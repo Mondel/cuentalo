@@ -227,14 +227,14 @@ input:focus {
 
 #titulo_adsense {
 	width:180px;
-	heigth:45px;
+	height:45px;
 	float:left;
     background: #91b658;
     text-decoration: none;
     color:#ffffff;
     text-align:center;
     font-weight:bold;
-    line-heigth:45px;
+    line-height:45px;
     font-size: 14px;
     position:fixed;
 }
@@ -242,7 +242,7 @@ input:focus {
 	float:left;
     position:fixed;
     width:180px;
-    heigth:100%;
+    height:100%;
    
 }
 
@@ -251,28 +251,28 @@ input:focus {
 	float:left;
     margin-top:15px;
     width:180px;
-    heigth:100%;
+    height:100%;
    
 }
 #adsense_modulo2 {
 	float:left;
     margin-top:15px;
     width:180px;
-    heigth:100%;
+    height:100%;
 
 }
 #adsense_modulo3 {
 	float:left;
     margin-top:15px;
     width:180px;
-    heigth:100%;
+    height:100%;
  
 }
 #adsense_modulo4 {
 	float:left;
     margin-top:15px;
     width:180px;
-    heigth:100%;
+    height:100%;
    
 }
 
