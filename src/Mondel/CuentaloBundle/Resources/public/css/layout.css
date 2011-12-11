@@ -184,6 +184,54 @@ input:focus {
     outline:none;
 }
 
+/* Login Container (default to float:right) */
+#logout_container {
+    position:relative;
+    float:right;
+    font-size:12px;
+}
+
+/* Login Button */
+#logout_button { 
+    display:inline-block;
+    float:right;
+    background:#8f8f8f; 
+    border:1px solid #8f8f8f; 
+    border-radius:3px;
+    -moz-border-radius:3px;
+    position:relative;
+    z-index:30;
+    cursor:pointer;
+    text-decoration: none;
+}
+
+/* Login Button Text */
+#logout_button span {
+    color:#FFF; 
+    font-size:14px; 
+    font-weight:bold;
+    padding:7px 12px 9px 10px;
+    display:block;
+}
+
+/* If the Login Button has been clicked */    
+#logout_button.Active {
+    border-radius:3px 3px 0 0;
+}
+
+#logout_button.Active span {
+    background-position:53px -76px;
+}
+
+/* A Line added to overlap the border */
+#logout_button.Active em {
+    position:absolute;
+    width:100%;
+    height:1px;    
+    bottom:-1px;
+}
+
+
 
 #navigation {
 	background: url('../../bundles/mondelcuentalo/img/bg_header.png');

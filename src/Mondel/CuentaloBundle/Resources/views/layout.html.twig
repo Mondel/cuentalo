@@ -44,6 +44,13 @@
 		                </div>
 		            </div>
 		    	</div>
+	    	{% else %}
+	    		<div id="logout">
+		    		<div id="logout_container">
+		                <a id="logout_button" href="{{ path('_salir') }}"><span>Salir</span><em></em></a>
+		                <div class="Clear"></div>		                
+		            </div>
+		    	</div>
 	    	{% endif %}
     	</div>
     </header>
