@@ -213,18 +213,28 @@ input:focus {
 
 #facebook {
 	width:180px;
-	heigth:30px;
+	heigth:45px;
 	float:left;
     background: #91b658;
     text-decoration: none;
     color:#ffffff;
     text-align:center;
     font-weight:bold;
-	
+    line-heigth:45px;
 }
 
 
-
+#titulo_adsense {
+	width:180px;
+	heigth:45px;
+	float:left;
+    background: #91b658;
+    text-decoration: none;
+    color:#ffffff;
+    text-align:center;
+    font-weight:bold;
+    line-heigth:45px;
+}
 
 
 
