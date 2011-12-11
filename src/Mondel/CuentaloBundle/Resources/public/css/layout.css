@@ -238,7 +238,10 @@ input:focus {
     font-size: 14px;
 }
 
-
+#adsense_modulo {
+	float:left;
+    margin-top:15px;
+}
 
 
 
