@@ -236,6 +236,7 @@ input:focus {
     font-weight:bold;
     line-heigth:45px;
     font-size: 14px;
+    position:fixed;
 }
 
 #adsense_modulo {
