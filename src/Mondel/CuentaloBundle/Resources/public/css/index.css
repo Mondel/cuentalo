@@ -563,23 +563,35 @@ button.red:active .label,
 }
 
 
-#message_register {
+#message_register,
+#message_cuentalo {
     background: #404040;     
     height: 40px;
 }
 
-#message_register .Icon {
-	background: url('../../bundles/mondelcuentalo/img/oops.png');
+#message_register .Icon,
+#message_cuentalo .Icon {	
 	float: left;
 	height: 39px;
 	width: 40px;
 	
 }
 
-#message_register .Message {    
+#message_register .Icon {
+	background: url('../../bundles/mondelcuentalo/img/oops.png');
+}
+
+#message_cuentalo .Icon {
+	background: url('../../bundles/mondelcuentalo/img/good.png');
+}
+
+#message_register .Message,
+#message_cuentalo .Message {    
 	color:#FFF;
 	float: left;
 	font-size:12px;
 	font-weight:bold;	
     padding: 12px;	
 }
+
+

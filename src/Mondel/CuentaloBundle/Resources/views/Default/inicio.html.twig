@@ -22,6 +22,17 @@
 				</form>
 			</div> 		
 		</div>
+	{% else %}
+		<div id="message_cuentalo">
+			<div class="Wrap">    		 	
+				<div class="Icon"></div>
+				<div class="Message">
+					<p>
+					 	Hola Bienvenido@ {{ app.security.token.user.nick }}, cuentalo es una red social donde puedes interactuar lo que piensas o comentar, sin revelar tus datos.						
+					</p>					
+				</div>				
+			</div> 		
+		</div>
 	{% endif %}
 {% endblock %}
 
