@@ -241,6 +241,7 @@ input:focus {
 #adsense_modulo {
 	float:left;
     margin-top:15px;
+    position:fixed;
 }
 
 
