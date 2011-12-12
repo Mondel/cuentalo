@@ -301,13 +301,6 @@ input:focus {
     position:fixed;
 }
 
-
-#menu_izquierdo {
-    float: left;    
-    height: 160px;
-}
-
-
 #menu_top {
     float: left;
     width: 820px;
