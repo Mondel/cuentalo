@@ -269,6 +269,12 @@ input:focus {
     margin-top:20px;
 }
 
+#facebook_compartir {
+	float:right;
+   
+}
+
+
 #menu_usuarios {
 	width:182px;
 	height:30px;
