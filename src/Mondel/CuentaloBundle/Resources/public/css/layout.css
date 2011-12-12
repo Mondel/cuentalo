@@ -264,7 +264,7 @@ input:focus {
     color:#ffffff;
     text-align:center;
     font-weight:bold;
-    line-height:45px;
+    line-height:30px;
     font-size: 14px;
     margin-top:20px;
 }
@@ -278,7 +278,7 @@ input:focus {
     color:#ffffff;
     text-align:center;
     font-weight:bold;
-    line-height:45px;
+    line-height:30px;
     font-size: 14px;
 }
 
@@ -293,7 +293,7 @@ input:focus {
     color:#ffffff;
     text-align:center;
     font-weight:bold;
-    line-height:45px;
+    line-height:30px;
     font-size: 14px;
     position:fixed;
 }
