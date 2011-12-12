@@ -569,20 +569,18 @@ button.red:active .label,
     height: 40px;
 }
 
-#message_register .Icon,
+#message_register .Icon {
+	background: url('../../bundles/mondelcuentalo/img/oops.png');
+	float: left;
+	height: 39px;
+	width: 40px;
+}
+
 #message_cuentalo .Icon {	
+	background: url('../../bundles/mondelcuentalo/img/good.png');
 	float: left;
 	height: 39px;
 	width: 28px;
-	
-}
-
-#message_register .Icon {
-	background: url('../../bundles/mondelcuentalo/img/oops.png');
-}
-
-#message_cuentalo .Icon {
-	background: url('../../bundles/mondelcuentalo/img/good.png');
 }
 
 #message_register .Message,
