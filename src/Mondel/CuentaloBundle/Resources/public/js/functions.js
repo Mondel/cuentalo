@@ -26,11 +26,28 @@ function obtenerContenidos() {
  
     function(data){
         if (data != "") {
-        	$(".Post:last").after(data);        	
+        	$(".Post:last").after(data);
+        	actualizarBotones(data);
         }
         $('.PostLoading').empty();
     });
 };
+
+function actualizarBotones(data) {
+	var $response = $(data);
+	
+	if( $response.length < 1 ) return;
+	
+	gapi.plusone.go();
+	
+	FB.XFBML.parse();
+	
+	getTaringaButtons();
+	
+	$response.find('a.twitter-share-button').each(function() {
+		twttr.widgets.load($(this).get(0));		
+	});
+}
 
 function comentarioEliminar() {
 	return confirm('Esta seguro que desea eliminar este comentario ?');
