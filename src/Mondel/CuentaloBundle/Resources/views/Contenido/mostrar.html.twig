@@ -50,9 +50,16 @@
 	<div class="Datos">
 		<div class="TituloComentarios">Comentarios</div>
 		<div class="Comentarios">
-			{% if contenido.comentarios | length > 0 %}
+			{% set cantidadComentarios = contenido.comentarios | length %}
+			{% if cantidadComentarios > 0 %}
+				{% if cantidadComentarios > 3 %}
+					<p class="PVerComentarios">
+						<a class="VerComentarios" href="javascript:void(0);">Ver los {{ cantidadComentarios }} comentarios</a>
+					</p>
+				{% endif %}
 				{% for comentario in contenido.comentarios %}
-					<div class="Comentario">
+					{% set cssComentario = loop.index <= cantidadComentarios - 3 ? 'Comentario Hidden' : 'Comentario'  %}
+					<div class="{{ cssComentario }}">
 						<div class="ComentarioDatos">								
 							{% if comentario.usuario.sexo == 'm' %}
 								<img class="IconoSexo" src="{{ asset('bundles/mondelcuentalo/img/masculino.png') }}" />

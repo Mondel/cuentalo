@@ -466,3 +466,10 @@ input:focus {
 	clear: both;
 }
 
+.Hidden {
+	display: none;
+}
+
+.PVerComentarios {
+	text-align: center;
+}

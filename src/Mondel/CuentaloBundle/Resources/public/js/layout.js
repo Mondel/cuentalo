@@ -1,4 +1,14 @@
 $(function() {
+	var links = $('.VerComentarios');
+	links.click(
+		function (){
+			$(this).parents('.Comentarios').children('.Comentario').removeClass('Hidden');
+			$(this).remove();
+		}
+	);
+});
+
+$(function() {
     var button = $('#login_button');
     var box = $('#login_box');
     var form = $('#login_form');
