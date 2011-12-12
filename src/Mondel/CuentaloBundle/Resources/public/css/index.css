@@ -55,10 +55,17 @@
 }
 
 .Post {
-    background: #FFFFFF;
-    margin: 25px 2px;
+    background: #FFFFFF;    
     min-height:60px;
     width: 582px;
+}
+
+#center .Post {
+	margin: 0;
+}
+
+#stream .Post {
+	margin: 25px 2px;
 }
 
 .Post .Titulo {	
@@ -514,10 +521,49 @@ button.red:active .label,
 	color: #FFF !important;
 }
 
+/*------------------------------------*\
+	$BUTTON ICON
+\*------------------------------------*/
+.ddm span.icon, 
+button span.icon, 
+.button span.icon {
+	display: inline-block;
+	margin: 0 7px;
+	float: left;
+
+	line-height: 18px;
+	height: 18px;
+	width: 18px;
+	max-width: 18px;
+
+	overflow: hidden;
+	text-indent: -9999px;
+
+	background-repeat: no-repeat;
+
+	-webkit-transition: background-image 0.20s linear;
+	-moz-transition: background-image 0.20s linear;
+	-o-transition: background-image 0.20s linear;
+	transition: background-image 0.20s linear;
+}
 
 /* ---------------------FIN CSS BUTTONS----------------------*/
 
+.IconPass {
+	background: url('../../bundles/mondelcuentalo/img/pass.png');
+}
 
+.IconContact {
+	background: url('../../bundles/mondelcuentalo/img/contactarnos.png');
+}
+
+.IconReport {
+	background: url('../../bundles/mondelcuentalo/img/report.png');
+}
+
+.IconInvite {
+	background: url('../../bundles/mondelcuentalo/img/search-friends.png');
+}
 
 .EliminarItem {	
 	display: none;

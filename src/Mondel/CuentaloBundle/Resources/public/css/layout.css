@@ -303,9 +303,8 @@ input:focus {
 
 
 #menu_izquierdo {
-    float: left;
-    width: 182px;
-    height:227px;
+    float: left;    
+    height: 160px;
 }
 
 
@@ -396,10 +395,6 @@ input:focus {
 
 /* CONTENT */
 
-#center .Wrap {
-    margin: 0 25px;
-}
-
 #center .Wrap #message {
 
 }
@@ -419,13 +414,13 @@ input:focus {
 
 #center {
     float: left;
-    width: 640px;
+    width: 590px;
 }
 
 /* LEFT */
 #left {
     float: left;
-    width: 165px;
+    width: 205px;
     min-height: 1px; 
 }
 
