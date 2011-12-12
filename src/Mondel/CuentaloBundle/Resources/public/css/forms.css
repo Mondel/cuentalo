@@ -13,7 +13,7 @@
 }
 
 .Form .FormText {
-    color: #000;
+    color: #444;
 }
 
 .Form .ButtonForm {
@@ -70,6 +70,10 @@
     border: 1px solid #D7D7D7;
     height: 25px;
     width: 200px;
+}
+
+.Form a {
+	color: #444;
 }
 
 #login_error {
