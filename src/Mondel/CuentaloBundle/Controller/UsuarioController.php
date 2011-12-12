@@ -255,9 +255,9 @@ class UsuarioController extends Controller
     				);
     				$usuario->setContrasenia($nueva_contrasenia);
     			
-    				//$em = $this->getDoctrine()->getEntityManager();
-    				//$em->persist($usuario);
-    				//$em->flush();
+    				$em = $this->getDoctrine()->getEntityManager();
+    				$em->persist($usuario);
+    				$em->flush();
     			
     				$this->get('session')->setFlash('notice', "Se ha cambiado la contraseña correctamente");
     			} else {
