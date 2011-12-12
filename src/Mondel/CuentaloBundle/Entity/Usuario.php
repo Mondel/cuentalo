@@ -59,9 +59,8 @@ class Usuario implements AdvancedUserInterface
      * @var string $email_alternativo
      *
      * @Assert\Email()
-     * @Assert\MaxLength(50)
-     * @Assert\NotBlank()
-     * @ORM\Column(name="email_alternativo", type="string", length=50)
+     * @Assert\MaxLength(50)     
+     * @ORM\Column(name="email_alternativo", type="string", length=50, nullable=true)
      */
     private $email_alternativo;
 

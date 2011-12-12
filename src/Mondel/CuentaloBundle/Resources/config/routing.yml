@@ -19,8 +19,12 @@ _registrar:
 # usuario
 
 _contrasenia_recuperar:
-    pattern:  /recuperar/contraseña
-    defaults: { _controller: MondelCuentaloBundle:Usuario:recuperarContrasenia }
+    pattern:  /contraseña/recuperar
+    defaults: { _controller: MondelCuentaloBundle:Usuario:contraseniaRecuperar }
+
+_contrasenia_cambiar:
+    pattern:  /contraseña/cambiar
+    defaults: { _controller: MondelCuentaloBundle:Usuario:contraseniaCambiar }
 
 _usuario_activacion:
     pattern:  /usuario/activar/{token}

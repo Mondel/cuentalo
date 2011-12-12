@@ -4,6 +4,7 @@ namespace Mondel\CuentaloBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken;
+use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 use Symfony\Component\Security\Core\SecurityContext;
 
 use Mondel\CuentaloBundle\Entity\Usuario,
@@ -145,8 +146,11 @@ class UsuarioController extends Controller
         );
     }
 
-    public function recuperarContraseniaAction()
+    public function contraseniaRecuperarAction()
     {
+    	if (true === $this->get('security.context')->isGranted('ROLE_USER'))
+    		return $this->redirect($this->generateUrl('_inicio'));
+    		
         $peticion = $this->getRequest();
 
         $validaciones = new Collection(array(
@@ -205,11 +209,71 @@ class UsuarioController extends Controller
         }
 
         return $this->render(
-                'MondelCuentaloBundle:Usuario:recuperarContrasenia.html.twig',
+                'MondelCuentaloBundle:Usuario:contraseniaRecuperar.html.twig',
                 array('form' => $formulario->createView())
         );
     }
 
+    public function contraseniaCambiarAction()
+    {
+    	$this->get('session')->removeFlash("notice");
+    	$this->get('session')->removeFlash("error");
+    	
+    	if (false === $this->get('security.context')->isGranted('ROLE_USER'))
+            throw new AccessDeniedException();
+    	
+    	$peticion = $this->getRequest();
+    	
+    	$formulario = $this->createFormBuilder()
+    			->add('contraseniaActual', 'password')
+    			->add('contrasenia', 'repeated', array(
+                    'type'            => 'password',
+                    'invalid_message' => 'Las contraseñas no coinciden.',
+                    'first_name'      => 'contrasenia',
+                    'second_name'     => 'repetirContrasenia',
+                    'required'        => true,
+                ))
+    			->getForm();
+    
+    	if ($peticion->getMethod() == 'POST') {
+    		$formulario->bindRequest($peticion);
+    		
+    		$data = $peticion->get('form');
+    		$contrasenia_actual = $data['contraseniaActual'];    		
+    		$contrasenia_nueva = $data['contrasenia']['contrasenia'];
+    		$contrasenia_nueva_repetida = $data['contrasenia']['repetirContrasenia'];
+    		
+    		if ($contrasenia_nueva == $contrasenia_nueva_repetida) {
+    			$usuario = $this->get('security.context')->getToken()->getUser();
+    			
+    			$encoder = $this->get('security.encoder_factory')->getEncoder($usuario);
+    			if ($encoder->isPasswordValid($usuario->getPassword(), $contrasenia_actual, $usuario->getSalt()))
+    			{
+    				$nueva_contrasenia = $encoder->encodePassword(
+    						$contrasenia_nueva,
+    						$usuario->getSalt()
+    				);
+    				$usuario->setContrasenia($nueva_contrasenia);
+    			
+    				//$em = $this->getDoctrine()->getEntityManager();
+    				//$em->persist($usuario);
+    				//$em->flush();
+    			
+    				$this->get('session')->setFlash('notice', "Se ha cambiado la contraseña correctamente");
+    			} else {
+    				$this->get('session')->setFlash('error', 'La contraseña actual es incorrecta');
+    			}
+    		} else {
+    			$this->get('session')->setFlash('error', 'La contraseña y su repetida deben ser iguales');
+    		}
+    	}
+    
+    	return $this->render(
+    			'MondelCuentaloBundle:Usuario:contraseniaCambiar.html.twig',
+    			array('form' => $formulario->createView())
+    	);
+    }
+    
     public function usuarioActivacionAction($token)
     {
         $repositorio = $this->getDoctrine()

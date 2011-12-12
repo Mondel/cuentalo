@@ -76,6 +76,10 @@
 	color: #444;
 }
 
+.Form .Field {
+	margin: 10px 0;
+}
+
 #login_error {
     margin: 0 210px;
     color: red;

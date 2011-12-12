@@ -12,8 +12,7 @@ class UsuarioType extends AbstractType {
                 ->add('apellido')
                 ->add('nick')
                 ->add('fecha_nacimiento', null, array('years' => range(1900, 2000)))
-                ->add('email')
-                ->add('email_alternativo')
+                ->add('email')                
                 ->add('contrasenia', 'repeated', array(
                     'type'            => 'password',
                     'invalid_message' => 'Las contraseñas no coinciden.',

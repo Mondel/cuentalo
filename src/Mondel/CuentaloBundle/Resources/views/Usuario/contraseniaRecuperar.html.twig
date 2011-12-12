@@ -18,9 +18,13 @@
     <br/>
     <div class="Form">
         <form action="{{ path('_contrasenia_recuperar') }}" method="post">
-            {{ form_widget(form.email, { 'attr': {'class': 'FormInput', 'placeholder': 'email...'} }) }}
-            {{ form_rest(form) }}
-            <input type="submit" value="Enviar" class="ButtonForm" />
+            <div class="Field">
+    			{{ form_widget(form.email, { 'attr': {'class': 'FormInput', 'placeholder': 'email...'} }) }}
+			</div>
+            {{ form_rest(form) }}            
+            <button class="button">
+            	<span class="label">Recuperar</span>
+            </button>
         </form>
     </div>
 {% endblock %}

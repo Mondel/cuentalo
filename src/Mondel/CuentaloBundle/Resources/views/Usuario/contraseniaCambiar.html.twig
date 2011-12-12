@@ -1,0 +1,31 @@
+{% extends 'MondelCuentaloBundle::layout.html.twig' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    {% stylesheets '@MondelCuentaloBundle/Resources/public/css/forms.css' filter='yui_css' %}
+    <link rel="stylesheet" type="text/css" media="screen" href="{{ asset_url }}" />
+    {% endstylesheets %}
+{% endblock %}
+{% block content %}
+    {{ parent() }}
+    <p>Para cambiar su contrase&ntilde;a ingresa la contrase&ntilde;a actual, y luego la nueva contrase&ntilde;a y rep&iacute;tela.</p>
+    <br/>
+    <div class="Form">
+        <form action="{{ path('_contrasenia_cambiar') }}" method="post">
+    		<div class="Field">        
+    			{{ form_widget(form.contraseniaActual, { 'attr': {'class': 'FormInput', 'placeholder': 'Contraseña actual...'} }) }}
+			</div>			
+			<div class="Field">
+            	{{ form_widget(form.contrasenia.contrasenia, { 'attr': {'class': 'FormInput', 'placeholder': 'contraseña nueva...'} }) }}
+            </div>            
+            <div class="Field">
+            	{{ form_widget(form.contrasenia.repetirContrasenia, { 'attr': {'class': 'FormInput', 'placeholder': 'repetir contraseña nueva...'} }) }}
+            </div>                       
+            {{ form_rest(form) }}
+            <button class="button">
+            	<span class="label">Cambiar</span>
+            </button>
+        </form>
+    </div>
+{% endblock %}
+

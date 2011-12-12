@@ -64,18 +64,20 @@
     		<li><a href="{{ path('_contenido_categoria_listar', {'categoria': 'Futbol' }) }}" title="Futbol">futbol</a><span>|</span></li>
     		<li><a href="{{ path('_contenido_categoria_listar', {'categoria': 'Mensaje' }) }}" title="Mensajes">mensajes</a><span>|</span></li>
     		<li><a href="{{ path('_contenido_categoria_listar', {'categoria': 'Secreto' }) }}" title="Secretos">secretos</a></li>
-    		</ul>  
+		</ul>  
     </nav> 
     {% block message %}{% endblock %} 				
     <section id="content">    	
     	<aside id="left">    	
 	    	<div id="menu_usuarios">Menú de usuario</div>
 	    	<div id="menu_izquierdo">
-	    		{% if is_granted('ROLE_USER') %}	    	
-			    	<button class="gray">
-			    		<span class="icon IconPass"></span>
-			    		<span class="label">Cambiar mi contraseña</span>    		
-					</button>
+	    		{% if is_granted('ROLE_USER') %}
+		    		<form method="get" action="{{ path('_contrasenia_cambiar') }}">
+				    	<button class="gray">
+				    		<span class="icon IconPass"></span>
+				    		<span class="label">Cambiar mi contraseña</span>    		
+						</button>
+					</form>
 				{% endif %}
 		    	<button class="gray">
 		    		<span class="icon IconContact"></span>
