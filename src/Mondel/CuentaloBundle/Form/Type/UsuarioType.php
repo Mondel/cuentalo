@@ -2,8 +2,10 @@
 
 namespace Mondel\CuentaloBundle\Form\Type;
 
-use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\FormBuilder;
+use Symfony\Component\Form\AbstractType,
+	Symfony\Component\Form\CallbackValidator,
+	Symfony\Component\Form\FormBuilder,
+	Symfony\Component\Form\FormInterface;
 
 class UsuarioType extends AbstractType {
 
@@ -33,7 +35,21 @@ class UsuarioType extends AbstractType {
                     'label'     => 'Quiere recibir notificaciones por email ?',
                     'required'  => false
                 ))
-        ;
+                ->add('terminos', 'checkbox', array(
+                		'label' => 'Estoy de acuerdo con los ',
+                		'property_path' => false,
+                ));
+        
+		$builder->addValidator(
+				new CallbackValidator(function(FormInterface $form)
+				{
+					if (!$form["terminos"]->getData())
+					{
+						$form->addError(new FormError('Debe aceptar los
+                						Terminos y Condiciones'));
+					}
+				})
+		);        
     }
 
     public function getDefaultOptions(array $options) {

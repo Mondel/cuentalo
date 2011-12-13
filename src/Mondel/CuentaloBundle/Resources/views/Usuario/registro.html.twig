@@ -38,8 +38,15 @@
                     <td>{{ form_widget(form.sexo) }}</td>
                     <td>{{ form_errors(form.sexo) }}</td>
                 </tr>
+                <tr>
+                	<td colspan="3">
+            			{{ form_widget(form.terminos) }}    	
+            			{{ form_label(form.terminos) }}<a target="_blank" href="{{ path('_pagina', {'pagina':'terminos'}) }}">terminos</a> de Cuentalo</span>
+                    	{{ form_errors(form.terminos) }}                    
+                	</td>
+                </tr>
             </table>
-            {{ form_widget(form._token) }}
+            {{ form_widget(form._token) }}            
             <button class="red"><span class="label">Registrarme</span></button>
 
         </div>

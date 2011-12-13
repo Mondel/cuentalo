@@ -64,10 +64,11 @@ class UsuarioController extends Controller
         $formulario = $this->createForm(new UsuarioType(), $usuario);
 
         if ($peticion->getMethod() == 'POST') {
+        	
             $formulario->bindRequest($peticion);
 
             if ($formulario->isValid()) {
-
+            	
                 $repositorio = $manager
                     ->getRepository('MondelCuentaloBundle:Usuario');
 
