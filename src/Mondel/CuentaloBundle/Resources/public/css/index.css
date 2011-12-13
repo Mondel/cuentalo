@@ -153,7 +153,7 @@
 .Comentario {
 	float: left;
 	width: 567px;
-		background-color:#f6f6f6;
+    background-color:#f6f6f6;
 }
 .Comentario hr {
 	float: left;
@@ -162,6 +162,7 @@
 .ComentarioDatos {
 	float:left;
 	width: 550px;
+    background-color:#f6f6f6;
 
 }
 .ComentarioAccion {
