@@ -886,16 +886,4 @@ button span.icon,
 	display: none;
 }
 
-.PVerComentarios {
-	text-align: center;
-}
 
-#hora {
-    float:right;
-    font-size:10px;
-}
-
-#usuario {
-    float:left;
-    font-size:12px;
-}

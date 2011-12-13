@@ -74,10 +74,6 @@
     padding: 7px 8px;
 }
 
-.Post .Titulo .InfoTitulo {
-    float: right;
-}
-
 .Post .Titulo .IconoSexo {
     width: 15px;
 }
@@ -129,7 +125,7 @@
 }
 
 .Post .Datos .Comentarios {
-    padding: 5px 8px;
+	background-color: #F6F6F6;        
 }
 
 .Post .Datos .Comentarios a{
@@ -141,32 +137,57 @@
 }
 
 .Post .Datos .Comentarios .InputComentarios {
-    border: 1px solid #929191;
-    margin-top: 10px;
-    width: 100%;
+	border: 1px solid #929191;
+	height: 25px;
+	margin: 10px;
+	width: 558px;	
+}
+
+.Post .Datos .Comentarios .PVerComentarios {
+	padding: 5px 0;
+	text-align: center;
 }
 
 .PostLoading {
 	text-align: center;
 }
 
-.Comentario {
+.Comentario {	
+	border-bottom: 1px solid #FFF;
+	
 	float: left;
-	width: 567px;
-    background-color:#f6f6f6;
+	padding: 5px;
+	width: 570px;
 }
-.Comentario hr {
-	float: left;
-	width: 564px;
-}
-.ComentarioDatos {
-	float:left;
-	width: 550px;
-    background-color:#f6f6f6;
 
+.ComentarioDatos {
+	float: left;
+	width: 550px;
 }
+
+.ComentarioDatos .IconSexM {
+	background: url('../../bundles/mondelcuentalo/img/masculino.png');
+	float: left;
+	height: 23px;
+	margin: 5px;
+	width: 23px;
+}
+
+.ComentarioDatos .IconSexF {
+	background: url('../../bundles/mondelcuentalo/img/femenino.png');
+	float: left;
+	height: 23px;
+	margin: 5px;
+	width: 23px;	
+}
+
+.ComentarioDatos .Tiempo {
+	font-size: 10px;	
+}
+
 .ComentarioAccion {
-	float: rigth;	
+	float: left;
+	width: 18px;	
 }
 
 /* ------------------------------------------ */
