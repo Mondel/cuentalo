@@ -53,4 +53,10 @@ class DefaultController extends Controller
                 )
         );
     }
+    
+    public function paginaAction($pagina)
+    {
+    	return $this->render(
+    			'MondelCuentaloBundle:Default:' . $pagina . '.html.twig');
+    }
 }

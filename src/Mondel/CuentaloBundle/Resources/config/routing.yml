@@ -16,6 +16,10 @@ _registrar:
     pattern:  /registrarme
     defaults: { _controller: MondelCuentaloBundle:Usuario:registro }
 
+_pagina:
+    pattern:  /pagina/{pagina}
+    defaults: { _controller: MondelCuentaloBundle:Default:pagina }    
+
 # usuario
 
 _contrasenia_recuperar:
