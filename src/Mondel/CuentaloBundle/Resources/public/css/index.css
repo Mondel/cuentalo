@@ -68,8 +68,7 @@
 	margin: 25px 2px;
 }
 
-.Post .Titulo {	
-	background: #eafcce;
+.Post .Titulo {
     border: 1px solid #91B658;
     font-size: 14px;
     padding: 7px 8px;
@@ -90,10 +89,8 @@
 }
 
 .Post .Titulo .TituloTexto {	
-	/*margin: 0 27px;*/
-	padding: 4px;
-	font-weight: bold;
-	text-align: right;
+	margin: 0 27px;
+	padding: 4px;	
 }
 
 .Post .Contenido {
