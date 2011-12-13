@@ -896,6 +896,6 @@ button span.icon,
 }
 
 #usuario {
-
-    font-size:11px;
+    float:left;
+    font-size:12px;
 }

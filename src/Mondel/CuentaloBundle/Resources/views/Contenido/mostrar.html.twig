@@ -58,13 +58,14 @@
 				{% for comentario in contenido.comentarios %}
 					{% set cssComentario = loop.index <= cantidadComentarios - 3 ? 'Comentario Hidden' : 'Comentario'  %}
 					<div class="{{ cssComentario }}">
-						<div class="ComentarioDatos">								
+						<div class="ComentarioDatos">	
+						<div id="usuario">							
 							{% if comentario.usuario.sexo == 'm' %}
 								<img class="IconoSexo" src="{{ asset('bundles/mondelcuentalo/img/masculino.png') }}" />
 							{% else %}
 								<img class="IconoSexo" src="{{ asset('bundles/mondelcuentalo/img/femenino.png') }}" />
 							{% endif %}
-							<div id="usuario"><b>{{ comentario.usuario.nick }}:</b></div> {{ comentario.texto }}
+							<b>{{ comentario.usuario.nick }}:</b></div> {{ comentario.texto }}
 							<br />
 							<div id="hora">{{ comentario.fechaCreacion | created_ago }}</div>
 						</div>
