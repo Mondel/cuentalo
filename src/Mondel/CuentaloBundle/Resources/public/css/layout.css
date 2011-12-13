@@ -889,3 +889,13 @@ button span.icon,
 .PVerComentarios {
 	text-align: center;
 }
+
+#hora {
+    float:right;
+    font-size:10px;
+}
+
+#usuario {
+    float:right;
+    font-size:11px;
+}
