@@ -161,6 +161,7 @@
 .ComentarioDatos {
 	float:left;
 	width: 550px;
+	background-color:#f6f6f6;
 }
 .ComentarioAccion {
 	float: rigth;	
