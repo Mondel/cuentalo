@@ -64,9 +64,9 @@
 							{% else %}
 								<img class="IconoSexo" src="{{ asset('bundles/mondelcuentalo/img/femenino.png') }}" />
 							{% endif %}
-							{{ comentario.usuario.nick }}: {{ comentario.texto }}
+							<b>{{ comentario.usuario.nick }}:</b> {{ comentario.texto }}
 							<br />
-							{{ comentario.fechaCreacion | created_ago }}
+							<div id class="hora">{{ comentario.fechaCreacion | created_ago }}</div>
 						</div>
 						<div class="ComentarioAccion">
 							<div class="EliminarItem">
