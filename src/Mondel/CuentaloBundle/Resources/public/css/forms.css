@@ -16,6 +16,8 @@
     color: #444;
 }
 
+
+
 .Form .ButtonForm {
     background-color: #eeeeee;
     background-image: -webkit-gradient(linear, left top, left bottom, from(#eeeeee), to(#cccccc));
@@ -442,3 +444,17 @@ button.red:active .label,
 
 
 /* ---------------------FIN CSS BUTTONS----------------------*/
+
+
+
+.titulo{
+font-size: 13px;
+
+}
+
+
+.textoterminos{
+font-size: 12px;
+	
+	
+}
