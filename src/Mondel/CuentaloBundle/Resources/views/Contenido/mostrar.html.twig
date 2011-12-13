@@ -33,10 +33,7 @@
 		<div class="Compartir">
 			<div class="Btn_fb">				
         		 <fb:like href="{{ url('_contenido_pagina_mostrar', { 'id': contenido.id }) }}" layout="button_count" show_faces="false" data-send="true" action="like" colorscheme="light"></fb:like>
-			</div>
-			<div>
-				<t:sharer data-url="{{ url('_contenido_pagina_mostrar', { 'id': contenido.id }) }}" data-layout="medium_simple" data-lang="es"></t:sharer>
-			</div>
+			</div>			
 			<div>
 				<a href="https://twitter.com/share" class="twitter-share-button" data-url="{{ url('_contenido_pagina_mostrar', { 'id': contenido.id }) }}" data-text="¡Mira que mensaje tan increíble estuve leyendo!" data-count="none" data-size="medium" data-via="Cuentalouy" data-related="MondelUruguay" data-lang="es">Twittear</a>				
 			</div>
