@@ -285,7 +285,9 @@ input:focus {
     font-size: 14px;
 }
 
-
+#menu_izquierdo button {
+	width: 176px;
+}
 
 #titulo_adsense {
 	width:182px;
