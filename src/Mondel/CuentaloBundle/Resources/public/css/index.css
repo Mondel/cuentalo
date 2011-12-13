@@ -74,8 +74,23 @@
     padding: 7px 8px;
 }
 
-.Post .Titulo .IconoSexo {
-    width: 15px;
+.IconoSexoM {
+    background: url('../../bundles/mondelcuentalo/img/user_man.png');
+    float: left;
+    height: 23px;
+    width: 23px;
+}
+
+.IconoSexoF {
+    background: url('../../bundles/mondelcuentalo/img/user_woman.png');
+    float: left;
+    height: 23px;    
+    width: 23px;
+}
+
+.Post .Titulo .TituloTexto {	
+	margin: 0 27px;
+	padding: 4px;
 }
 
 .Post .Contenido {
@@ -165,20 +180,12 @@
 	width: 550px;
 }
 
-.ComentarioDatos .IconSexM {
-	background: url('../../bundles/mondelcuentalo/img/masculino.png');
-	float: left;
-	height: 23px;
-	margin: 5px;
-	width: 23px;
+.ComentarioDatos .IconoSexoM {
+	margin: 5px;	
 }
 
-.ComentarioDatos .IconSexF {
-	background: url('../../bundles/mondelcuentalo/img/femenino.png');
-	float: left;
-	height: 23px;
-	margin: 5px;
-	width: 23px;	
+.ComentarioDatos .IconoSexoF {
+	margin: 5px;		
 }
 
 .ComentarioDatos .Texto {

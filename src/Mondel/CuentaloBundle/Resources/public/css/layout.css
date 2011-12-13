@@ -849,6 +849,10 @@ button span.icon,
 	background: url('../../bundles/mondelcuentalo/img/pass.png');
 }
 
+.IconDelete {
+	background: url('../../bundles/mondelcuentalo/img/delete.png');
+}
+
 .IconContact {
 	background: url('../../bundles/mondelcuentalo/img/contactarnos.png');
 }
