@@ -34,6 +34,10 @@ _usuario_activacion:
     pattern:  /usuario/activar/{token}
     defaults: { _controller: MondelCuentaloBundle:Usuario:usuarioActivacion }
 
+_usuario_eliminar:
+    pattern:  /usuario/eliminar
+    defaults: { _controller: MondelCuentaloBundle:Usuario:usuarioEliminar }
+
 # contenido
 
 _contenido_crear:

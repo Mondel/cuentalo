@@ -275,6 +275,53 @@ class UsuarioController extends Controller
     	);
     }
     
+    public function usuarioEliminarAction()
+    {
+    	$this->get('session')->removeFlash("notice");
+    	$this->get('session')->removeFlash("error");
+    
+    	if (false === $this->get('security.context')->isGranted('ROLE_USER'))
+    		throw new AccessDeniedException();
+    
+    	$peticion = $this->getRequest();
+    
+    	$formulario = $this->createFormBuilder()
+    		->add('contraseniaActual', 'password')    		
+    		->getForm();
+    
+    	if ($peticion->getMethod() == 'POST') {
+    		$formulario->bindRequest($peticion);
+    
+    		$data = $peticion->get('form');
+    		$contrasenia_actual = $data['contraseniaActual'];
+    
+    		$usuario = $this->get('security.context')->getToken()->getUser();
+    
+			$encoder = $this->get('security.encoder_factory')->getEncoder($usuario);
+			if ($encoder->isPasswordValid($usuario->getPassword(), $contrasenia_actual, $usuario->getSalt()))
+			{		
+				$usuario->setActivo(0);
+    
+				$em = $this->getDoctrine()->getEntityManager();
+				$em->persist($usuario);
+				$em->flush();
+    
+				//Desloguear al usuario dado de baja
+				$this->get("request")->getSession()->invalidate();
+				$this->get('security.context')->setToken(null);
+				$this->get('session')->setFlash('notice', "Se ha dado de baja su cuenta. Por cualquier información utilice la página de contacto");
+				return $this->redirect($this->generateUrl('_inicio'));
+			} else {
+				$this->get('session')->setFlash('error', 'La contraseña actual es incorrecta');
+			}    		
+    	}
+    
+    	return $this->render(
+    			'MondelCuentaloBundle:Usuario:usuarioEliminar.html.twig',
+    			array('form' => $formulario->createView())
+    	);
+    }
+    
     public function usuarioActivacionAction($token)
     {
         $repositorio = $this->getDoctrine()
