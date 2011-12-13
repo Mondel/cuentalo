@@ -52,8 +52,8 @@
 			{% if cantidadComentarios > 0 %}
 				{% if cantidadComentarios > 3 %}
 					<p class="PVerComentarios">
-						<a class="VerComentarios" href="javascript:void(0);">Ver los {{ cantidadComentarios }} comentarios</a>
-					</p>
+						<a class="VerComentarios" href="javascript:void(0);"><img src="{{ asset('bundles/mondelcuentalo/img/comentario.png') }}" alt="Ver Comentarios" />&nbsp; Ver los {{ cantidadComentarios }} comentarios</a>
+					</p><br>
 				{% endif %}
 				{% for comentario in contenido.comentarios %}
 					{% set cssComentario = loop.index <= cantidadComentarios - 3 ? 'Comentario Hidden' : 'Comentario'  %}
