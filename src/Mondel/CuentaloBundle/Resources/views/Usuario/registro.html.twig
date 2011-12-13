@@ -13,6 +13,11 @@
         <div id="registro_form" class="Form">
             {{ form_errors(form) }}
             <table>
+            	<tr>
+            		<td colspan="3">
+            			* S&oacute;lo el nick será visible para los demas usuarios registrados.
+            		</td>
+            	</tr>
                 <tr>
                     <td>{{ form_label(form.nick) }}</td>
                     <td>{{ form_widget(form.nick, { 'attr': {'class': 'FormInput'} }) }}</td>
