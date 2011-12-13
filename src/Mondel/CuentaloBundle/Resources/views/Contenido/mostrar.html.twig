@@ -49,7 +49,10 @@
 						{% set cssIcon = comentario.usuario.sexo == 'm' ? 'IconSexM' : 'IconSexF' %}
 						<div class="ComentarioDatos">
 							<div class="{{ cssIcon }}"></div> 
-							<div class="Texto">	
+							<div class="Texto">
+								{% if is_granted('ROLE_USER') %}
+									<p class="Bold">{{ comentario.usuario.nick }}</p>
+								{% endif %}	
 								<p>{{ comentario.texto }}</p>
 								<div class="Tiempo">{{ comentario.fechaCreacion | created_ago }}</div>
 							</div>							

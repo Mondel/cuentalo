@@ -886,4 +886,6 @@ button span.icon,
 	display: none;
 }
 
-
+.Bold {
+	font-weight: bold;
+}
