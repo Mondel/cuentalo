@@ -39,7 +39,7 @@
 			{% set cantidadComentarios = contenido.comentarios | length %}
 			{% if cantidadComentarios > 0 %}
 				{% if cantidadComentarios > 3 %}
-					<p class="PVerComentarios">
+					<p class="PComentarios">
 						<a class="VerComentarios" href="javascript:void(0);">Ver los {{ cantidadComentarios }} comentarios</a>
 					</p>
 				{% endif %}
@@ -66,7 +66,7 @@
 					</div>
 				{%endfor%}
 			{% else %}
-				No hay comentarios aún.<br>
+				<p class="PComentarios">No hay comentarios aún.</p>
 			{% endif %}
 			{% if is_granted('ROLE_USER') %}				
 				<form action="{{ path('_contenido_comentar', {'id': contenido.id}) }}" method="post" {{ form_enctype(formularios_comentarios[contenido.id]) }}>
@@ -75,7 +75,9 @@
 				 	{{ form_rest(formularios_comentarios[contenido.id]) }}
 				</form>
 			{% else %}
-				Para poder comentar debes estar <a href="{{ path('_registrar') }}" alt="Registrarme">registrado</a> o <a href="{{ path('_ingresar') }}" alt="Ingresar">iniciar sesión</a>								
+				<p class="PComentarios">
+					Para poder comentar debes estar <a href="{{ path('_registrar') }}" alt="Registrarme">registrado</a> o <a href="{{ path('_ingresar') }}" alt="Ingresar">iniciar sesión</a>
+				</p>								
 			{% endif %}
 		</div>
 	</div>
