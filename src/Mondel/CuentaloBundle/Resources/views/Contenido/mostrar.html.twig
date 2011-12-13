@@ -50,9 +50,9 @@
 						<div class="ComentarioDatos">
 							<div class="{{ cssIcon }}"></div> 
 							<div class="Texto">	
-								{{ comentario.texto }}
-							</div>
-							<div class="Tiempo">{{ comentario.fechaCreacion | created_ago }}</div>
+								<p>{{ comentario.texto }}</p>
+								<div class="Tiempo">{{ comentario.fechaCreacion | created_ago }}</div>
+							</div>							
 						</div>
 						<div class="ComentarioAccion">
 							<div class="EliminarItem">

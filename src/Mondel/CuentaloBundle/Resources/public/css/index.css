@@ -92,7 +92,7 @@
 .Post .Acciones {
 	border-left: 1px solid #91B658;
     border-right: 1px solid #91B658;
-	height: 45px;
+	height: 33px;
 }
 
 .Post .Compartir {
@@ -181,7 +181,12 @@
 	width: 23px;	
 }
 
-.ComentarioDatos .Tiempo {
+.ComentarioDatos .Texto {
+	float: left;
+	width: 510px;
+}
+
+.ComentarioDatos .Texto .Tiempo {
 	font-size: 10px;	
 }
 
