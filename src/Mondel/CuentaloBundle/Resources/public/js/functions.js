@@ -76,6 +76,7 @@ function eliminarVideo() {
 			$(this).removeAttr("disabled");
 		}
 	});
+	$('#contenido_categoria').val("");
 }
 
 function renderizarVideos() {
