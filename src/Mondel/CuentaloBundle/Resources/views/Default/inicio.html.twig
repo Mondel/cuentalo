@@ -16,12 +16,11 @@
         <div id="box">
             <form id="contenido_form" action="{{ path('_contenido_crear') }}" method="post" {{ form_enctype(form) }}>
 				{{ form_widget(form.texto, { 'attr': { 'placeholder': 'Escribe lo que deseas compartir, máximo 555 caracteres...' } }) }}
+                <div id="video"></div>
                 <div id="options">
                     {% if not is_granted('ROLE_USER') %}
-                        {#{ form_label(form.sexo) }#}
                         {{ form_widget(form.sexo) }}
-                    {% endif %}
-                    {#{ form_label(form.categoria) }#}
+                    {% endif %}                    
                     {{ form_widget(form.categoria) }}
                 </div>
                 {{ form_widget(form._token) }}

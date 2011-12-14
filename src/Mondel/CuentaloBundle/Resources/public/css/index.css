@@ -5,7 +5,7 @@
 	background-repeat:no-repeat;
 	*/
 	border: 2px solid #91b658;
-    height: 223px;
+    /*height: 223px;*/
     width: 580px;
 }
 
@@ -21,6 +21,7 @@
 }
 
 #options {
+	clear: both;
     font-size: 12px;
     height: 17px;
     margin-left: 10px;
@@ -95,12 +96,12 @@
 
 .Post .Contenido {
     font-size: 13px;
-    padding: 0 8px;
+    padding: 5px 8px;
     border-left: 1px solid #91B658;
     border-right: 1px solid #91B658;
     border-bottom: 1px solid #91B658;
     min-height:60px;
-    max-height:150px;
+    /*max-height:150px;*/
     overflow: hidden;
 }
 
@@ -165,6 +166,48 @@
 
 .PostLoading {
 	text-align: center;
+}
+
+#video {
+	border-top: 1px solid #91B658;
+	border-bottom: 1px solid #91B658;
+	display: none;
+	float: left;
+	margin: 10px 0;
+	padding: 10px;
+}
+
+#video .TituloVideo {
+	float: left;
+	font-size: 13px;
+	font-weight: bold;	
+	width: 520px;
+}
+
+#video #eliminarVideo {
+	float: right;
+	font-weight: bold;
+	width: 15px;
+}
+
+#video #eliminarVideo:hover {
+	cursor: pointer;
+}
+
+#video .ThumbnailVideo {
+	float: left;
+	margin: 5px;
+}
+
+#video .DescripcionVideo {
+	float: left;
+	font-size: 13px;
+	margin: 5px;	
+	width: 380px;
+}
+
+#video .UrlVideo {	
+	margin: 10px 0;
 }
 
 .Comentario {	

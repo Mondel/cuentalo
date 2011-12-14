@@ -4,7 +4,7 @@ $(document).ready(function(){
     	//return false;
     	//validaContenido($('#contenido_texto'), 50, 555, $('#message'), $('#contenido_form')) 
 	//});
-
+	
 	$(window).scroll(function(){
         if  ($(window).scrollTop() == $(document).height() - $(window).height()){
            obtenerContenidos();
@@ -15,10 +15,12 @@ $(document).ready(function(){
 
     $('#contenido_texto').keyup(function() {
         textChange();
+        findVideo();
     });
 
     $('#contenido_texto').keydown(function() {
         textChange();
+        findVideo();
     });
 
     $('input[name="comentario[texto]"]').each(function(index) {
@@ -36,5 +38,7 @@ $(document).ready(function(){
 			function() {
     			$(this).find('.EliminarItem').css("display", "none");    	
     		}
-	);    
+	);
+    
+    renderizarVideos();
 });
