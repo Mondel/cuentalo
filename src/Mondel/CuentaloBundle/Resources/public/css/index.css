@@ -105,6 +105,10 @@
     overflow: hidden;
 }
 
+.Post .Contenido div {
+	margin: 10px 0;
+}
+
 .Post .Acciones {
 	border-left: 1px solid #91B658;
     border-right: 1px solid #91B658;
