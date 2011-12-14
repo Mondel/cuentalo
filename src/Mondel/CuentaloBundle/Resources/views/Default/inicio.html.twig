@@ -12,7 +12,7 @@
 {% block content %}
     {{ parent() }}
     <input type="hidden" id="cid" value="{{ cid }}"/>
-    <div class="Wrap">
+    <!--<div class="Wrap"> -->
         <div id="box">
             <form id="contenido_form" action="{{ path('_contenido_crear') }}" method="post" {{ form_enctype(form) }}>
 				{{ form_widget(form.texto, { 'attr': { 'placeholder': 'Escribe lo que deseas compartir, máximo 555 caracteres...' } }) }}
@@ -39,7 +39,7 @@
             {% endfor %}
             <div class="PostLoading"/>
         </div>
-    </div>
+    <!-- </div> -->
 {% endblock %}
 {% block javascripts %}
     {{ parent() }}
