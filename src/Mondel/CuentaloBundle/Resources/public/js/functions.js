@@ -20,40 +20,56 @@ function textChange() {
     num.text(valor);
 }
 
-function findVideo() {
-	if ($('#video').html() == '') {
-		var titulo = "";
-		var thumbnail = "";
-		var descripcion = "";
-		var urlVideo = "";	
+function getDataVideo(idVideo) {
+	var respuesta = new Object();
+	urlApiYoutube = "http://gdata.youtube.com/feeds/api/videos?v=2&alt=jsonc&q=" + idVideo;
+	
+	$.ajax({
+		  url: urlApiYoutube,
+		  async: false,
+		  success: function(response){
+			  if (response.data != null) {
+					if (response.data.items != null && response.data.items.length > 0) {
+						datosVideo = response.data.items[0];
+						respuesta.titulo = datosVideo.title;
+						respuesta.descripcion = datosVideo.description;
+						respuesta.thumbnail = datosVideo.thumbnail.sqDefault;
+						respuesta.urlVideo = 'http://www.youtube.com/watch?v=' + idVideo;
+					}
+			  }	    
+		  }
+	});
+	return respuesta;
+} 
+
+function getHtmlDataVideoPost(data){
+	var id = 0;
+	var regexYoutube = /www\.youtube\.com\/watch\?[^v]*v=([^&]*)/ig;	
+	var urlYoutube = regexYoutube.exec(data.urlVideo);
+	if (urlYoutube != null)
+		id = urlYoutube[1];
 		
+	return "<div class='TituloVideo'><a target='_blank' href='" + data.urlVideo + "' alt='" + data.titulo + "'>" + data.titulo + "</a></div>" +
+	"<div class='ThumbnailVideo'><a href='javascript:void(0)'><img src='" + data.thumbnail + "' alt='" + data.titulo + "' /></a>" +
+	"</div><div class='DescripcionVideo'>" + data.descripcion + "</div><input type='hidden' id='youtubeI' value='" + id + "' />";
+}
+
+function getHtmlDataVideo(data){
+	return "<div class='TituloVideo'>" + data.titulo + "</div><div id='eliminarVideo'>X</div>" +
+	"<div class='ThumbnailVideo'><img src='" + data.thumbnail + "' alt='" + data.titulo + "' />" +
+	"</div><div class='DescripcionVideo'>" + data.descripcion + "<div class='UrlVideo'>" + data.urlVideo + "</div></div>";
+}
+
+function findVideo() {
+	if ($('#video').html() == '') {		
 		var areaText = $('#contenido_texto').val();
-		var regexYoutube = /www\.youtube\.com\/watch\?v=([^&]*)/ig;
+		var regexYoutube = /www\.youtube\.com\/watch\?[^v]*v=([^&]*)/ig;
 		
 		var urlYoutube = regexYoutube.exec(areaText);
 		if (urlYoutube != null) {
-			idVideoYoutube = urlYoutube[1];
-			urlApiYoutube = "http://gdata.youtube.com/feeds/api/videos?v=2&alt=jsonc&q=" + idVideoYoutube;
+			var data = getDataVideo(urlYoutube[1]);
+			var html = getHtmlDataVideo(data);
 			
-			$.ajax({
-				  url: urlApiYoutube,
-				  async: false,
-				  success: function(response){
-					  if (response.data != null) {
-							if (response.data.items != null && response.data.items.length > 0) {
-								datosVideo = response.data.items[0];
-								titulo = datosVideo.title;
-								descripcion = datosVideo.description;
-								thumbnail = datosVideo.thumbnail.sqDefault;
-								urlVideo = 'http://www.youtube.com/watch?v=' + idVideoYoutube;
-							}
-					  }	    
-				  }
-			});
-			
-			html = "<div class='TituloVideo'>" + titulo + "</div><div id='eliminarVideo'>X</div>" +
-				"<div class='ThumbnailVideo'><img src='" + thumbnail + "' alt='" + titulo + "' />" +
-				"</div><div class='DescripcionVideo'>" + descripcion + "<div class='UrlVideo'>" + urlVideo + "</div></div>";
 			$('#video').html(html);
 			$('#video').show();
 			$('#contenido_categoria option').each(function() {  
@@ -79,11 +95,38 @@ function eliminarVideo() {
 	$('#contenido_categoria').val("");
 }
 
+function getHtmlEmbedVideo(idVideo) {
+	var urlVideoYoutube = "http://www.youtube.com/embed/" + idVideo;
+	var htmlYoutube = '<div><iframe width="560" height="225" src="' + urlVideoYoutube + '" frameborder="0" allowfullscreen></iframe></div>';
+	return htmlYoutube;
+}
+
+function renderizarVideosPost() {
+	$('.Post').each(function(){
+		if ($(this).find('.TituloTexto').text().indexOf("Video") != '-1') {
+			var contenido = $(this).children('.Contenido');
+			var regexYoutube = /h?t?t?p?:?\/?\/?www\.youtube\.com\/watch\?[^v]*v=([^&]*).*/i;
+			var contenidoTexto = contenido.text().trim();
+			var idVideoYoutube = regexYoutube.exec(contenidoTexto);
+			if (idVideoYoutube != null) {	
+				var data = getDataVideo(idVideoYoutube[1]); 
+				contenido.html(
+					contenidoTexto.replace(regexYoutube, getHtmlDataVideoPost(data))
+				);
+				contenido.find('.ThumbnailVideo a').click(function(){
+					var idVideo = contenido.find('#youtubeI').eq(0).val();
+					contenido.html(getHtmlEmbedVideo(idVideo));
+				});
+			}
+		}
+	});
+} 
+
 function renderizarVideos() {
 	$('.Post').each(function(){
 		if ($(this).find('.TituloTexto').text().indexOf("Video") != '-1') {
 			var contenido = $(this).children('.Contenido');
-			var regexYoutube = /h?t?t?p?:?\/?\/?www\.youtube\.com\/watch\?v=([^&]*).*/i;
+			var regexYoutube = /h?t?t?p?:?\/?\/?www\.youtube\.com\/watch\?[^v]*v=([^&]*).*/i;
 			var contenidoTexto = contenido.text().trim();
 			var idVideoYoutube = regexYoutube.exec(contenidoTexto);
 			if (idVideoYoutube != null) {
@@ -133,8 +176,7 @@ function comentarioEliminar() {
 }
 
 function asignarOnClickVerComentarios() {	
-	var links = $('.VerComentarios');
-	alert(links.length);
+	var links = $('.VerComentarios');	
 	links.click(
 		function (){
 			$(this).parents('.Comentarios').children('.Comentario').removeClass('Hidden');

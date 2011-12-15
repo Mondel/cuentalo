@@ -109,6 +109,20 @@
 	margin: 10px 0;
 }
 
+.Post .Contenido .TituloVideo a {
+	color: #444;
+}
+
+.Post .Contenido .ThumbnailVideo {
+	float: left;
+}
+
+.Post .Contenido .DescripcionVideo {
+	float: left;
+	padding: 5px;
+	width: 400px;
+}
+
 .Post .Acciones {
 	border-left: 1px solid #91B658;
     border-right: 1px solid #91B658;

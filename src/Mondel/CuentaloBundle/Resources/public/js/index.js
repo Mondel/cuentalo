@@ -42,5 +42,5 @@ $(document).ready(function(){
     
     asignarOnClickVerComentarios();
     
-    renderizarVideos();
+    renderizarVideosPost();
 });
