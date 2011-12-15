@@ -114,12 +114,14 @@ function renderizarVideosPost() {
 				var data = getDataVideo(idVideoYoutube);
 				var contenidoNoVideo = contenido.html().replace(regexYoutube, '');
 				contenido.html(			
-						contenidoNoVideo + 
+						'<p>' + contenidoNoVideo + '</p>' + 
 						urlVideoYoutube.replace(regexYoutube, getHtmlDataVideoPost(data))
 				);				
 				contenido.find('.ThumbnailVideo a').click(function(){
 					var idVideo = contenido.find('#youtubeI').eq(0).val();
-					contenido.html(getHtmlEmbedVideo(idVideo));
+					contenido.html(
+							contenido.find('p').eq(0).html() +
+							getHtmlEmbedVideo(idVideo));
 				});
 			}
 		}
