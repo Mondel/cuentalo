@@ -99,15 +99,19 @@ function renderizarVideos() {
 
 function obtenerContenidos() {    
     $('.PostLoading').html('<img src="bundles/mondelcuentalo/img/ajax-loader.gif"/>');
-	$.get("contenido/" + $("#cid").val() + "/" + $(".Post:last").attr("id") + "/5",   
- 
-    function(data){
-        if (data != "") {
-        	$(".Post:last").after(data);
-        	actualizarBotones(data);
-        }
-        $('.PostLoading').empty();
-    });
+    var urlContenidos = "contenido/" + $("#cid").val() + "/" + $(".Post:last").attr("id") + "/5";
+    $.ajax({
+		  url: urlContenidos,
+		  async: false,
+		  success: function(response){
+			  if (response != "") {
+				  	$(".Post:last").after(response);
+				  	asignarOnClickVerComentarios();
+				  	actualizarBotones(response);		        			        	        	
+		        }
+		        $('.PostLoading').empty(); 
+		  }
+	});    
 };
 
 function actualizarBotones(data) {
@@ -126,4 +130,15 @@ function actualizarBotones(data) {
 
 function comentarioEliminar() {
 	return confirm('Esta seguro que desea eliminar este comentario ?');
+}
+
+function asignarOnClickVerComentarios() {	
+	var links = $('.VerComentarios');
+	alert(links.length);
+	links.click(
+		function (){
+			$(this).parents('.Comentarios').children('.Comentario').removeClass('Hidden');
+			$(this).remove();
+		}
+	);
 }
