@@ -30,16 +30,16 @@
 	</div>		
 	<div class="Datos">
 		<div class="TituloComentarios">Comentarios</div>
-		<div class="Comentarios">
+		<div class="Comentarios">			
 			{% set cantidadComentarios = contenido.comentarios | length %}
 			{% if cantidadComentarios > 0 %}
-				{% if cantidadComentarios > 3 %}
+				{% if cantidadComentarios > 3 and mostrarComentariosTodos is not defined %}
 					<p class="PComentarios">
 						<a class="VerComentarios" href="javascript:void(0);">Ver los {{ cantidadComentarios }} comentarios</a>
 					</p>
 				{% endif %}
 				{% for comentario in contenido.comentarios %}
-					{% set cssComentario = loop.index <= cantidadComentarios - 3 ? 'Comentario Hidden' : 'Comentario'  %}
+					{% set cssComentario = loop.index <= cantidadComentarios - 3 and mostrarComentariosTodos is not defined ? 'Comentario Hidden' : 'Comentario'  %}
 					<div class="{{ cssComentario }}">
 						{% set cssIcon = comentario.usuario.sexo == 'm' ? 'IconoSexoM' : 'IconoSexoF' %}
 						<div class="ComentarioDatos">

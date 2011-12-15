@@ -8,7 +8,7 @@
 {% endblock %}
 {% block content %}
 	{{ parent() }}
-	{% include 'MondelCuentaloBundle:Contenido:mostrar.html.twig' %}
+	{% include 'MondelCuentaloBundle:Contenido:mostrar.html.twig' with {'mostrarComentariosTodos':'1'} %}
 {% endblock %}
 {% block javascripts %}
 	{{ parent() }}
