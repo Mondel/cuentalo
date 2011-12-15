@@ -15,5 +15,8 @@ $(document).ready(function(){
 			function() {
     			$(this).find('.EliminarItem').css("display", "none");    	
     		}
-	);    
+	);   
+    
+    renderizarVideosPost();
+    
 });
