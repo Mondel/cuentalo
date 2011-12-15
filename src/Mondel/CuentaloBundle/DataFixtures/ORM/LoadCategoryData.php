@@ -21,8 +21,8 @@ class LoadCategoryData extends AbstractFixture implements OrderedFixtureInterfac
 
     public function load($manager)
     {
-    	$nombre_categorias = array('Amor', 'Anecdota', 'Anoche', 
-    			'Chiste', 'Futbol', 'Mensaje', 'Video', 'Secreto');
+    	$nombre_categorias = array('Anecdota', 'Anoche', 
+    			'Chiste', 'Futbol', 'Frase', 'Mensaje', 'Video', 'Secreto');
     	
     	foreach ($nombre_categorias as $nombre_categoria) {
 			$categoria = new Categoria();
