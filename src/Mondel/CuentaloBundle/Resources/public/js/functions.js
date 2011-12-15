@@ -44,7 +44,7 @@ function getDataVideo(idVideo) {
 
 function getHtmlDataVideoPost(data){
 	var id = 0;
-	var regexYoutube = /www\.youtube\.com\/watch\?[^v]*v=([^&]*)/ig;	
+	var regexYoutube = /www\.youtube\.com\/watch\?[^v]*v=([^&]{0,11})/ig;	
 	var urlYoutube = regexYoutube.exec(data.urlVideo);
 	if (urlYoutube != null)
 		id = urlYoutube[1];
@@ -63,7 +63,7 @@ function getHtmlDataVideo(data){
 function findVideo() {
 	if ($('#video').html() == '') {		
 		var areaText = $('#contenido_texto').val();
-		var regexYoutube = /www\.youtube\.com\/watch\?[^v]*v=([^&]*)/ig;
+		var regexYoutube = /www\.youtube\.com\/watch\?[^v]*v=([^&]{0,11})/ig;
 		
 		var urlYoutube = regexYoutube.exec(areaText);
 		if (urlYoutube != null) {
@@ -97,7 +97,7 @@ function eliminarVideo() {
 
 function getHtmlEmbedVideo(idVideo) {
 	var urlVideoYoutube = "http://www.youtube.com/embed/" + idVideo;
-	var htmlYoutube = '<div><iframe width="560" height="225" src="' + urlVideoYoutube + '" frameborder="0" allowfullscreen></iframe></div>';
+	var htmlYoutube = '<div><iframe width="560" height="250" src="' + urlVideoYoutube + '" frameborder="0" allowfullscreen></iframe></div>';
 	return htmlYoutube;
 }
 
@@ -105,14 +105,18 @@ function renderizarVideosPost() {
 	$('.Post').each(function(){
 		if ($(this).find('.TituloTexto').text().indexOf("Video") != '-1') {
 			var contenido = $(this).children('.Contenido');
-			var regexYoutube = /h?t?t?p?:?\/?\/?www\.youtube\.com\/watch\?[^v]*v=([^&]*).*/i;
+			var regexYoutube = /(h?t?t?p?:?\/?\/?www\.youtube\.com\/watch\?[^v]*v=([^&]{0,11}).*)/i;
 			var contenidoTexto = contenido.text().trim();
-			var idVideoYoutube = regexYoutube.exec(contenidoTexto);
+			var dataVideoYoutube = regexYoutube.exec(contenidoTexto);
+			var idVideoYoutube = dataVideoYoutube[2];
+			var urlVideoYoutube = dataVideoYoutube[1];
 			if (idVideoYoutube != null) {	
-				var data = getDataVideo(idVideoYoutube[1]); 
-				contenido.html(
-					contenidoTexto.replace(regexYoutube, getHtmlDataVideoPost(data))
-				);
+				var data = getDataVideo(idVideoYoutube);
+				var contenidoNoVideo = contenido.html().replace(regexYoutube, '');
+				contenido.html(			
+						contenidoNoVideo + 
+						urlVideoYoutube.replace(regexYoutube, getHtmlDataVideoPost(data))
+				);				
 				contenido.find('.ThumbnailVideo a').click(function(){
 					var idVideo = contenido.find('#youtubeI').eq(0).val();
 					contenido.html(getHtmlEmbedVideo(idVideo));
@@ -126,7 +130,7 @@ function renderizarVideos() {
 	$('.Post').each(function(){
 		if ($(this).find('.TituloTexto').text().indexOf("Video") != '-1') {
 			var contenido = $(this).children('.Contenido');
-			var regexYoutube = /h?t?t?p?:?\/?\/?www\.youtube\.com\/watch\?[^v]*v=([^&]*).*/i;
+			var regexYoutube = /h?t?t?p?:?\/?\/?www\.youtube\.com\/watch\?[^v]*v=([^&]{0,11}).*/i;
 			var contenidoTexto = contenido.text().trim();
 			var idVideoYoutube = regexYoutube.exec(contenidoTexto);
 			if (idVideoYoutube != null) {
@@ -150,7 +154,8 @@ function obtenerContenidos() {
 			  if (response != "") {
 				  	$(".Post:last").after(response);
 				  	asignarOnClickVerComentarios();
-				  	actualizarBotones(response);		        			        	        	
+				  	actualizarBotones(response);
+				  	renderizarVideosPost();
 		        }
 		        $('.PostLoading').empty(); 
 		  }
