@@ -10,7 +10,8 @@
         filter='yui_css'
     %}
     <link rel="stylesheet" type="text/css" media="screen" href="{{ asset_url }}" />
-<meta property="og:site_name" content="{{ asset('bundles/mondelcuentalo/img/cuentalo_sharer.png') }}"; />
+ <meta content='{{ asset('bundles/mondelcuentalo/img/cuentalo_sharer.png') }}' property='og:image'/>
+
     {% endstylesheets %}
 {% endblock %}
 {% block body %}
