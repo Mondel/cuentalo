@@ -96,7 +96,7 @@ function eliminarVideo() {
 }
 
 function getHtmlEmbedVideo(idVideo) {
-	var urlVideoYoutube = "http://www.youtube.com/embed/" + idVideo;
+	var urlVideoYoutube = "http://www.youtube.com/embed/" + idVideo + '?fs=1&autoplay=1';
 	var htmlYoutube = '<div><iframe width="560" height="250" src="' + urlVideoYoutube + '" frameborder="0" allowfullscreen></iframe></div>';
 	return htmlYoutube;
 }
@@ -105,24 +105,26 @@ function renderizarVideosPost() {
 	$('.Post').each(function(){
 		if ($(this).find('.TituloTexto').text().indexOf("Video") != '-1') {
 			var contenido = $(this).children('.Contenido');
-			var regexYoutube = /(h?t?t?p?:?\/?\/?www\.youtube\.com\/watch\?[^v]*v=([^&]{0,11}).*)/i;
+			var regexYoutube = /(h?t?t?p?:?\/?\/?www\.youtube\.com\/watch\?[^v]*v=([^&]{0,11})).*/i;
 			var contenidoTexto = contenido.text().trim();
 			var dataVideoYoutube = regexYoutube.exec(contenidoTexto);
-			var idVideoYoutube = dataVideoYoutube[2];
-			var urlVideoYoutube = dataVideoYoutube[1];
-			if (idVideoYoutube != null) {	
-				var data = getDataVideo(idVideoYoutube);
-				var contenidoNoVideo = contenido.html().replace(regexYoutube, '');
-				contenido.html(			
-						'<p>' + contenidoNoVideo + '</p>' + 
-						urlVideoYoutube.replace(regexYoutube, getHtmlDataVideoPost(data))
-				);				
-				contenido.find('.ThumbnailVideo a').click(function(){
-					var idVideo = contenido.find('#youtubeI').eq(0).val();
-					contenido.html(
-							contenido.find('p').eq(0).html() +
-							getHtmlEmbedVideo(idVideo));
-				});
+			if (dataVideoYoutube != null && dataVideoYoutube.length >= 3) {
+				var idVideoYoutube = dataVideoYoutube[2];
+				var urlVideoYoutube = dataVideoYoutube[1];
+				if (idVideoYoutube != null) {	
+					var data = getDataVideo(idVideoYoutube);
+					var contenidoNoVideo = contenido.html().replace(regexYoutube, '');
+					contenido.html(			
+							'<p>' + contenidoNoVideo + '</p>' + 
+							urlVideoYoutube.replace(regexYoutube, getHtmlDataVideoPost(data))
+					);				
+					contenido.find('.ThumbnailVideo a').click(function(){
+						var idVideo = contenido.find('#youtubeI').eq(0).val();
+						contenido.html(
+								contenido.find('p').eq(0).html() +
+								getHtmlEmbedVideo(idVideo));
+					});
+				}
 			}
 		}
 	});
