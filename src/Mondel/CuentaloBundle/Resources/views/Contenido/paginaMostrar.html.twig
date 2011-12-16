@@ -1,5 +1,11 @@
 {% extends 'MondelCuentaloBundle::layout.html.twig' %}
 
+{% block metas %}
+	<meta property="og:title" content="Cuentalo - {{ contenido.texto | cut_title | title }}"/>
+	<meta property="og:type" content="article"/>
+	<meta property="og:url" content="{{ url('_contenido_pagina_mostrar', {'id':contenido.id}) }}"/>        
+{% endblock %}
+
 {% block title %}{{ contenido.texto | cut_title | title }}{% endblock %}
 
 {% block stylesheets %}

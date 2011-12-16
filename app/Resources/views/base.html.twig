@@ -4,7 +4,16 @@
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <meta name="description" content="cuentalo,secretos,anecdotas,mensajes,red social, redes sociales uruguayas" />
         <meta name="keywords" content="" />
-        <meta property="og:image" content="http://test.cuentalo.com.uy/bundles/mondelcuentalo/img/cuentalo_sharer.png" />
+        <meta property="og:image" content="{{ asset('bundles/mondelcuentalo/img/cuentalo_sharer.png') }}" />
+        <meta property="fb:app_id" content="114757948564484"/>
+		<meta property="og:site_name" content="Cuentalo"/>
+		
+		{% block metas %}
+	        <meta property="og:title" content="Cuentalo - Conta tu Secreto, Anectoda o Mensaje"/>
+	    	<meta property="og:type" content="website"/>
+	    	<meta property="og:url" content="http://www.cuentalo.com.uy"/>        
+        {% endblock %}
+        
         <title>Cuentalo - {% block title %}Conta tu Secreto, Anectoda o Mensaje{% endblock %}</title>
 
         {% block stylesheets %}{% endblock %}
