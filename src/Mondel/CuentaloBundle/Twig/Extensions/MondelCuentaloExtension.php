@@ -8,10 +8,24 @@ class MondelCuentaloExtension extends \Twig_Extension
     public function getFilters()
     {
         return array(
-            'created_ago' => new \Twig_Filter_Method($this, 'createdAgo'),
+            'created_ago' 	=> new \Twig_Filter_Method($this, 'createdAgo'),
+			'cut_title' 	=> new \Twig_Filter_Method($this, 'cutTitle'),        		
         );
     }
 
+    public function cutTitle($title)
+    {
+    	$title = trim($title);
+    	$pattern = '/(http:\/\/|www\.).*/i';
+    	if (preg_match($pattern, $title))
+    		$title = preg_replace($pattern, '', $title);
+    	if (strlen($title) > 50)
+    		return substr($title, 0, 47) . '...';
+    	else if (strlen($title) == 0)
+    		$title = "Conta tu Secreto, Anectoda o Mensaje";
+    	return $title;	
+    }
+    
     public function createdAgo(\DateTime $dateTime)
     {
         $delta = time() - $dateTime->getTimestamp();

@@ -90,8 +90,12 @@
 }
 
 .Post .Titulo .TituloTexto {	
-	margin: 0 27px;
+	margin: 0 0 0 27px;
 	padding: 4px;	
+}
+
+.Post .Titulo .TituloTexto a {
+	color: #444;
 }
 
 .Post .Contenido {

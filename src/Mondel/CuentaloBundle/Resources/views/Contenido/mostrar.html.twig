@@ -9,8 +9,9 @@
 		{% endif %}
 		<div class="{{ cssIconSex }}"></div>
 		<div class="TituloTexto">
-			{{ contenido.categoria.nombre }} - {{ contenido.fechaCreacion | created_ago }}
-		</div>		
+			<span>{{ contenido.categoria.nombre }} - {{ contenido.fechaCreacion | created_ago }}</span>
+			<span class="Right"><a href="{{ path('_contenido_pagina_mostrar', {'id':contenido.id}) }}">#{{ contenido.id }}</a></span>
+		</div>
 	</div>
 	<div class="Contenido">
 		{{ contenido.texto }}		
