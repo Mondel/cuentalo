@@ -105,8 +105,8 @@ class ContenidoController extends Controller
     {
         $contenido = $this->getDoctrine()->getRepository('MondelCuentaloBundle:Contenido')->find($id);
 
-        if (!$contenido)
-            throw $this->createNotFoundException('El post que intentas ver no existe');
+        if (!$contenido || !$contenido->getActivo())
+            throw $this->createNotFoundException('El post que intentas ver no existe o esta desactivado');
 
         $comentario = new Comentario();
         $formulario = $this->createForm(new ComentarioType(), $comentario);
