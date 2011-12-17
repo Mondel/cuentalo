@@ -44,7 +44,7 @@ idmax = 0
 
 for url in url_sitemap:
     pattern = 'cuentalo.com.uy/contenido/(\d+)'
-    m = re.search(url)
+    m = re.search(pattern, url)
     if m is not None:
         if int(m.group(1)) > idmax:
             idmax = int(m.group(1))
