@@ -22,7 +22,7 @@ class MondelCuentaloExtension extends \Twig_Extension
     	if (strlen($title) > 50)
     		return substr($title, 0, 47) . '...';
     	else if (strlen($title) == 0)
-    		$title = "Una Red Diferente, Desahogate Y Comparte Lo Que Te Gusta Anonimamente";
+    		$title = "Una Red Social Diferente, Desahogate Y Comparte Lo Que Te Gusta Anonimamente";
     	return $title;	
     }
     
