@@ -1,3 +1,4 @@
 User-agent: *
 Allow: /
 Disallow: /usuario/
+Sitemap: http://www.example.com/sitemap.xml
