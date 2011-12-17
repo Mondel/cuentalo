@@ -4,6 +4,7 @@ namespace Mondel\CuentaloBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
+use Symfony\Component\HttpFoundation\Response;
 
 use Mondel\CuentaloBundle\Entity\Contenido,
     Mondel\CuentaloBundle\Entity\Comentario,
@@ -103,7 +104,8 @@ class ContenidoController extends Controller
     
     public function paginaMostrarAction($id)
     {
-        $contenido = $this->getDoctrine()->getRepository('MondelCuentaloBundle:Contenido')->find($id);
+    	$repositorio = $this->getDoctrine()->getRepository('MondelCuentaloBundle:Contenido'); 
+        $contenido = $repositorio->find($id);
 
         if (!$contenido)
             throw $this->createNotFoundException('El post que intentas ver no existe');
@@ -111,13 +113,34 @@ class ContenidoController extends Controller
         $comentario = new Comentario();
         $formulario = $this->createForm(new ComentarioType(), $comentario);
 
-        return $this->render(
-            'MondelCuentaloBundle:Contenido:paginaMostrar.html.twig',
-            array(
-                'contenido'  => $contenido,
-                'formularios_comentarios' => array($id => $formulario->createView())
-            )
-        );
+        $lastComment = $repositorio->getLastComment($contenido->getId());
+        $fechaLastModified = new \DateTime();
+        if ($lastComment != null)
+        	$fechaLastModified = $lastComment->getFechaCreacion();
+        else
+        	$fechaLastModified = $contenido->getFechaCreacion();	
+        
+        // create a Response with a ETag and/or a Last-Modified header
+        $response = $this->render(
+        			'MondelCuentaloBundle:Contenido:paginaMostrar.html.twig',
+        			array(
+        					'contenido'  => $contenido,
+        					'formularios_comentarios' => array($id => $formulario->createView())
+        			)
+        	);
+        $response->setETag(md5($contenido->getTexto()));
+        $response->setLastModified(
+        		$fechaLastModified
+        		);
+        
+        // Check that the Response is not modified for the given Request
+        if ($response->isNotModified($this->getRequest())) {
+        	// return the 304 Response immediately
+        	$response->setNotModified();
+        	
+        }
+        return $response;       
+        
     }
     
     public function mostrarAction($id)
