@@ -301,6 +301,12 @@ class UsuarioController extends Controller
 			if ($encoder->isPasswordValid($usuario->getPassword(), $contrasenia_actual, $usuario->getSalt()))
 			{
 				$em = $this->getDoctrine()->getEntityManager();
+				foreach ($usuario->getComentarios() as $comentario) {
+					$em->remove($comentario);
+				}
+				foreach ($usuario->getContenidos() as $contenido) {
+					$contenido->setUsuario(null);
+				}
 				$em->remove($usuario);
 				$em->flush();
     

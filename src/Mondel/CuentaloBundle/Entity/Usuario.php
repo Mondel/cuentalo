@@ -150,6 +150,11 @@ class Usuario implements AdvancedUserInterface
      * @ORM\OneToMany(targetEntity="Contenido", mappedBy="usuario")
      */
     private $contenidos;
+    
+    /**
+     * @ORM\OneToMany(targetEntity="Comentario", mappedBy="usuario")
+     */
+    private $comentarios;
 
     /*
      * Implements AdvancedUserInterface
