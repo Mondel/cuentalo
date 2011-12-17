@@ -71,6 +71,6 @@ try:
     dom = xml.dom.minidom.parseString(document)
     sitemap_file = file('/home/cuentalo/cuentalo.com.uy/web/sitemap.xml', 'w')
     sitemap_file.write(document);
-    sitemap_file.close()
+    sitemap_file.close()    
 except:
     pass
