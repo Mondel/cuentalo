@@ -1,0 +1,42 @@
+{% extends 'MondelCuentaloBundle::layout.html.twig' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    {% stylesheets '@MondelCuentaloBundle/Resources/public/css/forms.css' filter='yui_css' %}
+
+    <link rel="stylesheet" type="text/css" media="screen" href="{{ asset_url }}" />
+    {% endstylesheets %}    
+{% endblock %}
+{% block content %}
+    {{ parent() }}
+    <form action="{{ path('_contacto') }}" method="post" {{ form_enctype(form) }}>
+        <div id="contacto_form" class="Form">
+            {{ form_errors(form) }}
+            <table>            	
+                <tr>
+                    <td>{{ form_label(form.nombre) }}</td>
+                    <td>{{ form_widget(form.nombre, { 'attr': {'class': 'FormInput'} }) }}</td>
+                    <td>{{ form_errors(form.nombre) }}</td>
+                </tr>
+                <tr>
+                    <td>{{ form_label(form.email) }}</td>
+                    <td>{{ form_widget(form.email, { 'attr': {'class': 'FormInput'} }) }}</td>
+                    <td>{{ form_errors(form.email) }}</td>
+                </tr>  
+                <tr>
+                    <td>{{ form_label(form.tipo) }}</td>
+                    <td>{{ form_widget(form.tipo) }}</td>
+                    <td>{{ form_errors(form.tipo) }}</td>
+                </tr>              
+                <tr>
+                    <td>{{ form_label(form.mensaje) }}</td>
+                    <td>{{ form_widget(form.mensaje, { 'attr': {'class': 'FormTextarea'} }) }}</td>
+                    <td>{{ form_errors(form.mensaje) }}</td>
+                </tr>
+            </table>
+            {{ form_widget(form._token) }}            
+            <button class="button grey"><span class="label">Enviar</span></button>
+
+        </div>
+    </form>
+{% endblock %}
