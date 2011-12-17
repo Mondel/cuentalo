@@ -114,14 +114,12 @@
 						</button>
 					</form>
 				{% endif %}
-		    	<button class="gray">
-		    		<span class="icon IconContact"></span>
-		    		<span class="label">Contactarnos</span>
-	    		</button>
-		    	<button class="gray">
-		    		<span class="icon IconReport"></span>
-		    		<span class="label">Reportar problema</span>
-	    		</button>	    		
+				<form method="get" action="{{ path('_contacto') }}">
+			    	<button class="gray">
+			    		<span class="icon IconContact"></span>
+			    		<span class="label">Contactarnos</span>
+		    		</button>
+	    		</form>		    		    		
 	    	</div>    	
     		<div id="facebook">Seguinos en Facebook</div>
     		<div class="fb-like-box" data-href="https://www.facebook.com/pages/Cuentalo/221560061231773" data-width="182" data-height="380" data-show-faces="true" data-stream="false" data-header="false"></div>    		

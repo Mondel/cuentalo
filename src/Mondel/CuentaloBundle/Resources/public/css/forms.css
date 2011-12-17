@@ -12,6 +12,15 @@
     width: 200px;
 }
 
+.Form .FormTextarea {
+	background: #EEE;
+	border: 1px solid #CFCFCF;
+	color: #929191;
+	height: 100px;
+	margin-right: 15px;
+	width: 400px;
+}
+
 .Form .FormText {
     color: #444;
 }
