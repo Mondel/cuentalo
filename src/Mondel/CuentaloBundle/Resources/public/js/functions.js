@@ -27,15 +27,18 @@ function getDataVideo(idVideo) {
 	$.ajax({
 		  url: urlApiYoutube,
 		  async: false,
-		  success: function(response){
-			  if (response.data != null) {
-					if (response.data.items != null && response.data.items.length > 0) {
-						datosVideo = response.data.items[0];
-						respuesta.titulo = datosVideo.title;
-						respuesta.descripcion = datosVideo.description;
-						respuesta.thumbnail = datosVideo.thumbnail.sqDefault;
-						respuesta.urlVideo = 'http://www.youtube.com/watch?v=' + idVideo;
-					}
+		  success: function(response) {			  
+			  if ($.type(response) == 'string') {
+				  response = $.parseJSON(response);
+			  }			  
+			  if (response.data != null) {				  				  
+				  if (response.data.items != null && response.data.items.length > 0) {
+					  datosVideo = response.data.items[0];
+					  respuesta.titulo = datosVideo.title;
+					  respuesta.descripcion = datosVideo.description;
+					  respuesta.thumbnail = datosVideo.thumbnail.sqDefault;
+					  respuesta.urlVideo = 'http://www.youtube.com/watch?v=' + idVideo;
+				  }
 			  }	    
 		  }
 	});
