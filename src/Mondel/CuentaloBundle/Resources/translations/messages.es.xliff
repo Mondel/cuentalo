@@ -8,7 +8,7 @@
             </trans-unit>
             <trans-unit id="2">
                 <source>User account is disabled.</source>
-                <target>Tu cuenta ha sido dada de baja.</target>
+                <target>Tu cuenta esta desactivada.</target>
             </trans-unit>
             <trans-unit id="3">
                 <source>The presented password cannot be empty.</source>

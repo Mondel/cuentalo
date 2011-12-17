@@ -299,11 +299,9 @@ class UsuarioController extends Controller
     
 			$encoder = $this->get('security.encoder_factory')->getEncoder($usuario);
 			if ($encoder->isPasswordValid($usuario->getPassword(), $contrasenia_actual, $usuario->getSalt()))
-			{		
-				$usuario->setActivo(0);
-    
+			{
 				$em = $this->getDoctrine()->getEntityManager();
-				$em->persist($usuario);
+				$em->remove($usuario);
 				$em->flush();
     
 				//Desloguear al usuario dado de baja

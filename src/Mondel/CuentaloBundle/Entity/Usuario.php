@@ -51,7 +51,7 @@ class Usuario implements AdvancedUserInterface
      * @Assert\Email()
      * @Assert\MaxLength(50)
      * @Assert\NotBlank()
-     * @ORM\Column(name="email", type="string", length=50, unique=true)
+     * @ORM\Column(name="email", type="string", length=50)
      */
     private $email;
 
@@ -70,7 +70,7 @@ class Usuario implements AdvancedUserInterface
      * @Assert\MinLength(3)
      * @Assert\MaxLength(50)
      * @Assert\NotBlank()
-     * @ORM\Column(name="nick", type="string", length=50, unique=true)
+     * @ORM\Column(name="nick", type="string", length=50)
      */
     private $nick;
 
