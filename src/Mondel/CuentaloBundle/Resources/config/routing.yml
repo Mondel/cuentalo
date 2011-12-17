@@ -23,11 +23,11 @@ _pagina:
 # usuario
 
 _contrasenia_recuperar:
-    pattern:  /contraseña/recuperar
+    pattern:  /usuario/contraseña/recuperar
     defaults: { _controller: MondelCuentaloBundle:Usuario:contraseniaRecuperar }
 
 _contrasenia_cambiar:
-    pattern:  /contraseña/cambiar
+    pattern:  /usuario/contraseña/cambiar
     defaults: { _controller: MondelCuentaloBundle:Usuario:contraseniaCambiar }
 
 _usuario_activacion:
@@ -72,7 +72,7 @@ _contenido_categoria_listar:
     defaults:  { _controller: MondelCuentaloBundle:Contenido:categoriaListar }
 
 _comentario_eliminar:
-    pattern:  /comentario/{id}/eliminar
+    pattern:  /usuario/comentario/{id}/eliminar
     defaults:  { _controller: MondelCuentaloBundle:Contenido:comentarioEliminar }
     requirements: { id: \d+ }
 
