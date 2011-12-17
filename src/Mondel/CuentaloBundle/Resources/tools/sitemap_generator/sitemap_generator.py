@@ -49,16 +49,16 @@ for url in url_sitemap:
         if int(m.group(1)) > idmax:
             idmax = int(m.group(1))
         
-    print idmax
-    
-    for i in range(idmax):
-        url_aux = 'http://www.cuentalo.com.uy/contenido/%s' % i
-        try:
-            resp = urllib2.urlopen(url_aux)
-            if url_aux not in url_sitemap:
-                url_sitemap.append(url_aux)
-        except:
-            pass
+for i in range(idmax):
+    url_aux = 'http://www.cuentalo.com.uy/contenido/%s' % i
+    try:
+        resp = urllib2.urlopen(url_aux)
+        if url_aux not in url_sitemap:
+            url_sitemap.append(url_aux)
+    except:
+        pass
+
+print '%s urls encontradas' % len(url_sitemap)
 
 document = '<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">'
 
