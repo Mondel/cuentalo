@@ -9,6 +9,7 @@ Created on 17/12/2011
 import urllib2
 import re
 import xml.dom.minidom
+import os
 
 
 base = 'http://www.cuentalo.com.uy'
@@ -72,5 +73,10 @@ try:
     sitemap_file = file('/home/cuentalo/cuentalo.com.uy/web/sitemap.xml', 'w')
     sitemap_file.write(document);
     sitemap_file.close()    
+    
+    os.remove('/home/cuentalo/cuentalo.com.uy/src/Mondel/CuentaloBundle/Resources/tools/sitemap_generator/wgetlog.txt')
+    os.remove('/home/cuentalo/cuentalo.com.uy/src/Mondel/CuentaloBundle/Resources/tools/sitemap_generator/sedlog.txt')
+    
 except:
+    print 'ERROR'
     pass
