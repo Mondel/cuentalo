@@ -13,3 +13,7 @@
 .buildpath
 .project
 .settings
+
+facebook/
+actualizar.sh
+web/sitemap.xml
