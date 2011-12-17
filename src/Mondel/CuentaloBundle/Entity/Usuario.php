@@ -581,4 +581,24 @@ class Usuario implements AdvancedUserInterface
     {
         return $this->admin;
     }
+
+    /**
+     * Add comentarios
+     *
+     * @param Mondel\CuentaloBundle\Entity\Comentario $comentarios
+     */
+    public function addComentario(\Mondel\CuentaloBundle\Entity\Comentario $comentarios)
+    {
+        $this->comentarios[] = $comentarios;
+    }
+
+    /**
+     * Get comentarios
+     *
+     * @return Doctrine\Common\Collections\Collection 
+     */
+    public function getComentarios()
+    {
+        return $this->comentarios;
+    }
 }
