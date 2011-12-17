@@ -298,8 +298,11 @@ input:focus {
     text-align:center;
     font-weight:bold;
     line-height:30px;
-    font-size: 14px;
-    margin: 0 0 5px 0;
+    font-size: 14px;    
+}
+
+.AdsenseTriple {
+	margin: 10px 0;
 }
 
 #menu_top {
