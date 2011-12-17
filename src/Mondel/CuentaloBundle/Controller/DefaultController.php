@@ -81,19 +81,26 @@ class DefaultController extends Controller
 				
 				$form_data = $form->getData();
 				
-				$tipos = array('0' => 'Consulta', '1' => 'Reportar Error', '2' => 'Otro');
-				$email_to = array('0' => 'info@cuentalo.com.uy', '1' => 'bugs@cuentalo.com.uy', '2' => 'info@cuentalo.com.uy');
+				$datos_enviar = array(
+						'0' => array('Consulta', 'info@cuentalo.com.uy', 'Consulta desde cuentalo.com.uy'),
+						'1' => array('Reportar Error', 'bugs@cuentalo.com.uy', 'Reporte de bug desde cuentalo.com.uy'),
+						'2' => array('Otro', 'info@cuentalo.com.uy', 'Otra consulta desde cuentalo.com.uy')
+						);
+				
+				$tipo = $datos_enviar[$form_data['tipo']][0];
+				$email_para = $datos_enviar[$form_data['tipo']][1];
+				$asunto = $datos_enviar[$form_data['tipo']][2];
 				
 				$form_data_enviar = "Nombre: " . $form_data['nombre'] . "\n"
 					. "Email: " . $form_data['email'] . "\n"
-					. "Tipo: " . $tipos[$form_data['tipo']] . "\n"
+					. "Tipo: " . $tipo . "\n"
 					. "Mensaje: " . $form_data['mensaje'];
 				
 				$mensaje = \Swift_Message::newInstance()
-					->setSubject('Cuentalo: email de activación')
-					->setFrom('registros@cuentalo.com.uy')
-					->setTo('nico.racing.99@gmail.com')
-					->setBody('hola ' . $form_data_enviar);
+					->setSubject($asunto)
+					->setFrom('sitio@cuentalo.com.uy')
+					->setTo($email_para)
+					->setBody($form_data_enviar);
 				
 				$this->get('mailer')->send($mensaje);
 		
