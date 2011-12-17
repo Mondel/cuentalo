@@ -39,8 +39,26 @@ for d in data:
     if agregar:
         url_sitemap.append(d)
 
-print url_no_sitemap
-print len(url_sitemap)
+url_sitemap_aux = []
+idmax = 0
+
+for url in url_sitemap:
+    pattern = 'cuentalo.com.uy/contenido/(\d+)'
+    m = re.search(url)
+    if m is not None:
+        if int(m.group(1)) > idmax:
+            idmax = int(m.group(1))
+        
+    print idmax
+    
+    for i in range(idmax):
+        url_aux = 'http://www.cuentalo.com.uy/contenido/%s' % i
+        try:
+            resp = urllib2.urlopen(url_aux)
+            if url_aux not in url_sitemap:
+                url_sitemap.append(url_aux)
+        except:
+            pass
 
 document = '<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">'
 
