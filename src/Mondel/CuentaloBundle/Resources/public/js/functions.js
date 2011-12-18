@@ -106,34 +106,36 @@ function getHtmlEmbedVideo(idVideo) {
 	return htmlYoutube;
 }
 
-function renderizarVideosPost() {
+function renderizarVideosPost(id) {
 	$('.Post').each(function(){
-		var inputUrlVideo = $(this).find('.UrlVideo');
-		if (inputUrlVideo.val() != '') {
-			var contenido = $(this).children('.Contenido');
-			var regexYoutube = /(h?t?t?p?:?\/?\/?www\.youtube\.com\/watch\?[^v]*v=([^&]{0,11})).*/i;
-			var urlYoutube = inputUrlVideo.val();
-			var dataVideoYoutube = regexYoutube.exec(urlYoutube);
-			if (dataVideoYoutube != null && dataVideoYoutube.length >= 3) {
-				var idVideoYoutube = dataVideoYoutube[2];
-				var urlVideoYoutube = dataVideoYoutube[1];
-				if (idVideoYoutube != null) {	
-					var data = getDataVideo(idVideoYoutube);
-					contenido.html(
-							contenido.html() + 
-							'<div class="VideoData" style="float:left;">' + 
-							getHtmlDataVideoPost(data) +
-							'</div>'
-					);
-					contenido.find('.ThumbnailVideo a').click(function(){
-						var idVideo = contenido.find('#youtubeI').eq(0).val();
-						contenido.find('.VideoData').fadeOut(
-								300, 
-								function() {
-									$(this).remove();
-									contenido.html(contenido.html() + getHtmlEmbedVideo(idVideo));
-								});						
-					});
+		if (id == 0 || parseInt($(this).attr('id')) < id) {
+			var inputUrlVideo = $(this).find('.UrlVideo');
+			if (inputUrlVideo.val() != '') {
+				var contenido = $(this).children('.Contenido');
+				var regexYoutube = /(h?t?t?p?:?\/?\/?www\.youtube\.com\/watch\?[^v]*v=([^&]{0,11})).*/i;
+				var urlYoutube = inputUrlVideo.val();
+				var dataVideoYoutube = regexYoutube.exec(urlYoutube);
+				if (dataVideoYoutube != null && dataVideoYoutube.length >= 3) {
+					var idVideoYoutube = dataVideoYoutube[2];
+					var urlVideoYoutube = dataVideoYoutube[1];
+					if (idVideoYoutube != null) {	
+						var data = getDataVideo(idVideoYoutube);
+						contenido.html(
+								contenido.html() + 
+								'<div class="VideoData" style="float:left;">' + 
+								getHtmlDataVideoPost(data) +
+								'</div>'
+						);
+						contenido.find('.ThumbnailVideo a').click(function(){
+							var idVideo = contenido.find('#youtubeI').eq(0).val();
+							contenido.find('.VideoData').fadeOut(
+									300, 
+									function() {
+										$(this).remove();
+										contenido.html(contenido.html() + getHtmlEmbedVideo(idVideo));
+									});						
+						});
+					}
 				}
 			}
 		}
@@ -160,7 +162,9 @@ function renderizarVideos() {
 
 function obtenerContenidos() {    
     $('.PostLoading').html('<img src="bundles/mondelcuentalo/img/ajax-loader.gif"/>');
-    var urlContenidos = "contenido/" + $("#cid").val() + "/" + $(".Post:last").attr("id") + "/5";
+    var cid = $("#cid").val();
+    var lastId = $(".Post:last").attr("id");
+    var urlContenidos = "contenido/" + cid + "/" + lastId + "/5";
     $.ajax({
 		  url: urlContenidos,
 		  async: false,
@@ -169,7 +173,7 @@ function obtenerContenidos() {
 				  	$(".Post:last").after(response);
 				  	asignarOnClickVerComentarios();
 				  	actualizarBotones(response);
-				  	renderizarVideosPost();
+				  	renderizarVideosPost(lastId);
 		        }
 		        $('.PostLoading').empty(); 
 		  }
