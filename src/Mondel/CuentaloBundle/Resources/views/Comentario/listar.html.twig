@@ -1,0 +1,4 @@
+{% for comentario in contenido.comentarios %}
+	{% set cssComentario = loop.index <= cantidadComentarios - 3 and mostrarComentariosTodos is not defined ? 'Comentario Hidden' : 'Comentario'  %}
+	{% include 'MondelCuentaloBundle:Comentario:mostrar.html.twig' %}						
+{%endfor%}

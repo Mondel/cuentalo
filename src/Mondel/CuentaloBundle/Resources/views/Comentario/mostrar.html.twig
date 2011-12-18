@@ -1,0 +1,22 @@
+<div class="{{ cssComentario }}" id="{{ comentario.id }}">
+	{% set cssIcon = comentario.usuario.sexo == 'm' ? 'IconoSexoM' : 'IconoSexoF' %}
+	<div class="ComentarioDatos">
+		<div class="{{ cssIcon }}"></div> 
+		<div class="Texto">
+			{% if is_granted('ROLE_USER') %}
+				<p class="Bold">{{ comentario.usuario.nick }}</p>
+			{% endif %}	
+			<p>{{ comentario.texto }}</p>
+			<div class="Tiempo">{{ comentario.fechaCreacion | created_ago }}</div>
+		</div>							
+	</div>
+	<div class="ComentarioAccion">
+		<div class="EliminarItem">
+			{% if is_granted('ROLE_USER') %}
+				{% if comentario.usuario and (comentario.usuario.id == app.security.token.user.id) %}
+					<a href="{{ path('_comentario_eliminar', { 'id': comentario.id }) }}" alt="Eliminar Comentario" onclick="return comentarioEliminar()">X</a>
+				{% endif %}
+			{% endif %}
+		</div>
+	</div>										
+</div>
