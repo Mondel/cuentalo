@@ -16,12 +16,10 @@ class MondelCuentaloExtension extends \Twig_Extension
     public function cutTitle($title)
     {
     	$title = trim($title);
-    	$pattern = '/(http:\/\/|www\.).*/i';
-    	if (preg_match($pattern, $title))
-    		$title = preg_replace($pattern, '', $title);
-    	if (strlen($title) > 50)
-    		return substr($title, 0, 47) . '...';
-    	else if (strlen($title) == 0)
+    	$title_length = strlen($title);
+    	if ($title_length > 50)
+    		$title = substr($title, 0, 47) . '...';
+    	else if ($title_length == 0)
     		$title = "Una Red Social Diferente, Desahogate Y Comparte Lo Que Te Gusta Anonimamente";
     	return $title;	
     }
