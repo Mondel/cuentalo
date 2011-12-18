@@ -53,6 +53,13 @@ class Contenido
     private $sexo;
 
     /**
+     * @var string $url_video
+     *     
+     * @ORM\Column(name="url_video", type="string", length=255, nullable=true)
+     */
+    private $url_video;
+    
+    /**
      * @var boolean $activo
      *
      * @ORM\Column(name="activo", type="boolean")
@@ -293,5 +300,25 @@ class Contenido
     public function getVotos()
     {
         return $this->votos;
+    }
+
+    /**
+     * Set url_video
+     *
+     * @param string $urlVideo
+     */
+    public function setUrlVideo($urlVideo)
+    {
+        $this->url_video = $urlVideo;
+    }
+
+    /**
+     * Get url_video
+     *
+     * @return string 
+     */
+    public function getUrlVideo()
+    {
+        return $this->url_video;
     }
 }

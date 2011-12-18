@@ -16,6 +16,7 @@
         <div id="box">
             <form id="contenido_form" action="{{ path('_contenido_crear') }}" method="post" {{ form_enctype(form) }}>
 				{{ form_widget(form.texto, { 'attr': { 'placeholder': 'Escribe lo que deseas compartir, máximo 555 caracteres...' } }) }}
+                {{ form_widget(form.url_video) }}
                 <div id="video"></div>
                 <div id="options">
                     {% if not is_granted('ROLE_USER') %}

@@ -75,6 +75,7 @@ function findVideo() {
 			
 			$('#video').html(html);
 			$('#video').show();
+			$('#contenido_url_video').val(data.urlVideo);
 			$('#contenido_categoria option').each(function() {  
 				if ($(this).text() == 'Video'){				
 					$('#contenido_categoria').val($(this).val());				
@@ -90,6 +91,7 @@ function findVideo() {
 function eliminarVideo() {	
 	$('#video').html("");
 	$('#video').hide();
+	$('#contenido_url_video').removeAttr('value');
 	$('#contenido_categoria option').each(function() {  
 		if ($(this).attr("disabled")) {				
 			$(this).removeAttr("disabled");
@@ -106,26 +108,31 @@ function getHtmlEmbedVideo(idVideo) {
 
 function renderizarVideosPost() {
 	$('.Post').each(function(){
-		if ($(this).find('.TituloTexto').text().indexOf("Video") != '-1') {
+		var inputUrlVideo = $(this).find('.UrlVideo');
+		if (inputUrlVideo.val() != '') {
 			var contenido = $(this).children('.Contenido');
 			var regexYoutube = /(h?t?t?p?:?\/?\/?www\.youtube\.com\/watch\?[^v]*v=([^&]{0,11})).*/i;
-			var contenidoTexto = contenido.text().trim();
-			var dataVideoYoutube = regexYoutube.exec(contenidoTexto);
+			var urlYoutube = inputUrlVideo.val();
+			var dataVideoYoutube = regexYoutube.exec(urlYoutube);
 			if (dataVideoYoutube != null && dataVideoYoutube.length >= 3) {
 				var idVideoYoutube = dataVideoYoutube[2];
 				var urlVideoYoutube = dataVideoYoutube[1];
 				if (idVideoYoutube != null) {	
 					var data = getDataVideo(idVideoYoutube);
-					var contenidoNoVideo = contenido.html().replace(regexYoutube, '');
-					contenido.html(			
-							'<p>' + contenidoNoVideo + '</p>' + 
-							urlVideoYoutube.replace(regexYoutube, getHtmlDataVideoPost(data))
-					);				
+					contenido.html(
+							contenido.html() + 
+							'<div class="VideoData" style="float:left;">' + 
+							getHtmlDataVideoPost(data) +
+							'</div>'
+					);
 					contenido.find('.ThumbnailVideo a').click(function(){
 						var idVideo = contenido.find('#youtubeI').eq(0).val();
-						contenido.html(
-								contenido.find('p').eq(0).html() +
-								getHtmlEmbedVideo(idVideo));
+						contenido.find('.VideoData').fadeOut(
+								300, 
+								function() {
+									$(this).remove();
+									contenido.html(contenido.html() + getHtmlEmbedVideo(idVideo));
+								});						
 					});
 				}
 			}

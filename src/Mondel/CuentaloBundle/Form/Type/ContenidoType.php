@@ -28,7 +28,8 @@ class ContenidoType extends AbstractType {
                     'max_length'        => 555,
                     'required'          => true,
                     'error_bubbling'    => true
-                ));
+                ))
+				->add('url_video', 'hidden');
     }
 
     public function getDefaultOptions(array $options) {

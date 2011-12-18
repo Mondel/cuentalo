@@ -1,4 +1,7 @@
 <div class="Post" id="{{ contenido.id }}">
+	{% if contenido.categoria.nombre == 'Video' %}
+		<input type="hidden" class="UrlVideo" value="{{ contenido.urlVideo }}" />
+	{% endif %}
 	<div class="Titulo">
 		{% if contenido.usuario != null %}
 			{% set cssIconSex = contenido.usuario.sexo == 'm' ? 'IconoSexoM' : 'IconoSexoF' %}
