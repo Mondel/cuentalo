@@ -1,3 +1,5 @@
-{% for contenido in contenidos %}
-	{% include 'MondelCuentaloBundle:Contenido:mostrar.html.twig' %}
-{% endfor %}
+{% spaceless %}
+	{% for contenido in contenidos %}
+		{% include 'MondelCuentaloBundle:Contenido:mostrar.html.twig' %}
+	{% endfor %}
+{% endspaceless %}

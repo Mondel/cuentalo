@@ -65,7 +65,7 @@ _contenido_comentar:
 _contenido_listar:
     pattern:  /contenido/{categoria}/{inicio}/{cantidad}
     defaults:  { _controller: MondelCuentaloBundle:Contenido:listar }
-    requirements: { inicio: \d+, cantidad: \d+ }    
+    requirements: { categoria: \d+, inicio: \d+, cantidad: \d+ }    
 
 _contenido_categoria_listar:
     pattern:  /{categoria}
