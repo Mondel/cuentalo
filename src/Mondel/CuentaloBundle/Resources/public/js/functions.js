@@ -106,40 +106,39 @@ function getHtmlEmbedVideo(idVideo) {
 	return htmlYoutube;
 }
 
-function renderizarVideosPost(id) {
-	$('.Post').each(function(){
-		if (id == 0 || parseInt($(this).attr('id')) < id) {
-			var inputUrlVideo = $(this).find('.UrlVideo');
-			if (inputUrlVideo.val() != '') {
-				var contenido = $(this).children('.Contenido');
-				var regexYoutube = /(h?t?t?p?:?\/?\/?www\.youtube\.com\/watch\?[^v]*v=([^&]{0,11})).*/i;
-				var urlYoutube = inputUrlVideo.val();
-				var dataVideoYoutube = regexYoutube.exec(urlYoutube);
-				if (dataVideoYoutube != null && dataVideoYoutube.length >= 3) {
-					var idVideoYoutube = dataVideoYoutube[2];
-					var urlVideoYoutube = dataVideoYoutube[1];
-					if (idVideoYoutube != null) {	
-						var data = getDataVideo(idVideoYoutube);
-						contenido.html(
-								contenido.html() + 
-								'<div class="VideoData" style="float:left;">' + 
-								getHtmlDataVideoPost(data) +
-								'</div>'
-						);
-						contenido.find('.ThumbnailVideo a').click(function(){
-							var idVideo = contenido.find('#youtubeI').eq(0).val();
-							contenido.find('.VideoData').fadeOut(
-									300, 
-									function() {
-										$(this).remove();
-										contenido.html(contenido.html() + getHtmlEmbedVideo(idVideo));
-									});						
-						});
-					}
-				}
+function renderizarVideosPost($html) {
+	var posts = $html;
+	if ($html == null) {
+		$html = $(document);
+		posts = $html.find('.Post');
+	}
+	posts.each(function() {
+		var contenido = $(this).find('.Contenido');
+		var urlVideo = $(this).find('.UrlVideo').val();
+		if (urlVideo != null && urlVideo != '') {
+			var regex = /[\?&]+v=([^&]{0,11})/i;
+			var idVideoR = regex.exec(urlVideo);
+			if (idVideoR.length == 2) {
+				var idVideo = idVideoR[1];					
+				var data = getDataVideo(idVideo);
+				contenido.html(
+						contenido.html() + 
+						'<div class="VideoData" style="float:left;">' + 
+						getHtmlDataVideoPost(data) +
+						'</div>'
+				);
+				contenido.find('.ThumbnailVideo a').click(function(){				
+					contenido.find('.VideoData').fadeOut(
+						300, 
+						function() {
+							$(this).remove();
+							contenido.html(contenido.html() + getHtmlEmbedVideo(idVideo));
+						}
+					);
+				});
 			}
 		}
-	});
+	});	
 } 
 
 function renderizarVideos() {
@@ -158,39 +157,46 @@ function renderizarVideos() {
 			}
 		}
 	});
-} 
+}
 
-function obtenerContenidos() {    
+function obtenerContenidos() {
     $('.PostLoading').html('<img src="bundles/mondelcuentalo/img/ajax-loader.gif"/>');
     var cid = $("#cid").val();
     var lastId = $(".Post:last").attr("id");
     var urlContenidos = "contenido/" + cid + "/" + lastId + "/5";
+    var response = '';
     $.ajax({
-		  url: urlContenidos,
-		  async: false,
-		  success: function(response){
-			  if (response != "") {
-				  	$(".Post:last").after(response);
-				  	asignarOnClickVerComentarios();
-				  	actualizarBotones(response);
-				  	renderizarVideosPost(lastId);
-		        }
-		        $('.PostLoading').empty(); 
-		  }
-	});    
+    	url: urlContenidos,
+    	async: true,
+    	success: function(response) {
+    		if (response != "") {
+    			var lastPost = $(".Post:last");
+    			lastPost.after(response);
+    			var newPosts = lastPost.nextAll();
+			  	asignarOnClickVerComentarios(newPosts);
+			  	actualizarBotones(newPosts);
+			  	renderizarVideosPost(newPosts);
+		  	}
+	        $('.PostLoading').empty();
+	        window.isScrolling = false;
+    	}
+	});	
 };
 
-function actualizarBotones(data) {
-	var $response = $(data);
+function actualizarBotones($response) {
 	
 	if( $response.length < 1 ) return;
 	
-	gapi.plusone.go();
-	
-	FB.XFBML.parse();
-	
-	$response.find('a.twitter-share-button').each(function() {
-		twttr.widgets.load($(this).get(0));		
+	$response.each(function(){
+		gapi.plusone.go(
+				$(this).attr('id')		
+		);
+		FB.XFBML.parse(
+				$(this).get(0)
+		);
+		twttr.widgets.load(
+				$(this).find('a.twitter-share-button').eq(0).get(0)
+		);
 	});
 }
 
@@ -198,9 +204,11 @@ function comentarioEliminar() {
 	return confirm('Esta seguro que desea eliminar este comentario ?');
 }
 
-function asignarOnClickVerComentarios() {	
-	var links = $('.VerComentarios');	
-	links.click(
+function asignarOnClickVerComentarios($html) {	
+	if ($html == null) {
+		$html = $(document);
+	}
+	$html.find('.VerComentarios').click(
 		function (){
 			$(this).parents('.Comentarios').children('.Comentario').removeClass('Hidden');
 			$(this).remove();
