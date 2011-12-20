@@ -47,7 +47,7 @@ function getDataVideo(idVideo) {
 
 function getHtmlDataVideoPost(data){
 	var id = 0;
-	var regexYoutube = /www\.youtube\.com\/watch\?[^v]*v=([^&]{0,11})/ig;	
+	var regexYoutube = /www\.youtube\.com\/watch\?[^v]*v=([^&]{11})/ig;	
 	var urlYoutube = regexYoutube.exec(data.urlVideo);
 	if (urlYoutube != null)
 		id = urlYoutube[1];
@@ -66,7 +66,7 @@ function getHtmlDataVideo(data){
 function findVideo() {
 	if ($('#video').html() == '') {		
 		var areaText = $('#contenido_texto').val();
-		var regexYoutube = /www\.youtube\.com\/watch\?[^v]*v=([^&]{0,11})/ig;
+		var regexYoutube = /www\.youtube\.com\/watch\?[^v]*v=([^&]{11})/ig;
 		
 		var urlYoutube = regexYoutube.exec(areaText);
 		if (urlYoutube != null) {
@@ -116,7 +116,7 @@ function renderizarVideosPost($html) {
 		var contenido = $(this).find('.Contenido');
 		var urlVideo = $(this).find('.UrlVideo').val();
 		if (urlVideo != null && urlVideo != '') {
-			var regex = /[\?&]+v=([^&]{0,11})/i;
+			var regex = /[\?&]+v=([^&]{11})/i;
 			var idVideoR = regex.exec(urlVideo);
 			if (idVideoR.length == 2) {
 				var idVideo = idVideoR[1];					
@@ -145,7 +145,7 @@ function renderizarVideos() {
 	$('.Post').each(function(){
 		if ($(this).find('.TituloTexto').text().indexOf("Video") != '-1') {
 			var contenido = $(this).children('.Contenido');
-			var regexYoutube = /h?t?t?p?:?\/?\/?www\.youtube\.com\/watch\?[^v]*v=([^&]{0,11}).*/i;
+			var regexYoutube = /h?t?t?p?:?\/?\/?www\.youtube\.com\/watch\?[^v]*v=([^&]{11}).*/i;
 			var contenidoTexto = contenido.text().trim();
 			var idVideoYoutube = regexYoutube.exec(contenidoTexto);
 			if (idVideoYoutube != null) {
