@@ -9,26 +9,22 @@ $(document).ready(function(){
         }
 	});
 	
-    textChange();
+    var areaTexto = '#contenido_texto';
+    var areaCount = '#count_caracteres';
 
-    $('#contenido_texto').keyup(function() {
-        textChange();
+    textChange(areaTexto, areaCount);
+
+    $(areaTexto).keyup(function() {
+        textChange(areaTexto, areaCount);
         findVideo();
     });
 
-    $('#contenido_texto').keydown(function() {
-        textChange();
+    $(areaTexto).keydown(function() {
+        textChange(areaTexto, areaCount);
         findVideo();
     });
    
-    $('.Comentario').hover(
-    		function() {
-				$(this).find('.EliminarItem').css("display", "block");    	
-    		},
-			function() {
-    			$(this).find('.EliminarItem').css("display", "none");    	
-    		}
-	);
+    asignarOnHoverComentarioEliminar('.Comentario', '.EliminarItem');
     
     asignarOnClickVerComentarios();
     

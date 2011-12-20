@@ -13,11 +13,10 @@ function validaContenido(input, min_length, max_length, errors, form) {
     }
 }
 
-function textChange() {
-    var area = $('#contenido_texto');
-    var num = $('#count_caracteres');
-    var valor = 555 - area.val().length;
-    num.text(valor);
+function textChange(areaTexto, areaCount) {
+    $(areaCount).text(
+    	555 - $(areaTexto).val().length
+    );
 }
 
 function getDataVideo(idVideo) {
@@ -202,6 +201,17 @@ function actualizarBotones($response) {
 
 function comentarioEliminar() {
 	return confirm('Esta seguro que desea eliminar este comentario ?');
+}
+
+function asignarOnHoverComentarioEliminar(selComentario, selItem) {
+	$(selComentario).hover(
+    		function() {
+				$(this).find(selItem).css("display", "block");    	
+    		},
+			function() {
+    			$(this).find(selItem).css("display", "none");    	
+    		}
+	);   	
 }
 
 function asignarOnClickVerComentarios($html) {	
