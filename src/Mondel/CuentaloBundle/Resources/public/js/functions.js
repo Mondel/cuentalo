@@ -166,7 +166,7 @@ function obtenerContenidos() {
     var response = '';
     $.ajax({
     	url: urlContenidos,
-    	dataType: 'json',
+    	//dataType: 'json', //todavia no esta pronto para recibir json
     	async: true,
     	success: function(response) {
     		if (response != "") {
