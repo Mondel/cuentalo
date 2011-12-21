@@ -166,6 +166,7 @@ function obtenerContenidos() {
     var response = '';
     $.ajax({
     	url: urlContenidos,
+    	dataType: 'json',
     	async: true,
     	success: function(response) {
     		if (response != "") {

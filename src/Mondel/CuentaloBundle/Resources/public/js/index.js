@@ -3,7 +3,10 @@ $(document).ready(function(){
 	window.isScrolling = false;
 	
 	$(window).scroll(function(){
-        if  ($(window).scrollTop() == $(document).height() - $(window).height() && !window.isScrolling){
+        if  (($(window).scrollTop() == $(document).height() - $(window).height() || 
+        $(window).scrollTop() + 1 == $(document).height() - $(window).height() ||
+        $(window).scrollTop() - 1 == $(document).height() - $(window).height())
+        && !window.isScrolling){
         	window.isScrolling = true;
         	obtenerContenidos();        	
         }
