@@ -880,8 +880,9 @@ button span.icon,
 
 #right {
     float: left;
+    margin: 0 11px;
     text-align: center;
-    width: 195px;
+    width: 182px;    
 }
 
 /* FOOTER */
