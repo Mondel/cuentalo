@@ -32,13 +32,18 @@ class ContenidoController extends Controller
             	$contenido->setUsuario($usuario);
             }
             
-            if ($contenido->getCategoria() == null) {
-                $this->get('session')->setFlash('error', 'debe seleccionar una categoria.');
+            if ($contenido->getCategoria() == null && $contenido->getSexo() == null && $contenido->getUsuario() == null) {
+                $this->get('session')->setFlash('error', 'Debe seleccionar una categoria y un sexo.');
+            } else if($contenido->getCategoria() == null && $contenido->getUsuario() != null) {
+                $this->get('session')->setFlash('error', 'Debe seleccionar una categoria.');
+            } else if($contenido->getSexo() == null && $contenido->getUsuario() == null) {
+                $this->get('session')->setFlash('error', 'Debe seleccionar un sexo.');
+            } else {
+                $em = $this->getDoctrine()->getEntityManager();
+                $em->persist($contenido);
+                $em->flush();    
             }
-
-            $em = $this->getDoctrine()->getEntityManager();
-            $em->persist($contenido);
-            $em->flush();
+            
         }
 
         //TODO: Perdi los errores del formulario
