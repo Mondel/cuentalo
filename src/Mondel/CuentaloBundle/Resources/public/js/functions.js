@@ -14,19 +14,23 @@ function validaContenido(input, min_length, max_length, errors, form) {
 }
 
 function validarPost(e) {
+	var error = true;
+	var mensaje = '';
 	if ($('#contenido_categoria').val() == '' && $('#contenido_sexo').val() == '') {
-		$('#message').html('<p style="color:red;">Debe seleccionar la categoria y el sexo</p>');
-		e.preventDefault();
-		return false;
+		mensaje = 'Debe seleccionar la categoria y el sexo';
 	} else if ($('#contenido_categoria').val() == '') {
-		$('#message').html('<p style="color:red;">Debe seleccionar la categoria</p>');
-		e.preventDefault();
-		return false;
+		mensaje = 'Debe seleccionar la categoria';
 	} else if ($('#contenido_sexo').val() == '') {
-		$('#message').html('<p style="color:red;">Debe seleccionar el sexo</p>');
-		e.preventDefault();
-		return false;
+		mensaje = 'Debe seleccionar el sexo';
 	}
+
+	if (error) {
+		$('#message').html('<p class="Error;">' + mensaje + '</p>');
+		$('#message').focus();
+		e.preventDefault();
+		return false;	
+	}
+
 	return true;
 }
 
