@@ -13,27 +13,6 @@ function validaContenido(input, min_length, max_length, errors, form) {
     }
 }
 
-function validarPost(e) {
-	var error = true;
-	var mensaje = '';
-	if ($('#contenido_categoria').val() == '' && $('#contenido_sexo').val() == '') {
-		mensaje = 'Debe seleccionar la categoria y el sexo';
-	} else if ($('#contenido_categoria').val() == '') {
-		mensaje = 'Debe seleccionar la categoria';
-	} else if ($('#contenido_sexo').val() == '') {
-		mensaje = 'Debe seleccionar el sexo';
-	}
-
-	if (error) {
-		$('#message').html('<p class="Error">' + mensaje + '</p>');
-		$('#message').focus();
-		e.preventDefault();
-		return false;	
-	}
-
-	return true;
-}
-
 function textChange(areaTexto, areaCount) {
     $(areaCount).text(
     	555 - $(areaTexto).val().length

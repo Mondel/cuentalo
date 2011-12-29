@@ -39,11 +39,14 @@ class ContenidoController extends Controller
             } else if($contenido->getSexo() == null && $contenido->getUsuario() == null) {
                 $this->get('session')->setFlash('error', 'Debe seleccionar un sexo.');
             } else {
+                $this->get('session')->removeFlash("notice");
+                $this->get('session')->removeFlash("error");
+
                 $em = $this->getDoctrine()->getEntityManager();
                 $em->persist($contenido);
                 $em->flush();    
             }
-
+            
         }
 
         //TODO: Perdi los errores del formulario

@@ -1,7 +1,5 @@
 $(document).ready(function(){   
 	
-    $('#contenido_form').submit(function(e){ validarPost(e); $(this).submit(); });
-
 	window.isScrolling = false;
 	
 	$(window).scroll(function(){
