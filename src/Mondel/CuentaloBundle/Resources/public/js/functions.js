@@ -13,6 +13,20 @@ function validaContenido(input, min_length, max_length, errors, form) {
     }
 }
 
+function validarPost() {
+	if ($('#contenido_categoria').val() == '' && $('#contenido_sexo').val() == '') {
+		$('#message').html('<p style="color:red;">Debe seleccionar la categoria y el sexo</p>');
+		return false;
+	} else if ($('#contenido_categoria').val() == '') {
+		$('#message').html('<p style="color:red;">Debe seleccionar la categoria</p>');
+		return false;
+	} else if ($('#contenido_sexo').val() == '') {
+		$('#message').html('<p style="color:red;">Debe seleccionar el sexo</p>');
+		return false;
+	}
+	return true;
+}
+
 function textChange(areaTexto, areaCount) {
     $(areaCount).text(
     	555 - $(areaTexto).val().length
