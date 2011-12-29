@@ -25,7 +25,7 @@ function validarPost(e) {
 	}
 
 	if (error) {
-		$('#message').html('<p class="Error;">' + mensaje + '</p>');
+		$('#message').html('<p class="Error">' + mensaje + '</p>');
 		$('#message').focus();
 		e.preventDefault();
 		return false;	
