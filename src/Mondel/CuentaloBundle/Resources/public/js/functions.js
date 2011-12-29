@@ -13,15 +13,18 @@ function validaContenido(input, min_length, max_length, errors, form) {
     }
 }
 
-function validarPost() {
+function validarPost(e) {
 	if ($('#contenido_categoria').val() == '' && $('#contenido_sexo').val() == '') {
 		$('#message').html('<p style="color:red;">Debe seleccionar la categoria y el sexo</p>');
+		e.preventDefault();
 		return false;
 	} else if ($('#contenido_categoria').val() == '') {
 		$('#message').html('<p style="color:red;">Debe seleccionar la categoria</p>');
+		e.preventDefault();
 		return false;
 	} else if ($('#contenido_sexo').val() == '') {
 		$('#message').html('<p style="color:red;">Debe seleccionar el sexo</p>');
+		e.preventDefault();
 		return false;
 	}
 	return true;

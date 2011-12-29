@@ -1,6 +1,6 @@
 $(document).ready(function(){   
 	
-    $('#contenido_form').submit(function(){ validarPost() });
+    $('#contenido_form').submit(function(e){ validarPost(e) });
 
 	window.isScrolling = false;
 	
