@@ -32,6 +32,10 @@ class ContenidoController extends Controller
             	$contenido->setUsuario($usuario);
             }
             
+            if ($contenido->getCategoria() == null) {
+                $this->get('session')->setFlash('error', 'debe seleccionar una categoria.');
+            }
+
             $em = $this->getDoctrine()->getEntityManager();
             $em->persist($contenido);
             $em->flush();
