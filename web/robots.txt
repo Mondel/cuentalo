@@ -2,4 +2,7 @@ User-agent: *
 Allow: /
 Disallow: /usuario/
 Disallow: /web/
+Disallow: /?page=1
+Disallow: /?page=2
+Disallow: /?page=5
 Sitemap: http://www.cuentalo.com.uy/sitemap.xml
