@@ -18,7 +18,7 @@ _registrar:
 
 _pagina:
     pattern:  /pagina/{pagina}
-    defaults: { _controller: MondelCuentaloBundle:Default:pagina }    
+    defaults: { _controller: MondelCuentaloBundle:Default:pagina }
 
 # usuario
 
@@ -40,7 +40,7 @@ _usuario_eliminar:
 
 _contacto:
     pattern:  /contacto
-    defaults: { _controller: MondelCuentaloBundle:Default:contacto }  
+    defaults: { _controller: MondelCuentaloBundle:Default:contacto }
 
 # contenido
 
@@ -60,12 +60,12 @@ _contenido_pagina_mostrar:
 
 _contenido_comentar:
     pattern:  /contenido/{id}/comentar
-    defaults:  { _controller: MondelCuentaloBundle:Contenido:comentar }    
-    
+    defaults:  { _controller: MondelCuentaloBundle:Contenido:comentar }
+
 _contenido_listar:
     pattern:  /contenido/{categoria}/{inicio}/{cantidad}
     defaults:  { _controller: MondelCuentaloBundle:Contenido:listar }
-    requirements: { categoria: \d+, inicio: \d+, cantidad: \d+ }    
+    requirements: { categoria: \d+, inicio: \d+, cantidad: \d+ }
 
 _contenido_categoria_listar:
     pattern:  /{categoria}
@@ -77,5 +77,3 @@ _comentario_eliminar:
     requirements: { id: \d+ }
 
 ###########
-
-  
