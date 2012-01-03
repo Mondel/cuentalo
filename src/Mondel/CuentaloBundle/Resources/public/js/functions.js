@@ -160,6 +160,7 @@ function renderizarVideos() {
 
 function obtenerContenidos() {	
     //$('.PostLoading').html('<img src="bundles/mondelcuentalo/img/ajax-loader.gif"/>');
+    $('#masContenidos').hide();
     var cid = $("#cid").val();
     var lastId = $(".Post:last").attr("id");
     var urlContenidos = "contenido/" + cid + "/" + lastId + "/5";
@@ -178,6 +179,7 @@ function obtenerContenidos() {
 			  	renderizarVideosPost(newPosts);
 		  	}
 	        //$('.PostLoading').empty();
+	        $('#masContenidos').show();
 	        //window.isScrolling = false;
     	}
 	});
