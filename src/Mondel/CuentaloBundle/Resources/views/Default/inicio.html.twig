@@ -37,6 +37,9 @@
             {% else %}
                 <p>No hay mensajes aún</p>
             {% endfor %}
+            {% if contenidos | length >= 5 %}
+                <button id="masContenidos">Ver m&aacute;s</button>
+            {% endif %}
             <div class="PostLoading"/>
         </div>
     <!-- </div> -->

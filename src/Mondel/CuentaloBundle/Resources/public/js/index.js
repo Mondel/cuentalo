@@ -1,5 +1,6 @@
 $(document).ready(function(){   
 	
+    /*
 	window.isScrolling = false;
 	
 	$(window).scroll(function(){
@@ -11,7 +12,10 @@ $(document).ready(function(){
         	obtenerContenidos();        	
         }
 	});
-	
+	*/
+
+    $('#masContenidos').click(function(){obtenerContenidos();});    
+
     var areaTexto = '#contenido_texto';
     var areaCount = '#count_caracteres';
 

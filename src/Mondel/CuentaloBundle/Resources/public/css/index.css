@@ -307,7 +307,14 @@
     text-align: center;
 }
 
-
+#masContenidos {
+	background: #7FB64F;
+	border-radius: 3px;
+	margin: 0 2px 30px 0;
+	padding: 0;
+	text-align: center;
+	width: 582px;
+}
 
 
 

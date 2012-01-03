@@ -158,12 +158,12 @@ function renderizarVideos() {
 	});
 }
 
-function obtenerContenidos() {
-    $('.PostLoading').html('<img src="bundles/mondelcuentalo/img/ajax-loader.gif"/>');
+function obtenerContenidos() {	
+    //$('.PostLoading').html('<img src="bundles/mondelcuentalo/img/ajax-loader.gif"/>');
     var cid = $("#cid").val();
     var lastId = $(".Post:last").attr("id");
     var urlContenidos = "contenido/" + cid + "/" + lastId + "/5";
-    var response = '';
+    var response = '';    
     $.ajax({
     	url: urlContenidos,
     	//dataType: 'json', //todavia no esta pronto para recibir json
@@ -177,10 +177,10 @@ function obtenerContenidos() {
 			  	actualizarBotones(newPosts);
 			  	renderizarVideosPost(newPosts);
 		  	}
-	        $('.PostLoading').empty();
-	        window.isScrolling = false;
+	        //$('.PostLoading').empty();
+	        //window.isScrolling = false;
     	}
-	});	
+	});
 };
 
 function actualizarBotones($response) {
