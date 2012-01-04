@@ -1,0 +1,26 @@
+{% extends 'MondelCuentaloBundle::layout.html.twig' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    {% stylesheets '@MondelCuentaloBundle/Resources/public/css/forms.css' filter='yui_css' %}
+
+    <link rel="stylesheet" type="text/css" media="screen" href="{{ asset_url }}" />
+    {% endstylesheets %}    
+{% endblock %}
+{% block content %}
+    {{ parent() }}
+   
+<span class="titulo"><b>Qué es Cuentalo?</b></span>
+<br>
+<span class="textoterminos">
+Cuentalo es una red social uruguaya.<br>
+“Cuéntalo” permite conectar a millones de personas a través de un muro genérico, donde los usuarios, mediante un simple registro de nick y contraseña, pueden compartir un estado, es decir, colgar mensajes, frases, chistes, anécdotas, secretos y links de videos online.<br>
+La finalidad es compartir un estado y que los usuarios registrados puedan realizar comentarios, pero sin revelar sus datos, preservando así su privacidad, lo que constituye una interesante diferencia respecto a otras redes, donde no se tiene absoluta libertad para comentar, debido a que aparece el nombre, apellido y perfil.
+</span>
+<br><br>
+<span class="titulo"><b>Presentación en Video</b></span><br>
+<br>
+<iframe width="560" height="315" src="http://www.youtube.com/embed/gWENFBYx1Sk" frameborder="0" allowfullscreen></iframe>
+<br><br><br><br>
+</span>
+{% endblock %}
