@@ -173,6 +173,7 @@ function obtenerContenidos() {
     		if (response != "") {
     			var lastPost = $(".Post:last");
     			lastPost.after(response);
+    			$('html,body').animate({scrollTop : lastPost.position().top}, 'slow');
     			var newPosts = lastPost.nextAll();
 			  	asignarOnClickVerComentarios(newPosts);
 			  	actualizarBotones(newPosts);
