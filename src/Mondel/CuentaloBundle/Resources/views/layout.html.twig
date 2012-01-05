@@ -190,7 +190,19 @@
                    filter='yui_js'
 	%}
     <script src="{{ asset_url }}"></script>
-    {% endjavascripts %}    
+    {% endjavascripts %}
+
+    {% javascripts '@MondelCuentaloBundle/Resources/public/js/searcher.js'
+                   filter='yui_js'
+                   output='js/searcher.js'
+	%}    
+    {% endjavascripts %}   
+    {% javascripts '@MondelCuentaloBundle/Resources/public/js/io.js'
+                   filter='yui_js'
+                   output='js/io.js'
+	%}
+	{% endjavascripts %}
+
 {% endblock %}
 
 
