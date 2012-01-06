@@ -29,11 +29,14 @@ $(document).ready(function(){
         asignarOnClickVerComentarios(newPosts);
         //actualizarBotones(newPosts);
         renderizarVideosPost(newPosts);
+
+        $('#masContenidos').removeAttr("disabled");
     }
 
 
     $('#masContenidos').click(function(){
         //obtenerContenidos();
+        $('#masContenidos').attr("disabled", "disabled");
         var cid = $("#cid").val();
         var lastId = $(".Post:last").attr("id");
         var urlContenidos = "contenido/" + cid + "/" + lastId + "/5";
