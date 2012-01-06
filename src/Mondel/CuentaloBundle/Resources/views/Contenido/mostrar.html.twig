@@ -19,8 +19,8 @@
 	<div class="Contenido">
 		{{ contenido.texto }}		
 	</div>
-	<div class="Acciones">
-		{% if mostrarCompartir is defined %}
+	{% if mostrarCompartir is defined %}
+		<div class="Acciones">		
 			<div class="Compartir">
 				<div class="Btn_g">
 					<g:plusone size="medium" href="{{ url('_contenido_pagina_mostrar', { 'id': contenido.id }) }}"></g:plusone>
@@ -32,8 +32,8 @@
 	        		 <fb:like href="{{ url('_contenido_pagina_mostrar', { 'id': contenido.id }) }}" data-width="170" layout="button_count" show_faces="false" data-send="true" action="like" colorscheme="light"></fb:like>
 				</div>
 			</div>
-		{% endif %}
-	</div>		
+		</div>		
+	{% endif %}
 	<div class="Datos">
 		<div class="TituloComentarios">Comentarios</div>
 		<div class="Comentarios">			
