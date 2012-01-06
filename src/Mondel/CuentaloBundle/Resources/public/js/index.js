@@ -28,7 +28,7 @@ $(document).ready(function(){
         
         asignarOnClickVerComentarios(newPosts);
         //actualizarBotones(newPosts);
-        //renderizarVideosPost(newPosts);
+        renderizarVideosPost(newPosts);
     }
 
 
