@@ -1,47 +1,7 @@
-$(document).ready(function(){   
-	
-    /*
-	window.isScrolling = false;
-	
-	$(window).scroll(function(){
-        if  (($(window).scrollTop() == $(document).height() - $(window).height() || 
-        $(window).scrollTop() + 1 == $(document).height() - $(window).height() ||
-        $(window).scrollTop() - 1 == $(document).height() - $(window).height())
-        && !window.isScrolling){
-        	window.isScrolling = true;
-        	obtenerContenidos();        	
-        }
-	});
-	*/
-
-    var searcher = new Worker('js/searcher.js');    
-
-    function search(query) {
-        searcher.postMessage(query);
-    }
-
-     searcher.onmessage = function (event) {
-        var lastPost = $(".Post:last");
-        lastPost.after(event.data);
-        $('html,body').animate({scrollTop : lastPost.position().top}, 'slow');
-        var newPosts = lastPost.nextAll();        
-        
-        asignarOnClickVerComentarios(newPosts);
-        //actualizarBotones(newPosts);
-        renderizarVideosPost(newPosts);
-
-        $('#masContenidos').removeAttr("disabled");
-    }
-
+$(document).ready(function(){
 
     $('#masContenidos').click(function(){
-        //obtenerContenidos();
-        $('#masContenidos').attr("disabled", "disabled");
-        var cid = $("#cid").val();
-        var lastId = $(".Post:last").attr("id");
-        var urlContenidos = "contenido/" + cid + "/" + lastId + "/5";
-
-        search('../' + urlContenidos);
+        obtenerContenidos();                
     });    
 
     var areaTexto = '#contenido_texto';

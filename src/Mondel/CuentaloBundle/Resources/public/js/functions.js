@@ -19,13 +19,13 @@ function textChange(areaTexto, areaCount) {
     );
 }
 
-function getDataVideo(idVideo) {
+function getDataVideo(idVideo, callback) {
 	var respuesta = new Object();
 	urlApiYoutube = "http://gdata.youtube.com/feeds/api/videos?v=2&alt=jsonc&q=" + idVideo;
 	
 	$.ajax({
 		  url: urlApiYoutube,
-		  async: false,
+		  async: true,
 		  success: function(response) {			  
 			  if ($.type(response) == 'string') {
 				  response = $.parseJSON(response);
@@ -37,6 +37,9 @@ function getDataVideo(idVideo) {
 					  respuesta.descripcion = datosVideo.description;
 					  respuesta.thumbnail = datosVideo.thumbnail.sqDefault;
 					  respuesta.urlVideo = 'http://www.youtube.com/watch?v=' + idVideo;
+
+					  callback(respuesta);
+
 				  }
 			  }	    
 		  }
@@ -69,20 +72,20 @@ function findVideo() {
 		
 		var urlYoutube = regexYoutube.exec(areaText);
 		if (urlYoutube != null) {
-			var data = getDataVideo(urlYoutube[1]);
-			var html = getHtmlDataVideo(data);
-			
-			$('#video').html(html);
-			$('#video').show();
-			$('#contenido_url_video').val(data.urlVideo);
-			$('#contenido_categoria option').each(function() {  
-				if ($(this).text() == 'Video'){				
-					$('#contenido_categoria').val($(this).val());				
-				} else {
-					$(this).attr("disabled", "disabled");
-				}
-			});		
-			$('#eliminarVideo').click(function(){ eliminarVideo(); });
+			getDataVideo(urlYoutube[1], function(data){
+				var html = getHtmlDataVideo(data);	
+				$('#video').html(html);
+				$('#video').show();
+				$('#contenido_url_video').val(data.urlVideo);
+				$('#contenido_categoria option').each(function() {  
+					if ($(this).text() == 'Video'){				
+						$('#contenido_categoria').val($(this).val());				
+					} else {
+						$(this).attr("disabled", "disabled");
+					}
+				});		
+				$('#eliminarVideo').click(function(){ eliminarVideo(); });				
+			});
 		}
 	}
 }
@@ -119,21 +122,22 @@ function renderizarVideosPost($html) {
 			var idVideoR = regex.exec(urlVideo);
 			if (idVideoR.length == 2) {
 				var idVideo = idVideoR[1];					
-				var data = getDataVideo(idVideo);
-				contenido.html(
-						contenido.html() + 
-						'<div class="VideoData" style="float:left;">' + 
-						getHtmlDataVideoPost(data) +
-						'</div>'
-				);
-				contenido.find('.ThumbnailVideo a').click(function(){				
-					contenido.find('.VideoData').fadeOut(
-						300, 
-						function() {
-							$(this).remove();
-							contenido.html(contenido.html() + getHtmlEmbedVideo(idVideo));
-						}
+				getDataVideo(idVideo, function(data) {
+					contenido.html(
+							contenido.html() + 
+							'<div class="VideoData" style="float:left;">' + 
+							getHtmlDataVideoPost(data) +
+							'</div>'
 					);
+					contenido.find('.ThumbnailVideo a').click(function(){				
+						contenido.find('.VideoData').fadeOut(
+							300, 
+							function() {
+								$(this).remove();
+								contenido.html(contenido.html() + getHtmlEmbedVideo(idVideo));
+							}
+						);
+					});
 				});
 			}
 		}
@@ -158,16 +162,16 @@ function renderizarVideos() {
 	});
 }
 
-function obtenerContenidos() {	
-    //$('.PostLoading').html('<img src="bundles/mondelcuentalo/img/ajax-loader.gif"/>');
-    $('#masContenidos').hide();
+function obtenerContenidos() {    
+    $('#masContenidos').attr("disabled", "disabled");
+
     var cid = $("#cid").val();
     var lastId = $(".Post:last").attr("id");
     var urlContenidos = "contenido/" + cid + "/" + lastId + "/5";
-    var response = '';    
+    var response = '';
+
     $.ajax({
-    	url: urlContenidos,
-    	//dataType: 'json', //todavia no esta pronto para recibir json
+    	url: urlContenidos,    	
     	async: true,
     	success: function(response) {
     		if (response != "") {
@@ -176,12 +180,10 @@ function obtenerContenidos() {
     			$('html,body').animate({scrollTop : lastPost.position().top}, 'slow');
     			var newPosts = lastPost.nextAll();
 			  	asignarOnClickVerComentarios(newPosts);
-			  	actualizarBotones(newPosts);
+			  	//actualizarBotones(newPosts);
 			  	renderizarVideosPost(newPosts);
-		  	}
-	        //$('.PostLoading').empty();
-	        $('#masContenidos').show();
-	        //window.isScrolling = false;
+		  	}	        
+	        $('#masContenidos').removeAttr("disabled");
     	}
 	});
 };
