@@ -231,3 +231,27 @@ function asignarOnClickVerComentarios($html) {
 		}
 	);
 }
+
+function asignarOnSubmitComentarAjax() {
+	$('input[name="comentario[texto]"]').each(function(){		
+		$(this).parents('form').submit(function(evt){        
+	        evt.preventDefault();
+	        var post = $(this).parents('div.Post');        
+	        var texto = $(this).find('#comentario_texto').val();
+	        var token = $(this).find('#comentario__token').val();
+	        data = 'comentario[texto]=' + texto + '&comentario[_token]=' + token;
+	        $.ajax({
+	            type: 'POST',
+	            url: 'contenido/' + post.attr('id') + '/comentar/ajax',
+	            data: data,
+	            success: function(data){
+	                post.find('.Datos').html($(data).html());
+	                post.find('#comentario_texto').val('');
+	                asignarOnSubmitComentarAjax();                
+	            }            
+	        });
+	            
+	    });	
+	});	
+}
+

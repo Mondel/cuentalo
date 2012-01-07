@@ -4,6 +4,8 @@ $(document).ready(function(){
         obtenerContenidos();                
     });    
 
+    asignarOnSubmitComentarAjax();    
+
     var areaTexto = '#contenido_texto';
     var areaCount = '#count_caracteres';
 

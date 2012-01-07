@@ -76,6 +76,43 @@ class ContenidoController extends Controller
         ));
     }
 
+    public function comentarAjaxAction($id)
+    {
+        $peticion = $this->getRequest();
+        $manager = $this->getDoctrine()->getEntityManager();
+
+        if (false === $this->get('security.context')->isGranted('ROLE_USER'))
+            throw new AccessDeniedException();
+        
+        $contenido = $manager->getRepository('MondelCuentaloBundle:Contenido')->find($id);
+
+        if (!$contenido)
+            throw $this->createNotFoundException('El post que intentas comentar no existe');
+
+        $comentario = new Comentario();
+        $formulario = $this->createForm(new ComentarioType(), $comentario);
+
+        $formulario->bindRequest($peticion);
+
+        if ($formulario->isValid()) {
+
+            $comentario->setIp($peticion->getClientIp());
+            $usuario = $this->get('security.context')->getToken()->getUser();
+            $comentario->setUsuario($usuario);
+            $comentario->setContenido($contenido);
+
+            $manager->persist($comentario);
+            $manager->flush();
+        }
+        return $this->render(
+                'MondelCuentaloBundle:Contenido:comentariosMostrar.html.twig',
+                array(
+                        'contenido'  => $contenido,
+                        'formularios_comentarios' => array($id => $formulario->createView())
+                )
+        );
+    }
+
     public function comentarioEliminarAction($id)
     {
     	$manager = $this->getDoctrine()->getEntityManager();

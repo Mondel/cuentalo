@@ -1,0 +1,30 @@
+<div class="Datos">
+	<div class="TituloComentarios">Comentarios</div>
+	<div class="Comentarios">			
+		{% set cantidadComentarios = contenido.comentarios | length %}
+		{% if cantidadComentarios > 0 %}
+			{% if cantidadComentarios > 3 and mostrarComentariosTodos is not defined %}
+				<p class="PComentarios">
+					<a class="VerComentarios" href="javascript:void(0);">Ver los {{ cantidadComentarios }} comentarios</a>
+				</p>
+			{% endif %}
+			
+			{% include 'MondelCuentaloBundle:Comentario:listar.html.twig' 
+				with { 'mostrarComentariosTodos':'1' } %}
+			
+		{% else %}
+			<p class="PComentarios">No hay comentarios aún.</p>
+		{% endif %}
+		{% if is_granted('ROLE_USER') %}				
+			<form action="{{ path('_contenido_comentar', {'id': contenido.id}) }}" method="post" {{ form_enctype(formularios_comentarios[contenido.id]) }}>
+				{{ form_errors(formularios_comentarios[contenido.id]) }}
+			 	{{ form_widget(formularios_comentarios[contenido.id].texto, { 'attr': {'placeholder': 'escribe tu comentario y presiona enter...', 'class': 'InputComentarios'} }) }}
+			 	{{ form_rest(formularios_comentarios[contenido.id]) }}
+			</form>
+		{% else %}
+			<p class="PComentarios">
+				Para poder comentar debes estar <a href="{{ path('_registrar') }}" alt="Registrarme">registrado</a> o <a href="{{ path('_ingresar') }}" alt="Ingresar">iniciar sesión</a>
+			</p>								
+		{% endif %}
+	</div>
+</div>
