@@ -7,12 +7,13 @@ $(document).ready(function(){
     $('#contenido_form').submit(function(evt){
         if ($('#contenido_sexo').val() == '') {
             evt.preventDefault();
-            $('#contenido_sexo').css('background', 'red');
+            $('#contenido_sexo').addClass('ErrorFondo');
             $('#options_error').text("Debes seleccionar un sexo");
             $('#contenido_sexo').focus();
         } else if ($('#contenido_categoria').val() == '') {
+            $('#contenido_sexo').removeClass('ErrorFondo');
             evt.preventDefault();
-            $('#contenido_categoria').css('background', 'red');
+            $('#contenido_categoria').addClass('ErrorFondo');
             $('#options_error').text("Debes seleccionar una categoria");
             $('#contenido_categoria').focus();
         }

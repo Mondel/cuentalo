@@ -404,6 +404,10 @@ input:focus {
     color: red;
 }
 
+.ErrorFondo {
+    background: red;
+}
+
 #content {
     margin: 25px auto;
     width: 1000px;
