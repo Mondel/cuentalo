@@ -14,7 +14,7 @@ import os
 
 base = 'http://www.cuentalo.com.uy'
 
-url_sitemap = [base + '/contacto']
+url_sitemap = [base + '/contacto', base + '/pagina/terminos', base + '/pagina/que_es']
 url_no_sitemap = []
 
 f = file('/home/cuentalo/cuentalo.com.uy/src/Mondel/CuentaloBundle/Resources/tools/sitemap_generator/sedlog.txt', 'r')
