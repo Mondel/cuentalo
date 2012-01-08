@@ -4,6 +4,7 @@ namespace Mondel\CuentaloBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
+use Symfony\Component\HttpFoundation\Response;
 
 use Mondel\CuentaloBundle\Entity\Contenido,
     Mondel\CuentaloBundle\Entity\Comentario,
@@ -76,7 +77,7 @@ class ContenidoController extends Controller
         ));
     }
 
-    public function comentarAjaxAction($id)
+    public function comentarAjaxAction($id, $offset)
     {
         $peticion = $this->getRequest();
         $manager = $this->getDoctrine()->getEntityManager();
@@ -107,6 +108,7 @@ class ContenidoController extends Controller
         return $this->render(
                 'MondelCuentaloBundle:Contenido:comentariosMostrar.html.twig',
                 array(
+                        'offset' => $offset,
                         'contenido'  => $contenido,
                         'formularios_comentarios' => array($id => $formulario->createView())
                 )
@@ -129,14 +131,20 @@ class ContenidoController extends Controller
     	if ($this->get('security.context')->getToken()->getUser()->getId() == $comentario->getUsuario()->getId()) {
     		$manager->remove($comentario);
     		$manager->flush();
-    		$this->get('session')->setFlash('notice', 'Se ha eliminado el comentario correctamente');
+            if (!$this->getRequest()->isXmlHttpRequest()) {
+                $this->get('session')->setFlash('notice', 'Se ha eliminado el comentario correctamente');
+            }
     	} else {
     		throw $this->createNotFoundException('El comentario que intentas eliminar no es tuyo');
-    	}    	   	   	
-    	return $this->redirect($this->generateUrl(
-    			'_contenido_pagina_mostrar',
-    			array('id' => $idContenido)
-    	));        	
+    	} 
+        if ($this->getRequest()->isXmlHttpRequest()) {
+            return new Response('Se ha eliminado el comentario correctamente');   	   	   	
+        } else {
+            return $this->redirect($this->generateUrl(
+        			'_contenido_pagina_mostrar',
+        			array('id' => $idContenido)
+        	));
+        }
     }
     
     public function paginaMostrarAction($id)

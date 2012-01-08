@@ -210,6 +210,22 @@ function comentarioEliminar() {
 }
 
 function asignarOnHoverComentarioEliminar(selComentario, selItem) {
+	$(selItem).click(function(evt){
+		evt.preventDefault();
+		var post = $(this).parents('.Post');
+		var comentario = $(this).parents('.Comentario');
+		var id = comentario.attr('id');
+		var urlAjax = '/usuario/comentario/' + id + '/eliminar';
+		$.ajax({
+	            url: urlAjax,
+	            success: function(data) {
+	            	if (post.find('.Comentario').length == 1) {
+	            		comentario.before($('<p class="PComentarios">No hay comentarios aún.</p>'));
+	            	}
+	            	comentario.remove();
+	            }
+	        });
+	});
 	$(selComentario).hover(
     		function() {
 				$(this).find(selItem).css("display", "block");    	
@@ -217,7 +233,7 @@ function asignarOnHoverComentarioEliminar(selComentario, selItem) {
 			function() {
     			$(this).find(selItem).css("display", "none");    	
     		}
-	);   	
+	);
 }
 
 function asignarOnClickVerComentarios($html) {	
@@ -232,7 +248,7 @@ function asignarOnClickVerComentarios($html) {
 	);
 }
 
-function asignarOnSubmitComentarAjax() {
+function asignarOnSubmitComentarAjax(urlCustomAjax) {
 	$('input[name="comentario[texto]"]').each(function(){
 		var inputTexto = $(this);
 		$(this).parents('form').submit(function(evt){
@@ -242,15 +258,35 @@ function asignarOnSubmitComentarAjax() {
 	        var texto = $(this).find('#comentario_texto').val();
 	        var token = $(this).find('#comentario__token').val();
 	        data = 'comentario[texto]=' + texto + '&comentario[_token]=' + token;
+	        var comentario = post.find('.Comentario:last');	        
+	        var urlAjax = 'contenido/' + post.attr('id') + '/comentar/ajax/0';
+	        if (urlCustomAjax != null) {
+	        	urlAjax = post.attr('id') + urlCustomAjax;
+	        }
+	        if (comentario.length > 0) {
+	        	urlAjax = urlAjax.replace('/0', '/' + comentario.attr('id'));
+	        }
 	        $.ajax({
 	            type: 'POST',
-	            url: 'contenido/' + post.attr('id') + '/comentar/ajax',
+	            url: urlAjax,
 	            data: data,
 	            success: function(data){
-	                post.find('.Datos').html($(data).html());
-	                post.find('#comentario_texto').val('');
-	                asignarOnSubmitComentarAjax();
-	                asignarOnClickVerComentarios();
+	            	if (comentario.length > 0) {	            			
+	            		comentario.after($(data));	
+	            	} else {
+	            		var pcomentario = post.find('.Comentarios').find('p');
+	            		pcomentario.after($(data));
+	            		pcomentario.remove();
+	            	}
+	            	inputTexto.val('');
+	            	inputTexto.removeAttr("disabled");
+	            	inputTexto.focus();
+	            	var p_comentario = post.find('.Comentarios').find('p.PComentarios').find('a');
+	            	if (p_comentario.length > 0) {
+	            		p_comentario.text(
+	            			p_comentario.text().replace(/\d+/gi, post.find('.Comentario').length)
+	            		);
+	            	}
 	                asignarOnHoverComentarioEliminar('.Comentario', '.EliminarItem');	                
 	            }            
 	        });

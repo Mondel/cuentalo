@@ -63,7 +63,7 @@ _contenido_comentar:
     defaults:  { _controller: MondelCuentaloBundle:Contenido:comentar }
 
 _contenido_comentar_ajax:
-    pattern:  /contenido/{id}/comentar/ajax
+    pattern:  /contenido/{id}/comentar/ajax/{offset}
     defaults:  { _controller: MondelCuentaloBundle:Contenido:comentarAjax }
     requirements: { _method: POST }
 
