@@ -11,6 +11,7 @@ use Mondel\CuentaloBundle\Entity\Contenido,
     Mondel\CuentaloBundle\Entity\Voto;
 use Mondel\CuentaloBundle\Form\Type\ContenidoType,
     Mondel\CuentaloBundle\Form\Type\ComentarioType;
+use Mondel\CuentaloBundle\Helpers\StringHelper;
 
 class ContenidoController extends Controller
 {
@@ -32,6 +33,12 @@ class ContenidoController extends Controller
             	$usuario = $this->get('security.context')->getToken()->getUser();
             	$contenido->setUsuario($usuario);
             }
+
+            $contenido->setTexto(
+                StringHelper::limpiar_malas_palabras(
+                    $contenido->getTexto()
+                )
+            );
 
             $em = $this->getDoctrine()->getEntityManager();
             $em->persist($contenido);
@@ -68,6 +75,12 @@ class ContenidoController extends Controller
             $comentario->setUsuario($usuario);
             $comentario->setContenido($contenido);
 
+            $comentario->setTexto(
+                StringHelper::limpiar_malas_palabras(
+                    $comentario->getTexto()
+                )
+            );
+
             $manager->persist($comentario);
             $manager->flush();
         }
@@ -101,6 +114,12 @@ class ContenidoController extends Controller
             $usuario = $this->get('security.context')->getToken()->getUser();
             $comentario->setUsuario($usuario);
             $comentario->setContenido($contenido);
+
+            $comentario->setTexto(
+                StringHelper::limpiar_malas_palabras(
+                    $comentario->getTexto()
+                )
+            );
 
             $manager->persist($comentario);
             $manager->flush();

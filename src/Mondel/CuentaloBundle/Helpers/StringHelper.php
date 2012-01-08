@@ -5,6 +5,27 @@ namespace Mondel\CuentaloBundle\Helpers;
 class StringHelper
 {
     
+    private static $palabras_prohibidas = array(
+        'puta', 'puto', 'chupapija', 'pija', 'concha',
+        'conchuda', 'conchudo', 'sobapene', 'chupapene',
+        'poronga', 'porong', 'orto', 'ojete'
+    );
+
+    /**
+     * Devuelve el texto sin las malas palabras definidas
+     * en $palabras_prohibidas. Las reemplaza por '***'
+     * 
+     * @param string $cadena Cadena de texto original
+     * @return string Cadena limpio de malas palabras
+     */
+    public static function limpiar_malas_palabras($cadena)
+    {
+        foreach (self::$palabras_prohibidas as $palabra_prohibida) {                
+            $cadena = str_replace($palabra_prohibida, '***', $cadena);
+        }
+        return $cadena;
+    }
+
     /**
      * Devuelve el slug de la cadena de texto que se le pasa
      * Código copiado del método urlize() de Doctrine 1
