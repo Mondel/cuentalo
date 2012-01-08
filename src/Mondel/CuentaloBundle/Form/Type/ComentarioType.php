@@ -8,7 +8,8 @@ use Symfony\Component\Form\FormBuilder;
 class ComentarioType extends AbstractType {
 
     public function buildForm(FormBuilder $builder, array $options) {
-        $builder->add('texto', 'text');
+        $builder->add('texto', 'text', array('max_length' => 555)
+        );
     }
 
     public function getDefaultOptions(array $options) {
