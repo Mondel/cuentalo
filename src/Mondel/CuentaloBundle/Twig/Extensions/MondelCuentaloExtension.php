@@ -8,8 +8,9 @@ class MondelCuentaloExtension extends \Twig_Extension
     public function getFilters()
     {
         return array(
-            'created_ago' 	=> new \Twig_Filter_Method($this, 'createdAgo'),
-			'cut_title' 	=> new \Twig_Filter_Method($this, 'cutTitle'),        		
+            'created_ago'      => new \Twig_Filter_Method($this, 'createdAgo'),
+			'cut_title'        => new \Twig_Filter_Method($this, 'cutTitle'),
+            'cut_description'  => new \Twig_Filter_Method($this, 'cutDescription'),
         );
     }
 
@@ -22,6 +23,17 @@ class MondelCuentaloExtension extends \Twig_Extension
     	else if ($title_length == 0)
     		$title = "Una Red Social Diferente, Desahogate Y Comparte Lo Que Te Gusta Anonimamente";
     	return $title;	
+    }
+
+    public function cutDescription($description)
+    {
+        $description = trim($description);
+        $description_length = strlen($description);
+        if ($description_length > 155)
+            $description = substr($description, 0, 152) . '...';
+        else if ($description_length == 0)
+            $description = "Cuentalo es una red social uruguaya para compartir frases, mensajes, anecdotas, chistes, videos y más. Lo mejor es que todo puede ser anonimamente.";
+        return $description;  
     }
     
     public function createdAgo(\DateTime $dateTime)

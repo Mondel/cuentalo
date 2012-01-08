@@ -3,7 +3,8 @@
 {% block metas %}
 	<meta property="og:title" content="Cuentalo - {{ contenido.texto | cut_title | title }}"/>
 	<meta property="og:type" content="article"/>
-	<meta property="og:url" content="{{ url('_contenido_pagina_mostrar', {'id':contenido.id}) }}"/>        
+	<meta property="og:url" content="{{ url('_contenido_pagina_mostrar', {'id':contenido.id}) }}"/>
+	<meta name="description" content="{{ contenido.texto | cut_description | title }}" />
 {% endblock %}
 
 {% block title %}{{ contenido.texto | cut_title | title }}{% endblock %}
