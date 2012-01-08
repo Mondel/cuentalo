@@ -23,7 +23,7 @@ class UsuarioType extends AbstractType {
                     'required'        => true,
                 ))
                 ->add('sexo', 'choice', array(
-                    'choices'   => array('m' => 'Masculino', 'f' => 'Femenino'),
+                    'choices'   => array('m' => 'Masculino', 'f' => 'Femenino', 'i' => 'Indefinido'),
                     'required'  => true,
                     'empty_value' => 'Seleccione',
                 ))

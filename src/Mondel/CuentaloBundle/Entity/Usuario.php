@@ -77,7 +77,7 @@ class Usuario implements AdvancedUserInterface
     /**
      * @var string $sexo
      *
-     * @Assert\Choice({"m", "f"})
+     * @Assert\Choice({"m", "f", "i"})
      * @ORM\Column(name="sexo", type="string", length=1)
      */
     private $sexo;

@@ -20,7 +20,7 @@ class ContenidoType extends AbstractType {
                 ))
                 ->add('sexo', 'choice',
                         array(
-                            'choices'       => array('m' => 'Masculino', 'f' => 'Femenino'),
+                            'choices'       => array('m' => 'Masculino', 'f' => 'Femenino', 'i' => 'Indefinido'),
                             'empty_value'   => 'Sexo'                        	
                         )
                 )

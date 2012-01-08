@@ -4,10 +4,14 @@
 	{% endif %}
 	<div class="Titulo">
 		{% if contenido.usuario != null %}
-			{% set cssIconSex = contenido.usuario.sexo == 'm' ? 'IconoSexoM' : 'IconoSexoF' %}
+			{% set cssIconSex = contenido.usuario.sexo == 'm' ? 'IconoSexoM' : 
+				contenido.usuario.sexo == 'f' ? 'IconoSexoF': 'IconoSexoI' %}
 		{% else %}
 			{% if contenido.sexo != null %}
-				{% set cssIconSex = contenido.sexo == 'm' ? 'IconoSexoM' : 'IconoSexoF' %}
+				{% set cssIconSex = contenido.sexo == 'm' ? 'IconoSexoM' : 
+					contenido.sexo == 'f' ? 'IconoSexoF': 'IconoSexoI' %}
+			{% else %}
+				{% set cssIconSex = 'IconoSexoI' %}
 			{% endif %}			
 		{% endif %}
 		<div class="{{ cssIconSex }}"></div>

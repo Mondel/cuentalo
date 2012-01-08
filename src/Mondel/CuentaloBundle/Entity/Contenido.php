@@ -47,7 +47,6 @@ class Contenido
     /**
      * @var string $sexo
      *
-     
      * @ORM\Column(name="sexo", type="string", length=1, nullable=true)
      */
     private $sexo;

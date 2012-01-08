@@ -1,5 +1,6 @@
 <div class="{{ cssComentario }}" id="{{ comentario.id }}">
-	{% set cssIcon = comentario.usuario.sexo == 'm' ? 'IconoSexoM' : 'IconoSexoF' %}
+	{% set cssIcon = comentario.usuario.sexo == 'm' ? 'IconoSexoM' : 
+		comentario.usuario.sexo == 'f' ? 'IconoSexoF': 'IconoSexoI' %}
 	<div class="ComentarioDatos">
 		<div class="{{ cssIcon }}"></div> 
 		<div class="Texto">

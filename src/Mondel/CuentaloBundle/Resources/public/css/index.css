@@ -89,6 +89,13 @@
     width: 23px;
 }
 
+.IconoSexoI {
+    background: url('../../bundles/mondelcuentalo/img/user_unknown.png');
+    float: left;
+    height: 23px;    
+    width: 23px;
+}
+
 .Post .Titulo .TituloTexto {	
 	margin: 0 0 0 27px;
 	padding: 4px;	
@@ -250,6 +257,10 @@
 }
 
 .ComentarioDatos .IconoSexoF {
+	margin: 5px;		
+}
+
+.ComentarioDatos .IconoSexoI {
 	margin: 5px;		
 }
 
