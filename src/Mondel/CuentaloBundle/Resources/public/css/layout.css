@@ -470,7 +470,12 @@ input:focus {
 	float: left;
 	font-size:12px;
 	font-weight:bold;	
-    padding: 12px;	
+    padding: 12px;
+}
+
+#message_cuentalo .Message {
+    padding: 6px 10px;
+    width: 950px;
 }
 
 /* ---------------------CSS BUTTONS----------------------*/
