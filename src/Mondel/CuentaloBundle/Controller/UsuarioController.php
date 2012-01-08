@@ -130,13 +130,16 @@ class UsuarioController extends Controller
                     ;
                     $this->get('mailer')->send($mensaje);
 
-                    $this->get('session')->setFlash('notice', "Se ha enviado un email a tu casilla de correo (".$usuario->getUsername().")");
+                    //$this->get('session')->setFlash('notice', "Se ha enviado un email a tu casilla de correo (".$usuario->getUsername().")");
 
                     // Logueamos al usuario
                     // $token = new UsernamePasswordToken($usuario, null, 'main', $usuario->getRoles());
                     // $this->get('security.context')->setToken($token);
 
-                    return $this->redirect($this->generateUrl('_inicio'));
+                    return $this->redirect($this->generateUrl(
+                        '_pagina', 
+                        array('pagina'=> 'registro_correcto')
+                    ));
                 }
             }
         }

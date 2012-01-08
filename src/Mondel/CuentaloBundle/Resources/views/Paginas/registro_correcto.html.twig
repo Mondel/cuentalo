@@ -1,0 +1,28 @@
+{% extends 'MondelCuentaloBundle::layout.html.twig' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    {% stylesheets '@MondelCuentaloBundle/Resources/public/css/forms.css' filter='yui_css' %}
+
+    <link rel="stylesheet" type="text/css" media="screen" href="{{ asset_url }}" />
+    {% endstylesheets %}    
+{% endblock %}
+{% block content %}
+    {{ parent() }}
+   
+<span class="titulo"><b>Se ha enviado un correo!</b></span>
+<br>
+<span class="textoterminos">Usted recibirá en su casilla de e-mail un link de activación con el cual deberá confirmar su cuenta.<br>
+</span>
+<br><br>
+<span class="titulo"><b>Luego de la confirmación</b></span>
+<br>
+<span class="textoterminos">Luego de dicha confirmación podrá comenzar a comentar en el sitio y ya no necesitara seleccionar el sexo para postear.<br>
+</span>
+
+<br><br><br><br>
+</span>
+
+
+
+{% endblock %}
