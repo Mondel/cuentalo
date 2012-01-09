@@ -164,6 +164,7 @@ function renderizarVideos() {
 
 function obtenerContenidos() {    
     $('#masContenidos').attr("disabled", "disabled");
+    $('.PostLoading').show();
 
     var cid = $("#cid").val();
     var lastId = $(".Post:last").attr("id");
@@ -177,13 +178,16 @@ function obtenerContenidos() {
     		if (response != "") {
     			var lastPost = $(".Post:last");
     			lastPost.after(response);
+    			$('.PostLoading').hide();
     			$('html,body').animate({scrollTop : lastPost.position().top}, 'slow');
     			var newPosts = lastPost.nextAll();
 			  	asignarOnClickVerComentarios(newPosts);
 			  	//actualizarBotones(newPosts);
 			  	renderizarVideosPost(newPosts);
-		  	}	        
-	        $('#masContenidos').removeAttr("disabled");
+		  	} else {
+		  		$('#masContenidos').hide();
+		  	}
+	        $('#masContenidos').removeAttr("disabled");	        
     	}
 	});
 };

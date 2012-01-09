@@ -195,7 +195,11 @@
 }
 
 .PostLoading {
-	text-align: center;
+	background: url('../../bundles/mondelcuentalo/img/ajax-loader.gif');
+	display: none;
+	height: 11px;
+	margin: 20px auto;
+	width: 16px;
 }
 
 #video {
