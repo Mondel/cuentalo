@@ -26,6 +26,7 @@ function getDataVideo(idVideo, callback) {
 	$.ajax({
 		  url: urlApiYoutube,
 		  async: true,
+		  dataType: 'jsonp',
 		  success: function(response) {			  
 			  if ($.type(response) == 'string') {
 				  response = $.parseJSON(response);
