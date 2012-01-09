@@ -776,7 +776,7 @@ button span.label {
 .ddm:active span.label, 
 button:active span.label, 
 .button:active span.label {
-    color: #FFFFFF;
+    color: #444444;
 }
 
 button:hover .label, 
