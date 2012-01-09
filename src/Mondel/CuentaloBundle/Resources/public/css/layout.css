@@ -301,9 +301,14 @@ input:focus {
     font-size: 14px;    
 }
 
-.AdsenseTriple {
+.Cuentalopublicite {
 	margin: 10px 0;
 }
+.Adsense {
+    margin: 10px 0;
+    position:fixed;
+}
+
 
 #menu_top {
     float: left;
