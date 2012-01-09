@@ -589,8 +589,8 @@ button:hover,
 
 button:active, 
 .button:active {
-	border-color: #4D90FE;
-	color: #4D90FE;
+	border-color: #FFFFFF;
+	color: #FFFFFF;
 
 	-moz-box-shadow:inset 0 0 10px #D4D4D4;
 	-webkit-box-shadow:inset 0 0 10px #D4D4D4;
@@ -615,7 +615,7 @@ button.on:hover,
 }
 button.on:active, 
 .button.on:active {
-	border-color: #4D90FE;
+	border-color: #FFFFFF;
 }
 
 button.action, 
@@ -663,10 +663,10 @@ button.blue:hover,
 	border: 1px solid #2F5BB7 !important;
 
 	background: #3F83F1;
-	background: -webkit-linear-gradient(top, #4D90FE, #357AE8);
-	background: -moz-linear-gradient(top, #4D90FE, #357AE8);
-	background: -ms-linear-gradient(top, #4D90FE, #357AE8);
-	background: -o-linear-gradient(top, #4D90FE, #357AE8);
+	background: -webkit-linear-gradient(top, #FFFFFF, #357AE8);
+	background: -moz-linear-gradient(top, #FFFFFF, #357AE8);
+	background: -ms-linear-gradient(top, #FFFFFF, #357AE8);
+	background: -o-linear-gradient(top, #FFFFFF, #357AE8);
 }
 button.green, 
 .button.green {
@@ -772,7 +772,7 @@ button span.label {
 .ddm:active span.label, 
 button:active span.label, 
 .button:active span.label {
-    color: #4D90FE;
+    color: #FFFFFF;
 }
 
 button:hover .label, 
