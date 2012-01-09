@@ -307,6 +307,7 @@ input:focus {
 .Adsense {
     margin: 10px 0;
     position:fixed;
+    position:center;
 }
 
 
@@ -595,7 +596,7 @@ button:hover,
 button:active, 
 .button:active {
 	border-color: #FFFFFF;
-	color: #FFFFFF;
+	color: #444444;
 
 	-moz-box-shadow:inset 0 0 10px #D4D4D4;
 	-webkit-box-shadow:inset 0 0 10px #D4D4D4;
