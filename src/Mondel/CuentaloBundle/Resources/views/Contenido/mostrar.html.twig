@@ -18,7 +18,7 @@
 		<div class="TituloTexto">
 			<span>
 				{% if is_granted('ROLE_USER') and contenido.usuario != null %}
-					{{ contenido.usuario.nick }} - 
+					<b>{{ contenido.usuario.nick }}</b> - 
 				{% endif %}
 				{{ contenido.categoria.nombre }} - {{ contenido.fechaCreacion | created_ago }}
 			</span>
