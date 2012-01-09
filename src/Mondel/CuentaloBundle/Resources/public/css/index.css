@@ -11,6 +11,7 @@
 
 #box textarea {
     background-color: transparent;
+    border: 0;
     border-color: transparent;
     color: #929191;
     font-size: 13px;
