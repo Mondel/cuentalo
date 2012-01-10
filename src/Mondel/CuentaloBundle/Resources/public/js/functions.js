@@ -164,7 +164,7 @@ function renderizarVideos() {
 }
 
 function obtenerContenidos() {    
-    $('#masContenidos').attr("disabled", "disabled");
+    $('#masContenidos').css("visibility", "hidden");
     $('.PostLoading').show();
 
     var cid = $("#cid").val();
@@ -188,7 +188,7 @@ function obtenerContenidos() {
 		  	} else {
 		  		$('#masContenidos').hide();
 		  	}
-	        $('#masContenidos').removeAttr("disabled");	        
+	        $('#masContenidos').css("visibility", 'visible');	        
     	}
 	});
 };
