@@ -8,6 +8,8 @@ use Symfony\Component\HttpFoundation\Response;
 
 use Mondel\CuentaloBundle\Entity\Contenido,
     Mondel\CuentaloBundle\Entity\Comentario,
+    Mondel\CuentaloBundle\Entity\Notificacion,
+    Mondel\CuentaloBundle\Entity\UsuarioContenidoSuscripcion,
     Mondel\CuentaloBundle\Entity\Voto;
 use Mondel\CuentaloBundle\Form\Type\ContenidoType,
     Mondel\CuentaloBundle\Form\Type\ComentarioType;
@@ -40,8 +42,13 @@ class ContenidoController extends Controller
                 )
             );
 
+            $suscripcion = new UsuarioContenidoSuscripcion();
+            $suscripcion->setUsuario($usuario);
+            $suscripcion->setContenido($contenido);
+
             $em = $this->getDoctrine()->getEntityManager();
             $em->persist($contenido);
+            $em->persist($suscripcion);
             $em->flush();
             
         }
@@ -80,6 +87,33 @@ class ContenidoController extends Controller
                     $comentario->getTexto()
                 )
             );
+
+            $query_builder = $manager->createQueryBuilder();
+            $query_builder->add('select', 's')
+                ->add('from', 'Mondel\CuentaloBundle\Entity\UsuarioContenidoSuscripcion s')
+                ->add('where', 's.usuario = ?1 and s.contenido = ?2')
+                ->setParameters(array(1 => $usuario, 2 => $contenido));
+            
+            if (count($query_builder->getQuery()->getArrayResult()) == 0) {
+                $suscripcion = new UsuarioContenidoSuscripcion();
+                $suscripcion->setUsuario($usuario);
+                $suscripcion->setContenido($contenido);
+                $manager->persist($suscripcion);                
+            }
+
+            $query_builder = $manager->createQueryBuilder();
+            $query_builder->add('select', 's')
+                ->add('from', 'Mondel\CuentaloBundle\Entity\UsuarioContenidoSuscripcion s')
+                ->add('where', 's.contenido = ?1 and s.usuario != ?2')
+                ->setParameters(array(1 => $contenido, 2 => $usuario));
+
+            foreach($query_builder->getQuery()->getResult() as $suscripcion) {
+                $notificacion = new Notificacion();
+                $notificacion->setUsuarioContenidoSuscripcion($suscripcion);                
+                $notificacion->setTexto($usuario->getNick() . ' ha comentado la publicación #' . $contenido->getId());
+                $notificacion->setLeida(false);
+                $manager->persist($notificacion);
+            }
 
             $manager->persist($comentario);
             $manager->flush();
@@ -121,6 +155,33 @@ class ContenidoController extends Controller
                 )
             );
 
+            $query_builder = $manager->createQueryBuilder();
+            $query_builder->add('select', 's')
+                ->add('from', 'Mondel\CuentaloBundle\Entity\UsuarioContenidoSuscripcion s')
+                ->add('where', 's.usuario = ?1 and s.contenido = ?2')
+                ->setParameters(array(1 => $usuario, 2 => $contenido));
+            
+            if (count($query_builder->getQuery()->getArrayResult()) == 0) {
+                $suscripcion = new UsuarioContenidoSuscripcion();
+                $suscripcion->setUsuario($usuario);
+                $suscripcion->setContenido($contenido);
+                $manager->persist($suscripcion);                
+            }
+
+            $query_builder = $manager->createQueryBuilder();
+            $query_builder->add('select', 's')
+                ->add('from', 'Mondel\CuentaloBundle\Entity\UsuarioContenidoSuscripcion s')
+                ->add('where', 's.contenido = ?1 and s.usuario != ?2')
+                ->setParameters(array(1 => $contenido, 2 => $usuario));
+
+            foreach($query_builder->getQuery()->getResult() as $suscripcion) {
+                $notificacion = new Notificacion();
+                $notificacion->setUsuarioContenidoSuscripcion($suscripcion);                
+                $notificacion->setTexto($usuario->getNick() . ' ha comentado la publicación #' . $contenido->getId());
+                $notificacion->setLeida(false);
+                $manager->persist($notificacion);
+            }
+
             $manager->persist($comentario);
             $manager->flush();
         }
@@ -145,11 +206,33 @@ class ContenidoController extends Controller
     	if (!$comentario)
     		throw $this->createNotFoundException('El comentario que intentas eliminar no existe');
     	
-    	$idContenido = $comentario->getContenido()->getId();    	
+    	$contenido = $comentario->getContenido();
+        $usuario = $comentario->getUsuario();
     	
-    	if ($this->get('security.context')->getToken()->getUser()->getId() == $comentario->getUsuario()->getId()) {
-    		$manager->remove($comentario);
-    		$manager->flush();
+    	if ($this->get('security.context')->getToken()->getUser()->getId() == $usuario->getId()) {
+    		$manager->remove($comentario);            
+            // Compruebo si tiene una suscripcion a ese contenido, y borro su unico comentario
+            // elimino la suscripcion tambien
+            if ($contenido->getUsuario()->getId() != $usuario->getId()) {
+                $query_builder = $manager->createQueryBuilder();
+                $query_builder->add('select', 'c')
+                    ->add('from', 'Mondel\CuentaloBundle\Entity\Comentario c')
+                    ->add('where', 'c.usuario = ?1 and c.contenido = ?2')
+                    ->setParameters(array(1 => $usuario, 2 => $contenido));
+                                    
+                if (count($query_builder->getQuery()->getArrayResult()) == 1) {
+                    $query_builder = $manager->createQueryBuilder();
+                    $query_builder->add('select', 's')
+                        ->add('from', 'Mondel\CuentaloBundle\Entity\UsuarioContenidoSuscripcion s')
+                        ->add('where', 's.usuario = ?1 and s.contenido = ?2')
+                        ->setParameters(array(1 => $usuario, 2 => $contenido));
+                    $suscripcion = $query_builder->getQuery()->getSingleResult();
+                    $manager->remove($suscripcion);
+                }
+            }
+            $manager->flush();
+
+
             if (!$this->getRequest()->isXmlHttpRequest()) {
                 $this->get('session')->setFlash('notice', 'Se ha eliminado el comentario correctamente');
             }
@@ -161,7 +244,7 @@ class ContenidoController extends Controller
         } else {
             return $this->redirect($this->generateUrl(
         			'_contenido_pagina_mostrar',
-        			array('id' => $idContenido)
+        			array('id' => $contenido->getId())
         	));
         }
     }
