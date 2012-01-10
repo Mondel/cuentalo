@@ -183,6 +183,7 @@ function obtenerContenidos() {
     			var newPosts = lastPost.nextAll();
 			  	asignarOnClickVerComentarios(newPosts);
 			  	//actualizarBotones(newPosts);
+			  	asignarOnSubmitComentarAjax();
 			  	renderizarVideosPost(newPosts);
 		  	} else {
 		  		$('#masContenidos').hide();
