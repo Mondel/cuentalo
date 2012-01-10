@@ -18,10 +18,10 @@ class MondelCuentaloExtension extends \Twig_Extension
     {
     	$title = trim($title);
     	$title_length = strlen($title);
-    	if ($title_length > 50)
-    		$title = substr($title, 0, 47) . '...';
+    	if ($title_length > 70)
+    		$title = substr($title, 0, 67) . '...';
     	else if ($title_length == 0)
-    		$title = "Una Red Social Diferente, Desahogate Y Comparte Lo Que Te Gusta Anonimamente";
+    		$title = "Una Red Social Para Compartir Lo Que Te Gusta Anonimamente";
     	return $title;	
     }
 
