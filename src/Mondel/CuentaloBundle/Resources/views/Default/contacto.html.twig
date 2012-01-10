@@ -1,5 +1,9 @@
 {% extends 'MondelCuentaloBundle::layout.html.twig' %}
 
+{% block title %}
+    Contactarnos
+{% endblock %}
+
 {% block stylesheets %}
     {{ parent() }}
     {% stylesheets '@MondelCuentaloBundle/Resources/public/css/forms.css' filter='yui_css' %}
@@ -8,6 +12,7 @@
     {% endstylesheets %}    
 {% endblock %}
 {% block content %}
+    <h1 class="Titulo">Contactarnos</h1>
     {{ parent() }}
     <form action="{{ path('_contacto') }}" method="post" {{ form_enctype(form) }}>
         <div id="contacto_form" class="Form">

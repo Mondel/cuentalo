@@ -1,5 +1,9 @@
 {% extends 'MondelCuentaloBundle::layout.html.twig' %}
 
+{% block title %}
+	Registro Satisfactorio
+{% endblock %}
+
 {% block stylesheets %}
     {{ parent() }}
     {% stylesheets '@MondelCuentaloBundle/Resources/public/css/forms.css' filter='yui_css' %}
@@ -10,7 +14,7 @@
 {% block content %}
     {{ parent() }}
    
-<span class="titulo"><b>Se ha enviado un correo!</b></span>
+<h1 class="Titulo">Se ha enviado un correo!</h1>
 <br>
 <span class="textoterminos">Usted recibirá en su casilla de e-mail un link de activación con el cual deberá confirmar su cuenta.<br>
 </span>

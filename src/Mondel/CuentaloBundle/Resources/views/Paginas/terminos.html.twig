@@ -1,5 +1,9 @@
 {% extends 'MondelCuentaloBundle::layout.html.twig' %}
 
+{% block title %}
+	T&eacute;rminos Y Condiciones
+{% endblock %}
+
 {% block stylesheets %}
     {{ parent() }}
     {% stylesheets '@MondelCuentaloBundle/Resources/public/css/forms.css' filter='yui_css' %}
@@ -10,7 +14,7 @@
 {% block content %}
     {{ parent() }}
    
-<span class="titulo"><b>Términos y condiciones</b></span>
+<h1 class="Titulo">Términos y condiciones</h1>
 <br>
 <span class="textoterminos">De forma previa a la utilización del servicio ofrecido por el sitio www.cuentalo.com.uy de ahora en más “Cuentalo”, los usuarios  deberán de leer completamente  este documento.<br>
 Las condiciones generales aquí expresadas son dispuestas por “Cuentalo” y son aplicables a los servicios prestados así como los futuros cambios o inclusión de nuevas funciones.<br>
