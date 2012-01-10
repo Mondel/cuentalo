@@ -12,7 +12,7 @@
     {% endstylesheets %}    
 {% endblock %}
 {% block content %}
-    <h1 class="Titulo">Contactarnos</h1>
+    <h1 class="titulo">Contactarnos</h1>
     {{ parent() }}
     <form action="{{ path('_contacto') }}" method="post" {{ form_enctype(form) }}>
         <div id="contacto_form" class="Form">
