@@ -1,5 +1,14 @@
 {% extends 'MondelCuentaloBundle::layout.html.twig' %}
 
+
+{% block title %}
+    {% if pagina_titulo is defined %}    
+        {{ pagina_titulo }}
+    {% else %}
+        {{ parent() }}
+    {% endif %}
+{% endblock %}
+
 {% block stylesheets %}
     {{ parent() }}
     {% stylesheets '@MondelCuentaloBundle/Resources/public/css/index.css' filter='yui_css' %}
@@ -10,7 +19,7 @@
 {# {% block message %}{% endblock %} #}
 
 {% block content %}
-    {{ parent() }}
+{{ parent() }}    
     <input type="hidden" id="cid" value="{{ cid }}"/>
     <!--<div class="Wrap"> -->
         <div id="box">

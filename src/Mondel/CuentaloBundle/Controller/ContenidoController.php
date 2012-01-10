@@ -289,6 +289,7 @@ class ContenidoController extends Controller
     	return $this->render(
     			'MondelCuentaloBundle:Default:inicio.html.twig',
     			array(
+                        'pagina_titulo' => $categoria->getNombre(),
     					'contenidos'    => $contenidos,
     					'form'          => $formulario_contenido->createView(),
     					'formularios_comentarios' => $formularios_comentarios,
