@@ -1,0 +1,10 @@
+{% if is_granted('ROLE_USER') %}
+	{% for a in app.security.token.user.getContenidosSuscripciones %}
+		{{ a.contenido.texto }}
+	{% endfor %}
+	{#% for suscripcion in suscripciones %}
+		{% for notificacion in suscripcion.getNotificaciones %}
+			{{ notificacion.texto }}
+		{% endfor %}
+	{% endfor %#}
+{% endif %}

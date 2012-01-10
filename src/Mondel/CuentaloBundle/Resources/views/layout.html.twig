@@ -105,6 +105,9 @@
 	    	<div id="menu_usuarios">Menú de usuario</div>
 	    	<div id="menu_izquierdo">
 	    		{% if is_granted('ROLE_USER') %}
+	    			
+	    			{% include 'MondelCuentaloBundle:Notificacion:listar.html.twig' %}
+
 		    		<form method="get" action="{{ path('_contrasenia_cambiar') }}">
 				    	<button class="gray">
 				    		<span class="icon IconPass"></span>
