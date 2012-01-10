@@ -178,8 +178,7 @@ function obtenerContenidos() {
     	success: function(response) {
     		if (response != "") {
     			var lastPost = $(".Post:last");
-    			lastPost.after(response);
-    			$('.PostLoading').hide();
+    			lastPost.after(response);    			
     			$('html,body').animate({scrollTop : lastPost.position().top}, 'slow');
     			var newPosts = lastPost.nextAll();
 			  	asignarOnClickVerComentarios(newPosts);
@@ -188,6 +187,7 @@ function obtenerContenidos() {
 		  	} else {
 		  		$('#masContenidos').hide();
 		  	}
+		  	$('.PostLoading').hide();
 	        $('#masContenidos').css("visibility", 'visible');	        
     	}
 	});
