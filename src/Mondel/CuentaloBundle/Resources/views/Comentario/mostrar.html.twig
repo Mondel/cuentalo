@@ -15,7 +15,7 @@
 		<div class="EliminarItem">
 			{% if is_granted('ROLE_USER') %}
 				{% if comentario.usuario and (comentario.usuario.id == app.security.token.user.id) %}
-					<a href="{{ path('_comentario_eliminar', { 'id': comentario.id }) }}" alt="Eliminar Comentario" onclick="return comentarioEliminar()">X</a>
+					<a href="{{ path('_comentario_eliminar', { 'id': comentario.id }) }}" alt="Eliminar Comentario">X</a>
 				{% endif %}
 			{% endif %}
 		</div>

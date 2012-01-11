@@ -216,13 +216,15 @@ function comentarioEliminar() {
 }
 
 function asignarOnHoverComentarioEliminar(selComentario, selItem) {
+	$(selItem).unbind('click');
 	$(selItem).click(function(evt){
 		evt.preventDefault();
-		var post = $(this).parents('.Post');
-		var comentario = $(this).parents('.Comentario');
-		var id = comentario.attr('id');
-		var urlAjax = '/usuario/comentario/' + id + '/eliminar';
-		$.ajax({
+		if (comentarioEliminar()) {
+			var post = $(this).parents('.Post');
+			var comentario = $(this).parents('.Comentario');
+			var id = comentario.attr('id');
+			var urlAjax = '/usuario/comentario/' + id + '/eliminar';
+			$.ajax({
 	            url: urlAjax,
 	            success: function(data) {
 	            	if (post.find('.Comentario').length == 1) {
@@ -231,6 +233,7 @@ function asignarOnHoverComentarioEliminar(selComentario, selItem) {
 	            	comentario.remove();
 	            }
 	        });
+	    }
 	});
 	$(selComentario).hover(
     		function() {
