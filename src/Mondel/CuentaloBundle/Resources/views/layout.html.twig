@@ -105,9 +105,6 @@
 	    	<div id="menu_usuarios">Menú de usuario</div>
 	    	<div id="menu_izquierdo">
 	    		{% if is_granted('ROLE_USER') %}
-	    			
-	    			{% include 'MondelCuentaloBundle:Notificacion:listar.html.twig' %}
-
 		    		<form method="get" action="{{ path('_contrasenia_cambiar') }}">
 				    	<button class="gray">
 				    		<span class="icon IconPass"></span>
@@ -138,7 +135,16 @@
 			    		<span class="icon IconQuees"></span>
 			    		<span class="label">Que es cuentalo?</span>
 		    		</button>
-	    		</form>				    		    		
+	    		</form>
+	    		{% if is_granted('ROLE_USER') %}
+	    			{% set cssClassNotificacion = (tiene_notificaciones is defined and tiene_notificaciones) ? 'red' : 'grey' %}
+	    			<form method="get" action="{{ path('_usuario_notificaciones') }}">
+			    		<button class="button {{ cssClassNotificacion }}">
+				    		<span class="icon IconTerm"></span>
+				    		<span class="label">Notificaciones</span>
+			    		</button>
+		    		</form>
+	    		{% endif %}
 	    	</div>    	
     		<div id="facebook">Seguinos en Facebook</div>
     		<div class="fb-like-box" data-href="https://www.facebook.com/pages/Cuentalo/221560061231773" data-width="182" data-height="380" data-show-faces="true" data-stream="false" data-header="false"></div>    		

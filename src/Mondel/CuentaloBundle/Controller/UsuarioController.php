@@ -363,4 +363,16 @@ class UsuarioController extends Controller
         return $this->redirect($this->generateUrl('_inicio'));
     }
 
+    public function notificacionesListarAction()
+    {
+        $repositorio = $this->getDoctrine()->getRepository('MondelCuentaloBundle:Usuario');
+        return $this->render(
+                'MondelCuentaloBundle:Usuario:notificacionesListar.html.twig',
+                array('notificaciones' => $repositorio->obtenerNotificaciones(
+                        $this->get('security.context')->getToken()->getUser()->getId()
+                    ))
+
+        );        
+    }
+
 }

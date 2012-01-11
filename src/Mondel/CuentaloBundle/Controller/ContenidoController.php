@@ -259,6 +259,13 @@ class ContenidoController extends Controller
         $comentario = new Comentario();
         $formulario = $this->createForm(new ComentarioType(), $comentario);
 
+        if ($this->get('security.context')->isGranted('ROLE_USER')) {
+            $idUsuario = $this->get('security.context')->getToken()->getUser()->getId();
+            if ($this->getDoctrine()->getRepository('MondelCuentaloBundle:Usuario')->estaSuscritoContenido($idUsuario, $id)) {
+                $this->getDoctrine()->getRepository('MondelCuentaloBundle:Usuario')->marcarNotificacionesComoLeidas($idUsuario, $id);
+            }
+        }
+
         return $this->render(
             'MondelCuentaloBundle:Contenido:paginaMostrar.html.twig',
             array(

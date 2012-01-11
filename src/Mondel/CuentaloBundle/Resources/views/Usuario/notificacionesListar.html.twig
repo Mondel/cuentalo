@@ -1,0 +1,33 @@
+{% extends 'MondelCuentaloBundle::layout.html.twig' %}
+
+{% block title %}Notificaciones{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    {% stylesheets '@MondelCuentaloBundle/Resources/public/css/forms.css' filter='yui_css' %}
+    <link rel="stylesheet" type="text/css" media="screen" href="{{ asset_url }}" />
+    {% endstylesheets %}
+{% endblock %}
+
+{% block content %}
+    {{ parent() }}
+
+    <section>   	
+		{% for notificacion in notificaciones %}
+			<article>	
+				<span>
+					{% if notificacion.leida %}
+						leido
+					{% else %}
+						nuevo
+					{% endif %}
+				</span>			
+				<a href="{{ path('_contenido_pagina_mostrar', {'id':notificacion.getusuariocontenidosuscripcion.contenido.id}) }}">{{ notificacion.texto }}</a>
+				<span>
+					{{ notificacion.fechaCreacion | created_ago }}
+				</span>				
+			</article>
+		{% endfor %}
+	</section>
+
+{% endblock %}
