@@ -272,9 +272,19 @@ class UsuarioController extends Controller
     		}
     	}
     
+        if ($this->get('security.context')->isGranted("ROLE_USER")) {
+            $repositorio = $this->getDoctrine()->getEntityManager()->getRepository('MondelCuentaloBundle:Usuario');
+            $tiene_notificaciones = $repositorio->tieneNotificacionesSinLeer($this->get('security.context')->getToken()->getUser()->getId());
+        } else {
+            $tiene_notificaciones = false;      
+        }
+
     	return $this->render(
     			'MondelCuentaloBundle:Usuario:contraseniaCambiar.html.twig',
-    			array('form' => $formulario->createView())
+    			array(
+                    'tiene_notificaciones' => $tiene_notificaciones,
+                    'form' => $formulario->createView()
+                    )
     	);
     }
     
@@ -323,9 +333,18 @@ class UsuarioController extends Controller
 			}    		
     	}
     
+        if ($this->get('security.context')->isGranted("ROLE_USER")) {
+            $repositorio = $this->getDoctrine()->getEntityManager()->getRepository('MondelCuentaloBundle:Usuario');
+            $tiene_notificaciones = $repositorio->tieneNotificacionesSinLeer($this->get('security.context')->getToken()->getUser()->getId());
+        } else {
+            $tiene_notificaciones = false;      
+        }
+
     	return $this->render(
     			'MondelCuentaloBundle:Usuario:usuarioEliminar.html.twig',
-    			array('form' => $formulario->createView())
+    			array(
+                    'tiene_notificaciones' => $tiene_notificaciones,
+                    'form' => $formulario->createView())
     	);
     }
     
@@ -365,10 +384,19 @@ class UsuarioController extends Controller
 
     public function notificacionesListarAction()
     {
+        if ($this->get('security.context')->isGranted("ROLE_USER")) {
+            $repositorio = $this->getDoctrine()->getEntityManager()->getRepository('MondelCuentaloBundle:Usuario');
+            $tiene_notificaciones = $repositorio->tieneNotificacionesSinLeer($this->get('security.context')->getToken()->getUser()->getId());
+        } else {
+            $tiene_notificaciones = false;      
+        }
+
         $repositorio = $this->getDoctrine()->getRepository('MondelCuentaloBundle:Usuario');
         return $this->render(
                 'MondelCuentaloBundle:Usuario:notificacionesListar.html.twig',
-                array('notificaciones' => $repositorio->obtenerNotificaciones(
+                array(
+                    'tiene_notificaciones' => $tiene_notificaciones, 
+                    'notificaciones' => $repositorio->obtenerNotificaciones(
                         $this->get('security.context')->getToken()->getUser()->getId()
                     ))
 
