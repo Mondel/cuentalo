@@ -37,7 +37,7 @@ class Notificacion
     private $leida;
 
     /**
-     * @ORM\ManyToOne(targetEntity="UsuarioContenidoSuscripcion", inversedBy="notificacion")
+     * @ORM\ManyToOne(targetEntity="UsuarioContenidoSuscripcion", inversedBy="notificaciones")
      * @ORM\JoinColumn(name="usuario_contenido_suscripcion_id", referencedColumnName="id")
      */
     private $usuario_contenido_suscripcion;

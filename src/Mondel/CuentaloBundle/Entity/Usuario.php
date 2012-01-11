@@ -156,6 +156,11 @@ class Usuario implements AdvancedUserInterface
      */
     private $comentarios;
 
+    /**
+     * @ORM\OneToMany(targetEntity="UsuarioContenidoSuscripciones", mappedBy="usuario")
+     */
+    private $contenido_suscripciones;
+
     /*
      * Implements AdvancedUserInterface
      */

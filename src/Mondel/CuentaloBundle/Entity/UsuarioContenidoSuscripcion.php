@@ -34,6 +34,11 @@ class UsuarioContenidoSuscripcion
      */
     private $contenido;
 
+     /**
+     * @ORM\OneToMany(targetEntity="Notificacion", mappedBy="usuario_contenido_suscripcion")
+     */
+    private $notificaciones;
+
     /*
      * Fin mis propiedades
      */    
