@@ -21,7 +21,7 @@ class Categoria
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      */
-    private $id;
+    protected $id;
 
     /**
      * @var string $nombre
@@ -31,19 +31,19 @@ class Categoria
      * @Assert\NotBlank()
      * @ORM\Column(name="nombre", type="string", length=100)
      */
-    private $nombre;
+    protected $nombre;
 
     /**
      * @var boolean $activo
      *
      * @ORM\Column(name="activo", type="boolean")
      */
-    private $activo;
+    protected $activo;
 
     /**
      * @ORM\OneToMany(targetEntity="Contenido", mappedBy="categoria")
      */
-    private $contenidos;
+    protected $contenidos;
 
     /**
      * @ORM\prePersist

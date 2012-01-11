@@ -10,6 +10,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  *
  * @ORM\Table()
  * @ORM\Entity(repositoryClass="Mondel\CuentaloBundle\Entity\NotificacionRepository")
+ * @ORM\HasLifecycleCallbacks()
  */
 class Notificacion
 {
@@ -20,27 +21,42 @@ class Notificacion
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      */
-    private $id;
+    protected $id;
 
     /**
      * @var string texto
      *
      * @ORM\Column(name="texto", type="string", length=255)
      */
-    private $texto;
+    protected $texto;
 
     /**
      * @var boolean $leida
      *
      * @ORM\Column(name="leida", type="boolean")
      */
-    private $leida;
+    protected $leida;
 
+    /**
+     * @var datetime $fecha_creacion
+     *
+     * @ORM\Column(name="fecha_creacion", type="datetime")
+     */
+    protected $fecha_creacion;
+    
     /**
      * @ORM\ManyToOne(targetEntity="UsuarioContenidoSuscripcion", inversedBy="notificaciones")
      * @ORM\JoinColumn(name="usuario_contenido_suscripcion_id", referencedColumnName="id")
      */
-    private $usuario_contenido_suscripcion;
+    protected $usuario_contenido_suscripcion;
+
+    /**
+     * @ORM\prePersist
+     */
+    public function setFechaCreacion()
+    {
+        $this->fecha_creacion = new \DateTime();
+    }
 
     /*
      * Fin mis propiedades
@@ -114,5 +130,15 @@ class Notificacion
     public function getUsuarioContenidoSuscripcion()
     {
         return $this->usuario_contenido_suscripcion;
+    }
+
+    /**
+     * Get fecha_creacion
+     *
+     * @return datetime 
+     */
+    public function getFechaCreacion()
+    {
+        return $this->fecha_creacion;
     }
 }

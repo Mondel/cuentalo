@@ -25,7 +25,7 @@ class Contenido
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      */
-    private $id;
+    protected $id;
 
     /**
      * @var string $texto
@@ -34,7 +34,7 @@ class Contenido
      * @Assert\MaxLength(555)
      * @ORM\Column(name="texto", type="text")
      */
-    private $texto;
+    protected $texto;
 
     /**
      * @var string $ip
@@ -42,57 +42,57 @@ class Contenido
      * @Assert\MaxLength(20)
      * @ORM\Column(name="ip", type="string", length=20)
      */
-    private $ip;
+    protected $ip;
    
     /**
      * @var string $sexo
      *
      * @ORM\Column(name="sexo", type="string", length=1, nullable=true)
      */
-    private $sexo;
+    protected $sexo;
 
     /**
      * @var string $url_video
      *     
      * @ORM\Column(name="url_video", type="string", length=255, nullable=true)
      */
-    private $url_video;
+    protected $url_video;
     
     /**
      * @var boolean $activo
      *
      * @ORM\Column(name="activo", type="boolean")
      */
-    private $activo;
+    protected $activo;
 
     /**
      * @var datetime $fecha_creacion
      *
      * @ORM\Column(name="fecha_creacion", type="datetime")
      */
-    private $fecha_creacion;
+    protected $fecha_creacion;
 
     /**
      * @ORM\ManyToOne(targetEntity="Usuario", inversedBy="contenidos")
      * @ORM\JoinColumn(name="usuario_id", referencedColumnName="id")
      */
-    private $usuario;
+    protected $usuario;
 
      /**
      * @ORM\ManyToOne(targetEntity="Categoria", inversedBy="contenidos")
      * @ORM\JoinColumn(name="categoria_id", referencedColumnName="id")
      */
-    private $categoria;
+    protected $categoria;
 
     /**
      * @ORM\OneToMany(targetEntity="Comentario", mappedBy="contenido")
      */
-    private $comentarios;
+    protected $comentarios;
 
     /**
      * @ORM\OneToMany(targetEntity="Voto", mappedBy="voto")
      */
-    private $votos;
+    protected $votos;
 
     /**
      * @ORM\prePersist

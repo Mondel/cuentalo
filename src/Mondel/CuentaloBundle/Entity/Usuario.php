@@ -25,7 +25,7 @@ class Usuario implements AdvancedUserInterface
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      */
-    private $id;
+    protected $id;
 
     /**
      * @var string $nombre
@@ -34,7 +34,7 @@ class Usuario implements AdvancedUserInterface
      * @Assert\MinLength(3)
      * @ORM\Column(name="nombre", type="string", length=50, nullable=true)
      */
-    private $nombre;
+    protected $nombre;
 
     /**
      * @var string $apellido
@@ -43,7 +43,7 @@ class Usuario implements AdvancedUserInterface
      * @Assert\MinLength(3)
      * @ORM\Column(name="apellido", type="string", length=50, nullable=true)
      */
-    private $apellido;
+    protected $apellido;
 
     /**
      * @var string $email
@@ -53,7 +53,7 @@ class Usuario implements AdvancedUserInterface
      * @Assert\NotBlank()
      * @ORM\Column(name="email", type="string", length=50)
      */
-    private $email;
+    protected $email;
 
     /**
      * @var string $email_alternativo
@@ -62,7 +62,7 @@ class Usuario implements AdvancedUserInterface
      * @Assert\MaxLength(50)     
      * @ORM\Column(name="email_alternativo", type="string", length=50, nullable=true)
      */
-    private $email_alternativo;
+    protected $email_alternativo;
 
     /**
      * @var string $nick
@@ -72,7 +72,7 @@ class Usuario implements AdvancedUserInterface
      * @Assert\NotBlank()
      * @ORM\Column(name="nick", type="string", length=50)
      */
-    private $nick;
+    protected $nick;
 
     /**
      * @var string $sexo
@@ -80,33 +80,33 @@ class Usuario implements AdvancedUserInterface
      * @Assert\Choice({"m", "f", "i"})
      * @ORM\Column(name="sexo", type="string", length=1)
      */
-    private $sexo;
+    protected $sexo;
 
     /**
      * @var date $fecha_nacimiento
      *
      * @ORM\Column(name="fecha_nacimiento", type="date", nullable=true)
      */
-    private $fecha_nacimiento;
+    protected $fecha_nacimiento;
 
     /**
      * @var date $fecha_creacion
      *
      * @ORM\Column(name="fecha_creacion", type="date")
      */
-    private $fecha_creacion;
+    protected $fecha_creacion;
 
     /**
      * @var date $fecha_actualizacion
      *
      * @ORM\Column(name="fecha_actualizacion", type="date")
      */
-    private $fecha_actualizacion;
+    protected $fecha_actualizacion;
 
     /**
      * @ORM\Column(name="salt", type="string", length=255)
      */
-    private $salt;
+    protected $salt;
 
     /**
      * @var string $contrasenia
@@ -116,50 +116,50 @@ class Usuario implements AdvancedUserInterface
      * @Assert\NotBlank()
      * @ORM\Column(name="contrasenia", type="string", length=255)
      */
-    private $contrasenia;
+    protected $contrasenia;
 
     /**
      * @var boolean $activo
      *
      * @ORM\Column(name="activo", type="boolean")
      */
-    private $activo;
+    protected $activo;
 
     /**
      * @var boolean $recibe_noticias
      *
      * @ORM\Column(name="recibe_noticias", type="boolean", nullable=true)
      */
-    private $recibe_noticias;
+    protected $recibe_noticias;
 
     /**
      * @var boolean $recibe_notificaciones
      *
      * @ORM\Column(name="recibe_notificaciones", type="boolean", nullable=true)
      */
-    private $recibe_notificaciones;
+    protected $recibe_notificaciones;
 
     /**
      * @var boolean $admin
      *
      * @ORM\Column(name="admin", type="boolean")
      */
-    private $admin;
+    protected $admin;
 
     /**
      * @ORM\OneToMany(targetEntity="Contenido", mappedBy="usuario")
      */
-    private $contenidos;
+    protected $contenidos;
     
     /**
      * @ORM\OneToMany(targetEntity="Comentario", mappedBy="usuario")
      */
-    private $comentarios;
+    protected $comentarios;
 
     /**
-     * @ORM\OneToMany(targetEntity="UsuarioContenidoSuscripciones", mappedBy="usuario")
+     * @ORM\OneToMany(targetEntity="UsuarioContenidoSuscripcion", mappedBy="usuario")
      */
-    private $contenido_suscripciones;
+    protected $contenido_suscripciones;
 
     /*
      * Implements AdvancedUserInterface
@@ -255,16 +255,18 @@ class Usuario implements AdvancedUserInterface
     
     /*
      * Fin mis propiedades
-     */
+     */     
     public function __construct()
     {
         $this->contenidos = new \Doctrine\Common\Collections\ArrayCollection();
+    $this->comentarios = new \Doctrine\Common\Collections\ArrayCollection();
+    $this->contenido_suscripciones = new \Doctrine\Common\Collections\ArrayCollection();
     }
-
+    
     /**
      * Get id
      *
-     * @return integer
+     * @return integer 
      */
     public function getId()
     {
@@ -275,18 +277,16 @@ class Usuario implements AdvancedUserInterface
      * Set nombre
      *
      * @param string $nombre
-     * @return Usuario
      */
     public function setNombre($nombre)
     {
         $this->nombre = $nombre;
-        return $this;
     }
 
     /**
      * Get nombre
      *
-     * @return string
+     * @return string 
      */
     public function getNombre()
     {
@@ -297,18 +297,16 @@ class Usuario implements AdvancedUserInterface
      * Set apellido
      *
      * @param string $apellido
-     * @return Usuario
      */
     public function setApellido($apellido)
     {
         $this->apellido = $apellido;
-        return $this;
     }
 
     /**
      * Get apellido
      *
-     * @return string
+     * @return string 
      */
     public function getApellido()
     {
@@ -319,18 +317,16 @@ class Usuario implements AdvancedUserInterface
      * Set email
      *
      * @param string $email
-     * @return Usuario
      */
     public function setEmail($email)
     {
         $this->email = $email;
-        return $this;
     }
 
     /**
      * Get email
      *
-     * @return string
+     * @return string 
      */
     public function getEmail()
     {
@@ -341,18 +337,16 @@ class Usuario implements AdvancedUserInterface
      * Set email_alternativo
      *
      * @param string $emailAlternativo
-     * @return Usuario
      */
     public function setEmailAlternativo($emailAlternativo)
     {
         $this->email_alternativo = $emailAlternativo;
-        return $this;
     }
 
     /**
      * Get email_alternativo
      *
-     * @return string
+     * @return string 
      */
     public function getEmailAlternativo()
     {
@@ -363,18 +357,16 @@ class Usuario implements AdvancedUserInterface
      * Set nick
      *
      * @param string $nick
-     * @return Usuario
      */
     public function setNick($nick)
     {
         $this->nick = $nick;
-        return $this;
     }
 
     /**
      * Get nick
      *
-     * @return string
+     * @return string 
      */
     public function getNick()
     {
@@ -385,18 +377,16 @@ class Usuario implements AdvancedUserInterface
      * Set sexo
      *
      * @param string $sexo
-     * @return Usuario
      */
     public function setSexo($sexo)
     {
         $this->sexo = $sexo;
-        return $this;
     }
 
     /**
      * Get sexo
      *
-     * @return string
+     * @return string 
      */
     public function getSexo()
     {
@@ -407,18 +397,16 @@ class Usuario implements AdvancedUserInterface
      * Set fecha_nacimiento
      *
      * @param date $fechaNacimiento
-     * @return Usuario
      */
     public function setFechaNacimiento($fechaNacimiento)
     {
         $this->fecha_nacimiento = $fechaNacimiento;
-        return $this;
     }
 
     /**
      * Get fecha_nacimiento
      *
-     * @return date
+     * @return date 
      */
     public function getFechaNacimiento()
     {
@@ -428,7 +416,7 @@ class Usuario implements AdvancedUserInterface
     /**
      * Get fecha_creacion
      *
-     * @return date
+     * @return date 
      */
     public function getFechaCreacion()
     {
@@ -438,7 +426,7 @@ class Usuario implements AdvancedUserInterface
     /**
      * Get fecha_actualizacion
      *
-     * @return date
+     * @return date 
      */
     public function getFechaActualizacion()
     {
@@ -449,30 +437,26 @@ class Usuario implements AdvancedUserInterface
      * Set salt
      *
      * @param string $salt
-     * @return Usuario
      */
     public function setSalt($salt)
     {
         $this->salt = $salt;
-        return $this;
     }
 
     /**
      * Set contrasenia
      *
      * @param string $contrasenia
-     * @return Usuario
      */
     public function setContrasenia($contrasenia)
     {
         $this->contrasenia = $contrasenia;
-        return $this;
     }
 
     /**
      * Get contrasenia
      *
-     * @return string
+     * @return string 
      */
     public function getContrasenia()
     {
@@ -483,18 +467,16 @@ class Usuario implements AdvancedUserInterface
      * Set activo
      *
      * @param boolean $activo
-     * @return Usuario
      */
     public function setActivo($activo)
     {
         $this->activo = $activo;
-        return $this;
     }
 
     /**
      * Get activo
      *
-     * @return boolean
+     * @return boolean 
      */
     public function getActivo()
     {
@@ -505,18 +487,16 @@ class Usuario implements AdvancedUserInterface
      * Set recibe_noticias
      *
      * @param boolean $recibeNoticias
-     * @return Usuario
      */
     public function setRecibeNoticias($recibeNoticias)
     {
         $this->recibe_noticias = $recibeNoticias;
-        return $this;
     }
 
     /**
      * Get recibe_noticias
      *
-     * @return boolean
+     * @return boolean 
      */
     public function getRecibeNoticias()
     {
@@ -527,22 +507,40 @@ class Usuario implements AdvancedUserInterface
      * Set recibe_notificaciones
      *
      * @param boolean $recibeNotificaciones
-     * @return Usuario
      */
     public function setRecibeNotificaciones($recibeNotificaciones)
     {
         $this->recibe_notificaciones = $recibeNotificaciones;
-        return $this;
     }
 
     /**
      * Get recibe_notificaciones
      *
-     * @return boolean
+     * @return boolean 
      */
     public function getRecibeNotificaciones()
     {
         return $this->recibe_notificaciones;
+    }
+
+    /**
+     * Set admin
+     *
+     * @param boolean $admin
+     */
+    public function setAdmin($admin)
+    {
+        $this->admin = $admin;
+    }
+
+    /**
+     * Get admin
+     *
+     * @return boolean 
+     */
+    public function getAdmin()
+    {
+        return $this->admin;
     }
 
     /**
@@ -558,33 +556,11 @@ class Usuario implements AdvancedUserInterface
     /**
      * Get contenidos
      *
-     * @return Doctrine\Common\Collections\Collection
+     * @return Doctrine\Common\Collections\Collection 
      */
     public function getContenidos()
     {
         return $this->contenidos;
-    }
-
-    /**
-     * Set admin
-     *
-     * @param boolean $admin
-     * @return Usuario
-     */
-    public function setAdmin($admin)
-    {
-        $this->admin = $admin;
-        return $this;
-    }
-
-    /**
-     * Get admin
-     *
-     * @return boolean
-     */
-    public function getAdmin()
-    {
-        return $this->admin;
     }
 
     /**
@@ -605,5 +581,25 @@ class Usuario implements AdvancedUserInterface
     public function getComentarios()
     {
         return $this->comentarios;
+    }
+
+    /**
+     * Add contenido_suscripciones
+     *
+     * @param Mondel\CuentaloBundle\Entity\UsuarioContenidoSuscripcion $contenidoSuscripciones
+     */
+    public function addUsuarioContenidoSuscripcion(\Mondel\CuentaloBundle\Entity\UsuarioContenidoSuscripcion $contenidoSuscripciones)
+    {
+        $this->contenido_suscripciones[] = $contenidoSuscripciones;
+    }
+
+    /**
+     * Get contenido_suscripciones
+     *
+     * @return Doctrine\Common\Collections\Collection 
+     */
+    public function getContenidoSuscripciones()
+    {
+        return $this->contenido_suscripciones;
     }
 }

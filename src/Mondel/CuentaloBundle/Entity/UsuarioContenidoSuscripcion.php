@@ -20,24 +20,24 @@ class UsuarioContenidoSuscripcion
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      */
-    private $id;
+    protected $id;
 
     /**
      * @ORM\ManyToOne(targetEntity="Usuario", inversedBy="contenidos_suscrito")
      * @ORM\JoinColumn(name="usuario_id", referencedColumnName="id")
      */
-    private $usuario;
+    protected $usuario;
 
     /**
      * @ORM\ManyToOne(targetEntity="Contenido", inversedBy="usuarios_suscritos")
      * @ORM\JoinColumn(name="contenido_id", referencedColumnName="id")
      */
-    private $contenido;
+    protected $contenido;
 
      /**
      * @ORM\OneToMany(targetEntity="Notificacion", mappedBy="usuario_contenido_suscripcion")
      */
-    private $notificaciones;
+    protected $notificaciones;
 
     /*
      * Fin mis propiedades
@@ -91,5 +91,29 @@ class UsuarioContenidoSuscripcion
     public function getContenido()
     {
         return $this->contenido;
+    }
+    public function __construct()
+    {
+        $this->notificaciones = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+    
+    /**
+     * Add notificaciones
+     *
+     * @param Mondel\CuentaloBundle\Entity\Notificacion $notificaciones
+     */
+    public function addNotificacion(\Mondel\CuentaloBundle\Entity\Notificacion $notificaciones)
+    {
+        $this->notificaciones[] = $notificaciones;
+    }
+
+    /**
+     * Get notificaciones
+     *
+     * @return Doctrine\Common\Collections\Collection 
+     */
+    public function getNotificaciones()
+    {
+        return $this->notificaciones;
     }
 }

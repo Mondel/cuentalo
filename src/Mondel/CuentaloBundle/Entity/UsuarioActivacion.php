@@ -19,21 +19,21 @@ class UsuarioActivacion
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      */
-    private $id;
+    protected $id;
 
     /**
      * @var string $email
      *
      * @ORM\Column(name="email", type="string", length=255)
      */
-    private $email;
+    protected $email;
 
     /**
      * @var string $token
      *
      * @ORM\Column(name="token", type="string", length=255)
      */
-    private $token;
+    protected $token;
 
 
     /**

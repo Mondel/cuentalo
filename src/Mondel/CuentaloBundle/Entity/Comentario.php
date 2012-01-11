@@ -26,7 +26,7 @@ class Comentario
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      */
-    private $id;
+    protected $id;
 
     /**
      * @var string $texto
@@ -34,7 +34,7 @@ class Comentario
      * @Assert\NotBlank()
      * @ORM\Column(name="texto", type="text")
      */
-    private $texto;
+    protected $texto;
 
     /**
      * @var string $ip
@@ -42,33 +42,33 @@ class Comentario
      * @Assert\MaxLength(20)
      * @ORM\Column(name="ip", type="string", length=20)
      */
-    private $ip;    
+    protected $ip;    
 
     /**
      * @var boolean $activo
      *
      * @ORM\Column(name="activo", type="boolean")
      */
-    private $activo;
+    protected $activo;
 
     /**
      * @var datetime $fecha_creacion
      *
      * @ORM\Column(name="fecha_creacion", type="datetime")
      */
-    private $fecha_creacion;
+    protected $fecha_creacion;
 
     /**
      * @ORM\ManyToOne(targetEntity="Usuario", inversedBy="comentarios")
      * @ORM\JoinColumn(name="usuario_id", referencedColumnName="id")
      */
-    private $usuario;
+    protected $usuario;
 
     /**
      * @ORM\ManyToOne(targetEntity="Contenido", inversedBy="comentarios")
      * @ORM\JoinColumn(name="contenido_id", referencedColumnName="id")
      */
-    private $contenido;
+    protected $contenido;
     
     /**
      * @ORM\prePersist
