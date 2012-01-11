@@ -12,9 +12,9 @@
 {% block content %}
     {{ parent() }}
 
-    <section>   	
+    <section id="notificaciones">
 		{% for notificacion in notificaciones %}
-			<article>	
+			<article class="Notificacion">	
 				<span>
 					{% if notificacion.leida %}
 						leido
@@ -23,10 +23,10 @@
 					{% endif %}
 				</span>			
 				<a href="{{ path('_contenido_pagina_mostrar', {'id':notificacion.getusuariocontenidosuscripcion.contenido.id}) }}">{{ notificacion.texto }}</a>
-				<span>
-					{{ notificacion.fechaCreacion | created_ago }}
-				</span>				
+				<span>{{ notificacion.fechaCreacion | created_ago }}</span>				
 			</article>
+		{% else %}
+			<span>No tienes ningun notificaci&oacute;n</span>
 		{% endfor %}
 	</section>
 
