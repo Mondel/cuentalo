@@ -137,7 +137,8 @@
 		    		</button>
 	    		</form>
 	    		{% if is_granted('ROLE_USER') %}
-	    			{% set cssClassNotificacion = (tiene_notificaciones is defined and tiene_notificaciones) ? 'red' : 'grey' %}
+	    			{% set cssClassNotificacion = 
+	    				app.security.token.user.tienenotificacionessinleer() ? 'red' : 'grey' %}
 	    			<form method="get" action="{{ path('_usuario_notificaciones') }}">
 			    		<button class="button {{ cssClassNotificacion }}">
 				    		<span class="icon IconTerm"></span>
