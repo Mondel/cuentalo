@@ -61,19 +61,11 @@ class DefaultController extends Controller
                 )
         );
     }
-
+    
     public function paginaAction($pagina)
     {
-    	if ($this->get('security.context')->isGranted("ROLE_USER")) {
-            $repositorio = $this->getDoctrine()->getEntityManager()->getRepository('MondelCuentaloBundle:Usuario');
-            $tiene_notificaciones = $repositorio->tieneNotificacionesSinLeer($this->get('security.context')->getToken()->getUser()->getId());
-        } else {
-            $tiene_notificaciones = false;      
-        }
-
     	return $this->render(
-    			'MondelCuentaloBundle:Paginas:' . $pagina . '.html.twig',
-    			array('tiene_notificaciones' => $tiene_notificaciones));
+    			'MondelCuentaloBundle:Paginas:' . $pagina . '.html.twig');
     }
 
 	public function contactoAction()
@@ -125,17 +117,9 @@ class DefaultController extends Controller
 			}
 		}
 		
-		if ($this->get('security.context')->isGranted("ROLE_USER")) {
-            $repositorio = $this->getDoctrine()->getEntityManager()->getRepository('MondelCuentaloBundle:Usuario');
-            $tiene_notificaciones = $repositorio->tieneNotificacionesSinLeer($this->get('security.context')->getToken()->getUser()->getId());
-        } else {
-            $tiene_notificaciones = false;      
-        }
-
 		return $this->render(
 				'MondelCuentaloBundle:Default:contacto.html.twig',
-				array('form' => $form->createView(),
-				'tiene_notificaciones' => $tiene_notificaciones)
+				array('form' => $form->createView())
 		);
 	}
 }
