@@ -43,17 +43,9 @@ class DefaultController extends Controller
         $contenido = new Contenido();
         $formulario_contenido = $this->createForm(new ContenidoType(), $contenido);
 
-        if ($this->get('security.context')->isGranted("ROLE_USER")) {
-		    $repositorio = $manager->getRepository('MondelCuentaloBundle:Usuario');
-			$tiene_notificaciones = $repositorio->tieneNotificacionesSinLeer($this->get('security.context')->getToken()->getUser()->getId());
-		} else {
-			$tiene_notificaciones = false;		
-		}
-
         return $this->render(
                 'MondelCuentaloBundle:Default:inicio.html.twig',
                 array(
-                	'tiene_notificaciones' => $tiene_notificaciones,
                     'contenidos'    => $contenidos,
                     'form'          => $formulario_contenido->createView(),
                     'formularios_comentarios' => $formularios_comentarios,
