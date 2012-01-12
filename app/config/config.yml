@@ -61,3 +61,19 @@ swiftmailer:
 jms_security_extra:
     secure_controllers:  true
     secure_all_services: false
+
+monolog:
+    handlers:
+        mail:
+            type:         fingers_crossed
+            action_level: critical
+            handler:      buffered
+        buffered:
+            type:    buffer
+            handler: swift
+        swift:
+            type:       swift_mailer
+            from_email: errores@cuentalo.com.uy
+            to_email:   bugs@cuentalo.com.uy
+            subject:    Ocurrió un error!!!
+            level:      debug
