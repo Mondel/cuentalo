@@ -196,6 +196,22 @@ class ContenidoController extends Controller
                 $notificacion->setTexto($usuario->getNick() . ' ha comentado la publicación #' . $contenido->getId());
                 $notificacion->setLeida(false);
                 $manager->persist($notificacion);
+
+                if ($suscripcion->getUsuario()->getRecibeNotificaciones())
+                {
+                    $mensaje = \Swift_Message::newInstance()
+                        ->setSubject('Cuentalo: tienes una nueva notificación')
+                        ->setFrom('notificaciones@cuentalo.com.uy')
+                        ->setTo($suscripcion->getUsuario()->getEmail())
+                        ->setBody($this->renderView(
+                                'MondelCuentaloBundle:Usuario:emailNotificacion.html.twig',
+                                array(
+                                    'notificacion' => $notificacion,
+                                )
+                        ), 'text/html')
+                    ;
+                    $this->get('mailer')->send($mensaje);
+                }
             }
 
             $manager->persist($comentario);
