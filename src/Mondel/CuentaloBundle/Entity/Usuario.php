@@ -281,6 +281,13 @@ class Usuario implements AdvancedUserInterface
             }
         }
         
+        usort($notificaciones, function($a, $b) {
+            if ($a->getFechaCreacion() == $b->getFechaCreacion()) {
+                return 0;
+            }
+            return ($a->getFechaCreacion() > $b->getFechaCreacion()) ? -1 : 1;
+        });
+
         return $notificaciones;
     }
 

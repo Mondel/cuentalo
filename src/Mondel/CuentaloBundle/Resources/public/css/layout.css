@@ -419,6 +419,7 @@ input:focus {
 
 #center {
     float: left;
+    margin-bottom: 20px;
     width: 590px;
 }
 
@@ -918,8 +919,4 @@ button span.icon,
 
 .Bold {
 	font-weight: bold;
-}
-
-#notificaciones {
-    width: 580px;
 }

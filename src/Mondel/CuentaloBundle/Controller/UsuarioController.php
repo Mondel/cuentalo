@@ -44,7 +44,8 @@ class UsuarioController extends Controller
 	        $manager->flush();
         }
 
-        return $this->render('MondelCuentaloBundle:Usuario:ingreso.html.twig', array(
+        return $this->render('MondelCuentaloBundle:Usuario:ingreso.html.twig', 
+        array(            
             'last_username' => $sesion->get(SecurityContext::LAST_USERNAME),
             'error'         => $error,
         ));
@@ -365,18 +366,42 @@ class UsuarioController extends Controller
 
     public function notificacionesListarAction()
     {
-        $usuario = $this->get('security.context')->getToken()->getUser();
-        $tiene_notificaciones = $usuario->tieneNotificacionesSinLeer();
+        if (false === $this->get('security.context')->isGranted('ROLE_USER'))
+            throw new AccessDeniedException();
+
+        $usuario = $this->get('security.context')->getToken()->getUser();        
         $notificaciones = $usuario->obtenerNotificaciones();
+
+        $formulario = $this->createFormBuilder(array('recibirNotificacionEmail' => $usuario->getRecibeNotificaciones()))
+                ->add('recibirNotificacionEmail', 'checkbox', array(
+                    'label'     => 'Recibir notificaciones por email',
+                    'required'  => false,
+                ))
+                ->getForm();
+    
+        $peticion = $this->getRequest();
+        if ($peticion->getMethod() == 'POST') {
+            $formulario->bindRequest($peticion);
+            
+            $data = $peticion->get('form');
+            $em = $this->getDoctrine()->getEntityManager(); 
+            $usuario = $em->getRepository('MondelCuentaloBundle:Usuario')
+                ->find($usuario->getId());
+            $usuario->setRecibeNotificaciones(isset($data['recibirNotificacionEmail']));
+            $em->flush();
+            $this->get('session')->setFlash('notice', 'Tus cambios se han guardado correctamente!');
+        } else {
+            $this->get('session')->removeFlash('notice');
+        }
 
         return $this->render(
                 'MondelCuentaloBundle:Usuario:notificacionesListar.html.twig',
                 array(
-                    'tiene_notificaciones' => $tiene_notificaciones, 
-                    'notificaciones' => $notificaciones
-                    )
+                    'notificaciones' => $notificaciones,
+                    'form'           => $formulario->createView(),
+                )
 
         );        
     }
-
+    
 }
