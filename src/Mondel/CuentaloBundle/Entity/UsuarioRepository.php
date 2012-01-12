@@ -12,35 +12,6 @@ use Doctrine\ORM\EntityRepository;
  */
 class UsuarioRepository extends EntityRepository
 {
-	public function tieneNotificacionesSinLeer($idUsuario)
-	{
-		$usuario = $this->find($idUsuario);
-
-		foreach ($usuario->getContenidoSuscripciones() as $suscripcion) {
-			foreach ($suscripcion->getNotificaciones() as $notificacion) {
-				if (!$notificacion->getLeida()) {
-					return true;
-				}
-			}
-		}
-		return false;
-    }
-
-    public function obtenerNotificaciones($idUsuario)
-	{
-		$usuario = $this->find($idUsuario);
-
-		$notificaciones = array();
-
-		foreach ($usuario->getContenidoSuscripciones() as $suscripcion) {
-			foreach ($suscripcion->getNotificaciones() as $notificacion) {
-				array_push($notificaciones, $notificacion);
-			}
-		}
-		
-		return $notificaciones;
-    }
-
     public function estaSuscritoContenido($idUsuario, $idContenido)
 	{
 		$usuario = $this->_em->createQuery('SELECT u FROM MondelCuentaloBundle:Usuario u WHERE u.id = '.$idUsuario)->getSingleResult();

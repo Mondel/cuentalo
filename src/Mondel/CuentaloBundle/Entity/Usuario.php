@@ -253,6 +253,37 @@ class Usuario implements AdvancedUserInterface
         $this->fecha_actualizacion = new \DateTime();
     }   
     
+    /**
+     *  Devuelve true si tiene notificaciones sin leer 
+     */
+    public function tieneNotificacionesSinLeer()
+    {
+        foreach ($this->getContenidoSuscripciones() as $suscripcion) {
+            foreach ($suscripcion->getNotificaciones() as $notificacion) {
+                if (!$notificacion->getLeida()) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    /**
+     * Devuelve un array con las notificaciones del usuario
+     */    
+    public function obtenerNotificaciones()
+    {
+        $notificaciones = array();
+
+        foreach ($this->getContenidoSuscripciones() as $suscripcion) {
+            foreach ($suscripcion->getNotificaciones() as $notificacion) {
+                array_push($notificaciones, $notificacion);
+            }
+        }
+        
+        return $notificaciones;
+    }
+
     /*
      * Fin mis propiedades
      */     
