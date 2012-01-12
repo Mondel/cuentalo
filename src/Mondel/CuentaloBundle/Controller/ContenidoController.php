@@ -118,7 +118,7 @@ class ContenidoController extends Controller
                 {
                     $mensaje = \Swift_Message::newInstance()
                         ->setSubject('Cuentalo: tienes una nueva notificación')
-                        ->setFrom('notificaciones@cuentalo.com.uy')
+                        ->setFrom(array('notificaciones@cuentalo.com.uy' => 'www.cuentalo.com.uy'))
                         ->setTo($suscripcion->getUsuario()->getEmail())
                         ->setBody($this->renderView(
                                 'MondelCuentaloBundle:Usuario:emailNotificacion.html.twig',
@@ -201,7 +201,7 @@ class ContenidoController extends Controller
                 {
                     $mensaje = \Swift_Message::newInstance()
                         ->setSubject('Cuentalo: tienes una nueva notificación')
-                        ->setFrom('notificaciones@cuentalo.com.uy')
+                        ->setFrom(array('notificaciones@cuentalo.com.uy' => 'www.cuentalo.com.uy'))
                         ->setTo($suscripcion->getUsuario()->getEmail())
                         ->setBody($this->renderView(
                                 'MondelCuentaloBundle:Usuario:emailNotificacion.html.twig',

@@ -119,7 +119,7 @@ class UsuarioController extends Controller
 
                     $mensaje = \Swift_Message::newInstance()
                         ->setSubject('Cuentalo: email de activación')
-                        ->setFrom('registros@cuentalo.com.uy')
+                        ->setFrom(array('registros@cuentalo.com.uy' => 'www.cuentalo.com.uy'))
                         ->setTo($usuario->getUsername())
                         ->setBody($this->renderView(
                                 'MondelCuentaloBundle:Usuario:emailRegistro.html.twig',
@@ -195,7 +195,7 @@ class UsuarioController extends Controller
 
                 $mensaje = \Swift_Message::newInstance()
                     ->setSubject('Cuentalo: recuperación de contraseña')
-                    ->setFrom('registros@cuentalo.com.uy')
+                    ->setFrom(array('registros@cuentalo.com.uy' => 'www.cuentalo.com.uy'))
                     ->setTo($usuario->getUsername())
                     ->setBody($this->renderView(
                             'MondelCuentaloBundle:Usuario:emailRecuperacion.html.twig',

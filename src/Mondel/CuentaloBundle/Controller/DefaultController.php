@@ -98,7 +98,7 @@ class DefaultController extends Controller
 				
 				$mensaje = \Swift_Message::newInstance()
 					->setSubject($asunto)
-					->setFrom('sitio@cuentalo.com.uy')
+					->setFrom(array('sitio@cuentalo.com.uy' => 'www.cuentalo.com.uy'))
 					->setTo($email_para)
 					->setBody($form_data_enviar);
 				
