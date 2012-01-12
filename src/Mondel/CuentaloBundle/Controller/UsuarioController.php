@@ -365,12 +365,16 @@ class UsuarioController extends Controller
 
     public function notificacionesListarAction()
     {
-        $repositorio = $this->getDoctrine()->getRepository('MondelCuentaloBundle:Usuario');
+        $usuario = $this->get('security.context')->getToken()->getUser();
+        $tiene_notificaciones = $usuario->tieneNotificacionesSinLeer();
+        $notificaciones = $usuario->obtenerNotificaciones();
+
         return $this->render(
                 'MondelCuentaloBundle:Usuario:notificacionesListar.html.twig',
-                array('notificaciones' => $repositorio->obtenerNotificaciones(
-                        $this->get('security.context')->getToken()->getUser()->getId()
-                    ))
+                array(
+                    'tiene_notificaciones' => $tiene_notificaciones, 
+                    'notificaciones' => $notificaciones
+                    )
 
         );        
     }
