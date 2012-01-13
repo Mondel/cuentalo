@@ -8,7 +8,7 @@ class StringHelper
     private static $palabras_prohibidas = array(
         'puta', 'puto', 'chupapija', 'pija', 'concha',
         'conchud', 'sobapene', 'chupapene',
-        'porong', 'trola', 'trolo','chanchos'
+        'porong', 'trola', 'trolo','chanchos','verga','berga'
     );
 
     /**
