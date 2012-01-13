@@ -19,43 +19,82 @@ class ContenidoController extends Controller
 {
 
     public function crearAction()
+
     {
+
         $peticion = $this->getRequest();
 
+
+
         $contenido = new Contenido();
+
         $formulario = $this->createForm(new ContenidoType(), $contenido);
+
+
 
         $formulario->bindRequest($peticion);
 
+
+
         if ($formulario->isValid()) {
+
+
 
             $contenido->setIp($peticion->getClientIp());            
 
-            if ($this->get('security.context')->isGranted("ROLE_USER")) {
-            	$usuario = $this->get('security.context')->getToken()->getUser();
-            	$contenido->setUsuario($usuario);
-            }
 
             $contenido->setTexto(
+
                 StringHelper::limpiar_malas_palabras(
+
                     $contenido->getTexto()
+
                 )
+
             );
 
-            $suscripcion = new UsuarioContenidoSuscripcion();
-            $suscripcion->setUsuario($usuario);
-            $suscripcion->setContenido($contenido);
+            
 
             $em = $this->getDoctrine()->getEntityManager();
-            $em->persist($contenido);
-            $em->persist($suscripcion);
+
+
+
+            if ($this->get('security.context')->isGranted("ROLE_USER")) {
+
+                $usuario = $this->get('security.context')->getToken()->getUser();
+
+                $contenido->setUsuario($usuario);
+
+                
+
+                $suscripcion = new UsuarioContenidoSuscripcion();
+
+                $suscripcion->setUsuario($usuario);
+
+                $suscripcion->setContenido($contenido);                
+
+                $em->persist($suscripcion);
+
+            }
+
+           
+
+            $em->persist($contenido);            
+
             $em->flush();
+
             
+
         }
 
+
+
         //TODO: Perdi los errores del formulario
+
         return $this->redirect($this->generateUrl('_inicio'));
+
     }
+
 
     public function comentarAction($id)
     {
