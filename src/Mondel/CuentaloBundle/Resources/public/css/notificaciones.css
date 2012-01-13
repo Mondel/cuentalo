@@ -30,6 +30,10 @@
 	margin: 0 10px;
 }
 
+#notificaciones .Notificacion .NotificacionDatos a {
+	color: #444;
+}
+
 #form_notificacion {
 	display: block;
 	margin: 20px 0;
