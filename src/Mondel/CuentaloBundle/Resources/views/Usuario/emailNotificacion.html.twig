@@ -1,0 +1,15 @@
+<img src="http://www.cuentalo.com.uy/bundles/mondelcuentalo/img/head_notificacion_mail.gif" />
+<div style="width: 620px;">
+    <p>Hola, {{ notificacion.getUsuarioContenidoSuscripcion().getUsuario().getNick() }}!</p>
+    <p>
+        Han comentado la publicacion #{{ notificacion.getUsuarioContenidoSuscripcion().getContenido().getId() }} en la que tu has participado. Puedes verla <a href="{{ url('_contenido_pagina_mostrar', {'id':notificacion.getUsuarioContenidoSuscripcion().getContenido().getId()}) }}">aqu&iacute;</a>        
+    </p>
+    <p>
+        Si no quieres recibir mas emails de notificaciones, puedes configurarlo <a href="{{ url('_usuario_notificaciones') }}">aqu&iacute;</a>
+    </p>
+    <p>
+        Saludos<br/>
+        El Equipo de Cuentalo
+    </p>
+</div>
+<img src="http://www.cuentalo.com.uy/bundles/mondelcuentalo/img/footer_notificacion_mail.gif" />

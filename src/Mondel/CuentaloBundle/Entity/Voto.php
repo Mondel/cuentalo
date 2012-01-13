@@ -24,7 +24,7 @@ class Voto
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      */
-    private $id;
+    protected $id;
 
     /**
      * @var string $ip
@@ -32,33 +32,33 @@ class Voto
      * @Assert\MaxLength(20)
      * @ORM\Column(name="ip", type="string", length=20)
      */
-    private $ip;
+    protected $ip;
 
     /**
      * @var string pais
      *
      * @ORM\Column(name="pais", type="string", length=50)
      */
-    private $pais;
+    protected $pais;
 
     /**
      * @var datetime $fecha_creacion
      *
      * @ORM\Column(name="fecha_creacion", type="datetime")
      */
-    private $fecha_creacion;
+    protected $fecha_creacion;
 
     /**
      * @ORM\ManyToOne(targetEntity="Usuario", inversedBy="votos")
      * @ORM\JoinColumn(name="usuario_id", referencedColumnName="id")
      */
-    private $usuario;
+    protected $usuario;
 
     /**
      * @ORM\ManyToOne(targetEntity="Contenido", inversedBy="votos")
      * @ORM\JoinColumn(name="contenido_id", referencedColumnName="id")
      */
-    private $contenido;
+    protected $contenido;
 
     /**
      * @ORM\prePersist

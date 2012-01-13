@@ -7,6 +7,7 @@
         '@MondelCuentaloBundle/Resources/public/css/reset.css'
         '@MondelCuentaloBundle/Resources/public/css/jquery-ui.css'
         '@MondelCuentaloBundle/Resources/public/css/layout.css'
+        '@MondelCuentaloBundle/Resources/public/css/notificaciones.css'
         filter='yui_css'
     %}
     <link rel="stylesheet" type="text/css" media="screen" href="{{ asset_url }}" />
@@ -25,29 +26,7 @@
 				</a>
 	    	</div>
 	    	{% if not is_granted('ROLE_USER') %}
-		    	<div id="login">
-		    		<div id="login_container">
-		                <a id="login_button"><span>Entrar</span><em></em></a>
-		                <div class="Clear"></div>
-		                <div id="login_box">                
-		                    <form id="login_form" action="{{ path('_ingresar_chequeo') }}" method="post">
-		                        <fieldset id="body">
-		                            <fieldset>
-		                                <label for="username">Email</label>
-		                                <input type="text" name="_username" id="username">
-		                            </fieldset>
-		                            <fieldset>
-		                                <label for="password">Contrase&ntilde;a</label>
-		                                <input type="password" name="_password" id="password">
-		                            </fieldset>
-		                            <input type="submit" id="login" value="Entrar">
-		                            <label for="remember_me"><input type="checkbox" id="remember_me" name="_remember_me" checked>No cerrar sesi&oacute;n</label>
-		                        </fieldset>
-		                        <span><a href="{{ path('_contrasenia_recuperar') }}">He perdido mi contrase&ntilde;a</a></span>
-		                    </form>
-		                </div>
-		            </div>
-		    	</div>
+		    	{% include 'MondelCuentaloBundle:Usuario:ingresoInicio.html.twig' %}
 	    	{% else %}
 	    		<div id="logout">
 		    		<div id="logout_container">
@@ -135,7 +114,17 @@
 			    		<span class="icon IconQuees"></span>
 			    		<span class="label">Que es cuentalo?</span>
 		    		</button>
-	    		</form>				    		    		
+	    		</form>
+	    		{% if is_granted('ROLE_USER') %}
+	    			{% set cssClassNotificacion = 
+	    				app.security.token.user.tienenotificacionessinleer() ? 'red' : 'grey' %}
+	    			<form method="get" action="{{ path('_usuario_notificaciones') }}">
+			    		<button class="button {{ cssClassNotificacion }}">
+				    		<span class="icon IconTerm"></span>
+				    		<span class="label">Notificaciones</span>
+			    		</button>
+		    		</form>
+	    		{% endif %}
 	    	</div>    	
     		<div id="facebook">Seguinos en Facebook</div>
     		<div class="fb-like-box" data-href="https://www.facebook.com/pages/Cuentalo/221560061231773" data-width="182" data-height="380" data-show-faces="true" data-stream="false" data-header="false"></div>    		

@@ -1,0 +1,44 @@
+{% extends 'MondelCuentaloBundle::layout.html.twig' %}
+
+{% block title %}Notificaciones{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    {% stylesheets '@MondelCuentaloBundle/Resources/public/css/forms.css' filter='yui_css' %}
+    <link rel="stylesheet" type="text/css" media="screen" href="{{ asset_url }}" />
+    {% endstylesheets %}
+{% endblock %}
+
+{% block content %}
+    {{ parent() }}
+
+    <section>
+    	<h1 class="titulo">Notificaciones</h1>
+    </section>
+
+    <section id="form_notificacion">
+        <form action="{{ path('_usuario_notificaciones') }}" method="post">    		
+			{{ form_label(form.recibirNotificacionEmail) }}
+			{{ form_widget(form.recibirNotificacionEmail) }}	    			
+			{{ form_rest(form) }}
+			<button class="button">
+            	<span class="label">Guardar</span>
+            </button>
+        </form>
+    </section>
+
+    <section id="notificaciones">    	
+		{% for notificacion in notificaciones %}
+			<article class="Notificacion">	
+				<div class="{{ notificacion.leida ? 'Leida' : 'Nueva' }}"></div>
+				<div class="NotificacionDatos">
+					<a href="{{ path('_contenido_pagina_mostrar', {'id':notificacion.getusuariocontenidosuscripcion.contenido.id}) }}">{{ notificacion.texto }}</a>
+					<span>{{ notificacion.fechaCreacion | created_ago }}</span>				
+				</div>
+			</article>
+		{% else %}
+			<span>No tienes ningun notificaci&oacute;n</span>
+		{% endfor %}
+	</section>
+
+{% endblock %}

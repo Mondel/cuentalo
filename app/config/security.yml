@@ -24,6 +24,7 @@ security:
             form_login:
                 login_path:     /ingresar
                 check_path:     /ingresar_chequeo
+                use_referer:    true
             logout:
                 path:   /salir
                 target: /

@@ -19,28 +19,28 @@ class UsuarioRegistro
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      */
-    private $id;    
+    protected $id;    
 
     /**
      * @var datetime $fecha
      *
      * @ORM\Column(name="fecha", type="datetime")
      */
-    private $fecha;
+    protected $fecha;
 
     /**
      * @var string $email
      *
      * @ORM\Column(name="email", type="string", length=255)
      */
-    private $email;
+    protected $email;
 
     /**
      * @var string $ip
      *
      * @ORM\Column(name="ip", type="string", length=50)
      */
-    private $ip;    
+    protected $ip;    
 
     /*
      * Fin mis propiedades

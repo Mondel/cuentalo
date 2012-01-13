@@ -38,6 +38,10 @@ _usuario_eliminar:
     pattern:  /usuario/eliminar
     defaults: { _controller: MondelCuentaloBundle:Usuario:usuarioEliminar }
 
+_usuario_notificaciones:
+    pattern:  /usuario/notificaciones
+    defaults: { _controller: MondelCuentaloBundle:Usuario:notificacionesListar }
+
 _contacto:
     pattern:  /contacto
     defaults: { _controller: MondelCuentaloBundle:Default:contacto }
