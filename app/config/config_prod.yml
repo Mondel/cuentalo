@@ -38,4 +38,4 @@ monolog:
             from_email: errores@cuentalo.com.uy
             to_email:   bugs@cuentalo.com.uy
             subject:    Ocurrió un error!!!
-            level:      debug
+            level:      critical
