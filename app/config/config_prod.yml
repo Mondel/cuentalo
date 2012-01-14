@@ -19,7 +19,7 @@ imports:
 
 monolog:
     handlers:
-         main:
+        main:
             type:         fingers_crossed
             action_level: error
             handler:      grouped
