@@ -290,9 +290,9 @@ class ContenidoController extends Controller
         $formulario = $this->createForm(new ComentarioType(), $comentario);
 
         if ($this->get('security.context')->isGranted('ROLE_USER')) {
-            $idUsuario = $this->get('security.context')->getToken()->getUser()->getId();
-            if ($this->getDoctrine()->getRepository('MondelCuentaloBundle:Usuario')->estaSuscritoContenido($idUsuario, $id)) {
-                $this->getDoctrine()->getRepository('MondelCuentaloBundle:Usuario')->marcarNotificacionesComoLeidas($idUsuario, $id);
+            $usuario = $this->get('security.context')->getToken()->getUser();
+            if ($usuario->estaSuscritoContenido($id)) {
+                $this->getDoctrine()->getRepository('MondelCuentaloBundle:Usuario')->marcarNotificacionesComoLeidas($usuario->getId(), $id);
             }
         }
 

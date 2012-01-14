@@ -9,7 +9,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  * Mondel\CuentaloBundle\Entity\Notificacion
  *
  * @ORM\Table()
- * @ORM\Entity(repositoryClass="Mondel\CuentaloBundle\Entity\NotificacionRepository")
+ * @ORM\Entity()
  * @ORM\HasLifecycleCallbacks()
  */
 class Notificacion

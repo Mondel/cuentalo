@@ -13,7 +13,7 @@ use Mondel\CuentaloBundle\Helpers\NetworkHelper,
  * Mondel\CuentaloBundle\Entity\Comentario
  *
  * @ORM\Table()
- * @ORM\Entity(repositoryClass="Mondel\CuentaloBundle\Entity\ComentarioRepository")
+ * @ORM\Entity()
  * @ORM\HasLifecycleCallbacks()
  */
 class Comentario

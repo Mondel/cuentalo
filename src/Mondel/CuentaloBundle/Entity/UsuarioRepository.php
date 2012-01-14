@@ -12,26 +12,18 @@ use Doctrine\ORM\EntityRepository;
  */
 class UsuarioRepository extends EntityRepository
 {
-    public function estaSuscritoContenido($idUsuario, $idContenido)
-	{
-		$usuario = $this->_em->createQuery('SELECT u FROM MondelCuentaloBundle:Usuario u WHERE u.id = '.$idUsuario)->getSingleResult();
-    	$contenido = $this->_em->createQuery('SELECT c FROM MondelCuentaloBundle:Contenido c WHERE c.id = '.$idContenido)->getSingleResult();
-
-		return count($this->_em->createQuery('SELECT s FROM MondelCuentaloBundle:UsuarioContenidoSuscripcion s WHERE s.usuario = :usuario and s.contenido = :contenido')->setParameters(array(
-				'usuario'=>$usuario, 
-				'contenido'=>$contenido
-				))->getArrayResult()) > 0;
-    }
 
     public function marcarNotificacionesComoLeidas($idUsuario, $idContenido)
     {
-    	$usuario = $this->_em->createQuery('SELECT u FROM MondelCuentaloBundle:Usuario u WHERE u.id = '.$idUsuario)->getSingleResult();
-    	$contenido = $this->_em->createQuery('SELECT c FROM MondelCuentaloBundle:Contenido c WHERE c.id = '.$idContenido)->getSingleResult();
+    	$usuario = $this->_em->getRepository('MondelCuentaloBundle:Usuario')
+    		->find($idUsuario);
+    	$contenido = $this->_em->getRepository('MondelCuentaloBundle:Contenido')
+    		->find($idContenido);
 
-	    $suscripcion = $this->_em->createQuery('SELECT s FROM MondelCuentaloBundle:UsuarioContenidoSuscripcion s WHERE s.usuario = :usuario and s.contenido = :contenido')->setParameters(array(
-				'usuario'=>$usuario, 
-				'contenido'=>$contenido
-				))->getSingleResult();
+		$query = $this->_em->createQuery("SELECT ucs FROM MondelCuentaloBundle:UsuarioContenidoSuscripcion ucs WHERE ucs.usuario = :usuario AND ucs.contenido = :contenido")
+			->setParameter('usuario', $usuario)
+			->setParameter('contenido', $contenido);			
+		$suscripcion = $query->getSingleResult();
 
 		if ($suscripcion != null) {
 		    foreach ($suscripcion->getNotificaciones() as $notificacion) {		    	

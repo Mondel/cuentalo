@@ -291,14 +291,28 @@ class Usuario implements AdvancedUserInterface
         return $notificaciones;
     }
 
+    /**
+     * Devuelve true si el usuario esta suscrito al contenido.
+     * Recibe el id del contenido como parametro.
+     */
+    public function estaSuscritoContenido($idContenido)
+    {
+        foreach ($this->getContenidoSuscripciones() as $suscripcion) {
+            if ($suscripcion->getContenido()->getId() == $idContenido) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     /*
      * Fin mis propiedades
      */     
     public function __construct()
     {
         $this->contenidos = new \Doctrine\Common\Collections\ArrayCollection();
-    $this->comentarios = new \Doctrine\Common\Collections\ArrayCollection();
-    $this->contenido_suscripciones = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->comentarios = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->contenido_suscripciones = new \Doctrine\Common\Collections\ArrayCollection();
     }
     
     /**

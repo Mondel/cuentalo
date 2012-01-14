@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  * Mondel\CuentaloBundle\Entity\UsuarioActivacion
  *
  * @ORM\Table()
- * @ORM\Entity
+ * @ORM\Entity()
  */
 class UsuarioActivacion
 {

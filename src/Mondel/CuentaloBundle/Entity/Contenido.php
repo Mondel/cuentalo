@@ -12,7 +12,7 @@ use Mondel\CuentaloBundle\Helpers\NetworkHelper,
  * Mondel\CuentaloBundle\Entity\Contenido
  *
  * @ORM\Table()
- * @ORM\Entity(repositoryClass="Mondel\CuentaloBundle\Entity\ContenidoRepository")
+ * @ORM\Entity()
  * @ORM\HasLifecycleCallbacks()
  */
 class Contenido

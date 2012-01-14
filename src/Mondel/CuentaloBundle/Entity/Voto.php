@@ -11,7 +11,7 @@ use Mondel\CuentaloBundle\Helpers\NetworkHelper;
  * Mondel\CuentaloBundle\Entity\Voto
  *
  * @ORM\Table()
- * @ORM\Entity(repositoryClass="Mondel\CuentaloBundle\Entity\VotoRepository")
+ * @ORM\Entity()
  * @ORM\HasLifecycleCallbacks()
  */
 class Voto
