@@ -257,6 +257,11 @@ class ContenidoController extends Controller
                         ->add('where', 's.usuario = ?1 and s.contenido = ?2')
                         ->setParameters(array(1 => $usuario, 2 => $contenido));
                     $suscripcion = $query_builder->getQuery()->getSingleResult();
+                    
+                    foreach($suscripcion->getNotificaciones() as $notificacion) {
+                        $manager->remove($notificacion);
+                    }
+
                     $manager->remove($suscripcion);
                 }
             }
