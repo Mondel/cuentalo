@@ -190,7 +190,12 @@ function obtenerContenidos() {
 		  	}
 		  	$('.PostLoading').hide();
 	        $('#masContenidos').css("visibility", 'visible');	        
+    	},
+    	error: function() {
+    		$('.PostLoading').hide();
+	        $('#masContenidos').css("visibility", 'visible');
     	}
+
 	});
 };
 
