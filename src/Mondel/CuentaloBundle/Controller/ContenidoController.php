@@ -243,7 +243,7 @@ class ContenidoController extends Controller
     		$manager->remove($comentario);            
             // Compruebo si tiene una suscripcion a ese contenido, y borro su unico comentario
             // elimino la suscripcion tambien
-            if ($contenido->getUsuario()->getId() != $usuario->getId()) {
+            if ($contenido->getUsuario() != null && $contenido->getUsuario()->getId() != $usuario->getId()) {
                 $query_builder = $manager->createQueryBuilder();
                 $query_builder->add('select', 'c')
                     ->add('from', 'Mondel\CuentaloBundle\Entity\Comentario c')
