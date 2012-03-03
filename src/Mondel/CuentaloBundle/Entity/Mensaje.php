@@ -33,6 +33,21 @@ class Mensaje
     protected $ip;
 
     /**
+     * @var string $asunto
+     *     
+     * @Assert\MaxLength(255)
+     * @ORM\Column(name="asunto", type="string", length=255)
+     */
+    protected $asunto;
+
+    /**
+     * @var string $texto
+     *     
+     * @ORM\Column(name="texto", type="text")
+     */
+    protected $texto;
+
+    /**
      * @var datetime $fecha_creacion
      *
      * @ORM\Column(name="fecha_creacion", type="datetime")
