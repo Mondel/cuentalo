@@ -6,13 +6,13 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
- * Mondel\CuentaloBundle\Entity\Voto
+ * Mondel\CuentaloBundle\Entity\Favorito
  *
  * @ORM\Table()
  * @ORM\Entity()
  * @ORM\HasLifecycleCallbacks()
  */
-class Voto
+class Favorito
 {
 
     /**
@@ -25,14 +25,6 @@ class Voto
     protected $id;
 
     /**
-     * @var string $ip
-     *
-     * @Assert\MaxLength(20)
-     * @ORM\Column(name="ip", type="string", length=20)
-     */
-    protected $ip;
-
-    /**
      * @var datetime $fecha_creacion
      *
      * @ORM\Column(name="fecha_creacion", type="datetime")
@@ -40,24 +32,16 @@ class Voto
     protected $fecha_creacion;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Usuario", inversedBy="votos")
+     * @ORM\ManyToOne(targetEntity="Usuario", inversedBy="favoritos")
      * @ORM\JoinColumn(name="usuario_id", referencedColumnName="id")
      */
     protected $usuario;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Contenido", inversedBy="votos")
+     * @ORM\ManyToOne(targetEntity="Contenido", inversedBy="favoritos")
      * @ORM\JoinColumn(name="contenido_id", referencedColumnName="id")
      */
     protected $contenido;
-
-    /**
-     * @ORM\prePersist
-     */
-    public function setPais()
-    {
-        $this->pais = NetworkHelper::getCountryNameByIp($this->getIp());
-    }
 
     /**
      * @ORM\prePersist
@@ -74,7 +58,7 @@ class Voto
     /**
      * Get id
      *
-     * @return integer
+     * @return integer 
      */
     public function getId()
     {
@@ -82,39 +66,9 @@ class Voto
     }
 
     /**
-     * Set ip
-     *
-     * @param string $ip
-     */
-    public function setIp($ip)
-    {
-        $this->ip = $ip;
-    }
-
-    /**
-     * Get ip
-     *
-     * @return string
-     */
-    public function getIp()
-    {
-        return $this->ip;
-    }
-
-    /**
-     * Get pais
-     *
-     * @return string
-     */
-    public function getPais()
-    {
-        return $this->pais;
-    }
-
-    /**
      * Get fecha_creacion
      *
-     * @return datetime
+     * @return datetime 
      */
     public function getFechaCreacion()
     {
@@ -134,7 +88,7 @@ class Voto
     /**
      * Get usuario
      *
-     * @return Mondel\CuentaloBundle\Entity\Usuario
+     * @return Mondel\CuentaloBundle\Entity\Usuario 
      */
     public function getUsuario()
     {
@@ -154,7 +108,7 @@ class Voto
     /**
      * Get contenido
      *
-     * @return Mondel\CuentaloBundle\Entity\Contenido
+     * @return Mondel\CuentaloBundle\Entity\Contenido 
      */
     public function getContenido()
     {

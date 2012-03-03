@@ -161,6 +161,21 @@ class Usuario implements AdvancedUserInterface
      */
     protected $contenido_suscripciones;
 
+    /**
+     * @ORM\OneToMany(targetEntity="Voto", mappedBy="usuario")
+     */
+    protected $votos;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Mensaje", mappedBy="usuario_remitente")
+     */
+    protected $mensajes_enviados;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="Mensaje", mappedBy="usuarios_destinatarios")
+     */
+    protected $mensajes_recibidos;
+
     /*
      * Implements AdvancedUserInterface
      */
@@ -653,5 +668,55 @@ class Usuario implements AdvancedUserInterface
     public function getContenidoSuscripciones()
     {
         return $this->contenido_suscripciones;
+    }
+
+    /**
+     * Add votos
+     *
+     * @param Mondel\CuentaloBundle\Entity\Voto $votos
+     */
+    public function addVoto(\Mondel\CuentaloBundle\Entity\Voto $votos)
+    {
+        $this->votos[] = $votos;
+    }
+
+    /**
+     * Get votos
+     *
+     * @return Doctrine\Common\Collections\Collection 
+     */
+    public function getVotos()
+    {
+        return $this->votos;
+    }
+
+    /**
+     * Add mensajes_enviados
+     *
+     * @param Mondel\CuentaloBundle\Entity\Mensaje $mensajesEnviados
+     */
+    public function addMensaje(\Mondel\CuentaloBundle\Entity\Mensaje $mensajesEnviados)
+    {
+        $this->mensajes_enviados[] = $mensajesEnviados;
+    }
+
+    /**
+     * Get mensajes_enviados
+     *
+     * @return Doctrine\Common\Collections\Collection 
+     */
+    public function getMensajesEnviados()
+    {
+        return $this->mensajes_enviados;
+    }
+
+    /**
+     * Get mensajes_recibidos
+     *
+     * @return Doctrine\Common\Collections\Collection 
+     */
+    public function getMensajesRecibidos()
+    {
+        return $this->mensajes_recibidos;
     }
 }
