@@ -164,4 +164,44 @@ class Mensaje
     {
         return $this->usuarios_destinatarios;
     }
+
+    /**
+     * Set asunto
+     *
+     * @param string $asunto
+     */
+    public function setAsunto($asunto)
+    {
+        $this->asunto = $asunto;
+    }
+
+    /**
+     * Get asunto
+     *
+     * @return string 
+     */
+    public function getAsunto()
+    {
+        return $this->asunto;
+    }
+
+    /**
+     * Set texto
+     *
+     * @param text $texto
+     */
+    public function setTexto($texto)
+    {
+        $this->texto = $texto;
+    }
+
+    /**
+     * Get texto
+     *
+     * @return text 
+     */
+    public function getTexto()
+    {
+        return $this->texto;
+    }
 }

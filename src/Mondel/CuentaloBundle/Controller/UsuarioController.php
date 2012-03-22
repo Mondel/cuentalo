@@ -8,9 +8,10 @@ use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 use Symfony\Component\Security\Core\SecurityContext;
 
 use Mondel\CuentaloBundle\Entity\Usuario,
+    Mondel\CuentaloBundle\Entity\Mensaje,
     Mondel\CuentaloBundle\Entity\UsuarioActivacion,
     Mondel\CuentaloBundle\Entity\UsuarioRegistro;
-use Mondel\CuentaloBundle\Form\Type\UsuarioType;
+use Mondel\CuentaloBundle\Form\Type\MensajeType;
 use Symfony\Component\Validator\Constraints\Email,
     Symfony\Component\Validator\Constraints\MinLength,
     Symfony\Component\Validator\Constraints\Collection;
@@ -402,6 +403,57 @@ class UsuarioController extends Controller
                 )
 
         );        
+    }
+
+    public function mensajesListarAction()
+    {
+        if (false === $this->get('security.context')->isGranted('ROLE_USER'))
+            throw new AccessDeniedException();
+
+        $usuario = $this->get('security.context')->getToken()->getUser();        
+        $mensajes_recibidos = $usuario->getMensajesRecibidos();
+        $mensajes_enviados = $usuario->getMensajesEnviados();
+
+        return $this->render(
+                'MondelCuentaloBundle:Usuario:mensajes.html.twig',
+                array(
+                    'mensajes_recibidos' => $mensajes_recibidos,
+                    'mensajes_enviados' => $mensajes_enviados,
+                )
+
+        ); 
+    }
+
+    public function mensajesCrearAction()
+    {
+        if (false === $this->get('security.context')->isGranted('ROLE_USER'))
+            throw new AccessDeniedException();
+
+        $manager = $this->getDoctrine()->getEntityManager();
+        $peticion = $this->getRequest();
+
+        $mensaje = new Mensaje();
+        $formulario = $this->createForm(new MensajeType(), $mensaje);
+
+        $usuario = $this->get('security.context')->getToken()->getUser();
+        $mensaje->setUsuarioRemitente($usuario);
+
+        if ($peticion->getMethod() == 'POST') {
+            
+            $formulario->bindRequest($peticion);
+
+            if ($formulario->isValid()) {
+                
+                //print_r($formulario->getData());
+
+                
+            }
+        }
+
+        return $this->render(
+                'MondelCuentaloBundle:Usuario:mensajesCrear.html.twig',
+                array('form' => $formulario->createView())
+        );
     }
     
 }

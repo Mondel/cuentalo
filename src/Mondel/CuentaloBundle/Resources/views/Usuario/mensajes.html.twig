@@ -1,0 +1,28 @@
+{% extends 'MondelCuentaloBundle::layout.html.twig' %}
+
+{% block content %}
+	<div style="display:inline-block; width:290px;">
+		<h1>Mensajes Recibidos</h1>
+		{% for mensaje in mensajes_recibidos %}
+			Remitente: {{ mensaje.usuario_remitente.nick }}
+			Asunto: {{ mensaje.asunto }}
+			Texto: {{ mensaje.texto }}
+		{% else %}
+			No hay mensajes.
+		{% endfor %}
+	</div>
+	<div style="display:inline-block; width:290px;">
+		<h1>Mensajes Enviados</h1>
+		{% for mensaje in mensajes_enviados %}
+			Para: 
+			{% for destinatario in mensaje.usuarios_destinatario %}
+				{{ destinatario.nick }}
+				{% if not loop.last %},{% endif %}
+			{% endfor %}
+			Asunto: {{ mensaje.asunto }}
+			Texto: {{ mensaje.texto }}
+		{% else %}
+			No hay mensajes.
+		{% endfor %}
+	</div>
+{% endblock %}
