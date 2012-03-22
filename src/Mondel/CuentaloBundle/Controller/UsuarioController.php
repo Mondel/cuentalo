@@ -11,7 +11,8 @@ use Mondel\CuentaloBundle\Entity\Usuario,
     Mondel\CuentaloBundle\Entity\Mensaje,
     Mondel\CuentaloBundle\Entity\UsuarioActivacion,
     Mondel\CuentaloBundle\Entity\UsuarioRegistro;
-use Mondel\CuentaloBundle\Form\Type\MensajeType;
+use Mondel\CuentaloBundle\Form\Type\MensajeType,
+    Mondel\CuentaloBundle\Form\Type\UsuarioType;
 use Symfony\Component\Validator\Constraints\Email,
     Symfony\Component\Validator\Constraints\MinLength,
     Symfony\Component\Validator\Constraints\Collection;
