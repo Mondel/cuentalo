@@ -262,11 +262,16 @@ function asignarOnClickVerComentarios($html) {
 	);
 }
 
-function asignarOnSubmitComentarAjax(urlCustomAjax) {
+function asignarOnSubmitComentarAjax(urlCustomAjax) {	
 	$('input[name="comentario[texto]"]').each(function(){
-		var inputTexto = $(this);
+		var inputTexto = $(this);		
 		$(this).parents('form').submit(function(evt){
 	        evt.preventDefault();
+	        var thisForm = this;
+	        if (thisForm.beenSubmitted)
+	        	return false;
+    		else
+      			thisForm.beenSubmitted = true;  			
 	        inputTexto.attr("disabled", "disabled");
 	        var post = $(this).parents('div.Post');
 	        var texto = $(this).find('#comentario_texto').val();
@@ -302,6 +307,7 @@ function asignarOnSubmitComentarAjax(urlCustomAjax) {
 	            		);
 	            	}
 	                asignarOnHoverComentarioEliminar('.Comentario', '.EliminarItem');	                
+	                thisForm.beenSubmitted = false;
 	            }            
 	        });
 	            
