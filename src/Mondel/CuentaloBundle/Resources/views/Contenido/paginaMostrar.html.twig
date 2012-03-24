@@ -22,8 +22,7 @@
 {% endblock %}
 {% block javascripts %}
 	{{ parent() }}
-	{% javascripts '@MondelCuentaloBundle/Resources/public/js/functions.js'
-    			   '@MondelCuentaloBundle/Resources/public/js/contenido.js'
+	{% javascripts '@MondelCuentaloBundle/Resources/public/js/contenido.js'
                    filter='yui_js'
 		%}
 	    <script src="{{ asset_url }}"></script>

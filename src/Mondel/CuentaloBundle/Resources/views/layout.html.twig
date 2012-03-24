@@ -147,12 +147,16 @@
             {% endblock %}
         </section>
         <aside id="right">
-            <div id="adsense">
- 				<div id="titulo_adsense">Publicidad</div>
-				<div class="Adsense">
-				</div>
+            <div id="noticias">
+ 				<div id="titulo_noticias">Noticias</div>
+				<div class="Noticias">
 					
-			</div>       
+				</div>
+			</div>
+			<div id="deportes">
+ 				<div id="titulo_deportes">Deportes</div>
+				<div class="Deportes"></div>
+			</div>         
         </aside>
     </section>
     <footer id="footer">
@@ -173,7 +177,8 @@
   		})();
 	</script>
     <div id="fb-root"></div><!-- NO QUITAR ES PARA EL FACEBOOK SDK JAVASCRIPT -->    
-    {% javascripts '@MondelCuentaloBundle/Resources/public/js/layout.js'    			   
+    {% javascripts '@MondelCuentaloBundle/Resources/public/js/functions.js'
+    			   '@MondelCuentaloBundle/Resources/public/js/layout.js'
                    filter='yui_js'
 	%}
     <script src="{{ asset_url }}"></script>

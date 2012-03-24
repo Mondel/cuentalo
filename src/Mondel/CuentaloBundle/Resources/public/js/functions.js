@@ -315,3 +315,38 @@ function asignarOnSubmitComentarAjax(urlCustomAjax) {
 	});	
 }
 
+function parseRSS(url, callback) {
+  $.ajax({
+    url: document.location.protocol + '//ajax.googleapis.com/ajax/services/feed/load?v=1.0&num=10&callback=?&q=' + encodeURIComponent(url),
+    dataType: 'json',
+    success: function(data) {
+      callback(data.responseData.feed);
+    }
+  });
+}
+
+function parseNoticias(data) {
+    var ret = "";
+    for (var i = 0; i < 5; i++) {
+        var noticia = data.entries[i];
+        ret += "<a title='" + noticia.title + "' href='" + noticia.link + "' target='_blank'>" + noticia.title + "</a><br/><br/>";
+    }
+    $('.Noticias').append(ret);
+}
+
+function parseDeportes(data) {
+    var ret = "";
+    for (var i = 0; i < 5; i++) {
+        var noticia = data.entries[i];
+        ret += "<a title='" + noticia.title + "' href='" + noticia.link + "' target='_blank'>" + noticia.title + "</a><br/><br/>";
+    }
+    $('.Deportes').append(ret);
+}
+
+function cortarNoticia(texto) {
+	var cant = 20;
+	if (texto.length > cant) {
+		return texto.substring(0, cant) + "...";
+	}
+	return texto;
+}

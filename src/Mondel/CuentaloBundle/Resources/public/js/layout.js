@@ -1,3 +1,6 @@
+parseRSS("http://www.montevideo.com.uy/anxml.aspx?59", parseNoticias);
+parseRSS("http://www.ovaciondigital.com.uy/rss.asp", parseDeportes);
+
 $(function() {
     var button = $('#login_button');
     var box = $('#login_box');

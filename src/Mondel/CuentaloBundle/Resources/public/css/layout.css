@@ -288,7 +288,7 @@ input:focus {
 	width: 172px;
 }
 
-#titulo_adsense {
+#titulo_noticias {
 	width:182px;
 	height:30px;
 	
@@ -303,11 +303,34 @@ input:focus {
 .Cuentalopublicite {
 	margin: 10px 0;
 }
-.Adsense {
-    margin: 10px 0;
-    position:center;
+
+.Noticias {    
+    margin: 10px 0;    
 }
 
+.Noticias a {
+    color: #444;
+}
+
+#titulo_deportes {
+    width:182px;
+    height:30px;
+    
+    background: #91b658;
+    color:#ffffff;
+    text-align:center;
+    font-weight:bold;
+    line-height:30px;
+    font-size: 14px;    
+}
+
+.Deportes {    
+    margin: 10px 0;    
+}
+
+.Deportes a {
+    color: #444;
+}
 
 #menu_top {
     float: left;
