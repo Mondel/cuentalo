@@ -69,7 +69,7 @@ class DefaultController extends Controller
 			->add('email', 'email')
 			->add('mensaje', 'textarea')
 			->add('tipo', 'choice', array(
-					'choices'   => array('0' => 'Consulta', '1' => 'Reportar Error', '2' => 'Otro'),
+					'choices'   => array('0' => 'Consulta', '1' => 'Reportar Error', '2' => 'Otro', '3' => 'Publicidad'),
 					'required'  => true,
 			))
 			->getForm();
@@ -84,7 +84,8 @@ class DefaultController extends Controller
 				$datos_enviar = array(
 						'0' => array('Consulta', 'info@cuentalo.com.uy', 'Consulta desde cuentalo.com.uy'),
 						'1' => array('Reportar Error', 'bugs@cuentalo.com.uy', 'Reporte de bug desde cuentalo.com.uy'),
-						'2' => array('Otro', 'info@cuentalo.com.uy', 'Otra consulta desde cuentalo.com.uy')
+						'2' => array('Otro', 'info@cuentalo.com.uy', 'Otra consulta desde cuentalo.com.uy'),
+						'3' => array('Publicidad', 'publicidad@cuentalo.com.uy', 'Consulta publicitaria desde cuentalo.com.uy')
 						);
 				
 				$tipo = $datos_enviar[$form_data['tipo']][0];

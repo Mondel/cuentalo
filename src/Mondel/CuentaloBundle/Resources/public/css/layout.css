@@ -300,8 +300,11 @@ input:focus {
     font-size: 14px;    
 }
 
-.Cuentalopublicite {
-	margin: 10px 0;
+.Cuentalopublicite {    
+    background: url('../../bundles/mondelcuentalo/img/publicite.jpg') 75% 70% no-repeat;
+	height: 104px;
+    margin: 10px 0;
+    width: 181px;
 }
 
 .Noticias {    
