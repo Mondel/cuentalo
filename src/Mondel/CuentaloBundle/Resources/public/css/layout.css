@@ -946,3 +946,10 @@ button span.icon,
 .Bold {
 	font-weight: bold;
 }
+
+.banner-tumovida {
+    background: url(../../bundles/mondelcuentalo/img/banner-tumovida.jpg);
+    height: 600px;
+    margin: 0 auto;
+    width: 120px;
+}
