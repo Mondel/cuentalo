@@ -950,6 +950,6 @@ button span.icon,
 .banner-tumovida {
     background: url(../../bundles/mondelcuentalo/img/banner-tumovida.jpg);
     height: 600px;
-    margin: 0 auto;
+    margin: 0 auto 20px auto;
     width: 120px;
 }
