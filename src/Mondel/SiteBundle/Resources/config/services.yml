@@ -1,0 +1,7 @@
+parameters:
+#    mondel_site.example.class: Mondel\SiteBundle\Example
+
+services:
+#    mondel_site.example:
+#        class: %mondel_site.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]

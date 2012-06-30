@@ -1,0 +1,6 @@
+{% extends '::base.html.twig' %}
+
+{% block messages %}
+	<div>Notice: {{ app.session.flashbag.get('notice') }}</div>
+	<div>Error: {{ app.session.flashbag.get('error') }}</div>
+{% endblock %}

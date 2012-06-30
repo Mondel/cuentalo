@@ -1,0 +1,8 @@
+{% extends 'MondelSiteBundle::layout.html.twig' %}
+
+{% block messages %} {{ parent() }} {%endblock%}
+
+{% block body %}
+	<div>{{ token }}</div>
+	<div>{{ name }}</div>
+{% endblock %}

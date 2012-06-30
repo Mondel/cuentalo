@@ -1,0 +1,53 @@
+{% extends 'MondelSiteBundle::layout.html.twig' %}
+
+{% block messages %} {{ parent() }} {% endblock %}
+
+{% block body %}
+	<form action="{{ path('user_register') }}" method="post" {{ form_enctype(form) }}>
+		<div id="registro_form" class="Form">
+			{{ form_errors(form) }}
+		    <table>
+		    	<tr>
+		    		<td colspan="3">
+		    			* S&oacute;lo el nick será visible para los demas usuarios registrados.
+		    		</td>
+		    	</tr>
+		        <tr>
+		            <td>{{ form_label(form.nick) }}</td>
+		            <td>{{ form_widget(form.nick) }}</td>
+		            <td>{{ form_errors(form.nick) }}</td>
+		        </tr>
+		        <tr>
+		            <td>{{ form_label(form.email) }}</td>
+		            <td>{{ form_widget(form.email) }}</td>
+		            <td>{{ form_errors(form.email) }}</td>
+		        </tr>                
+		        <tr>
+		            <td>{{ form_label(form.password.password, 'Contraseña') }}</td>
+		            <td>{{ form_widget(form.password.password) }}</td>
+		            <td>{{ form_errors(form.password.password) }}</td>
+		        </tr>
+		        <tr>
+		            <td>{{ form_label(form.password.repeatedPassword, 'Repetir contraseña') }}</td>
+		            <td>{{ form_widget(form.password.repeatedPassword) }}</td>
+		            <td>{{ form_errors(form.password.repeatedPassword) }}</td>
+		        </tr>
+		        <tr>
+		            <td>{{ form_label(form.genre) }}</td>
+		            <td>{{ form_widget(form.genre) }}</td>
+		            <td>{{ form_errors(form.genre) }}</td>
+		        </tr>
+		        <tr>
+		        	<td colspan="3">
+		    			{{ form_widget(form.terms) }}    	
+		    			{{ form_label(form.terms) }}<a target="_blank">terminos</a> de Cuentalo
+		            	{{ form_errors(form.terms) }}                    
+		        	</td>
+		        </tr>
+		    </table>
+		    {{ form_widget(form._token) }}            
+		    <button class="red"><span class="label">Registrarme</span></button>
+
+		</div>
+	</form>
+{% endblock %}

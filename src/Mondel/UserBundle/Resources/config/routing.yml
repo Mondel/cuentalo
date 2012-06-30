@@ -1,0 +1,10 @@
+user_login:
+    pattern:  /ingresar
+    defaults: { _controller: MondelUserBundle:Default:login }
+
+user_login_check:
+    pattern:  /ingresar_chequeo
+
+user_register:
+    pattern:  /registro
+    defaults: { _controller: MondelUserBundle:Default:register }
