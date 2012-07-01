@@ -1,31 +1,9 @@
 <?php
 
-namespace Mondel\CuentaloBundle\Helpers;
+namespace Mondel\SiteBundle\Helpers;
 
 class StringHelper
 {
-    
-    private static $palabras_prohibidas = array(
-        'puta', 'puto', 'chupapija', 'pija', 'concha',
-        'conchud', 'sobapene', 'chupapene',
-        'porong', 'trola', 'trolo','chanchos','verga','berga'
-    );
-
-    /**
-     * Devuelve el texto sin las malas palabras definidas
-     * en $palabras_prohibidas. Las reemplaza por '***'
-     * 
-     * @param string $cadena Cadena de texto original
-     * @return string Cadena limpio de malas palabras
-     */
-    public static function limpiar_malas_palabras($cadena)
-    {
-        foreach (self::$palabras_prohibidas as $palabra_prohibida) {                
-            $cadena = str_replace($palabra_prohibida, '***', $cadena);
-        }
-        return $cadena;
-    }
-
     /**
      * Devuelve el slug de la cadena de texto que se le pasa
      * Código copiado del método urlize() de Doctrine 1
@@ -36,7 +14,7 @@ class StringHelper
     public static function slugify($cadena)
     {
         // Remove all non url friendly characters with the unaccent function
-        $valor = self::sinAcentos($cadena);
+        $valor = self::withourAccent($cadena);
 
         if (function_exists('mb_strtolower')) {
             $valor = mb_strtolower($valor);
@@ -53,7 +31,7 @@ class StringHelper
         return trim($valor, '-');
     }
 
-    private static function sinAcentos($string)
+    private static function withourAccent($string)
     {
         if (!preg_match('/[\x80-\xff]/', $string)) {
             return $string;
