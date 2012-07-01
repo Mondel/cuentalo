@@ -1,6 +1,5 @@
 security:
-    encoders:
-        Symfony\Component\Security\Core\User\User: plaintext
+    encoders:        
         Mondel\CuentaloBundle\Entity\Usuario: sha512
 
     role_hierarchy:
@@ -8,12 +7,6 @@ security:
         ROLE_SUPER_ADMIN: [ROLE_USER, ROLE_ADMIN, ROLE_ALLOWED_TO_SWITCH]
 
     providers:
-        main:
-            providers: [in_memory, user_db]
-        in_memory:
-            users:
-                #user:  { password: userpass, roles: [ 'ROLE_USER' ] }
-                #admin: { password: adminpass, roles: [ 'ROLE_ADMIN' ] }
         user_db:
             entity: { class: Mondel\CuentaloBundle\Entity\Usuario, property: email }
 
@@ -28,14 +21,11 @@ security:
             logout:
                 path:   /salir
                 target: /
-            #http_basic:
-                #realm: "Secured Demo Area"
             remember_me:
                 key:      7869b2fa4458aaa7786e39d10410d5f3cd
                 lifetime: 3600
                 path:     /
-                domain:   ~
-                #Defaults to the current domain from $_SERVER
+                domain:   ~                
         dev:
             pattern:  ^/(_(profiler|wdt)|css|images|js)/
             security: false
@@ -43,5 +33,3 @@ security:
     access_control:
         - { path: ^/, roles: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/ingresar, roles: IS_AUTHENTICATED_ANONYMOUSLY }
-        #- { path: ^/administrar, roles: ROLE_ADMIN }
-        #- { path: ^/_internal, roles: IS_AUTHENTICATED_ANONYMOUSLY, ip: 127.0.0.1 }
