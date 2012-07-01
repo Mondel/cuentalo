@@ -57,7 +57,7 @@
 {% block javascripts %}
     {{ parent() }}
     {% javascripts '@MondelCuentaloBundle/Resources/public/js/index.js'
-                   filter='yui_js'
+                   filter='closure'
 	%}
     <script src="{{ asset_url }}"></script>
     {% endjavascripts %}

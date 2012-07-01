@@ -106,7 +106,7 @@ class DefaultController extends Controller
 				$this->get('mailer')->send($mensaje);
 		
 				$this->get('session')->setFlash('notice', 'Se ha enviado su mensaje. Gracias');
-				return $this->redirect($this->generateUrl('_inicio'));
+				return $this->redirect($this->generateUrl('home_page'));
 			}
 		}
 		

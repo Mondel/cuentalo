@@ -51,7 +51,7 @@ class ContenidoController extends Controller
         }
 
         //TODO: Perdi los errores del formulario
-        return $this->redirect($this->generateUrl('_inicio'));
+        return $this->redirect($this->generateUrl('home_page'));
     }
 
 

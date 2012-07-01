@@ -1,6 +1,6 @@
-_inicio:
-    pattern:  /
-    defaults: { _controller: MondelCuentaloBundle:Default:inicio }
+#_inicio:
+#    pattern:  /
+#    defaults: { _controller: MondelCuentaloBundle:Default:inicio }
 
 _ingresar:
     pattern:  /ingresar

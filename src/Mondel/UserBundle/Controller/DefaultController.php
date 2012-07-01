@@ -326,7 +326,7 @@ class DefaultController extends Controller
                 $this->get("request")->getSession()->invalidate();
                 $this->get('security.context')->setToken(null);
                 $this->get('session')->setFlash('notice', "Se ha dado de baja su cuenta. Por cualquier información utilice la página de contacto");
-                return $this->redirect($this->generateUrl('_inicio'));
+                return $this->redirect($this->generateUrl('home_page'));
             } else {
                 $this->get('session')->setFlash('error', 'La contraseña actual es incorrecta');
             }           
@@ -369,7 +369,7 @@ class DefaultController extends Controller
             $this->get('session')->setFlash('error', 'Hubo un error al activar este usuario. El link que has seguido es incorrecto o ya fue utilizado.');
         }
 
-        return $this->redirect($this->generateUrl('_inicio'));
+        return $this->redirect($this->generateUrl('home_page'));
     }
 
     public function notificacionesListarAction()

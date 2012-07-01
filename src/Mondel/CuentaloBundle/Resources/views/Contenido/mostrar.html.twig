@@ -63,10 +63,10 @@
 				<p class="PComentarios">No hay comentarios aún.</p>
 			{% endif %}
 			{% if is_granted('ROLE_USER') %}				
-				<form action="{{ path('_contenido_comentar', {'id': contenido.id}) }}" method="post" {{ form_enctype(formularios_comentarios[contenido.id]) }}>
-					{{ form_errors(formularios_comentarios[contenido.id]) }}
-				 	{{ form_widget(formularios_comentarios[contenido.id].texto, { 'attr': {'placeholder': 'escribe tu comentario y presiona enter...', 'class': 'InputComentarios'} }) }}
-				 	{{ form_rest(formularios_comentarios[contenido.id]) }}
+				<form action="{{ path('_contenido_comentar', {'id': contenido.id}) }}" method="post" {{ form_enctype(commentsForms[contenido.id]) }}>
+					{{ form_errors(commentsForms[contenido.id]) }}
+				 	{{ form_widget(commentsForms[contenido.id].texto, { 'attr': {'placeholder': 'escribe tu comentario y presiona enter...', 'class': 'InputComentarios'} }) }}
+				 	{{ form_rest(commentsForms[contenido.id]) }}
 				</form>
 			{% else %}
 				<p class="PComentarios">
