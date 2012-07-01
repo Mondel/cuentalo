@@ -1,8 +1,16 @@
-{% extends 'MondelSiteBundle::layout.html.twig' %}
-
-{% block messages %} {{ parent() }} {%endblock%}
-
-{% block body %}
-	<div>{{ token }}</div>
-	<div>{{ name }}</div>
-{% endblock %}
+<img src="http://www.cuentalo.com.uy/bundles/mondelcuentalo/img/head_notificacion_mail.gif" />
+<div style="width: 620px;">
+    <p>Hola, {{ name }}!</p>
+    <p>
+        Gracias por registrarte, esperamos que disfrutes el pertenecer
+        a una comunidad de entretenimiento como lo es “cuentalo”.
+        Activa tu cuenta ingresando al siguiente link:
+        <a href="{{ url('user_activation', { 'token' : token }) }}">Activar</a>
+        Te agradecemos si ingresas al sitio y configuras una nueva contraseña.
+    </p>
+    <p>
+        Saludos<br/>
+        El Equipo de Cuentalo
+    </p>
+</div>
+<img src="http://www.cuentalo.com.uy/bundles/mondelcuentalo/img/footer_notificacion_mail.gif" />

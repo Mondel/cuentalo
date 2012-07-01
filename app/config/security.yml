@@ -15,11 +15,11 @@ security:
             pattern:    ^/
             anonymous: ~
             form_login:
-                login_path:  /ingresar
-                check_path:  /ingresar_chequeo
+                login_path:  /usuario/ingresar
+                check_path:  /usuario/ingresar_chequeo
                 use_referer: true
             logout:
-                path:   /salir
+                path:   /usuario/salir
                 target: /
             remember_me:
                 key:      7869b2fa4458aaa7786e39d10410d5f3cd

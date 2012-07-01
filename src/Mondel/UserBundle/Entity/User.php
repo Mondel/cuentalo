@@ -12,7 +12,7 @@ use Doctrine\ORM\Mapping as ORM,
  * Mondel\UserBundle\Entity\User
  *
  * @ORM\Table()
- * @ORM\Entity()
+ * @ORM\Entity(repositoryClass="Mondel\UserBundle\Entity\UserRepository")
  * @ORM\HasLifecycleCallbacks()
  */
 class User implements AdvancedUserInterface
@@ -159,11 +159,7 @@ class User implements AdvancedUserInterface
     protected $comments;
 
     /**
-     * @ORM\ManyToMany(targetEntity="Mondel\PostBundle\Entity\Post")
-     * @ORM\JoinTable(name="UserPostSuscription",
-     *      joinColumns={@ORM\JoinColumn(name="user_id", referencedColumnName="id")},
-     *      inverseJoinColumns={@ORM\JoinColumn(name="post_id", referencedColumnName="id")}
-     *      )
+     * @ORM\OneToMany(targetEntity="UserPostSuscription", mappedBy="user")
      */
     private $suscribed_posts;
 
@@ -241,70 +237,51 @@ class User implements AdvancedUserInterface
         $this->setUpdatedAt(new \DateTime());
     }
 
-    /**
-     * return string representation of User Entity     
-     */
     public function __toString()
     {
         return $this->getName() . ' ' . $this->getLastName();
     }
-    
-    /**
-     *  return true if have unread notifications
-     */
+
     public function haveUnreadNotifications()
     {
-        /*
-        foreach ($this->getSuscribedPosts() as $post) {
-            foreach ($suscripcion->getNotificaciones() as $notificacion) {
-                if (!$notificacion->getLeida()) {
+        foreach ($this->getSuscribedPosts() as $suscription) {
+            foreach ($suscription->getNotifications() as $notification) {
+                if (!$notification->isRead()) {
                     return true;
                 }
             }
         }
         return false;
-        */
     }
 
-    /**
-     * return an array of notifications
-     */    
     public function getNotifications()
     {
-        /*
-        $notificaciones = array();
+        $notifications = array();
 
-        foreach ($this->getContenidoSuscripciones() as $suscripcion) {
-            foreach ($suscripcion->getNotificaciones() as $notificacion) {
-                array_push($notificaciones, $notificacion);
+        foreach ($this->getSuscribedPosts() as $suscription) {
+            foreach ($suscription->getNotifications() as $notification) {
+                array_push($notifications, $notification);
             }
         }
         
-        usort($notificaciones, function($a, $b) {
-            if ($a->getFechaCreacion() == $b->getFechaCreacion()) {
+        usort($notifications, function($a, $b) {
+            if ($a->getCreatedAt() === $b->getCreatedAt()) {
                 return 0;
             }
-            return ($a->getFechaCreacion() > $b->getFechaCreacion()) ? -1 : 1;
+            return ($a->getCreatedAt() > $b->getCreatedAt()) ? -1 : 1;
         });
 
-        return $notificaciones;
-        */
+        return $notifications;
     }
 
-    /**
-     * Devuelve true si el usuario esta suscrito al contenido.
-     * Recibe el id del contenido como parametro.
-     */
-    public function estaSuscritoContenido($idContenido)
+    public function isPostSuscribed($postId)
     {
-        /*
-        foreach ($this->getContenidoSuscripciones() as $suscripcion) {
-            if ($suscripcion->getContenido()->getId() == $idContenido) {
+        foreach ($this->getSuscribedPosts() as $suscription) {
+            if ($suscription->getPost()->getId() == $postId) {
                 return true;
             }
         }
         return false;
-        */
     }
 
     public function __construct()
@@ -319,7 +296,12 @@ class User implements AdvancedUserInterface
         $this->suscribed_posts   = new \Doctrine\Common\Collections\ArrayCollection();
         $this->sent_messages     = new \Doctrine\Common\Collections\ArrayCollection();
         $this->received_messages = new \Doctrine\Common\Collections\ArrayCollection();
-    }    
+    }
+
+    public function isActive()
+    {
+        return $this->getIsActive();
+    }
 
     /*
      * End custom functions
@@ -729,5 +711,15 @@ class User implements AdvancedUserInterface
     public function getReceivedMessages()
     {
         return $this->received_messages;
+    }
+
+    /**
+     * Add suscribed_posts
+     *
+     * @param Mondel\UserBundle\Entity\UserPostSuscription $suscribedPosts
+     */
+    public function addUserPostSuscription(\Mondel\UserBundle\Entity\UserPostSuscription $suscribedPosts)
+    {
+        $this->suscribed_posts[] = $suscribedPosts;
     }
 }

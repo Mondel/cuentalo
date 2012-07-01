@@ -17,7 +17,7 @@
                     <label for="remember_me"><input type="checkbox" id="remember_me" name="_remember_me" checked>No cerrar sesi&oacute;n</label>
                 </fieldset>
                 <span>
-                    <a href="{{ path('_contrasenia_recuperar') }}">He perdido mi contrase&ntilde;a</a>
+                    <a href="{{ path('user_password_recover') }}">He perdido mi contrase&ntilde;a</a>
                 </span>
                 <input type="hidden" name="_target_path" value="{{ app.request.getRequestUri | replace({'app_dev.php/': '', 'app.php/': ''}) }}" />                
             </form>

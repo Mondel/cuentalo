@@ -1,8 +1,13 @@
-{% extends 'MondelSiteBundle::layout.html.twig' %}
+{% extends 'MondelCuentaloBundle::layout.html.twig' %}
 
-{% block messages %} {{ parent() }} {% endblock %}
+{% block stylesheets %}
+    {{ parent() }}
+    {% stylesheets '@MondelCuentaloBundle/Resources/public/css/forms.css' filter='yui_css' %}
 
-{% block body %}
+    <link rel="stylesheet" type="text/css" media="screen" href="{{ asset_url }}" />
+    {% endstylesheets %}    
+{% endblock %}
+{% block content %}    
 	<form action="{{ path('user_register') }}" method="post" {{ form_enctype(form) }}>
 		<div id="registro_form" class="Form">
 			{{ form_errors(form) }}

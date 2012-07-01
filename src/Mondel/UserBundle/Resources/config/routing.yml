@@ -1,13 +1,29 @@
-login:
+user_login:
     pattern:  /ingresar
     defaults: { _controller: MondelUserBundle:Default:login }
 
-login_check:
+user_login_check:
     pattern: /ingresar_chequeo
 
-logout:
+user_logout:
     pattern: /salir
 
-register:
+user_register:
     pattern:  /registro
     defaults: { _controller: MondelUserBundle:Default:register }
+
+user_password_recover:
+    pattern:  /recuperar
+    defaults: { _controller: MondelUserBundle:Default:passwordRecover }
+
+user_activation:
+    pattern:  /activar/{token}
+    defaults: { _controller: MondelUserBundle:Default:activateUser }
+
+user_change_password:
+    pattern:  /cambiar/contrasenia
+    defaults: { _controller: MondelUserBundle:Default:passwordChange }
+
+user_delete:
+    pattern:  /eliminar
+    defaults: { _controller: MondelUserBundle:Default:userDelete }

@@ -23,7 +23,7 @@
     <input type="hidden" id="cid" value="{{ cid }}"/>
     <!--<div class="Wrap"> -->
         <div id="box">
-            <form id="contenido_form" action="{{ path('_contenido_crear') }}" method="post" {{ form_enctype(form) }}>
+            <form id="contenido_form" action="{{ path('post_create') }}" method="post" {{ form_enctype(form) }}>
 				{{ form_widget(form.text, { 'attr': { 'placeholder': 'Escribe lo que deseas compartir, máximo 555 caracteres...' } }) }}
                 {{ form_widget(form.video_url) }}
                 <div id="video"></div>

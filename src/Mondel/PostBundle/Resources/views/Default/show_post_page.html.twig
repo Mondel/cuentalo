@@ -1,0 +1,30 @@
+{% extends 'MondelCuentaloBundle::layout.html.twig' %}
+
+{% block metas %}
+	<meta property="og:title" content="Cuentalo - {{ post.text | cut_title | title }}"/>
+	<meta property="og:type" content="article"/>
+	<meta property="og:url" content="{{ url('_contenido_pagina_mostrar', {'id':post.id}) }}"/>
+	<meta name="description" content="{{ post.text | cut_description | title }}" />
+{% endblock %}
+
+{% block title %}{{ post.text | cut_title | title }}{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    {% stylesheets '@MondelCuentaloBundle/Resources/public/css/index.css' filter='yui_css' %}
+    <link rel="stylesheet" type="text/css" media="screen" href="{{ asset_url }}" />
+    {% endstylesheets %}
+{% endblock %}
+{% block content %}
+	{{ parent() }}
+	{% include 'MondelPostBundle:Default:show_post.html.twig' with {'mostrarComentariosTodos':'1', 
+	'mostrarCompartir':'1'} %}
+{% endblock %}
+{% block javascripts %}
+	{{ parent() }}
+	{% javascripts '@MondelCuentaloBundle/Resources/public/js/contenido.js'
+                   filter='closure'
+		%}
+	    <script src="{{ asset_url }}"></script>
+    {% endjavascripts %}
+{% endblock %}

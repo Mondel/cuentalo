@@ -1,0 +1,25 @@
+{% extends 'MondelCuentaloBundle::layout.html.twig' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    {% stylesheets '@MondelCuentaloBundle/Resources/public/css/forms.css' filter='yui_css' %}
+    <link rel="stylesheet" type="text/css" media="screen" href="{{ asset_url }}" />
+    {% endstylesheets %}
+{% endblock %}
+{% block content %}
+    {{ parent() }}
+    <p>Para dar de baja su cuenta ingrese su contrase&ntilde;a actual y presione el bot&oacute;n eliminar.</p>
+    <br/>
+    <div class="Form">
+        <form action="{{ path('user_delete') }}" method="post">
+    		<div class="Field">        
+    			{{ form_widget(form.contraseniaActual, { 'attr': {'class': 'FormInput', 'placeholder': 'Contraseña actual...'} }) }}
+			</div>
+            {{ form_rest(form) }}
+            <button class="button" onclick="return confirm('¿ Está seguro que desea eliminar su cuenta ?')">
+            	<span class="label">Eliminar</span>
+            </button>
+        </form>
+    </div>
+{% endblock %}
+

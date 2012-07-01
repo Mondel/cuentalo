@@ -3,6 +3,7 @@
 namespace Mondel\UserBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller,
+    Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken,
 	Symfony\Component\Security\Core\SecurityContext,
 	Mondel\UserBundle\Entity\User,
     Mondel\UserBundle\Entity\UserActivation,
@@ -12,12 +13,15 @@ class DefaultController extends Controller
 {	
 	public function loginAction()
 	{
+        if (true === $this->get('security.context')->isGranted('ROLE_USER')) {
+            return $this->redirect($this->generateUrl('home_page'));
+        }
+
 		$request = $this->getRequest();
 		$session = $request->getSession();		
-		$error   = $request->attributes->get(
-            SecurityContext::AUTHENTICATION_ERROR, 
-            $session->get(SecurityContext::AUTHENTICATION_ERROR)
-        );
+		$error   = $request->attributes->get(SecurityContext::AUTHENTICATION_ERROR, $session->get(
+            SecurityContext::AUTHENTICATION_ERROR
+        ));
 
 		return $this->render('MondelUserBundle:Default:login.html.twig', array(
 			'last_username' => $session->get(SecurityContext::LAST_USERNAME),
@@ -27,6 +31,10 @@ class DefaultController extends Controller
 
 	public function registerAction()
 	{
+        if (true === $this->get('security.context')->isGranted('ROLE_USER')) {
+            return $this->redirect($this->generateUrl('home_page'));
+        }
+
 		$user         = new User();
 		$em           = $this->getDoctrine()->getEntityManager();
 		$form         = $this->createForm(new UserType(), $user);        
@@ -55,7 +63,7 @@ class DefaultController extends Controller
                 }
 
                 if (!empty($errorMessage)) {
-                	$session->getFlashBag()->add('error', $errorMessage);
+                	$session->setFlash('error', $errorMessage);
                 } else {
                     $user->setSalt(md5(time()));
                     $encoder  = $this->get('security.encoder_factory')->getEncoder($user);
@@ -72,7 +80,7 @@ class DefaultController extends Controller
                         'email' => $user->getEmail()
                     ));
 
-                    if ($userActivation) {
+                    if (!is_null($userActivation)) {
                         $token = $userActivation->getToken();
                     } else {
                         $userActivation = new UserActivation();
@@ -99,11 +107,11 @@ class DefaultController extends Controller
 
                     $this->get('mailer')->send($message);
 
-                    $session->getFlashBag()->add(
+                    $session->setFlash(
                         'notice', 
-                        'Se ha enviado un email a tu casilla de correo (' . $user->getEmail() . ')');
+                        'Gracias por registrarte! Hemos enviado un email a tu casilla de correo (' . $user->getEmail() . ')');
 
-                    //return $this->redirect($this->generateUrl('user_login'));
+                    return $this->redirect($this->generateUrl('user_login'));
                 }
             }
         }
@@ -113,7 +121,7 @@ class DefaultController extends Controller
 		));
 	}
 
-    public function activateUserAction()
+    public function activateUserAction($token)
     {
         $userActivationRepository = $this->getDoctrine()->getRepository(
             'MondelUserBundle:UserActivation'
@@ -140,8 +148,13 @@ class DefaultController extends Controller
             // logging the user
             $token = new UsernamePasswordToken($user, null, 'main', $user->getRoles());
             $this->get('security.context')->setToken($token);
+            $this->getRequest()->getSession()->setFlash(
+                'notice', 
+                'Tu cuenta ha sido activada satisfactoriamente'
+            );
+            return $this->redirect($this->generateUrl('home_page'));
         } else {
-            $this->getRequest()->getSession()->getFlashBag()->add(
+            $this->getRequest()->getSession()->setFlash(
                 'error', 
                 'Hubo un error al activar este usuario. El link que has seguido es incorrecto o ya fue utilizado.'
             );
@@ -150,7 +163,7 @@ class DefaultController extends Controller
         return $this->redirect($this->generateUrl('user_register'));
     }
 
-    public function recoverPasswordAction()
+    public function passwordRecoverAction()
     {    
         $request = $this->getRequest();
         $session = $request->getSession();
@@ -218,14 +231,11 @@ class DefaultController extends Controller
         );
     }
 
-    public function changePasswordAction()
+    public function passwordChangeAction()
     {
         $request = $this->getRequest();
         $session = $request->getSession();
 
-        $session->getFlashBag()->remove('notice');
-        $session->getFlashBag()->remove('error');
-        
         if (false === $this->get('security.context')->isGranted('ROLE_USER')) {
             throw new AccessDeniedException();
         }
@@ -266,15 +276,15 @@ class DefaultController extends Controller
                     $em->persist($user);
                     $em->flush();
                 
-                    $session->getFlashBag->add(
+                    $session->setFlash(
                         'notice', 
                         'Se ha cambiado la contraseña correctamente'
                     );
                 } else {
-                    $session->getFlashBag->add('error', 'La contraseña actual es incorrecta');
+                    $session->setFlash('error', 'La contraseña actual es incorrecta');
                 }
             } else {
-                $session->getFlashBag->add(
+                $session->setFlash(
                     'error', 
                     'La contraseña y su repetida deben ser iguales'
                 );
@@ -287,54 +297,57 @@ class DefaultController extends Controller
         );
     }
     
-    public function usuarioEliminarAction()
-    {
-        $this->get('session')->removeFlash("notice");
-        $this->get('session')->removeFlash("error");
-    
-        if (false === $this->get('security.context')->isGranted('ROLE_USER'))
+    public function userDeleteAction()
+    {    
+        if (false === $this->get('security.context')->isGranted('ROLE_USER')) {
             throw new AccessDeniedException();
+        }
+
+        $request = $this->getRequest();
+        $session = $request->getSession();
     
-        $peticion = $this->getRequest();
-    
-        $formulario = $this->createFormBuilder()
-            ->add('contraseniaActual', 'password')          
+        $form = $this->createFormBuilder()
+            ->add('currentPassword', 'password')
             ->getForm();
     
-        if ($peticion->getMethod() == 'POST') {
-            $formulario->bindRequest($peticion);
+        if ($request->getMethod() == 'POST') {
+            $form->bindRequest($request);
     
-            $data = $peticion->get('form');
-            $contrasenia_actual = $data['contraseniaActual'];
-    
-            $usuario = $this->get('security.context')->getToken()->getUser();
-    
-            $encoder = $this->get('security.encoder_factory')->getEncoder($usuario);
-            if ($encoder->isPasswordValid($usuario->getPassword(), $contrasenia_actual, $usuario->getSalt()))
+            $formData        = $request->get('form');
+            $currentPassword = $formData['currentPassword'];    
+            $user            = $this->get('security.context')->getToken()->getUser();    
+            $encoder         = $this->get('security.encoder_factory')->getEncoder($user);
+            $isPasswordValid = $encoder->isPasswordValid(
+                $user->getPassword(), 
+                $currentPassword, 
+                $user->getSalt()
+            );
+
+            if ($isPasswordValid)
             {
                 $em = $this->getDoctrine()->getEntityManager();
-                foreach ($usuario->getComentarios() as $comentario) {
-                    $em->remove($comentario);
+                foreach ($user->getComments() as $comment) {
+                    $em->remove($comment);
                 }
-                foreach ($usuario->getContenidos() as $contenido) {
-                    $contenido->setUsuario(null);
+                foreach ($user->getPosts() as $post) {
+                    $post->setUsuario(null);
                 }
-                $em->remove($usuario);
+                $em->remove($user);
                 $em->flush();
-    
-                //Desloguear al usuario dado de baja
+
+                // logoff the user
                 $this->get("request")->getSession()->invalidate();
                 $this->get('security.context')->setToken(null);
-                $this->get('session')->setFlash('notice', "Se ha dado de baja su cuenta. Por cualquier información utilice la página de contacto");
+                $session->setFlash('notice', "Se ha dado de baja su cuenta. Por cualquier información utilice la página de contacto");
                 return $this->redirect($this->generateUrl('home_page'));
             } else {
-                $this->get('session')->setFlash('error', 'La contraseña actual es incorrecta');
+                $session->setFlash('error', 'La contraseña actual es incorrecta');
             }           
         }
     
         return $this->render(
-                'MondelCuentaloBundle:Usuario:usuarioEliminar.html.twig',
-                array('form' => $formulario->createView())
+                'MondelUserBundle:default:user_delete.html.twig',
+                array('form' => $form->createView())
         );
     }
     

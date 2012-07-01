@@ -24,7 +24,7 @@
 			</span>
 			<span class="Right">
 				{{ post.category.name }} - 
-				<a href="{{ path('_contenido_pagina_mostrar', {'id':post.id}) }}">#{{ post.id }}</a>
+				<a href="{{ path('post_page', { 'postId': post.id }) }}">#{{ post.id }}</a>
 			</span>
 		</div>
 	</div>
@@ -35,13 +35,13 @@
 		<div class="Acciones">		
 			<div class="Compartir">
 				<div class="Btn_g">
-					<g:plusone size="medium" href="{{ url('_contenido_pagina_mostrar', { 'id': post.id }) }}"></g:plusone>
+					<g:plusone size="medium" href="{{ url('post_page', { 'postId': post.id }) }}"></g:plusone>
 				</div>	
 				<div>
-					<a href="https://twitter.com/share" class="twitter-share-button" data-url="{{ url('_contenido_pagina_mostrar', { 'id': post.id }) }}" data-text="¡Mira que mensaje tan increíble estuve leyendo!" data-size="medium" data-via="Cuentalouy" data-related="MondelUruguay" data-lang="es">Twittear</a>				
+					<a href="https://twitter.com/share" class="twitter-share-button" data-url="{{ url('post_page', { 'postId': post.id }) }}" data-text="¡Mira que mensaje tan increíble estuve leyendo!" data-size="medium" data-via="Cuentalouy" data-related="MondelUruguay" data-lang="es">Twittear</a>				
 				</div>
 				<div class="Btn_fb">				
-	        		 <fb:like href="{{ url('_contenido_pagina_mostrar', { 'id': post.id }) }}" data-width="170" layout="button_count" show_faces="false" data-send="true" action="like" colorscheme="light"></fb:like>
+	        		 <fb:like href="{{ url('post_page', { 'postId': post.id }) }}" data-width="170" layout="button_count" show_faces="false" data-send="true" action="like" colorscheme="light"></fb:like>
 				</div>
 			</div>
 		</div>		
@@ -63,14 +63,14 @@
 				<p class="PComentarios">No hay comentarios aún.</p>
 			{% endif %}
 			{% if is_granted('ROLE_USER') %}				
-				<form action="{{ path('_contenido_comentar', {'id': post.id}) }}" method="post" {{ form_enctype(commentsForms[post.id]) }}>
+				<form action="{{ path('comment_post', {'postId': post.id}) }}" method="post" {{ form_enctype(commentsForms[post.id]) }}>
 					{{ form_errors(commentsForms[post.id]) }}
-				 	{{ form_widget(commentsForms[post.id].texto, { 'attr': {'placeholder': 'escribe tu comentario y presiona enter...', 'class': 'InputComentarios'} }) }}
+				 	{{ form_widget(commentsForms[post.id].text, { 'attr': {'placeholder': 'escribe tu comentario y presiona enter...', 'class': 'InputComentarios'} }) }}
 				 	{{ form_rest(commentsForms[post.id]) }}
 				</form>
 			{% else %}
 				<p class="PComentarios">
-					Para poder comentar debes estar <a href="{{ path('_registrar') }}" alt="Registrarme">registrado</a> o <a href="{{ path('_ingresar') }}" alt="Ingresar">iniciar sesión</a>
+					Para poder comentar debes estar <a href="{{ path('user_register') }}" alt="Registrarme">registrado</a> o <a href="{{ path('user_login') }}" alt="Ingresar">iniciar sesión</a>
 				</p>								
 			{% endif %}
 		</div>

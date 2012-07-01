@@ -1,3 +1,16 @@
-MondelPostBundle_homepage:
-    pattern:  /hello/{name}
-    defaults: { _controller: MondelPostBundle:Default:index }
+post_create:
+    pattern:  /crear
+    defaults: { _controller: MondelPostBundle:Default:create }
+
+post_show_category:
+    pattern:  /mostrar/{categoryName}
+    defaults: { _controller: MondelPostBundle:Default:showCategoryPosts }
+
+post_page:
+    pattern:  /{postId}
+    defaults: { _controller: MondelPostBundle:Default:showPostPage }
+    requirements:  { postId: \d+ }
+
+comment_post:
+    pattern:  /{postId}/comentar
+    defaults: { _controller: MondelPostBundle:Default:commentPost }

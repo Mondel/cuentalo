@@ -1,0 +1,18 @@
+<img src="http://www.cuentalo.com.uy/bundles/mondelcuentalo/img/head_notificacion_mail.gif" />
+<div style="width: 620px;">
+    {% set userPostSuscription = notification.getUserPostSuscription() %}
+    {% set user = userPostSuscription.getUser() %}
+    {% set post = userPostSuscription.getPost() %}
+    <p>Hola, {{ user.getNick() }}!</p>
+    <p>
+        Han comentado la publicacion #{{ post.getId() }} en la que tu has participado. Puedes verla <a href="{{ url('show_page_post', { 'postId': post.getId() }) }}">aqu&iacute;</a>
+    </p>
+    <p>
+        Si no quieres recibir mas emails de notificaciones, puedes configurarlo <a href="{{ url('user_notifications') }}">aqu&iacute;</a>
+    </p>
+    <p>
+        Saludos<br/>
+        El Equipo de Cuentalo
+    </p>
+</div>
+<img src="http://www.cuentalo.com.uy/bundles/mondelcuentalo/img/footer_notificacion_mail.gif" />

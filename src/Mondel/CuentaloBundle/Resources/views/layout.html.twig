@@ -26,11 +26,11 @@
 				</a>
 	    	</div>
 	    	{% if not is_granted('ROLE_USER') %}
-		    	{% include 'MondelCuentaloBundle:Usuario:ingresoInicio.html.twig' %}
+		    	{% include 'MondelUserBundle:Default:home_page_login.html.twig' %}
 	    	{% else %}
 	    		<div id="logout">
 		    		<div id="logout_container">
-		                <a id="logout_button" href="{{ path('_salir') }}"><span>Salir</span><em></em></a>
+		                <a id="logout_button" href="{{ path('user_logout') }}"><span>Salir</span><em></em></a>
 		                <div class="Clear"></div>		                
 		            </div>
 		    	</div>
@@ -40,16 +40,19 @@
     <nav id="navigation">
     	<ul>
     		<li><a href="{{ path('home_page') }}" title="Todas">todas</a><span>|</span></li>    		
-    		<li><a href="{{ path('_contenido_categoria_listar', {'categoria': 'Anecdota' }) }}" title="Anecdotas">an&eacute;cdotas</a><span>|</span></li>
-    		<li><a href="{{ path('_contenido_categoria_listar', {'categoria': 'Anoche' }) }}" title="Anoche">anoche</a><span>|</span></li>
-    		<li><a href="{{ path('_contenido_categoria_listar', {'categoria': 'Chiste' }) }}" title="Chistes">chistes</a><span>|</span></li>
-    		<li><a href="{{ path('_contenido_categoria_listar', {'categoria': 'Futbol' }) }}" title="Futbol">futbol</a><span>|</span></li>
-    		<li><a href="{{ path('_contenido_categoria_listar', {'categoria': 'Frase' }) }}" title="Frase">frases</a><span>|</span></li>
-    		<li><a href="{{ path('_contenido_categoria_listar', {'categoria': 'Mensaje' }) }}" title="Mensajes">mensajes</a><span>|</span></li>
-    		<li><a href="{{ path('_contenido_categoria_listar', {'categoria': 'Video' }) }}" title="Videos">videos</a><span>|</span></li>
-    		<li><a href="{{ path('_contenido_categoria_listar', {'categoria': 'Secreto' }) }}" title="Secretos">secretos</a></li>    		
+    		<li><a href="{{ path('post_show_category', {'categoryName': 'Anecdota' }) }}" title="Anecdotas">an&eacute;cdotas</a><span>|</span></li>
+    		<li><a href="{{ path('post_show_category', {'categoryName': 'Anoche' }) }}" title="Anoche">anoche</a><span>|</span></li>
+    		<li><a href="{{ path('post_show_category', {'categoryName': 'Chiste' }) }}" title="Chistes">chistes</a><span>|</span></li>
+    		<li><a href="{{ path('post_show_category', {'categoryName': 'Futbol' }) }}" title="Futbol">futbol</a><span>|</span></li>
+    		<li><a href="{{ path('post_show_category', {'categoryName': 'Frase' }) }}" title="Frase">frases</a><span>|</span></li>
+    		<li><a href="{{ path('post_show_category', {'categoryName': 'Mensaje' }) }}" title="Mensajes">mensajes</a><span>|</span></li>
+    		<li><a href="{{ path('post_show_category', {'categoryName': 'Video' }) }}" title="Videos">videos</a><span>|</span></li>
+    		<li><a href="{{ path('post_show_category', {'categoryName': 'Secreto' }) }}" title="Secretos">secretos</a></li>    		
 		</ul>  
-    </nav> 
+    </nav>
+
+    Notice: {{ app.session.getFlash('notice') }}
+    Error: {{ app.session.getFlash('error') }}
     
 	{# {% block message %}{% endblock %} #}
     {% if not is_granted('ROLE_USER') %}
@@ -61,7 +64,7 @@
 						Oops! Parece que a&uacute;n no estas registrado, registrate y comienza a comentar las publicaciones de los usuarios sin revelar tus datos.
 					</p>					
 				</div>
-				<form action="{{ path('_registrar') }}">					
+				<form action="{{ path('user_register') }}">					
 					<button class="red"><span class="label">Registrarme</span></button>
 				</form>
 			</div> 		
@@ -84,32 +87,32 @@
 	    	<div id="menu_usuarios">Menú de usuario</div>
 	    	<div id="menu_izquierdo">
 	    		{% if is_granted('ROLE_USER') %}
-		    		<form method="get" action="{{ path('_contrasenia_cambiar') }}">
+		    		<form method="get" action="{{ path('user_change_password') }}">
 				    	<button class="gray">
 				    		<span class="icon IconPass"></span>
 				    		<span class="label">Cambiar contraseña</span>    		
 						</button>
 					</form>
-					<form method="get" action="{{ path('_usuario_eliminar') }}">
+					<form method="get" action="{{ path('user_delete') }}">
 				    	<button class="gray">
 				    		<span class="icon IconDelete"></span>
 				    		<span class="label">Dar de baja mi cuenta</span>    		
 						</button>
 					</form>
 				{% endif %}
-				<form method="get" action="{{ path('_contacto') }}">
+				<form method="get" action="{{ path('static_page', {'page': 'contact'}) }}">
 			    	<button class="gray">
 			    		<span class="icon IconContact"></span>
 			    		<span class="label">Contactarnos</span>
 		    		</button>
 	    		</form>
-	    		<form method="get" action="{{ path('_pagina', {'pagina':'terminos'}) }}">
+	    		<form method="get" action="{{ path('static_page', {'page':'terms'}) }}">
 			    	<button class="gray">
 			    		<span class="icon IconTerm"></span>
 			    		<span class="label">T&eacute;rminos</span>
 		    		</button>
 	    		</form>	
-	    		<form method="get" action="{{ path('_pagina', {'pagina':'que_es'}) }}">
+	    		<form method="get" action="{{ path('static_page', {'page':'what_is_cuentalo'}) }}">
 			    	<button class="gray">
 			    		<span class="icon IconQuees"></span>
 			    		<span class="label">Que es cuentalo?</span>
@@ -117,8 +120,8 @@
 	    		</form>
 	    		{% if is_granted('ROLE_USER') %}
 	    			{% set cssClassNotificacion = 
-	    				app.security.token.user.tienenotificacionessinleer() ? 'red' : 'grey' %}
-	    			<form method="get" action="{{ path('_usuario_notificaciones') }}">
+	    				app.security.token.user.haveUnreadNotifications() ? 'red' : 'grey' %}
+	    			<form method="get" action="{{ path('home_page') }}">
 			    		<button class="button {{ cssClassNotificacion }}">
 				    		<span class="icon IconTerm"></span>
 				    		<span class="label">Notificaciones</span>
@@ -157,7 +160,7 @@
  				<div id="titulo_deportes">Deportes</div>
 				<div class="Deportes"></div>
 			</div>
-			<a href="{{ path('_contacto') }}">
+			<a href="{{ path('static_page', {'page': 'contact'}) }}">
 				<div class="Cuentalopublicite"></div>
 			</a>			
         </aside>

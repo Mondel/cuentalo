@@ -51,6 +51,11 @@ class Category
         $this->posts = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
+    public function isActive()
+    {
+        return $this->getIsActive();
+    }
+
     /*
      * End mis propiedades
      */

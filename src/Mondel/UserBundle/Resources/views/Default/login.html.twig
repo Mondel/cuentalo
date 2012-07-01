@@ -12,7 +12,7 @@
         <div id="login_error">{{ error.message | trans }}</div>
    {% endif %}
     <div id="loginForm" class="Form">
-        <form action="{{ path('_ingresar_chequeo') }}" method="post">
+        <form action="{{ path('user_login_check') }}" method="post">
             <table>
                 <tr>
                     <td><label for="username" class="FormText">Email:</label></td>
@@ -32,7 +32,7 @@
                 </tr>
                 <tr>
                     <td>    <button class="red"><span class="label">Ingresar</span></button></td>
-                    <td><a href="{{ path('_contrasenia_recuperar') }}">He olvidado la contraseña</a></td>
+                    <td><a href="{{ path('user_password_recover') }}">He olvidado la contraseña</a></td>
                 </tr>
             </table>            
         </form>

@@ -73,6 +73,11 @@ class Comment
         $this->is_active = true;
     }
 
+    public function isActive()
+    {
+        return $this->getIsActive();
+    }
+
     /*
      * End custom properties
      */
