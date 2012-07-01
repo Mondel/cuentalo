@@ -6,6 +6,10 @@ MondelSiteBundle:
     resource: "@MondelSiteBundle/Resources/config/routing.yml"
     prefix:   /	
 
+MondelUserBundle:
+    resource: "@MondelUserBundle/Resources/config/routing.yml"
+    prefix:   /usuario/
+
 # Internal routing configuration to handle ESI
 #_internal:
 #   resource: "@FrameworkBundle/Resources/config/routing/internal.xml"

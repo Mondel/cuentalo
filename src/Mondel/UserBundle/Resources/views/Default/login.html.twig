@@ -1,18 +1,40 @@
-{% extends 'MondelSiteBundle::layout.html.twig' %}
-
-{% block title %}Formulario de acceso{% endblock %}
-
-{% block messages %} {{ parent() }} {% endblock %}
-
-{% block body %}
-
-	<form action="{{ path('user_login_check') }}" method="post">
-	<label for="username">Usuario:</label>
-	<input type="text" id="username" name="_username"
-	value="{{ last_username }}" />
-	<label for="password">Contraseña:</label>
-	<input type="password" id="password" name="_password" />
-	<input type="submit" name="login" value="Acceder" />
-	</form>
-
+{% extends 'MondelCuentaloBundle::layout.html.twig' %}
+{% block stylesheets %}
+    {{ parent() }}
+    {% stylesheets '@MondelCuentaloBundle/Resources/public/css/forms.css' filter='yui_css' %}
+    <link rel="stylesheet" type="text/css" media="screen" href="{{ asset_url }}" />
+    {% endstylesheets %}
+{% endblock %}
+{% block menu_top %}{% endblock %}
+{% block content %}
+    {{ parent() }}
+     {% if error %}
+        <div id="login_error">{{ error.message | trans }}</div>
+   {% endif %}
+    <div id="loginForm" class="Form">
+        <form action="{{ path('_ingresar_chequeo') }}" method="post">
+            <table>
+                <tr>
+                    <td><label for="username" class="FormText">Email:</label></td>
+                    <td>
+                        <input type="text" id="username" name="_username" value="{{ last_username }}" class="FormInput" />
+                    </td>
+                </tr>
+                <tr>
+                    <td><label for="password" class="FormText">Contraseña:</label></td>
+                    <td><input type="password" id="password" name="_password" class="FormInput" /></td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <input type="checkbox" id="remember_me" name="_remember_me" checked />
+                        <label for="remember_me">No cerrar sesi&oacute;n</label>
+                    </td>
+                </tr>
+                <tr>
+                    <td>    <button class="red"><span class="label">Ingresar</span></button></td>
+                    <td><a href="{{ path('_contrasenia_recuperar') }}">He olvidado la contraseña</a></td>
+                </tr>
+            </table>            
+        </form>
+    </div>
 {% endblock %}

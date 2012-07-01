@@ -19,6 +19,8 @@ class AppKernel extends Kernel
             new JMS\SecurityExtraBundle\JMSSecurityExtraBundle(),
             new Mondel\CuentaloBundle\MondelCuentaloBundle(),
             new Mondel\SiteBundle\MondelSiteBundle(),
+            new Mondel\UserBundle\MondelUserBundle(),
+            new Mondel\PostBundle\MondelPostBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

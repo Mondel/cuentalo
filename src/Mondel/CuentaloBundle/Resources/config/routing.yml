@@ -2,15 +2,15 @@
 #    pattern:  /
 #    defaults: { _controller: MondelCuentaloBundle:Default:inicio }
 
-_ingresar:
-    pattern:  /ingresar
-    defaults: { _controller: MondelCuentaloBundle:Usuario:ingreso }
+#_ingresar:
+#    pattern:  /ingresar
+#    defaults: { _controller: MondelCuentaloBundle:Usuario:ingreso }
 
-_ingresar_chequeo:
-    pattern:  /ingresar_chequeo
+#_ingresar_chequeo:
+#    pattern:  /ingresar_chequeo
 
-_salir:
-    pattern:  /salir
+#_salir:
+#    pattern:  /salir
 
 _registrar:
     pattern:  /registrarme

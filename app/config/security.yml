@@ -1,6 +1,6 @@
 security:
     encoders:        
-        Mondel\CuentaloBundle\Entity\Usuario: sha512
+        Mondel\UserBundle\Entity\User: sha512
 
     role_hierarchy:
         ROLE_ADMIN:       ROLE_USER
@@ -8,16 +8,16 @@ security:
 
     providers:
         user_db:
-            entity: { class: Mondel\CuentaloBundle\Entity\Usuario, property: email }
+            entity: { class: Mondel\UserBundle\Entity\User, property: email }
 
     firewalls:
         secured_area:
             pattern:    ^/
             anonymous: ~
             form_login:
-                login_path:     /ingresar
-                check_path:     /ingresar_chequeo
-                use_referer:    true
+                login_path:  /ingresar
+                check_path:  /ingresar_chequeo
+                use_referer: true
             logout:
                 path:   /salir
                 target: /
