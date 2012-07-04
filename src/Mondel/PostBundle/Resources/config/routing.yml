@@ -11,6 +11,6 @@ post_page:
     defaults: { _controller: MondelPostBundle:Default:showPostPage }
     requirements:  { postId: \d+ }
 
-comment_post:
+comment_create:
     pattern:  /{postId}/comentar
-    defaults: { _controller: MondelPostBundle:Default:commentPost }
+    defaults: { _controller: MondelPostBundle:Comment:create }

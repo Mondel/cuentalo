@@ -292,7 +292,7 @@ class DefaultController extends Controller
         }
     
         return $this->render(
-            'MondelUserBundle:User:change_password.html.twig',
+            'MondelUserBundle:Default:change_password.html.twig',
             array('form' => $form->createView())
         );
     }

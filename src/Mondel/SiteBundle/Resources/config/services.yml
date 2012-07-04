@@ -2,6 +2,10 @@ parameters:
 #    mondel_site.example.class: Mondel\SiteBundle\Example
 
 services:
+    mondel_cuentalo.twig.extension:
+        class: Mondel\SiteBundle\Twig\Extensions\MondelSiteExtension
+        tags:
+            - { name: twig.extension }
 #    mondel_site.example:
 #        class: %mondel_site.example.class%
 #        arguments: [@service_id, "plain_value", %parameter%]

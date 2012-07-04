@@ -57,13 +57,13 @@
 					</p>
 				{% endif %}
 				
-				{% include 'MondelCuentaloBundle:Comentario:listar.html.twig' %}
+				{% include 'MondelPostBundle:Comment:list.html.twig' %}
 				
 			{% else %}
 				<p class="PComentarios">No hay comentarios aún.</p>
 			{% endif %}
 			{% if is_granted('ROLE_USER') %}				
-				<form action="{{ path('comment_post', {'postId': post.id}) }}" method="post" {{ form_enctype(commentsForms[post.id]) }}>
+				<form action="{{ path('comment_create', {'postId': post.id}) }}" method="post" {{ form_enctype(commentsForms[post.id]) }}>
 					{{ form_errors(commentsForms[post.id]) }}
 				 	{{ form_widget(commentsForms[post.id].text, { 'attr': {'placeholder': 'escribe tu comentario y presiona enter...', 'class': 'InputComentarios'} }) }}
 				 	{{ form_rest(commentsForms[post.id]) }}

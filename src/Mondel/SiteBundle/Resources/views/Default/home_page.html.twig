@@ -1,4 +1,4 @@
-{% extends 'MondelCuentaloBundle::layout.html.twig' %}
+{% extends 'MondelSiteBundle::layout.html.twig' %}
 
 
 {% block title %}
@@ -11,7 +11,7 @@
 
 {% block stylesheets %}
     {{ parent() }}
-    {% stylesheets '@MondelCuentaloBundle/Resources/public/css/index.css' filter='yui_css' %}
+    {% stylesheets '@MondelSiteBundle/Resources/public/css/index.css' filter='yui_css' %}
     <link rel="stylesheet" type="text/css" media="screen" href="{{ asset_url }}" />
     {% endstylesheets %}
 {% endblock %}
@@ -56,7 +56,7 @@
 {% endblock %}
 {% block javascripts %}
     {{ parent() }}
-    {% javascripts '@MondelCuentaloBundle/Resources/public/js/index.js'
+    {% javascripts '@MondelSiteBundle/Resources/public/js/index.js'
                    filter='closure'
 	%}
     <script src="{{ asset_url }}"></script>

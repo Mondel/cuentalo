@@ -4,7 +4,7 @@
         <body>
             <trans-unit id="1">
                 <source>Bad credentials</source>
-                <target>Credenciales equivocadas.</target>
+                <target>Usuario o contraseña incorrecta.</target>
             </trans-unit>
             <trans-unit id="2">
                 <source>User account is disabled.</source>

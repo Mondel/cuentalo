@@ -1,7 +1,7 @@
-{% set cantidadComentarios = contenido.comentarios | length %}
-{% for comentario in contenido.comentarios %}
-	{% if (offset is defined and comentario.id > offset) or offset is not defined %}
-		{% set cssComentario = loop.index <= cantidadComentarios - 3 and mostrarComentariosTodos is not defined ? 'Comentario Hidden' : 'Comentario'  %}
+{% set countComments = post.comments | length %}
+{% for comment in post.comments %}
+	{% if (offset is defined and comment.id > offset) or offset is not defined %}
+		{% set cssComment = loop.index <= countComments - 3 and mostrarComentariosTodos is not defined ? 'Comentario Hidden' : 'Comentario'  %}
 		{% include 'MondelCuentaloBundle:Comentario:mostrar.html.twig' %}						
 	{% endif %}
 {% endfor %}

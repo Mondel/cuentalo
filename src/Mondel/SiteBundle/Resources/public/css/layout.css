@@ -1,0 +1,955 @@
+body {
+	background: #f5f5f5;
+    color: #444444;
+    font-family: Arial;
+}
+
+/* HEADER */
+
+#top {
+    background: url('../../bundles/mondelcuentalo/img/bg_header.png');
+    border-bottom: 3px solid #8f8f8f;
+    height: 56px;
+}
+
+.Wrap {
+	height: 100%;
+    margin: 0 auto;    
+    width: 1000px;
+}
+
+#top #logo {
+    float: left;
+    height: 68px;    
+    width: 202px;
+}
+
+
+
+
+ 
+
+/* Login Container (default to float:right) */
+#login_container {
+    position:relative;
+    float:right;
+    font-size:12px;
+}
+
+/* Login Button */
+#login_button { 
+    display:inline-block;
+    float:right;
+    background:#8f8f8f; 
+    border:1px solid #8f8f8f; 
+    border-radius:3px;
+    -moz-border-radius:3px;
+    position:relative;
+    z-index:30;
+    cursor:pointer;
+}
+
+/* Login Button Text */
+#login_button span {
+    color:#FFF; 
+    font-size:14px; 
+    font-weight:bold;
+    padding:7px 12px 9px 10px;
+    display:block;
+}
+
+#login_button:hover {
+    /*background:url(../../bundles/mondelcuentalo/img/button_bg_hover.png) repeat-x;*/
+}
+
+/* Login Box */
+#login_box {
+    position:absolute;
+    top:34px;
+    right:0;
+    display:none;
+    z-index:29;
+}
+
+/* If the Login Button has been clicked */    
+#login_button.Active {
+    border-radius:3px 3px 0 0;
+}
+
+#login_button.Active span {
+    background-position:53px -76px;
+}
+
+/* A Line added to overlap the border */
+#login_button.Active em {
+    position:absolute;
+    width:100%;
+    height:1px;    
+    bottom:-1px;
+}
+
+/* Login Form */
+#login_form {
+    width:248px; 
+    border:1px solid #8f8f8f;
+    border-radius:3px 0 3px 3px;
+    -moz-border-radius:3px 0 3px 3px;
+    margin-top:-1px;
+    background:#8f8f8f;
+    padding:6px;
+}
+
+#login_form fieldset {
+    margin:0 0 12px 0;
+    display:block;
+    border:0;
+    padding:0;
+}
+
+fieldset#body {
+    background:#fff;
+    border-radius:3px;
+    -moz-border-radius:3px;
+    padding:10px 13px;
+    margin:0;
+}
+
+#login_form #remember_me {
+    width:auto;
+    margin:1px 9px 0 0;
+    float:left;
+    padding:0;
+    border:0;
+    *margin:-3px 9px 0 0; /* IE7 Fix */
+}
+
+#body label {
+    color:#3a454d;
+    margin:9px 0 0 0;
+    display:block;
+    float:left;
+}
+
+#login_form #body fieldset label {
+    display:block;
+    float:none;
+    margin:0 0 6px 0;
+}
+
+/* Default Input */
+#login_form input {
+    width:92%;
+    border:1px solid #899caa;
+    border-radius:3px;
+    -moz-border-radius:3px;
+    color:#3a454d;
+    font-weight:bold;
+    padding:8px 8px;
+    box-shadow:inset 0px 1px 3px #bbb;
+    -webkit-box-shadow:inset 0px 1px 3px #bbb;
+    -moz-box-shadow:inset 0px 1px 3px #bbb;
+    font-size:12px;
+}
+
+/* Sign In Button */
+#login_form #login {
+    width:auto;
+    float:left;
+    background: #8f8f8f;
+    color:#fff;
+    padding:7px 10px 8px 10px;    
+    border:0px solid #000;
+    box-shadow:none;
+    -moz-box-shadow:none;
+    -webkit-box-shadow:none;
+    margin:0 12px 0 0;
+    cursor:pointer;
+    *padding:7px 2px 8px 2px; /* IE7 Fix */
+}
+
+/* Forgot your password */
+#login_form span {
+    text-align:center;
+    display:block;
+    padding:7px 0 4px 0;
+}
+
+#login_form span a {
+    color: #FFF;
+    text-shadow:1px 0px #000;
+    font-size:12px;
+}
+
+input:focus {
+    outline:none;
+}
+
+/* Login Container (default to float:right) */
+#logout_container {
+    position:relative;
+    float:right;
+    font-size:12px;
+}
+
+/* Login Button */
+#logout_button { 
+    display:inline-block;
+    float:right;
+    background:#8f8f8f; 
+    border:1px solid #8f8f8f; 
+    border-radius:3px;
+    -moz-border-radius:3px;
+    position:relative;
+    z-index:30;
+    cursor:pointer;
+    text-decoration: none;
+}
+
+/* Login Button Text */
+#logout_button span {
+    color:#FFF; 
+    font-size:14px; 
+    font-weight:bold;
+    padding:7px 12px 9px 10px;
+    display:block;
+}
+
+/* If the Login Button has been clicked */    
+#logout_button.Active {
+    border-radius:3px 3px 0 0;
+}
+
+#logout_button.Active span {
+    background-position:53px -76px;
+}
+
+/* A Line added to overlap the border */
+#logout_button.Active em {
+    position:absolute;
+    width:100%;
+    height:1px;    
+    bottom:-1px;
+}
+
+#navigation {
+	background: url('../../bundles/mondelcuentalo/img/bg_header.png');
+    box-shadow: 0 1px 5px #8f8f8f;   
+    height: 30px;
+   	-moz-box-shadow: 0 1px 5px #8f8f8f;
+   	-webkit-box-shadow: 0 1px 5px #8f8f8f;
+}
+
+#navigation ul {
+	padding: 5px 0;
+}
+
+#navigation ul li {
+	float: left;
+}
+
+#navigation ul li a {
+	color: #FFF;
+}
+
+#navigation ul li span {
+	padding: 0 5px;
+}
+
+#facebook {
+	width:182px;
+	height:30px;
+	float:left;
+    background: #91b658;
+    text-decoration: none;
+    color:#ffffff;
+    text-align:center;
+    font-weight:bold;
+    line-height:30px;
+    font-size: 14px;
+    margin-top:20px;
+}
+
+
+
+#menu_usuarios {
+	width:182px;
+	height:30px;
+	float:left;
+    background: #91b658;
+    text-decoration: none;
+    color:#ffffff;
+    text-align:center;
+    font-weight:bold;
+    line-height:30px;
+    font-size: 14px;
+}
+
+#menu_izquierdo button {
+	width: 172px;
+}
+
+#titulo_noticias {
+	width:182px;
+	height:30px;
+	
+    background: #91b658;
+    color:#ffffff;
+    text-align:center;
+    font-weight:bold;
+    line-height:30px;
+    font-size: 14px;    
+}
+
+.Cuentalopublicite {    
+    background: url('../../bundles/mondelcuentalo/img/publicite.jpg') 75% 70% no-repeat;
+	height: 104px;
+    margin: 10px 0;
+    width: 181px;
+}
+
+.Noticias {    
+    margin: 10px 0;    
+}
+
+.Noticias a {
+    color: #444;
+}
+
+#titulo_deportes {
+    width:182px;
+    height:30px;
+    
+    background: #91b658;
+    color:#ffffff;
+    text-align:center;
+    font-weight:bold;
+    line-height:30px;
+    font-size: 14px;    
+}
+
+.Deportes {    
+    margin: 10px 0;    
+}
+
+.Deportes a {
+    color: #444;
+}
+
+#menu_top {
+    float: left;
+    width: 820px;
+}
+
+#content_menu_top {
+    margin: 0 25px;
+    text-align: right;
+}
+
+#content_menu_top #nick_user {
+    padding: 25px 190px;
+}
+
+#login_index {
+    font-size: 12px;
+    text-align: left;
+    float: right;
+}
+
+#login_index table {
+    border-collapse: separate;
+    border-spacing: 4px;
+}
+
+#login_index .FormInput {
+    background: #EEE;
+    border: 1px solid #CFCFCF;
+    color: #929191;
+    font-size: 15px;
+    height: 20px;
+    margin-right: 15px;
+    width: 170px;
+}
+
+#login_index .ButtonForm {
+    background-color: #eeeeee;
+    background-image: -webkit-gradient(linear, left top, left bottom, from(#eeeeee), to(#cccccc));
+    /* Saf4+, Chrome */
+    background-image: -webkit-linear-gradient(top, #eeeeee, #cccccc);
+    background-image: -moz-linear-gradient(top, #eeeeee, #cccccc);
+    background-image: -ms-linear-gradient(top, #eeeeee, #cccccc);
+    background-image: -o-linear-gradient(top, #eeeeee, #cccccc);
+    background-image: linear-gradient(top, #eeeeee, #cccccc);
+    border: 1px solid #ccc;
+    border-bottom: 1px solid #bbb;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    -ms-border-radius: 3px;
+    -o-border-radius: 3px;
+    border-radius: 3px;
+    color: #333;
+    font: bold 11px "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", Geneva, Verdana, sans-serif;
+    padding: 0 0;
+    text-align: center;
+    text-shadow: 0 1px 0 #eee;
+    width: 100px;
+    height: 23px;
+}
+
+#login_index .ButtonForm:hover {
+    background-color: #dddddd;
+    background-image: -webkit-gradient(linear, left top, left bottom, from(#dddddd), to(#bbbbbb));
+    /* Saf4+, Chrome */
+    background-image: -webkit-linear-gradient(top, #dddddd, #bbbbbb);
+    background-image: -moz-linear-gradient(top, #dddddd, #bbbbbb);
+    background-image: -ms-linear-gradient(top, #dddddd, #bbbbbb);
+    background-image: -o-linear-gradient(top, #dddddd, #bbbbbb);
+    background-image: linear-gradient(top, #dddddd, #bbbbbb);
+    border: 1px solid #bbb;
+    border-bottom: 1px solid #999;
+    cursor: pointer;
+    text-shadow: 0 1px 0 #ddd;
+}
+
+#login_index .ButtonForm:active {
+    border: 1px solid #aaa;
+    border-bottom: 1px solid #888;
+    -webkit-box-shadow: inset 0 0 5px 2px #aaaaaa, 0 1px 0 0 #eeeeee;
+    -moz-box-shadow: inset 0 0 5px 2px #aaaaaa, 0 1px 0 0 #eeeeee;
+    -ms-box-shadow: inset 0 0 5px 2px #aaaaaa, 0 1px 0 0 #eeeeee;
+    -o-box-shadow: inset 0 0 5px 2px #aaaaaa, 0 1px 0 0 #eeeeee;
+    box-shadow: inset 0 0 5px 2px #aaaaaa, 0 1px 0 0 #eeeeee;
+}
+
+/* CONTENT */
+
+#center .Wrap #message {
+
+}
+
+.Notice {
+    color: green;
+}
+
+.Error {
+    color: red;
+}
+
+.ErrorFondo {
+    background: red;
+}
+
+#content {
+    margin: 25px auto;
+    width: 1000px;
+}
+
+#center {
+    float: left;
+    margin-bottom: 20px;
+    width: 590px;
+}
+
+/* LEFT */
+#left {
+    float: left;
+    width: 205px;
+    min-height: 1px; 
+}
+
+#menu {
+    line-height: 25px;
+}
+
+#menu li {
+    background: url('../../bundles/mondelcuentalo/img/arrow.png') 75% 70% no-repeat;
+    padding-top: 5px;
+}
+
+#menu li a {
+    text-decoration: none;
+    color:#000000;
+}
+
+#menu li a:hover {
+    color: #6a6969;
+}
+
+
+#message_register,
+#message_cuentalo {
+    background: #404040;     
+    height: 40px;
+}
+
+#message_register .Icon {
+	background: url('../../bundles/mondelcuentalo/img/oops.png');
+	float: left;
+	height: 39px;
+	width: 40px;
+}
+
+#message_cuentalo .Icon {	
+	background: url('../../bundles/mondelcuentalo/img/good.png');
+	float: left;
+	height: 39px;
+	width: 28px;
+}
+
+#message_register .Message,
+#message_cuentalo .Message {    
+	color:#FFF;
+	float: left;
+	font-size:12px;
+	font-weight:bold;	
+    padding: 12px;
+}
+
+#message_cuentalo .Message {
+    padding: 6px 10px;
+    width: 950px;
+}
+
+/* ---------------------CSS BUTTONS----------------------*/
+
+/*------------------------------------*\
+	CONTENTS
+\*------------------------------------*/
+/*
+WRAPPER
+BUTTON
+BUTTON LABEL
+BUTTON ICON
+ICONS
+DROPDOWN MENU
+*/
+
+
+/*------------------------------------*\
+	$WRAPPER
+\*------------------------------------*/
+.buttons {/* Style as you wish (toolbar) */}
+
+/* The Magnificent CLEARFIX */
+.buttons:before, .buttons:after {
+  content: "\0020"; display: block; height: 0; visibility: hidden;	
+} 
+.buttons:after { clear: both; }
+.buttons { zoom: 1; }
+/* ------------------------ */
+
+
+/*------------------------------------*\
+	$BUTTON
+\*------------------------------------*/
+button, 
+.button {
+	text-decoration: none;
+	text-shadow: 0 1px 0 #fff;
+
+	font: bold 11px Helvetica, Arial, sans-serif;
+	color: #444;
+	line-height: 17px;
+	height: 18px;
+
+	display: inline-block;
+	float: left;
+
+	margin: 5px;
+	padding: 5px 6px 4px 6px;
+
+	background: #F3F3F3;
+	border: solid 1px #D9D9D9;
+
+	border-radius: 2px;
+	-webkit-border-radius: 2px;
+	-moz-border-radius: 2px;
+
+	-webkit-transition: border-color .20s;
+	-moz-transition: border-color .20s;
+	-o-transition: border-color .20s;
+	transition: border-color .20s;
+}
+button {
+	height: 29px !important;
+	cursor: pointer;
+}
+
+button.left, 
+.button.left {
+	margin: 5px 0 5px 5px;
+
+	border-top-right-radius: 0;
+	-webkit-border-top-right-radius: 0;
+	-moz-border-radius-topright: 0;
+
+	border-bottom-right-radius: 0;
+	-webkit-border-bottom-right-radius: 0;
+	-moz-border-radius-bottomright: 0;
+}
+button.middle, 
+.button.middle {
+	margin: 5px 0;
+
+	border-left-color: #F4F4F4;
+
+	border-radius: 0;
+	-webkit-border-radius: 0;
+	-moz-border-radius: 0;
+}
+button.right, 
+.button.right {
+	margin: 5px 5px 5px 0;
+
+	border-left-color: #F4F4F4;
+
+	border-top-left-radius: 0;
+	-webkit-border-top-left-radius: 0;
+	-moz-border-radius-topleft: 0;
+
+	border-bottom-left-radius: 0;
+	-webkit-border-bottom-left-radius: 0;
+	-moz-border-radius-bottomleft: 0;
+}
+
+button:hover, 
+.button:hover {
+    background: #F4F4F4;
+		border-color: #C0C0C0;
+		color: #333;
+}
+
+button:active, 
+.button:active {
+	border-color: #FFFFFF;
+	color: #444444;
+
+	-moz-box-shadow:inset 0 0 10px #D4D4D4;
+	-webkit-box-shadow:inset 0 0 10px #D4D4D4;
+	box-shadow:inset 0 0 10px #D4D4D4;
+}
+
+button.on, 
+.button.on {
+	border-color: #BBB;
+
+	-moz-box-shadow:inset 0 0 10px #D4D4D4;
+	-webkit-box-shadow:inset 0 0 10px #D4D4D4;
+	box-shadow:inset 0 0 10px #D4D4D4;
+}
+button.on:hover, 
+.button.on:hover {
+	border-color: #BBB;
+
+	-moz-box-shadow:inset 0 0 10px #D4D4D4;
+	-webkit-box-shadow:inset 0 0 10px #D4D4D4;
+	box-shadow:inset 0 0 10px #D4D4D4;
+}
+button.on:active, 
+.button.on:active {
+	border-color: #FFFFFF;
+}
+
+button.action, 
+.button.action {
+	border: 1px solid #D8D8D8 !important;
+
+	background: #F2F2F2;
+	background: -webkit-linear-gradient(top, #F5F5F5, #F1F1F1);
+	background: -moz-linear-gradient(top, #F5F5F5, #F1F1F1);
+	background: -ms-linear-gradient(top, #F5F5F5, #F1F1F1);
+	background: -o-linear-gradient(top, #F5F5F5, #F1F1F1);
+
+	-webkit-transition: border .20s;
+	-moz-transition: border .20s;
+	-o-transition: border .20s;
+	transition: border .20s;
+}
+button.action:hover, 
+.button.action:hover {
+	border: 1px solid #C6C6C6 !important;
+
+	background: #F3F3F3;
+	background: -webkit-linear-gradient(top, #F8F8F8, #F1F1F1);
+	background: -moz-linear-gradient(top, #F8F8F8, #F1F1F1);
+	background: -ms-linear-gradient(top, #F8F8F8, #F1F1F1);
+	background: -o-linear-gradient(top, #F8F8F8, #F1F1F1);
+}
+button.blue, 
+.button.blue {
+	border: 1px solid #3079ED !important;
+
+	background: #4B8DF8;
+	background: -webkit-linear-gradient(top, #4C8FFD, #4787ED);
+	background: -moz-linear-gradient(top, #4C8FFD, #4787ED);
+	background: -ms-linear-gradient(top, #4C8FFD, #4787ED);
+	background: -o-linear-gradient(top, #4C8FFD, #4787ED);
+
+	-webkit-transition: border .20s;
+	-moz-transition: border .20s;
+	-o-transition: border .20s;
+	transition: border .20s;
+}
+button.blue:hover, 
+.button.blue:hover {
+	border: 1px solid #2F5BB7 !important;
+
+	background: #3F83F1;
+	background: -webkit-linear-gradient(top, #444444, #357AE8);
+	background: -moz-linear-gradient(top, #444444, #357AE8);
+	background: -ms-linear-gradient(top, #444444, #357AE8);
+	background: -o-linear-gradient(top, #444444, #357AE8);
+}
+button.green, 
+.button.green {
+	border: 1px solid #29691D !important;
+
+	background: #3A8E00;
+	background: -webkit-linear-gradient(top, #3C9300, #398A00);
+	background: -moz-linear-gradient(top, #3C9300, #398A00);
+	background: -ms-linear-gradient(top, #3C9300, #398A00);
+	background: -o-linear-gradient(top, #3C9300, #398A00);
+
+	-webkit-transition: border .20s;
+	-moz-transition: border .20s;
+	-o-transition: border .20s;
+	transition: border .20s;
+}
+button.green:hover, 
+.button.green:hover {
+	border: 1px solid #2D6200 !important;
+
+	background: #3F83F1;
+	background: -webkit-linear-gradient(top, #3C9300, #368200);
+	background: -moz-linear-gradient(top, #3C9300, #368200);
+	background: -ms-linear-gradient(top, #3C9300, #368200);
+	background: -o-linear-gradient(top, #3C9300, #368200);
+}
+button.red, 
+.button.red {
+	border: 1px solid #D14836 !important;
+
+	background: #D64937;
+	background: -webkit-linear-gradient(top, #DC4A38, #D14836);
+	background: -moz-linear-gradient(top, #DC4A38, #D14836);
+	background: -ms-linear-gradient(top, #DC4A38, #D14836);
+	background: -o-linear-gradient(top, #DC4A38, #D14836);
+
+	-webkit-transition: border .20s;
+	-moz-transition: border .20s;
+	-o-transition: border .20s;
+	transition: border .20s;
+}
+button.red:hover, 
+.button.red:hover {
+	border: 1px solid #B0281A !important;
+
+	background: #D14130;
+	background: -webkit-linear-gradient(top, #DC4A38, #C53727);
+	background: -moz-linear-gradient(top, #DC4A38, #C53727);
+	background: -ms-linear-gradient(top, #DC4A38, #C53727);
+	background: -o-linear-gradient(top, #DC4A38, #C53727);
+}
+
+button.action:hover, 
+.button.action:hover {
+	-moz-box-shadow: 0 1px 0px #DDD;
+	-webkit-box-shadow: 0 1px 0px #DDD;
+	box-shadow:iset 0 1px 0px #DDD;
+}
+button.action:active, 
+.button.action:active {
+	-moz-box-shadow: none !important;
+	-webkit-box-shadow: none !important;
+	box-shadow: none !important;
+	border-color: #C6C6C6 !important;
+}
+button.blue:active, 
+.button.blue:active {
+	border-color: #2F5BB7 !important;
+}
+button.green:active, 
+.button.green:active {
+	border-color: #2D6200 !important;
+}
+button.red:active, 
+.button.red:active {
+	border-color: #B0281A !important;
+}
+
+
+
+/*------------------------------------*\
+	$BUTTON LABEL
+\*------------------------------------*/
+.ddm span.label, 
+button span.label, 
+.button span.label {
+	display: inline-block;
+	float: left;
+	line-height: 17px;
+	height: 18px;
+	padding: 0 1px;
+	overflow: hidden;
+	color: #444;
+
+	-webkit-transition: color .20s;
+	-moz-transition: color .20s;
+	-o-transition: color .20s;
+	transition: color .20s;
+} 
+button span.label {
+	line-height: 15px !important;
+}
+.ddm:active span.label, 
+button:active span.label, 
+.button:active span.label {
+    color: #444444;
+}
+
+button:hover .label, 
+.button:hover .label {
+    color: #333;
+}
+button:hover .label.red, 
+.button:hover .label.red {
+    color: #DB4A37;
+}
+button:hover .label.blue, 
+.button:hover .label.blue {
+    color: #7090C8;
+}
+button:hover .label.green, 
+.button:hover .label.green {
+    color: #42B449;
+}
+button:hover .label.yellow, 
+.button:hover .label.yellow {
+    color: #F7CB38;
+}
+
+button.blue .label, 
+.button.blue .label {
+	color: #FFF !important;
+	text-shadow: 0 1px 0 #2F5BB7 !important;
+}
+button.green .label, 
+.button.green .label {
+	color: #FFF !important;
+	text-shadow: 0 1px 0 #2D6200 !important;
+}
+button.red .label, 
+.button.red .label {
+	color: #FFF !important;
+	text-shadow: 0 1px 0 #B0281A !important;
+}
+button.action .label, 
+.button.action .label {
+	padding: 0 17px !important;
+}
+
+button.action:active .label, 
+.button.action:active .label {
+	color: #333 !important;
+}
+
+button.blue:active .label, 
+button.green:active .label, 
+button.red:active .label, 
+.button.blue:active .label, 
+.button.green:active .label, 
+.button.red:active .label {
+	color: #FFF !important;
+}
+
+/*------------------------------------*\
+	$BUTTON ICON
+\*------------------------------------*/
+.ddm span.icon, 
+button span.icon, 
+.button span.icon {
+	display: inline-block;
+	margin: 0 7px;
+	float: left;
+
+	line-height: 18px;
+	height: 18px;
+	width: 18px;
+	max-width: 18px;
+
+	overflow: hidden;
+	text-indent: -9999px;
+
+	background-repeat: no-repeat;
+
+	-webkit-transition: background-image 0.20s linear;
+	-moz-transition: background-image 0.20s linear;
+	-o-transition: background-image 0.20s linear;
+	transition: background-image 0.20s linear;
+}
+
+/* ---------------------FIN CSS BUTTONS----------------------*/
+
+.IconPass {
+	background: url('../../bundles/mondelcuentalo/img/pass.png');
+}
+
+.IconDelete {
+	background: url('../../bundles/mondelcuentalo/img/delete.png');
+}
+
+.IconContact {
+	background: url('../../bundles/mondelcuentalo/img/contactarnos.png');
+}
+
+.IconReport {
+	background: url('../../bundles/mondelcuentalo/img/report.png');
+}
+
+.IconInvite {
+	background: url('../../bundles/mondelcuentalo/img/search-friends.png');
+}
+
+.IconTerm {
+	background: url('../../bundles/mondelcuentalo/img/term.png');
+}
+
+.IconQuees {
+	background: url('../../bundles/mondelcuentalo/img/quees.png');
+}
+
+
+
+/* RIGHT */
+
+#right {
+    float: left;
+    margin: 0 11px;
+    text-align: center;
+    width: 182px;    
+}
+
+/* FOOTER */
+#footer {
+    text-align: center;
+}
+
+
+
+.Clear {
+	clear: both;
+}
+
+.Hidden {
+	display: none;
+}
+
+.Bold {
+	font-weight: bold;
+}
+
+.banner-tumovida {
+    background: url(../../bundles/mondelcuentalo/img/banner-tumovida.jpg);
+    height: 600px;
+    margin: 0 auto 20px auto;
+    width: 120px;
+}
