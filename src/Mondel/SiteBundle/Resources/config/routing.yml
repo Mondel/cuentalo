@@ -1,6 +1,6 @@
 static_page:
     pattern:  /sitio/{page}
-    defaults: { _controller: MondelSiteBundle:Default:showStaticPage }
+    defaults: { _controller: MondelSiteBundle:Default:staticPage }
 
 home_page:
     pattern: /

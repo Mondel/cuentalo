@@ -2,10 +2,10 @@
 
 {% block stylesheets %}
     {{ parent() }}
-    {% stylesheets '@MondelSiteBundle/Resources/public/css/forms.css' filter='yui_css' %}
+    {#% stylesheets '@MondelSiteBundle/Resources/public/css/forms.css' filter='yui_css' %}
 
     <link rel="stylesheet" type="text/css" media="screen" href="{{ asset_url }}" />
-    {% endstylesheets %}    
+    {% endstylesheets %#}
 {% endblock %}
 {% block content %}    
 	<form action="{{ path('user_register') }}" method="post" {{ form_enctype(form) }}>

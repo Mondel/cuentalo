@@ -43,6 +43,7 @@ class DefaultController extends Controller
     {
         $translate = array('ayuda' => 'help');
 
-        return $this->render('MondelSiteBundle:Default:' . $translate[$page] . '.html.twig');
+        return $this->render('MondelSiteBundle:Default:' .
+            (in_array($page, $translate) ? $translate[$page] : $page) . '.html.twig');
     }
 }

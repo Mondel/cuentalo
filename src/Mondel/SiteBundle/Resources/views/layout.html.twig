@@ -1,7 +1,7 @@
 {% extends '::base.html.twig' %}
 
 {% block stylesheets %}
-    {% stylesheets
+    {#% stylesheets
         '@MondelSiteBundle/Resources/public/css/reset.css'
         '@MondelSiteBundle/Resources/public/css/jquery-ui.css'
         '@MondelSiteBundle/Resources/public/css/layout.css'
@@ -9,7 +9,7 @@
         filter='yui_css'
     %}
     <link rel="stylesheet" type="text/css" media="screen" href="{{ asset_url }}" />
-    {% endstylesheets %}
+    {% endstylesheets %#}
     <script src="http://www.modernizr.com/downloads/modernizr-2.0.6.js"></script>
     <!--[if lt IE 9]>
 	<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
@@ -181,12 +181,12 @@
   		})();
 	</script>
     <div id="fb-root"></div><!-- NO QUITAR ES PARA EL FACEBOOK SDK JAVASCRIPT -->    
-    {% javascripts '@MondelSiteBundle/Resources/public/js/functions.js'
+    {#% javascripts '@MondelSiteBundle/Resources/public/js/functions.js'
     			   '@MondelSiteBundle/Resources/public/js/layout.js'
                    filter='closure'
 	%}
     <script src="{{ asset_url }}"></script>
-    {% endjavascripts %}
+    {% endjavascripts %#}
 {% endblock %}
 
 

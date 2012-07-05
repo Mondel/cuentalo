@@ -11,9 +11,9 @@
 
 {% block stylesheets %}
     {{ parent() }}
-    {% stylesheets '@MondelSiteBundle/Resources/public/css/index.css' filter='yui_css' %}
+    {#% stylesheets '@MondelSiteBundle/Resources/public/css/index.css' filter='yui_css' %}
     <link rel="stylesheet" type="text/css" media="screen" href="{{ asset_url }}" />
-    {% endstylesheets %}
+    {% endstylesheets %#}
 {% endblock %}
 {% block content %}
 	{{ parent() }}
@@ -22,9 +22,9 @@
 {% endblock %}
 {% block javascripts %}
 	{{ parent() }}
-	{% javascripts '@MondelSiteBundle/Resources/public/js/contenido.js'
+	{#% javascripts '@MondelSiteBundle/Resources/public/js/contenido.js'
                    filter='closure'
 		%}
 	    <script src="{{ asset_url }}"></script>
-    {% endjavascripts %}
+    {% endjavascripts %#}
 {% endblock %}
