@@ -21,16 +21,16 @@ body {
 
 #left-content {
     background: #111;    
-    -webkit-box-shadow: 10px -10px 5px -8px #444;
-    -moz-box-shadow: 10px -10px 5px -8px #444;
-    -ms-box-shadow: 10px -10px 5px -8px #444;
-    -o-box-shadow: 10px -10px 5px -8px #444;
-    box-shadow: 10px -10px 5px -8px #444;
+    -webkit-box-shadow: 3px 3px 8px #444;
+    -moz-box-shadow: 3px 3px 8px #444;
+    -ms-box-shadow: 3px 3px 8px #444;
+    -o-box-shadow: 3px 3px 8px #444;
+    box-shadow: 3px 3px 8px #444;
     height: 100%;
     left: 0;
     position: absolute;
     top: 0;
-    width: 200px;
+    width: 14%;
 }
 
 /* END Left Content */
@@ -38,7 +38,7 @@ body {
 /* BEGIN Main Content */
 
 .main-content {
-    padding: 0 0 0 200px;           
+    padding: 0 0 0 15%;           
 }
 
 /* END Main Content */

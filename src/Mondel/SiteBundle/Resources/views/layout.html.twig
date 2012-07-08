@@ -70,77 +70,12 @@
     </header>
 
     <section id="left-content">
-        <img src="{{ asset('bundles/mondelcuentalo/img/logo_cuentalo.png') }}" alt="Cuentalo">
 
-
+        <img src="{{ asset('bundles/mondelsite/img/logo_cuentalo.png') }}" alt="Cuentalo">
 
     </section>
 
-    <section id="main-content" class="main-content">
-        
-        <header id="top">
-            <div class="Wrap">
-                <div id="logo">
-                    <a href="{{ path('home_page') }}" title="Cuentalo">
-                        <img src="{{ asset('bundles/mondelcuentalo/img/logo_cuentalo.png') }}" alt="Cuentalo">
-                    </a>
-                </div>
-                {% if not is_granted('ROLE_USER') %}
-                    {% include 'MondelUserBundle:Default:home_page_login.html.twig' %}
-                {% else %}
-                    <div id="logout">
-                        <div id="logout_container">
-                            <a id="logout_button" href="{{ path('user_logout') }}"><span>Salir</span><em></em></a>
-                            <div class="Clear"></div>                       
-                        </div>
-                    </div>
-                {% endif %}
-            </div>
-        </header>
-        <nav id="navigation">
-            <ul>
-                <li><a href="{{ path('home_page') }}" title="Todas">todas</a><span>|</span></li>            
-                <li><a href="{{ path('post_show_category', {'categoryName': 'Anecdota' }) }}" title="Anecdotas">an&eacute;cdotas</a><span>|</span></li>
-                <li><a href="{{ path('post_show_category', {'categoryName': 'Anoche' }) }}" title="Anoche">anoche</a><span>|</span></li>
-                <li><a href="{{ path('post_show_category', {'categoryName': 'Chiste' }) }}" title="Chistes">chistes</a><span>|</span></li>
-                <li><a href="{{ path('post_show_category', {'categoryName': 'Futbol' }) }}" title="Futbol">futbol</a><span>|</span></li>
-                <li><a href="{{ path('post_show_category', {'categoryName': 'Frase' }) }}" title="Frase">frases</a><span>|</span></li>
-                <li><a href="{{ path('post_show_category', {'categoryName': 'Mensaje' }) }}" title="Mensajes">mensajes</a><span>|</span></li>
-                <li><a href="{{ path('post_show_category', {'categoryName': 'Video' }) }}" title="Videos">videos</a><span>|</span></li>
-                <li><a href="{{ path('post_show_category', {'categoryName': 'Secreto' }) }}" title="Secretos">secretos</a></li>         
-            </ul>  
-        </nav>
-
-        
-        
-        
-        {# {% block message %}{% endblock %} #}
-        {% if not is_granted('ROLE_USER') %}
-            <div id="message_register">
-                <div class="Wrap">              
-                    <div class="Icon"></div>
-                    <div class="Message">
-                        <p>
-                            Oops! Parece que a&uacute;n no estas registrado, registrate y comienza a comentar las publicaciones de los usuarios sin revelar tus datos.
-                        </p>                    
-                    </div>
-                    <form action="{{ path('user_register') }}">                 
-                        <button class="red"><span class="label">Registrarme</span></button>
-                    </form>
-                </div>      
-            </div>
-        {% else %}
-            <div id="message_cuentalo">
-                <div class="Wrap">              
-                    <div class="Icon"></div>
-                    <div class="Message">
-                        <p>
-                            Hola Bienvenid@ {{ app.security.token.user.nick }}, cuentalo es una red social donde puedes compartir lo que piensas o comentar las publicaciones de otros usuarios, sin revelar tus datos.                     
-                        </p>                    
-                    </div>              
-                </div>      
-            </div>
-        {% endif %}
+    <section id="main-content" class="main-content">        
                         
         <section id="content">      
             <aside id="left">       
