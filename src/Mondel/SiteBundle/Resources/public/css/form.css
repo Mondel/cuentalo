@@ -1,11 +1,13 @@
 /* BEGIN Form Classes */
 
-.input-field {
-    -webkit-border-radius: 8px;
-    -moz-border-radius: 8px;
-    -ms-border-radius: 8px;
-    -o-border-radius: 8px;
-    border-radius: 8px;
+.input-field {        
+    border: 1px solid #444;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -ms-border-radius: 5px;
+    -o-border-radius: 5px;
+    border-radius: 5px;
+    padding: 3px;
 }
 
 /* END Form Classes */

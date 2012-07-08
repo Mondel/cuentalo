@@ -56,12 +56,11 @@
                     <input type="text" name="_username" id="username" class="input-field">
                     <input type="password" name="_password" id="password" class="input-field">
                     
-                    <button id="login-button" class="button">Entrar</button>
+                    <button id="login-button" class="button">Entrar</button>                    
                     
                     <input type="checkbox" id="remember_me" name="_remember_me" checked>
                     <span>No cerrar sesión</span>
-
-                    <a href="{{ path('user_password_recover') }}">He perdido mi contraseña</a>                    
+                    <a href="{{ path('user_password_recover') }}">He perdido mi contraseña</a>
                 </form>
             
             {% endif %}
@@ -71,7 +70,7 @@
 
     <section id="left-content">
 
-        <img src="{{ asset('bundles/mondelsite/img/logo_cuentalo.png') }}" alt="Cuentalo">
+        <img id="logo-image" src="{{ asset('bundles/mondelsite/img/logo_cuentalo.png') }}" alt="Cuentalo">
 
     </section>
 
@@ -168,8 +167,10 @@
     </footer>
 {% endblock %}
 {% block javascripts %}
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/jquery-ui.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"></script>    
+    <script type="text/javascript">
+    $(document.documentElement).addClass('js');
+    </script>
     <script>
         var _gaq = _gaq || [];
         _gaq.push(['_setAccount', 'UA-27947390-1']);

@@ -1,4 +1,7 @@
 body {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 16px;
+    font-weight: normal;
     position: relative;
 }
 
@@ -13,6 +16,21 @@ body {
     background: linear-gradient(to bottom, #0051a3, #02428c);
     height: 40px;
     line-height: 40px;
+}
+
+#username,
+#password {
+    width: 125px;
+    -webkit-transition: width .5s ease-out;
+    -moz-transition: width .5s ease-out;
+    -ms-transition: width .5s ease-out;
+    -o-transition: width .5s ease-out;
+    -transition: width .5s ease-out;
+}
+
+#username:focus,
+#password:focus {
+    width: 175px;
 }
 
 /* END Main Header */
@@ -31,6 +49,14 @@ body {
     position: absolute;
     top: 0;
     width: 14%;
+}
+
+#logo-image {
+    max-width: 100%;
+}
+
+.lt-ie8 #logo-image {
+    width: 100%;
 }
 
 /* END Left Content */

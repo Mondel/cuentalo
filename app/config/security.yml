@@ -22,7 +22,7 @@ security:
                 path:   /usuario/salir
                 target: /
             remember_me:
-                key:      7869b2fa4458aaa7786e39d10410d5f3cd
+                key:      "%secret%"
                 lifetime: 3600
                 path:     /
                 domain:   ~                
