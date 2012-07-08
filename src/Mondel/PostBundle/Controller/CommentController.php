@@ -17,7 +17,7 @@ class CommentController extends Controller
         if (false === $this->get('security.context')->isGranted('ROLE_USER')) {
             throw new AccessDeniedException();
         }
-
+        
         $request = $this->getRequest();
         $session = $request->getSession();
         $em      = $this->getDoctrine()->getEntityManager();

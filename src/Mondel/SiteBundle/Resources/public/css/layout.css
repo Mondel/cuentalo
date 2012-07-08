@@ -1,0 +1,48 @@
+body {
+    position: relative;
+}
+
+/* BEGIN Main Header */
+
+#main-header {
+    background: -webkit-gradient(linear, left top, left bottom, from(#0051a3), to(#02428c));
+    background: -webkit-linear-gradient(top, #0051a3, #02428c);
+    background: -moz-linear-gradient(top, #0051a3, #02428c);
+    background: -ms-linear-gradient(top, #0051a3, #02428c);
+    background: -o-linear-gradient(top, #0051a3, #02428c);
+    background: linear-gradient(to bottom, #0051a3, #02428c);
+    height: 40px;
+    line-height: 40px;
+}
+
+/* END Main Header */
+
+/* BEGIN Left Content */
+
+#left-content {
+    background: #111;    
+    -webkit-box-shadow: 10px -10px 5px -8px #444;
+    -moz-box-shadow: 10px -10px 5px -8px #444;
+    -ms-box-shadow: 10px -10px 5px -8px #444;
+    -o-box-shadow: 10px -10px 5px -8px #444;
+    box-shadow: 10px -10px 5px -8px #444;
+    height: 100%;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 200px;
+}
+
+/* END Left Content */
+
+/* BEGIN Main Content */
+
+.main-content {
+    padding: 0 0 0 200px;           
+}
+
+/* END Main Content */
+
+
+
+

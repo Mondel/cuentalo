@@ -1,0 +1,11 @@
+/* BEGIN Form Classes */
+
+.input-field {
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+    -ms-border-radius: 8px;
+    -o-border-radius: 8px;
+    border-radius: 8px;
+}
+
+/* END Form Classes */
