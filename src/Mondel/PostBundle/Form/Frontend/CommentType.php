@@ -3,15 +3,15 @@
 namespace Mondel\PostBundle\Form\Frontend;
 
 use Symfony\Component\Form\AbstractType,
-    Symfony\Component\Form\FormBuilder;
+    Symfony\Component\Form\FormBuilderInterface;
 
 class CommentType extends AbstractType {
 
-    public function buildForm(FormBuilder $builder, array $options) {
+    public function buildForm(FormBuilderInterface $builder, array $options) {
         $builder->add('text', 'text', array('max_length' => 555));
     }
 
-    public function getDefaultOptions(array $options) {
+    public function getDefaultOptions() {
         return array(
             'data_class'      => 'Mondel\PostBundle\Entity\Comment',
             'csrf_protection' => true,

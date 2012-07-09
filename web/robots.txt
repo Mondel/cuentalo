@@ -1,8 +1,4 @@
+# www.robotstxt.org/
+# www.google.com/support/webmasters/bin/answer.py?hl=en&answer=156449
+
 User-agent: *
-Allow: /
-Disallow: /usuario/
-Disallow: /web/
-Disallow: /?page=1
-Disallow: /?page=2
-Disallow: /?page=5
-Sitemap: http://www.cuentalo.com.uy/sitemap.xml

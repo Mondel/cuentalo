@@ -1,22 +1,10 @@
 <IfModule mod_rewrite.c>
     RewriteEngine On
-	
-    #MANTENIMIENTO
-    #Para dejar en mantenimiento solamente descomenta 
-    #las siguientes 10 lineas, las dos primeras son las
-    #ip que pueden ingresar igual al sitio
-    
-    #RewriteCond %{REMOTE_HOST} !^999\.999\.999\.999    
-    #RewriteCond %{REMOTE_HOST} !^999\.999\.999\.999
-    #RewriteCond %{REQUEST_URI} !/web/mantenimiento/index.html$
-    #RewriteCond %{REQUEST_URI} !.gif$
-    #RewriteCond %{REQUEST_URI} !.png$
-    #RewriteCond %{REQUEST_URI} !.jpg$
-    #RewriteCond %{REQUEST_URI} !.css$
-    #RewriteCond %{REQUEST_URI} !.js$
-    #RewriteRule $ /web/mantenimiento/index.html [R=302,L]
 
-    #ARRIBA
+    #<IfModule mod_vhost_alias.c>
+    #    RewriteBase /
+    #</IfModule>
+
     RewriteCond %{REQUEST_FILENAME} !-f
     RewriteRule ^(.*)$ app.php [QSA,L]
 </IfModule>

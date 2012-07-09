@@ -1,20 +1,21 @@
 imports:
-    - { resource: parameters.ini }
+    - { resource: parameters.yml }
     - { resource: security.yml }
 
 framework:
     #esi:             ~
-    translator:      { fallback: es }
+    translator:      { fallback: %locale% }
     secret:          %secret%
-    charset:         UTF-8
-    router:          { resource: "%kernel.root_dir%/config/routing.yml" }
+    router:
+        resource: "%kernel.root_dir%/config/routing.yml"
+        strict_parameters: %kernel.debug%
     form:            true
     csrf_protection: true
     validation:      { enable_annotations: true }
-    templating:      { engines: ['twig'] } #assets_version: SomeVersionScheme        
-    session:
-        auto_start:  true
-        default_locale:  %locale%        
+    templating:      { engines: ['twig'] } #assets_version: SomeVersionScheme
+    default_locale:  %locale%
+    trust_proxy_headers: false # Should Request object should trust proxy headers (X_FORWARDED_FOR/HTTP_CLIENT_IP)
+    session:         ~
 
 # Twig Configuration
 twig:
@@ -25,6 +26,8 @@ twig:
 assetic:
     debug:          %kernel.debug%
     use_controller: false
+    bundles:        [ MondelSiteBundle, MondelPostBundle, MondelUserBundle ]
+    #java: /usr/bin/java
     filters:
         cssrewrite: ~
         closure:
@@ -53,11 +56,4 @@ swiftmailer:
     host:      %mailer_host%
     username:  %mailer_user%
     password:  %mailer_password%
-#    spool:
-#        type:  file
-#        path:  %kernel.root_dir%/spool     
-# Por ahora no spool porque no anda en el host, hay que probar por que.
-
-jms_security_extra:
-    secure_controllers:  true
-    secure_all_services: false
+    spool:     { type: memory }

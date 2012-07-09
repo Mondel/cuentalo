@@ -4,11 +4,11 @@ namespace Mondel\PostBundle\Form\Frontend;
 
 use Doctrine\ORM\EntityRepository,
     Symfony\Component\Form\AbstractType,
-    Symfony\Component\Form\FormBuilder;
+    Symfony\Component\Form\FormBuilderInterface;
 
 class PostType extends AbstractType {
 
-    public function buildForm(FormBuilder $builder, array $options) {
+    public function buildForm(FormBuilderInterface $builder, array $options) {
         $builder->add('category', 'entity', array(
             'empty_value'   => 'Categoría',
             'property'      => 'name',
@@ -29,7 +29,7 @@ class PostType extends AbstractType {
 		->add('video_url', 'hidden');
     }
 
-    public function getDefaultOptions(array $options) {
+    public function getDefaultOptions() {
         return array(
             'data_class'      => 'Mondel\PostBundle\Entity\Post',
             'csrf_protection' => true,

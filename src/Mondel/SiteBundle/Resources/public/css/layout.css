@@ -18,8 +18,8 @@ body {
     line-height: 40px;
 }
 
-#username,
-#password {
+#main-header #username,
+#main-header #password {
     width: 125px;
     -webkit-transition: width .5s ease-out;
     -moz-transition: width .5s ease-out;
@@ -28,8 +28,8 @@ body {
     -transition: width .5s ease-out;
 }
 
-#username:focus,
-#password:focus {
+#main-header #username:focus,
+#main-header #password:focus {
     width: 175px;
 }
 

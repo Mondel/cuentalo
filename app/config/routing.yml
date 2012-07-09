@@ -1,10 +1,11 @@
-#MondelCuentaloBundle:
-#    resource: "@MondelCuentaloBundle/Resources/config/routing.yml"
-#    prefix:   /
+# Internal routing configuration to handle ESI
+#_internal:
+#    resource: "@FrameworkBundle/Resources/config/routing/internal.xml"
+#    prefix:   /_internal
 
 MondelSiteBundle:
     resource: "@MondelSiteBundle/Resources/config/routing.yml"
-    prefix:   /	
+    prefix:   / 
 
 MondelUserBundle:
     resource: "@MondelUserBundle/Resources/config/routing.yml"
@@ -13,8 +14,3 @@ MondelUserBundle:
 MondelPostBundle:
     resource: "@MondelPostBundle/Resources/config/routing.yml"
     prefix:   /contenido/
-
-# Internal routing configuration to handle ESI
-#_internal:
-#   resource: "@FrameworkBundle/Resources/config/routing/internal.xml"
-#   prefix:   /_internal

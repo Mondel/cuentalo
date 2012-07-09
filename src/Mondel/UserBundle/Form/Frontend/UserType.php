@@ -4,12 +4,12 @@ namespace Mondel\UserBundle\Form\Frontend;
 
 use Symfony\Component\Form\AbstractType,
 	Symfony\Component\Form\CallbackValidator,
-	Symfony\Component\Form\FormBuilder,
+	Symfony\Component\Form\FormBuilderInterface,
 	Symfony\Component\Form\FormInterface;
 
 class UserType extends AbstractType {
 
-    public function buildForm(FormBuilder $builder, array $options) {
+    public function buildForm(FormBuilderInterface $builder, array $options) {
         $builder->add('name')
                 ->add('last_name')
                 ->add('nick')
