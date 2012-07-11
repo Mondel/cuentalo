@@ -13,7 +13,7 @@ class UserType extends AbstractType {
         $builder->add('name')
                 ->add('last_name')
                 ->add('nick')
-                ->add('birth_date', 'birthday', array('years' => range(1900, 2000)))
+                ->add('birth_date', 'birthday', array('years' => range(1900, 2002)))
                 ->add('email')
                 ->add('password', 'repeated', array(
                     'type'            => 'password',
@@ -23,8 +23,9 @@ class UserType extends AbstractType {
                     'required'        => true
                 ))
                 ->add('genre', 'choice', array(
-                    'choices'   => array('m' => 'Masculino', 'f' => 'Femenino', 'i' => 'Indefinido'),
-                    'required'  => true,
+                    'label'       => 'Sexo',
+                    'choices'     => array('m' => 'Masculino', 'f' => 'Femenino', 'i' => 'Indefinido'),
+                    'required'    => true,
                     'empty_value' => 'Seleccione'
                 ))
                 ->add('is_news_active', null, array(

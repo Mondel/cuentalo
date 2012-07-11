@@ -3,10 +3,12 @@
 namespace Mondel\SiteBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller,
-	Mondel\PostBundle\Entity\Post,
-	Mondel\PostBundle\Entity\Comment,
-	Mondel\PostBundle\Form\Frontend\PostType,
-	Mondel\PostBundle\Form\Frontend\CommentType;
+    Mondel\PostBundle\Entity\Comment,
+    Mondel\PostBundle\Entity\Post,
+	Mondel\PostBundle\Form\Frontend\CommentType,    
+    Mondel\PostBundle\Form\Frontend\PostType,
+    Mondel\UserBundle\Entity\User,
+    Mondel\UserBundle\Form\Frontend\UserType;
 
 class DefaultController extends Controller
 {
@@ -31,11 +33,15 @@ class DefaultController extends Controller
         $post     = new Post();
         $postForm = $this->createForm(new PostType(), $post);
 
-        return $this->render('MondelSiteBundle:Default:home_page.html.twig', array(
-        	'posts'         => $posts,
-            'form'          => $postForm->createView(),
+        $user     = new User();
+        $userForm = $this->createForm(new UserType(), $user);
+
+        return $this->render('MondelSiteBundle:Default:home.html.twig', array(        	
+            'cid'           => '0',
             'commentsForms' => $commentsForms,
-        	'cid'		    => '0'
+            'posts'         => $posts,
+            'postForm'      => $postForm->createView(),
+            'userForm'      => $userForm->createView()
     	));
     }
 

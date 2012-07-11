@@ -1,0 +1,138 @@
+{% extends '::base.html.twig' %}
+
+{% block stylesheets %}
+    
+    {% stylesheets
+        '@MondelSiteBundle/Resources/public/css/normalize.css'
+        '@MondelSiteBundle/Resources/public/css/classes.css'
+        '@MondelSiteBundle/Resources/public/css/form.css'
+        '@MondelSiteBundle/Resources/public/css/home.css'        
+        filter='yui_css'
+        output='css/compiled/main.css'
+    %}
+        <link rel="stylesheet" type="text/css" media="screen" href="{{ asset_url }}" />
+    {% endstylesheets %}
+
+{% endblock %}
+
+{% block body %}
+
+    {% set error = app.session.getFlash('error') %}
+    {% set notice = app.session.getFlash('notice') %}
+
+    {% if error != '' %}
+
+        <section id="error">Error: {{ error }}</section>
+
+    {% endif %}
+
+    {% if notice != '' %}
+
+        <section id="notice">Notice: {{ notice }}</section>
+
+    {% endif %}
+
+    <header id="main-header">
+
+        <a href="/" class="float-left">
+            <img id="main-logo" src="{{ asset('bundles/mondelsite/img/logo_cuentalo.png') }}" alt="Cuentalo">
+        </a>
+
+        <div id="user-info" class="float-right">
+
+            {% if is_granted('ROLE_USER') %}
+
+                <span>Hola @{{ app.user.nick }}</span>
+            
+            {% else %}
+                
+                <form id="login-form" action="{{ path('user_login_check') }}" method="post">
+                    <input type="text" name="_username" id="username" class="input-field">
+                    <input type="password" name="_password" id="password" class="input-field">
+                    
+                    <button id="login-button" class="button">Entrar</button>                    
+                    
+                    <div>
+                        <input type="checkbox" id="remember_me" name="_remember_me" class="float-left" checked>
+                        <span class="checkbox-label float-left">No cerrar sesión</span>
+                        <a href="{{ path('user_password_recover') }}" class="float-right">He perdido mi contraseña</a>
+                    </div>
+                </form>
+            
+            {% endif %}
+
+        </div>
+        <div class="clear"></div>
+    </header>
+
+    <section id="register-content">
+        <form action="{{ path('user_register') }}" method="post" {{ form_enctype(userForm) }}>
+            {{ form_errors(userForm) }}
+            <div>* S&oacute;lo el nick será visible para los demas usuarios registrados.</div>
+            <div>
+                {{ form_label(userForm.nick) }}
+                {{ form_widget(userForm.nick) }}
+                {{ form_errors(userForm.nick) }}
+            </div>
+            <div>
+                {{ form_label(userForm.email) }}
+                {{ form_widget(userForm.email) }}
+                {{ form_errors(userForm.email) }}
+            </div>            
+            <div>
+                {{ form_label(userForm.password.password, 'Contraseña') }}
+                {{ form_widget(userForm.password.password) }}
+                {{ form_errors(userForm.password) }}
+                {{ form_label(userForm.password.repeatedPassword, 'Repetir contraseña') }}
+                {{ form_widget(userForm.password.repeatedPassword) }}
+            </div>
+            <div>
+                {{ form_label(userForm.genre) }}
+                {{ form_widget(userForm.genre) }}
+                {{ form_errors(userForm.genre) }}
+            </div>
+            <div>
+                {{ form_widget(userForm.terms) }}
+                {{ form_label(userForm.terms) }}
+                <a target="_blank" href="{{ path('static_page', {'page':'terms'}) }}">terminos</a>de Cuentalo</span>{{ form_errors(userForm.terms) }}
+            </div>
+            {{ form_widget(userForm._token) }}
+            
+            <button>Registrarme</button>
+        </form>
+    </section>
+
+    <section id="main-content" class="main-content">
+        {% block mainContent %}{% endblock %}
+    </section>
+    
+    <footer id="footer"></footer>
+
+{% endblock %}
+
+{% block javascripts %}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"></script>    
+    <script type="text/javascript">
+    $(document.documentElement).addClass('js');
+    </script>
+    <script>
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'UA-27947390-1']);
+        _gaq.push(['_trackPageview']);
+
+        (function() {
+            var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+        })();
+    </script>
+    <div id="fb-root"></div><!-- NO QUITAR ES PARA EL FACEBOOK SDK JAVASCRIPT -->    
+    {#% javascripts '@MondelSiteBundle/Resources/public/js/functions.js'
+                   '@MondelSiteBundle/Resources/public/js/layout.js'
+                   filter='closure'
+    %}
+    <script src="{{ asset_url }}"></script>
+    {% endjavascripts %#}
+{% endblock %}
+
+

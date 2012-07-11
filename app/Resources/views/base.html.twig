@@ -21,9 +21,13 @@
         
         <title>Cuentalo - {% block title %}Una Red Social Para Compartir Lo Que Te Gusta Anonimamente{% endblock %}</title>
 
+        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+
         {% block stylesheets %}{% endblock %}
 
-        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />        
+        <!--[if lt IE 9]>
+        <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+        <![endif]-->
     </head>
     <body>
         {% block body %}{% endblock %}

@@ -26,8 +26,9 @@ security:
         secured_area:
             pattern:    ^/
             form_login:
-                check_path: /usuario/ingresar_chequeo
-                login_path: /usuario/ingresar
+                check_path:  /usuario/ingresar_chequeo
+                login_path:  /usuario/ingresar
+                use_referer: true
             logout:
                 path:   /usuario/salir
                 target: /
