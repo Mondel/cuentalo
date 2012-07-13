@@ -116,4 +116,14 @@ class UserPostSuscription
     {
         return $this->notifications;
     }
+
+    /**
+     * Remove notifications
+     *
+     * @param <variableType$notifications
+     */
+    public function removeNotification(\Mondel\UserBundle\Entity\Notification $notifications)
+    {
+        $this->notifications->removeElement($notifications);
+    }
 }

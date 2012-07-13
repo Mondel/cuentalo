@@ -135,4 +135,14 @@ class Category
     {
         return $this->posts;
     }
+
+    /**
+     * Remove posts
+     *
+     * @param <variableType$posts
+     */
+    public function removePost(\Mondel\PostBundle\Entity\Post $posts)
+    {
+        $this->posts->removeElement($posts);
+    }
 }

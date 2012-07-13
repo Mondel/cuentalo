@@ -221,4 +221,26 @@ class Message
     {
         return $this->message_recipients;
     }
+
+    /**
+     * Add message_recipients
+     *
+     * @param Mondel\UserBundle\Entity\User $messageRecipients
+     * @return Message
+     */
+    public function addMessageRecipient(\Mondel\UserBundle\Entity\User $messageRecipients)
+    {
+        $this->message_recipients[] = $messageRecipients;
+        return $this;
+    }
+
+    /**
+     * Remove message_recipients
+     *
+     * @param <variableType$messageRecipients
+     */
+    public function removeMessageRecipient(\Mondel\UserBundle\Entity\User $messageRecipients)
+    {
+        $this->message_recipients->removeElement($messageRecipients);
+    }
 }

@@ -14,8 +14,7 @@ body {
     background:     -ms-linear-gradient(top, #0051a3, #02428c);
     background:      -o-linear-gradient(top, #0051a3, #02428c);
     background:         linear-gradient(to bottom, #0051a3, #02428c);
-    border-bottom: 1px solid black;
-    padding: 0 5%;    
+    border-bottom: 1px solid black;      
 }
 
 #main-logo {
@@ -52,7 +51,19 @@ body {
 
 /* END main header ----------- */
 
+/* BEGIN register ----------- */
 
+#register-content {
+    border: 1px solid #888;
+    -webkit-border-radius: 5px;
+       -moz-border-radius: 5px;
+            border-radius: 5px;
+    -webkit-box-shadow: 1px 1px 4px 1px #000;
+       -moz-box-shadow: 1px 1px 4px 1px #000;
+            box-shadow: 1px 1px 4px 1px #000;
+}
+
+/* END register ----------- */
 
 
 
@@ -60,12 +71,17 @@ body {
 @media only screen and (min-device-width : 320px) and (max-device-width : 480px) {
     
     #main-header > a {
+        display: block;
         float: none;        
     }
 
     #main-logo {
         display: block;
         margin: 0 auto;
+    }
+
+    #user-info {
+        float: none;
     }
 
     #login-form > input,

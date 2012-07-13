@@ -309,4 +309,14 @@ class Post
     {
         return $this->comments;
     }
+
+    /**
+     * Remove comments
+     *
+     * @param <variableType$comments
+     */
+    public function removeComment(\Mondel\PostBundle\Entity\Comment $comments)
+    {
+        $this->comments->removeElement($comments);
+    }
 }

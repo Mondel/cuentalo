@@ -722,4 +722,90 @@ class User implements AdvancedUserInterface
     {
         $this->suscribed_posts[] = $suscribedPosts;
     }
+
+    /**
+     * Remove posts
+     *
+     * @param <variableType$posts
+     */
+    public function removePost(\Mondel\PostBundle\Entity\Post $posts)
+    {
+        $this->posts->removeElement($posts);
+    }
+
+    /**
+     * Remove comments
+     *
+     * @param <variableType$comments
+     */
+    public function removeComment(\Mondel\PostBundle\Entity\Comment $comments)
+    {
+        $this->comments->removeElement($comments);
+    }
+
+    /**
+     * Add suscribed_posts
+     *
+     * @param Mondel\UserBundle\Entity\UserPostSuscription $suscribedPosts
+     * @return User
+     */
+    public function addSuscribedPost(\Mondel\UserBundle\Entity\UserPostSuscription $suscribedPosts)
+    {
+        $this->suscribed_posts[] = $suscribedPosts;
+        return $this;
+    }
+
+    /**
+     * Remove suscribed_posts
+     *
+     * @param <variableType$suscribedPosts
+     */
+    public function removeSuscribedPost(\Mondel\UserBundle\Entity\UserPostSuscription $suscribedPosts)
+    {
+        $this->suscribed_posts->removeElement($suscribedPosts);
+    }
+
+    /**
+     * Add sent_messages
+     *
+     * @param Mondel\UserBundle\Entity\Message $sentMessages
+     * @return User
+     */
+    public function addSentMessage(\Mondel\UserBundle\Entity\Message $sentMessages)
+    {
+        $this->sent_messages[] = $sentMessages;
+        return $this;
+    }
+
+    /**
+     * Remove sent_messages
+     *
+     * @param <variableType$sentMessages
+     */
+    public function removeSentMessage(\Mondel\UserBundle\Entity\Message $sentMessages)
+    {
+        $this->sent_messages->removeElement($sentMessages);
+    }
+
+    /**
+     * Add received_messages
+     *
+     * @param Mondel\UserBundle\Entity\Message $receivedMessages
+     * @return User
+     */
+    public function addReceivedMessage(\Mondel\UserBundle\Entity\Message $receivedMessages)
+    {
+        $this->received_messages[] = $receivedMessages;
+        return $this;
+    }
+
+    /**
+     * Remove received_messages
+     *
+     * @param <variableType$receivedMessages
+     */
+    public function removeReceivedMessage(\Mondel\UserBundle\Entity\Message $receivedMessages)
+    {
+        $this->received_messages->removeElement($receivedMessages);
+    }
 }

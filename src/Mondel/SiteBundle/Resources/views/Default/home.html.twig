@@ -4,9 +4,10 @@
     
     {% stylesheets
         '@MondelSiteBundle/Resources/public/css/normalize.css'
+        '@MondelSiteBundle/Resources/public/css/gh-buttons.css'
         '@MondelSiteBundle/Resources/public/css/classes.css'
         '@MondelSiteBundle/Resources/public/css/form.css'
-        '@MondelSiteBundle/Resources/public/css/home.css'        
+        '@MondelSiteBundle/Resources/public/css/home.css'       
         filter='yui_css'
         output='css/compiled/main.css'
     %}
@@ -32,7 +33,7 @@
 
     {% endif %}
 
-    <header id="main-header">
+    <header id="main-header" class="content">
 
         <a href="/" class="float-left">
             <img id="main-logo" src="{{ asset('bundles/mondelsite/img/logo_cuentalo.png') }}" alt="Cuentalo">
@@ -47,8 +48,8 @@
             {% else %}
                 
                 <form id="login-form" action="{{ path('user_login_check') }}" method="post">
-                    <input type="text" name="_username" id="username" class="input-field">
-                    <input type="password" name="_password" id="password" class="input-field">
+                    <input type="text" name="_username" id="username" class="input-field" placeholder="email">
+                    <input type="password" name="_password" id="password" class="input-field" placeholder="contraseña">
                     
                     <button id="login-button" class="button">Entrar</button>                    
                     
@@ -65,40 +66,123 @@
         <div class="clear"></div>
     </header>
 
-    <section id="register-content">
+    <section id="register-content" class="content">
         <form action="{{ path('user_register') }}" method="post" {{ form_enctype(userForm) }}>
-            {{ form_errors(userForm) }}
-            <div>* S&oacute;lo el nick será visible para los demas usuarios registrados.</div>
-            <div>
-                {{ form_label(userForm.nick) }}
-                {{ form_widget(userForm.nick) }}
-                {{ form_errors(userForm.nick) }}
-            </div>
-            <div>
-                {{ form_label(userForm.email) }}
-                {{ form_widget(userForm.email) }}
-                {{ form_errors(userForm.email) }}
-            </div>            
-            <div>
-                {{ form_label(userForm.password.password, 'Contraseña') }}
-                {{ form_widget(userForm.password.password) }}
-                {{ form_errors(userForm.password) }}
-                {{ form_label(userForm.password.repeatedPassword, 'Repetir contraseña') }}
-                {{ form_widget(userForm.password.repeatedPassword) }}
-            </div>
-            <div>
-                {{ form_label(userForm.genre) }}
-                {{ form_widget(userForm.genre) }}
-                {{ form_errors(userForm.genre) }}
-            </div>
-            <div>
-                {{ form_widget(userForm.terms) }}
-                {{ form_label(userForm.terms) }}
-                <a target="_blank" href="{{ path('static_page', {'page':'terms'}) }}">terminos</a>de Cuentalo</span>{{ form_errors(userForm.terms) }}
-            </div>
-            {{ form_widget(userForm._token) }}
             
-            <button>Registrarme</button>
+            {{ form_errors(userForm) }}
+
+            <table>
+                <tr>
+                    <td class="input-label">
+
+                        {{ form_label(userForm.nick) }}
+                
+                    </td>
+                    <td class="input-widget">
+
+                        {{ form_widget(userForm.nick, { 'attr': {'class': 'input-field'} }) }}
+                        
+                    </td>
+                    <td class="input-error">
+
+                        {{ form_errors(userForm.nick) }}
+                        
+                    </td>
+                </tr>
+                <tr>
+                    <td class="input-label">
+                        
+                        {{ form_label(userForm.email) }}
+
+                    </td>
+                    <td class="input-widget">
+
+                        {{ form_widget(userForm.email, { 'attr': {'class': 'input-field'} }) }}
+                        
+                    </td>
+                    <td class="input-error">
+
+                        {{ form_errors(userForm.email) }}
+                        
+                    </td>
+                </tr>
+                <tr>
+                    <td class="input-label">
+
+                        {{ form_label(userForm.password.password, 'Contraseña') }}
+                        
+                    </td>
+                    <td class="input-widget">
+
+                        {{ 
+                            form_widget(userForm.password.password, 
+                            { 'attr': {'class': 'input-field'} })
+                        }}
+                        
+                    </td>
+                    <td class="input-error">
+
+                        {{ form_errors(userForm.password) }}
+                        
+                    </td>
+                </tr>
+                <tr>
+                    <td class="input-label">
+
+                        {{ form_label(userForm.password.repeatedPassword, 'Repetir contraseña') }}
+                        
+                    </td>
+                    <td class="input-widget">
+
+                        {{ 
+                            form_widget(userForm.password.repeatedPassword, 
+                            { 'attr': {'class': 'input-field'} }) 
+                        }}
+                        
+                    </td>
+                    <td class="input-error"></td>
+                </tr>
+                <tr>
+                    <td class="input-label">
+
+                        {{ form_label(userForm.genre) }}
+                        
+                    </td>
+                    <td class="input-widget">
+
+                        {{ form_widget(userForm.genre, { 'attr': {'class': 'input-field'} }) }}
+                        
+                    </td>
+                    <td class="input-error">
+
+                        {{ form_errors(userForm.genre) }}
+                        
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="input-label">
+
+                        {{ form_widget(userForm.terms) }}
+                        
+                    </td>
+                    <td class="input-widget">
+
+                        {{ form_label(userForm.terms) }}
+                        <a target="_blank" href="{{ path('static_page', {'page':'terms'}) }}">terminos</a>de Cuentalo</span>
+                        
+                    </td>
+                    <td class="input-error">
+
+                        {{ form_errors(userForm.terms) }}
+                        
+                    </td>
+                </tr>                
+            </table>
+
+            {{ form_widget(userForm._token) }}            
+            
+            <button class="button">Registrarme</button>
         </form>
     </section>
 
