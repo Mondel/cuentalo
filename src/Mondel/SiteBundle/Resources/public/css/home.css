@@ -121,6 +121,11 @@ body {
         padding: 3%;
     }
 
+    #register-content .input-field {
+        box-sizing: border-box;
+        width: 100%;
+    }
+
 }
 
 /* Smartphones (landscape) ----------- */
