@@ -62,12 +62,11 @@ body {
 #register-content {
     /*background: #EEE;*/
     background: transparent;
-    /*border: 1px solid #DDD;*/
-    border: 0;
-    /*
+    border: 1px solid #FFF;
     -webkit-border-radius: 5px;
        -moz-border-radius: 5px;
             border-radius: 5px;
+    /*
     -webkit-box-shadow: 1px 1px 10px 0 #888;
        -moz-box-shadow: 1px 1px 10px 0 #888;
             box-shadow: 1px 1px 10px 0 #888;    
