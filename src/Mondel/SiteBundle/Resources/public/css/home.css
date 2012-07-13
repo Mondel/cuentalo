@@ -60,29 +60,20 @@ body {
 /* BEGIN register ----------- */
 
 #register-content {
-    /*background: #EEE;*/
-    background: transparent;
-    border: 1px solid #FFF;
+    background: #EEE;
+    border: 1px solid #DDD;
     -webkit-border-radius: 5px;
        -moz-border-radius: 5px;
             border-radius: 5px;
-    /*
     -webkit-box-shadow: 1px 1px 10px 0 #888;
        -moz-box-shadow: 1px 1px 10px 0 #888;
             box-shadow: 1px 1px 10px 0 #888;    
-            */
     margin: 15px;
     padding: 10px;
 }
 
 #register-content .button {
     margin: 15px 0 0 0;
-}
-
-#register-content .input-label,
-#register-content .input-widget,
-#register-content .input-widget a {
-    color: #FFF;
 }
 
 #register-content .input-widget select {
