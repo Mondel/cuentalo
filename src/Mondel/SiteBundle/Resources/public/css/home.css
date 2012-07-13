@@ -58,9 +58,15 @@ body {
     -webkit-border-radius: 5px;
        -moz-border-radius: 5px;
             border-radius: 5px;
-    -webkit-box-shadow: 1px 1px 4px 1px #000;
-       -moz-box-shadow: 1px 1px 4px 1px #000;
-            box-shadow: 1px 1px 4px 1px #000;
+    -webkit-box-shadow: 3px 3px 10px 0 #888;
+       -moz-box-shadow: 3px 3px 10px 0 #888;
+            box-shadow: 3px 3px 10px 0 #888;    
+    margin: 15px;
+    padding: 10px;
+}
+
+#register-content .button {
+    margin: 15px 0 0 0;
 }
 
 /* END register ----------- */
@@ -96,6 +102,17 @@ body {
         display: block;
         margin: 10px auto;
         width: 100%;
+    }
+
+    .content {
+        padding: 0 5% 5%;
+    }
+
+    #register-content {
+        background: #EEE;
+        float: none;
+        margin: 5%;
+        padding: 3%;
     }
 
 }
