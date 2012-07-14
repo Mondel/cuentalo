@@ -31,8 +31,15 @@
 
 {% block firstContent %}
 
-    <section id="register-content" class="content">
-        {% include 'MondelUserBundle:Default:register_form.html.twig' %}
-    </section>
+    <div id="register-bar">
+
+        <span>Aún no estas registrado</span>
+        <button class="button big primary" id="view-register-form">Quiero Registrarme</button>
+
+        <section id="register-content" class="content invisible">
+            {% include 'MondelUserBundle:Default:register_form.html.twig' %}
+        </section>
+        
+    </div>
 
 {% endblock %}

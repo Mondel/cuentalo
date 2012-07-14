@@ -34,11 +34,11 @@ body {
 }
 
 #login-form > input {    
-    -webkit-transition: width .5s ease-out;
-       -moz-transition: width .5s ease-out;
-        -ms-transition: width .5s ease-out;
-         -o-transition: width .5s ease-out;
-            transition: width .5s ease-out;
+    -webkit-transition: width .5s;
+       -moz-transition: width .5s;
+        -ms-transition: width .5s;
+         -o-transition: width .5s;
+            transition: width .5s;
     width: 125px;
 }
 
@@ -60,6 +60,22 @@ body {
 /* END main header ----------- */
 
 /* BEGIN register ----------- */
+
+#register-bar {
+    background: #555;
+    height: 50px;
+    text-align: center;
+}
+
+#register-bar span {
+    color: #FFF;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+#register-bar #view-register-form {
+    margin: 9px;
+}
 
 #register-content {
     background: #EEE;
