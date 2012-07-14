@@ -1,40 +1,30 @@
 {% extends 'MondelSiteBundle::layout.html.twig' %}
-{% block stylesheets %}
-    {{ parent() }}
-    {#% stylesheets '@MondelSiteBundle/Resources/public/css/forms.css' filter='yui_css' %}
-    <link rel="stylesheet" type="text/css" media="screen" href="{{ asset_url }}" />
-    {% endstylesheets %#}
-{% endblock %}
-{% block menu_top %}{% endblock %}
-{% block content %}
-    {{ parent() }}
-     {% if error %}
-        <div id="login_error">{{ error.message | trans }}</div>
-   {% endif %}
-    <div id="loginForm" class="Form">
-        <form action="{{ path('user_login_check') }}" method="post">
-            <table>
-                <tr>
-                    <td><label for="username" class="FormText">Email:</label></td>
-                    <td>
-                        <input type="text" id="username" name="_username" value="{{ last_username }}" class="FormInput" />
-                    </td>
-                </tr>
-                <tr>
-                    <td><label for="password" class="FormText">Contraseña:</label></td>
-                    <td><input type="password" id="password" name="_password" class="FormInput" /></td>
-                </tr>
-                <tr>
-                    <td colspan="2">
-                        <input type="checkbox" id="remember_me" name="_remember_me" checked />
-                        <label for="remember_me">No cerrar sesi&oacute;n</label>
-                    </td>
-                </tr>
-                <tr>
-                    <td>    <button class="red"><span class="label">Ingresar</span></button></td>
-                    <td><a href="{{ path('user_password_recover') }}">He olvidado la contraseña</a></td>
-                </tr>
-            </table>            
-        </form>
+
+{% block firstContent %}
+
+    <div id="user-info" class="float-right">
+
+        {% if is_granted('ROLE_USER') %}
+
+            <span>Hola @{{ app.user.nick }}</span>
+        
+        {% else %}
+            
+            <form id="login-form" action="{{ path('user_login_check') }}" method="post">
+                <input type="text" name="_username" id="username" class="input-field" placeholder="email">
+                <input type="password" name="_password" id="password" class="input-field" placeholder="contraseña">
+                
+                <button id="login-button" class="button">Entrar</button>                    
+                
+                <div>
+                    <input type="checkbox" id="remember_me" name="_remember_me" class="float-left" checked>
+                    <span class="checkbox-label float-left">No cerrar sesión</span>
+                    <a href="{{ path('user_password_recover') }}" class="float-right">He perdido mi contraseña</a>
+                </div>
+            </form>
+        
+        {% endif %}
+
     </div>
+
 {% endblock %}

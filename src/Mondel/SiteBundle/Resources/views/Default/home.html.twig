@@ -1,222 +1,38 @@
-{% extends '::base.html.twig' %}
+{% extends 'MondelSiteBundle::layout.html.twig' %}
 
-{% block stylesheets %}
-    
-    {% stylesheets
-        '@MondelSiteBundle/Resources/public/css/normalize.css'
-        '@MondelSiteBundle/Resources/public/css/gh-buttons.css'
-        '@MondelSiteBundle/Resources/public/css/classes.css'
-        '@MondelSiteBundle/Resources/public/css/form.css'
-        '@MondelSiteBundle/Resources/public/css/home.css'       
-        filter='yui_css'
-        output='css/compiled/main.css'
-    %}
-        <link rel="stylesheet" type="text/css" media="screen" href="{{ asset_url }}" />
-    {% endstylesheets %}
+{% block userInfo %}
+
+    <div id="user-info" class="float-right">
+
+        {% if is_granted('ROLE_USER') %}
+
+            <span>Hola @{{ app.user.nick }}</span>
+        
+        {% else %}
+            
+            <form id="login-form" action="{{ path('user_login_check') }}" method="post">
+                <input type="text" name="_username" id="username" class="input-field" placeholder="email">
+                <input type="password" name="_password" id="password" class="input-field" placeholder="contraseña">
+                
+                <button id="login-button" class="button">Entrar</button>                    
+                
+                <div>
+                    <input type="checkbox" id="remember_me" name="_remember_me" class="float-left" checked>
+                    <span class="checkbox-label float-left">No cerrar sesión</span>
+                    <a href="{{ path('user_password_recover') }}" class="float-right">He perdido mi contraseña</a>
+                </div>
+            </form>
+        
+        {% endif %}
+
+    </div>
 
 {% endblock %}
 
-{% block body %}
+{% block firstContent %}
 
-    {% set error = app.session.getFlash('error') %}
-    {% set notice = app.session.getFlash('notice') %}
-
-    {% if error != '' %}
-
-        <section id="error">Error: {{ error }}</section>
-
-    {% endif %}
-
-    {% if notice != '' %}
-
-        <section id="notice">Notice: {{ notice }}</section>
-
-    {% endif %}
-
-    <header id="main-header" class="content">
-
-        <a href="/" class="float-left">
-            <img id="main-logo" src="{{ asset('bundles/mondelsite/img/logo_cuentalo.png') }}" alt="Cuentalo">
-        </a>
-
-        <div id="user-info" class="float-right">
-
-            {% if is_granted('ROLE_USER') %}
-
-                <span>Hola @{{ app.user.nick }}</span>
-            
-            {% else %}
-                
-                <form id="login-form" action="{{ path('user_login_check') }}" method="post">
-                    <input type="text" name="_username" id="username" class="input-field" placeholder="email">
-                    <input type="password" name="_password" id="password" class="input-field" placeholder="contraseña">
-                    
-                    <button id="login-button" class="button">Entrar</button>                    
-                    
-                    <div>
-                        <input type="checkbox" id="remember_me" name="_remember_me" class="float-left" checked>
-                        <span class="checkbox-label float-left">No cerrar sesión</span>
-                        <a href="{{ path('user_password_recover') }}" class="float-right">He perdido mi contraseña</a>
-                    </div>
-                </form>
-            
-            {% endif %}
-
-        </div>
-        <div class="clear"></div>
-    </header>
-
-    <section id="register-content" class="content float-right">
-        <form action="{{ path('user_register') }}" method="post" {{ form_enctype(userForm) }}>
-            
-            {{ form_errors(userForm) }}
-
-            <table>
-                <tr>
-                    <td class="input-label">
-
-                        {{ form_label(userForm.nick) }}
-                
-                    </td>
-                    <td class="input-widget">
-
-                        {{ form_widget(userForm.nick, { 'attr': {'class': 'input-field'} }) }}
-                        
-                    </td>
-                    <td class="input-error">
-
-                        {{ form_errors(userForm.nick) }}
-                        
-                    </td>
-                </tr>
-                <tr>
-                    <td class="input-label">
-                        
-                        {{ form_label(userForm.email) }}
-
-                    </td>
-                    <td class="input-widget">
-
-                        {{ form_widget(userForm.email, { 'attr': {'class': 'input-field'} }) }}
-                        
-                    </td>
-                    <td class="input-error">
-
-                        {{ form_errors(userForm.email) }}
-                        
-                    </td>
-                </tr>
-                <tr>
-                    <td class="input-label">
-
-                        {{ form_label(userForm.password.password, 'Contraseña') }}
-                        
-                    </td>
-                    <td class="input-widget">
-
-                        {{ 
-                            form_widget(userForm.password.password, 
-                            { 'attr': {'class': 'input-field'} })
-                        }}
-                        
-                    </td>
-                    <td class="input-error">
-
-                        {{ form_errors(userForm.password) }}
-                        
-                    </td>
-                </tr>
-                <tr>
-                    <td class="input-label">
-
-                        {{ form_label(userForm.password.repeatedPassword, 'Repetir contraseña') }}
-                        
-                    </td>
-                    <td class="input-widget">
-
-                        {{ 
-                            form_widget(userForm.password.repeatedPassword, 
-                            { 'attr': {'class': 'input-field'} }) 
-                        }}
-                        
-                    </td>
-                    <td class="input-error"></td>
-                </tr>
-                <tr>
-                    <td class="input-label">
-
-                        {{ form_label(userForm.genre) }}
-                        
-                    </td>
-                    <td class="input-widget">
-
-                        {{ form_widget(userForm.genre, { 'attr': {'class': 'input-field'} }) }}
-                        
-                    </td>
-                    <td class="input-error">
-
-                        {{ form_errors(userForm.genre) }}
-                        
-                    </td>
-                </tr>
-
-                <tr>
-                    <td class="input-label">
-
-                        {{ form_widget(userForm.terms) }}
-                        
-                    </td>
-                    <td class="input-widget">
-
-                        {{ form_label(userForm.terms) }}
-                        <a target="_blank" href="{{ path('static_page', {'page':'terms'}) }}">terminos</a> de Cuentalo</span>
-                        
-                    </td>
-                    <td class="input-error">
-
-                        {{ form_errors(userForm.terms) }}
-                        
-                    </td>
-                </tr>                
-            </table>
-
-            {{ form_widget(userForm._token) }}            
-            
-            <button class="button">Registrarme</button>
-        </form>
+    <section id="register-content" class="content">
+        {% include 'MondelUserBundle:Default:register_form.html.twig' %}
     </section>
 
-    <section id="main-content" class="main-content">
-        {% block mainContent %}{% endblock %}
-    </section>
-    
-    <footer id="footer"></footer>
-
 {% endblock %}
-
-{% block javascripts %}
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"></script>    
-    <script type="text/javascript">
-    $(document.documentElement).addClass('js');
-    </script>
-    <script>
-        var _gaq = _gaq || [];
-        _gaq.push(['_setAccount', 'UA-27947390-1']);
-        _gaq.push(['_trackPageview']);
-
-        (function() {
-            var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-        })();
-    </script>
-    <div id="fb-root"></div><!-- NO QUITAR ES PARA EL FACEBOOK SDK JAVASCRIPT -->    
-    {#% javascripts '@MondelSiteBundle/Resources/public/js/functions.js'
-                   '@MondelSiteBundle/Resources/public/js/layout.js'
-                   filter='closure'
-    %}
-    <script src="{{ asset_url }}"></script>
-    {% endjavascripts %#}
-{% endblock %}
-
-

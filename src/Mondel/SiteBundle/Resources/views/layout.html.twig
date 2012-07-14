@@ -1,0 +1,52 @@
+{% extends '::base.html.twig' %}
+
+{% block stylesheets %}
+    
+    {% stylesheets
+        '@MondelSiteBundle/Resources/public/css/normalize.css'
+        '@MondelSiteBundle/Resources/public/css/gh-buttons.css'
+        '@MondelSiteBundle/Resources/public/css/classes.css'
+        '@MondelSiteBundle/Resources/public/css/form.css'
+        '@MondelSiteBundle/Resources/public/css/layout.css'       
+        filter='yui_css'        
+    %}
+        <link rel="stylesheet" type="text/css" media="screen" href="{{ asset_url }}" />
+    {% endstylesheets %}
+
+{% endblock %}
+
+{% block body %}
+
+    {% set error = app.session.getFlash('error') %}
+    {% set notice = app.session.getFlash('notice') %}
+
+    {% if error != '' %}
+
+        <section id="error">Error: {{ error }}</section>
+
+    {% endif %}
+
+    {% if notice != '' %}
+
+        <section id="notice">Notice: {{ notice }}</section>
+
+    {% endif %}
+
+    <header id="main-header" class="content">
+
+        <a href="/" class="float-left">
+            <img id="main-logo" src="{{ asset('bundles/mondelsite/img/logo_cuentalo.png') }}" alt="Cuentalo">
+        </a>
+
+        {% block userInfo %}{% endblock %}
+
+        <div class="clear"></div>
+    </header>
+
+    {% block firstContent %}{% endblock %}
+
+    {% block mainContent %}{% endblock %}
+
+    {% block footer %}{% endblock %}
+
+{% endblock %}

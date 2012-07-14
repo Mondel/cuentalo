@@ -1,25 +1,27 @@
 body {
-    background: -webkit-gradient(linear, left top, left bottom, from(#0051a3), to(#02428c));
-    background: -webkit-linear-gradient(top, #0051a3, #02428c);
-    background:    -moz-linear-gradient(top, #0051a3, #02428c);
-    background:     -ms-linear-gradient(top, #0051a3, #02428c);
-    background:      -o-linear-gradient(top, #0051a3, #02428c);
-    background:         linear-gradient(to bottom, #0051a3, #02428c);
+    background: url(../../bundles/mondelsite/img/2.jpg) 0 -320px;
     font-family: Arial, Helvetica, sans-serif;
     font-size: 16px;
     font-weight: normal;    
     position: relative;
 }
 
+.ie9 body {
+    filter: none;
+}
+
 /* BEGIN main header ----------- */
 
 #main-header {
-    background: -webkit-gradient(linear, left top, left bottom, from(#0051a3), to(#02428c));
-    background: -webkit-linear-gradient(top, #0051a3, #02428c);
-    background:    -moz-linear-gradient(top, #0051a3, #02428c);
-    background:     -ms-linear-gradient(top, #0051a3, #02428c);
-    background:      -o-linear-gradient(top, #0051a3, #02428c);
-    background:         linear-gradient(to bottom, #0051a3, #02428c);
+    background: #0051a3; /* Old browsers */    
+    background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIwJSIgeTI9IjEwMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iIzAwNTFhMyIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiMwMjQyOGMiIHN0b3Atb3BhY2l0eT0iMSIvPgogIDwvbGluZWFyR3JhZGllbnQ+CiAgPHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+);
+    background: -moz-linear-gradient(top,  #0051a3 0%, #02428c 100%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#0051a3), color-stop(100%,#02428c)); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top,  #0051a3 0%,#02428c 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top,  #0051a3 0%,#02428c 100%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(top,  #0051a3 0%,#02428c 100%); /* IE10+ */
+    background: linear-gradient(to bottom,  #0051a3 0%,#02428c 100%); /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#0051a3', endColorstr='#02428c',GradientType=0 ); /* IE6-8 */
     border-bottom: 1px solid black;      
 }
 
@@ -67,9 +69,10 @@ body {
             border-radius: 5px;
     -webkit-box-shadow: 1px 1px 10px 0 #888;
        -moz-box-shadow: 1px 1px 10px 0 #888;
-            box-shadow: 1px 1px 10px 0 #888;    
-    margin: 15px;
+            box-shadow: 1px 1px 10px 0 #888;            
+    margin: 15px auto;
     padding: 10px;
+    width: 450px;    
 }
 
 #register-content .button {
@@ -78,6 +81,11 @@ body {
 
 #register-content .input-widget select {
     background: #FFF;
+}
+
+#view-register-button {
+    display: block;
+    margin: 10px auto;
 }
 
 /* END register ----------- */
@@ -123,6 +131,7 @@ body {
         float: none;
         margin: 5%;
         padding: 3%;
+        width: auto;
     }
 
     #register-content .input-field {
