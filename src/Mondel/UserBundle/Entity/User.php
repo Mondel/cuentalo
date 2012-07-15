@@ -59,7 +59,7 @@ class User implements AdvancedUserInterface
      * @var string $alternative_email
      *
      * @Assert\Email()
-     * @Assert\MaxLength(50)     
+     * @Assert\MaxLength(50)
      * @ORM\Column(name="alternative_email", type="string", length=50, nullable=true)
      */
     protected $alternative_email;

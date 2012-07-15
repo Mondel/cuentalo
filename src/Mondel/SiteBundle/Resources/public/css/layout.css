@@ -34,11 +34,11 @@ body {
 }
 
 #login-form > input {    
-    -webkit-transition: width .5s;
-       -moz-transition: width .5s;
-        -ms-transition: width .5s;
-         -o-transition: width .5s;
-            transition: width .5s;
+    -webkit-transition: width .5s .15s;
+       -moz-transition: width .5s .15s;
+        -ms-transition: width .5s .15s;
+         -o-transition: width .5s .15s;
+            transition: width .5s .15s;
     width: 125px;
 }
 
@@ -50,7 +50,6 @@ body {
 #login-form span {
     color: #FFF;
     font-size: 0.75em;
-
 }
 
 #remember_me {
@@ -61,23 +60,8 @@ body {
 
 /* BEGIN register ----------- */
 
-#register-bar {
-    background: #555;
-    height: 50px;
-    text-align: center;
-}
-
-#register-bar span {
-    color: #FFF;
-    font-size: 12px;
-    font-weight: bold;
-}
-
-#register-bar #view-register-form {
-    margin: 9px;
-}
-
 #register-content {
+    /*
     background: #EEE;
     border: 1px solid #DDD;
     -webkit-border-radius: 5px;
@@ -85,10 +69,17 @@ body {
             border-radius: 5px;
     -webkit-box-shadow: 1px 1px 10px 0 #888;
        -moz-box-shadow: 1px 1px 10px 0 #888;
-            box-shadow: 1px 1px 10px 0 #888;            
+            box-shadow: 1px 1px 10px 0 #888;
+    */
+    float: right;
+    overflow: hidden;
     margin: 15px auto;
     padding: 10px;
-    width: 450px;    
+    /*width: 350px;*/
+}
+
+#register-content table {
+    width: 100%;
 }
 
 #register-content .button {
@@ -99,9 +90,8 @@ body {
     background: #FFF;
 }
 
-#view-register-button {
-    display: block;
-    margin: 10px auto;
+#register-content .input-widget input {
+    width: 95%;
 }
 
 /* END register ----------- */
@@ -146,13 +136,12 @@ body {
     #register-content {        
         float: none;
         margin: 5%;
-        padding: 3%;
-        width: auto;
+        padding: 3%;        
     }
 
     #register-content .input-field {
         box-sizing: border-box;
-        width: 100%;
+        width: 95%;
     }
 
 }

@@ -11,23 +11,28 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller,
 
 class DefaultController extends Controller
 {	
-	public function loginAction()
-	{
+
+    public function loginAction()
+    {
         if (true === $this->get('security.context')->isGranted('ROLE_USER')) {
             return $this->redirect($this->generateUrl('home_page'));
         }
 
-		$request = $this->getRequest();
-		$session = $request->getSession();		
-		$error   = $request->attributes->get(SecurityContext::AUTHENTICATION_ERROR, $session->get(
-            SecurityContext::AUTHENTICATION_ERROR
-        ));
+        $request = $this->getRequest();
+        $session = $request->getSession();
+        
+        if ($request->attributes->has(SecurityContext::AUTHENTICATION_ERROR)) {
+            $error = $request->attributes->get(SecurityContext::AUTHENTICATION_ERROR);
+        } else {
+            $error = $session->get(SecurityContext::AUTHENTICATION_ERROR);
+            $session->remove(SecurityContext::AUTHENTICATION_ERROR);
+        }
 
-		return $this->render('MondelUserBundle:Default:login.html.twig', array(
-			'last_username' => $session->get(SecurityContext::LAST_USERNAME),
-			'error'         => $error
-		));
-	}
+        return $this->render('MondelUserBundle:Default:login.html.twig', array(            
+            'lastUsername' => $session->get(SecurityContext::LAST_USERNAME),
+            'error'         => $error,
+        ));
+    }
 
 	public function registerAction()
 	{
@@ -35,7 +40,7 @@ class DefaultController extends Controller
             return $this->redirect($this->generateUrl('home_page'));
         }
 
-		$user         = new User();
+		$user         = new User();           
 		$em           = $this->getDoctrine()->getEntityManager();
 		$form         = $this->createForm(new UserType(), $user);        
         $request      = $this->getRequest();
@@ -113,11 +118,11 @@ class DefaultController extends Controller
 
                     return $this->redirect($this->generateUrl('user_login'));
                 }
-            }
+            }        
         }
 
         return $this->render('MondelUserBundle:Default:register.html.twig', array(
-			'form' => $form->createView()
+			'userForm' => $form->createView()
 		));
 	}
 
@@ -152,7 +157,7 @@ class DefaultController extends Controller
                 'notice', 
                 'Tu cuenta ha sido activada satisfactoriamente'
             );
-            return $this->redirect($this->generateUrl('home_page'));
+            return $this->redirect($this->generateUrl('user_home_page'));
         } else {
             $this->getRequest()->getSession()->setFlash(
                 'error', 

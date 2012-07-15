@@ -13,16 +13,16 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller,
 class DefaultController extends Controller
 {
     public function homePageAction()
-    {
-        $request    = $this->getRequest();
-        $session    = $request->getSession();
-        $em         = $this->getDoctrine()->getEntityManager();
-        $posts      = $em->getRepository('MondelPostBundle:Post')->findBy(
+    {        
+        $request     = $this->getRequest();
+        $session     = $request->getSession();
+        $em          = $this->getDoctrine()->getEntityManager();
+        $posts       = $em->getRepository('MondelPostBundle:Post')->findBy(
         	array('is_active' => '1'),
         	array('created_at' => 'DESC'),
         	5
     	);
-        
+
         $commentsForms = array();
         foreach ($posts as $post) {
         	$comment = new Comment();

@@ -7,21 +7,11 @@
         {% if is_granted('ROLE_USER') %}
 
             <span>Hola @{{ app.user.nick }}</span>
+            <a href="{{ path('user_logout') }}">cerrar sesión</a>
         
         {% else %}
             
-            <form id="login-form" action="{{ path('user_login_check') }}" method="post">
-                <input type="text" name="_username" id="username" class="input-field" placeholder="email">
-                <input type="password" name="_password" id="password" class="input-field" placeholder="contraseña">
-                
-                <button id="login-button" class="button">Entrar</button>                    
-                
-                <div>
-                    <input type="checkbox" id="remember_me" name="_remember_me" class="float-left" checked>
-                    <span class="checkbox-label float-left">No cerrar sesión</span>
-                    <a href="{{ path('user_password_recover') }}" class="float-right">He perdido mi contraseña</a>
-                </div>
-            </form>
+            {% include 'MondelUserBundle:Default:login_form.html.twig' %}
         
         {% endif %}
 
@@ -31,15 +21,12 @@
 
 {% block firstContent %}
 
-    <div id="register-bar">
+    {% if not is_granted('ROLE_USER') %}
 
-        <span>Aún no estas registrado</span>
-        <button class="button big primary" id="view-register-form">Quiero Registrarme</button>
-
-        <section id="register-content" class="content invisible">
+        <section id="register-content" class="content">
             {% include 'MondelUserBundle:Default:register_form.html.twig' %}
         </section>
-        
-    </div>
+
+    {% endif %}
 
 {% endblock %}

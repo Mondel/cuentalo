@@ -1,0 +1,14 @@
+{% set sessionError = app.session.getFlash('error') %}
+{% set sessionNotice = app.session.getFlash('notice') %}
+
+{% if sessionError != '' %}
+
+    <section id="error">Error: {{ sessionError }}</section>
+
+{% endif %}
+
+{% if sessionNotice != '' %}
+
+    <section id="notice">Notice: {{ sessionNotice }}</section>
+
+{% endif %}

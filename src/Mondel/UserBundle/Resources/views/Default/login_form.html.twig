@@ -1,0 +1,19 @@
+<form id="login-form" action="{{ path('user_login_check') }}" method="post">
+    
+    {% if error is defined and error %}
+        <div>{{ error.message | trans }}</div>
+    {% endif %}
+
+    
+    <input type="text" name="_username" id="username" class="input-field" placeholder="email" {% if lastUsername is defined %}value="{{ lastUsername }}"{% endif %}>
+    
+    <input type="password" name="_password" id="password" class="input-field" placeholder="contraseña">
+    
+    <button id="login-button" class="button">Entrar</button>                    
+    
+    <div>
+        <input type="checkbox" id="remember_me" name="_remember_me" class="float-left" checked>
+        <span class="checkbox-label float-left">No cerrar sesión</span>
+        <a href="{{ path('user_password_recover') }}" class="float-right">He perdido mi contraseña</a>
+    </div>
+</form>

@@ -1,7 +1,7 @@
 <form action="{{ path('user_register') }}" method="post" {{ form_enctype(userForm) }}>
-            
-    {{ form_errors(userForm) }}
 
+    {{ form_errors(userForm) }}
+            
     <table>
         <tr>
             <td class="input-label">
@@ -53,7 +53,7 @@
             </td>
             <td class="input-error">
 
-                {{ form_errors(userForm.password) }}
+                {{ form_errors(userForm.password.password) }}
                 
             </td>
         </tr>
@@ -71,7 +71,11 @@
                 }}
                 
             </td>
-            <td class="input-error"></td>
+            <td class="input-error">
+
+                {{ form_errors(userForm.password.repeatedPassword) }}                
+
+            </td>
         </tr>
         <tr>
             <td class="input-label">

@@ -7,7 +7,7 @@
         '@MondelSiteBundle/Resources/public/css/gh-buttons.css'
         '@MondelSiteBundle/Resources/public/css/classes.css'
         '@MondelSiteBundle/Resources/public/css/form.css'
-        '@MondelSiteBundle/Resources/public/css/layout.css'       
+        '@MondelSiteBundle/Resources/public/css/layout.css'
         filter='yui_css'        
     %}
         <link rel="stylesheet" type="text/css" media="screen" href="{{ asset_url }}" />
@@ -17,20 +17,7 @@
 
 {% block body %}
 
-    {% set error = app.session.getFlash('error') %}
-    {% set notice = app.session.getFlash('notice') %}
-
-    {% if error != '' %}
-
-        <section id="error">Error: {{ error }}</section>
-
-    {% endif %}
-
-    {% if notice != '' %}
-
-        <section id="notice">Notice: {{ notice }}</section>
-
-    {% endif %}
+    {% include 'MondelSiteBundle:Default:flashes.html.twig' %}
 
     <header id="main-header" class="content">
 

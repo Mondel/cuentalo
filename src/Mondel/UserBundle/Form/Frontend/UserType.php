@@ -43,6 +43,15 @@ class UserType extends AbstractType {
                 ));
     }
 
+    public function getDefaultOptions() {
+        return array(
+            'data_class'      => 'Mondel\UserBundle\Entity\User',
+            'csrf_protection' => true,
+            'csrf_field_name' => '_token',
+            'intention'       => 'user_item',
+        );
+    }
+
     public function getName() {
         return 'mondel_userbundle_usertype';
     }
