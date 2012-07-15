@@ -3,12 +3,12 @@
 
 {% if sessionError != '' %}
 
-    <section id="error">Error: {{ sessionError }}</section>
+    <section class="alert error">{{ sessionError }}</section>
 
 {% endif %}
 
 {% if sessionNotice != '' %}
 
-    <section id="notice">Notice: {{ sessionNotice }}</section>
+    <section class="alert notice">{{ sessionNotice }}</section>
 
 {% endif %}

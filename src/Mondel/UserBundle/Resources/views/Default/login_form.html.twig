@@ -1,9 +1,8 @@
 <form id="login-form" action="{{ path('user_login_check') }}" method="post">
     
     {% if error is defined and error %}
-        <div>{{ error.message | trans }}</div>
+        <div class="alert error">{{ error.message | trans }}</div>
     {% endif %}
-
     
     <input type="text" name="_username" id="username" class="input-field" placeholder="email" {% if lastUsername is defined %}value="{{ lastUsername }}"{% endif %}>
     
