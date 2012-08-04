@@ -1,0 +1,28 @@
+// TABLETS AND BELOW
+// -----------------
+@media (max-width: 979px) {
+
+    // COLLAPSIBLE FORM
+    // ------------------
+    // Form collapse clears brand
+    .form-collapse {
+        clear: both;
+        height: 0;
+        overflow: hidden;
+    }
+
+}
+
+
+// DEFAULT DESKTOP
+// ---------------
+
+// Required to make the collapsing navbar work on regular desktops
+@media (min-width: 980px) {
+
+    .form-collapse.collapse {
+        height: auto !important;
+        overflow: visible !important;
+    }
+    
+}

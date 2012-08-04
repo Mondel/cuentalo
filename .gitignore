@@ -19,3 +19,5 @@ actualizar.sh
 web/sitemap.xml
 
 .pydevproject
+composer.phar
+composer.lock

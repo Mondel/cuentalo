@@ -9,14 +9,14 @@ use Doctrine\ORM\EntityRepository,
 class PostType extends AbstractType {
 
     public function buildForm(FormBuilderInterface $builder, array $options) {
-        $builder->add('category', 'entity', array(
+        $builder/*->add('category', 'entity', array(
             'empty_value'   => 'Categoría',
             'property'      => 'name',
             'class'         => 'MondelPostBundle:Category',
             'query_builder' => function(EntityRepository $er) {
                 return $er->createQueryBuilder('c')->orderBy('c.name', 'ASC');
             },
-        ))
+        ))*/
         ->add('genre', 'choice', array(
             'choices'     => array('m' => 'Masculino', 'f' => 'Femenino', 'i' => 'Indefinido'),
             'empty_value' => 'Sexo'
@@ -29,7 +29,7 @@ class PostType extends AbstractType {
 		->add('video_url', 'hidden');
     }
 
-    public function getDefaultOptions() {
+    public function getDefaultOptions(array $options) {
         return array(
             'data_class'      => 'Mondel\PostBundle\Entity\Post',
             'csrf_protection' => true,

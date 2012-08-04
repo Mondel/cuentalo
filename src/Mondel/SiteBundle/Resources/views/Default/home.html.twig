@@ -1,32 +1,58 @@
 {% extends 'MondelSiteBundle::layout.html.twig' %}
 
-{% block userInfo %}
+{% block mainContent %}
 
-    <div id="user-info" class="float-right">
+    <form id="post-form" action="{{ path('post_create') }}" method="post" enctype="{{ form_enctype(postForm) }}">
+    
+        {{ form_rest(postForm) }}
 
-        {% if is_granted('ROLE_USER') %}
+        <button class="btn" id="create-post-button">Crear</button>
 
-            <span>Hola @{{ app.user.nick }}</span>
-            <a href="{{ path('user_logout') }}">cerrar sesión</a>
-        
-        {% else %}
-            
-            {% include 'MondelUserBundle:Default:login_form.html.twig' %}
-        
-        {% endif %}
+    </form>
+    
+    {% for post in posts %}
 
-    </div>
+        <blockquote class="well">
+            <p>{{ post.text }}</p>
+            <small>Anonimous</small>
+        </blockquote>
+
+    {% endfor %}
+    
 
 {% endblock %}
 
-{% block firstContent %}
+{% block javascripts %}
 
-    {% if not is_granted('ROLE_USER') %}
+{{ parent() }}
 
-        <section id="register-content" class="content">
-            {% include 'MondelUserBundle:Default:register_form.html.twig' %}
-        </section>
+<script>
+    URL_POST_CREATE = "{{ path('post_create') }}"; // global
+    var ajaxObj;
+    
+    $('#create-post-button').on('click', function (e) {
+        e.preventDefault();
+        if (ajaxObj) {
+            ajaxObj.abort();
+        }
+        ajaxObj = $.ajax({
+            type: "POST",
+            url: URL_POST_CREATE,
+            data: $('#post-form').serialize()//{ name: "John", location: "Boston" }
+        }).then(
+            function (data) {
+                $('#post-form')
+                    .after('<blockquote class="well"><p>' + data + '</p><small>Anonimous</small></blockquote>')
+                    //reset form
+                    .find('textarea').val(this.defaultValue).end()
+                    .find('select').val(this.defaultValue);
+            },
+            function (data) {
+                console.log(data);
+            }
+        );        
+    });
 
-    {% endif %}
+</script>
 
 {% endblock %}

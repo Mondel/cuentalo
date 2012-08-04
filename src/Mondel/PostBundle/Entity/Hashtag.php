@@ -6,14 +6,15 @@ use Doctrine\ORM\Mapping as ORM,
     Symfony\Component\Validator\Constraints as Assert;
 
 /**
- * Mondel\PostBundle\Entity\Category
+ * Mondel\PostBundle\Entity\Hashtag
  *
  * @ORM\Table()
  * @ORM\Entity()
  * @ORM\HasLifecycleCallbacks()
  */
-class Category
+class Hashtag
 {
+
     /**
      * @var integer $id
      *
@@ -26,13 +27,20 @@ class Category
     /**
      * @var string $name
      *
-     * @Assert\MaxLength(50)
-     * @Assert\MinLength(3)
      * @Assert\NotBlank()
+     * @Assert\MaxLength(100)
      * @ORM\Column(name="name", type="string", length=100)
      */
     protected $name;
 
+    /**
+     * @var string $ip
+     *
+     * @Assert\MaxLength(20)
+     * @ORM\Column(name="ip", type="string", length=20)
+     */
+    protected $ip;
+    
     /**
      * @var boolean $is_active
      *
@@ -41,23 +49,18 @@ class Category
     protected $is_active;
 
     /**
-     * @ORM\OneToMany(targetEntity="Post", mappedBy="category")
+     * @ORM\ManyToMany(targetEntity="Post", inversedBy="hashtags")
+     * @ORM\JoinTable(name="HashtagPost")
      */
+    
     protected $posts;
 
-    public function __construct()
-    {
-        $this->is_active = true;
+    public function __construct() {
         $this->posts = new \Doctrine\Common\Collections\ArrayCollection();
-    }
-
-    public function isActive()
-    {
-        return $this->getIsActive();
-    }
+    }    
 
     /*
-     * End mis propiedades
+     * End custom properties
      */
 
     /**
@@ -74,7 +77,7 @@ class Category
      * Set name
      *
      * @param string $name
-     * @return Category
+     * @return Hashtag
      */
     public function setName($name)
     {
@@ -93,10 +96,32 @@ class Category
     }
 
     /**
+     * Set ip
+     *
+     * @param string $ip
+     * @return Hashtag
+     */
+    public function setIp($ip)
+    {
+        $this->ip = $ip;
+        return $this;
+    }
+
+    /**
+     * Get ip
+     *
+     * @return string 
+     */
+    public function getIp()
+    {
+        return $this->ip;
+    }
+
+    /**
      * Set is_active
      *
      * @param boolean $isActive
-     * @return Category
+     * @return Hashtag
      */
     public function setIsActive($isActive)
     {
@@ -118,22 +143,12 @@ class Category
      * Add posts
      *
      * @param Mondel\PostBundle\Entity\Post $posts
-     * @return Category
+     * @return Hashtag
      */
     public function addPost(\Mondel\PostBundle\Entity\Post $posts)
     {
         $this->posts[] = $posts;
         return $this;
-    }
-
-    /**
-     * Get posts
-     *
-     * @return Doctrine\Common\Collections\Collection 
-     */
-    public function getPosts()
-    {
-        return $this->posts;
     }
 
     /**
@@ -144,5 +159,15 @@ class Category
     public function removePost(\Mondel\PostBundle\Entity\Post $posts)
     {
         $this->posts->removeElement($posts);
+    }
+
+    /**
+     * Get posts
+     *
+     * @return Doctrine\Common\Collections\Collection 
+     */
+    public function getPosts()
+    {
+        return $this->posts;
     }
 }

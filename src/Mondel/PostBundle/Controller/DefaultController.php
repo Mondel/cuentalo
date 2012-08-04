@@ -3,6 +3,7 @@
 namespace Mondel\PostBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller,
+    Symfony\Component\HttpFoundation\Response,
 	Mondel\PostBundle\Entity\Comment,
     Mondel\PostBundle\Entity\Post,
     Mondel\UserBundle\Entity\Notification,
@@ -38,6 +39,12 @@ class DefaultController extends Controller
 
             $em->persist($post);            
             $em->flush();
+        } else {
+            $errors = $form->getErrors();
+        }
+
+        if ($request->isXmlHttpRequest()) {
+            return new Response($post->getText());
         }
 
         //TODO: Perdi los errores del formulario
@@ -78,7 +85,7 @@ class DefaultController extends Controller
             'posts'         => $posts,
             'form'          => $postForm->createView(),
             'commentsForms' => $commentsForms,
-            'cid'           => $category->getId() 
+            'cid'           => $category->getId()
         ));
     }
 
