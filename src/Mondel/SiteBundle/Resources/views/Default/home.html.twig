@@ -27,7 +27,7 @@
 {{ parent() }}
 
 <script>
-    URL_POST_CREATE = "{{ path('post_create') }}";
+    URL_POST_CREATE = "{{ path('post_create') }}"; // global
     var ajaxObj;
     
     $('#create-post-button').on('click', function (e) {
