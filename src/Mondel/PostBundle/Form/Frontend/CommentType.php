@@ -11,7 +11,7 @@ class CommentType extends AbstractType {
         $builder->add('text', 'text', array('max_length' => 555));
     }
 
-    public function getDefaultOptions() {
+    public function getDefaultOptions(array $options) {
         return array(
             'data_class'      => 'Mondel\PostBundle\Entity\Comment',
             'csrf_protection' => true,

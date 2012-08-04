@@ -75,22 +75,22 @@ class Post
      */
     protected $user;
 
-     /**
-     * @ORM\ManyToOne(targetEntity="Category", inversedBy="posts")
-     * @ORM\JoinColumn(name="category_id", referencedColumnName="id")
-     */
-    protected $category;
-
     /**
      * @ORM\OneToMany(targetEntity="Comment", mappedBy="post")
      */
-    protected $comments;
+    protected $comments;    
+
+    /**
+     * @ORM\ManyToMany(targetEntity="Hashtag", mappedBy="posts")
+     */
+    protected $hashtags;
 
     public function __construct()
     {
     	$this->created_at = new \DateTime();
     	$this->is_active  = true;
-        $this->comments   = new \Doctrine\Common\Collections\ArrayCollection();    
+        $this->comments   = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->hashtags   = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     public function isActive()
@@ -267,28 +267,6 @@ class Post
     }
 
     /**
-     * Set category
-     *
-     * @param Mondel\PostBundle\Entity\Category $category
-     * @return Post
-     */
-    public function setCategory(\Mondel\PostBundle\Entity\Category $category = null)
-    {
-        $this->category = $category;
-        return $this;
-    }
-
-    /**
-     * Get category
-     *
-     * @return Mondel\PostBundle\Entity\Category 
-     */
-    public function getCategory()
-    {
-        return $this->category;
-    }
-
-    /**
      * Add comments
      *
      * @param Mondel\PostBundle\Entity\Comment $comments
@@ -298,6 +276,16 @@ class Post
     {
         $this->comments[] = $comments;
         return $this;
+    }
+
+    /**
+     * Remove comments
+     *
+     * @param <variableType$comments
+     */
+    public function removeComment(\Mondel\PostBundle\Entity\Comment $comments)
+    {
+        $this->comments->removeElement($comments);
     }
 
     /**
@@ -311,12 +299,34 @@ class Post
     }
 
     /**
-     * Remove comments
+     * Add hashtags
      *
-     * @param <variableType$comments
+     * @param Mondel\PostBundle\Entity\Hashtag $hashtags
+     * @return Post
      */
-    public function removeComment(\Mondel\PostBundle\Entity\Comment $comments)
+    public function addHashtag(\Mondel\PostBundle\Entity\Hashtag $hashtags)
     {
-        $this->comments->removeElement($comments);
+        $this->hashtags[] = $hashtags;
+        return $this;
+    }
+
+    /**
+     * Remove hashtags
+     *
+     * @param <variableType$hashtags
+     */
+    public function removeHashtag(\Mondel\PostBundle\Entity\Hashtag $hashtags)
+    {
+        $this->hashtags->removeElement($hashtags);
+    }
+
+    /**
+     * Get hashtags
+     *
+     * @return Doctrine\Common\Collections\Collection 
+     */
+    public function getHashtags()
+    {
+        return $this->hashtags;
     }
 }

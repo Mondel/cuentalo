@@ -3,11 +3,8 @@
 {% block stylesheets %}
     
     {% stylesheets
-        '@MondelSiteBundle/Resources/public/css/normalize.css'
-        '@MondelSiteBundle/Resources/public/css/classes.css'
-        '@MondelSiteBundle/Resources/public/css/form.css'
-        '@MondelUserBundle/Resources/public/css/layout.css'        
-        filter='yui_css'        
+        '@MondelSiteBundle/Resources/public/less/bootstrap.less'
+        filter='less'        
     %}
         <link rel="stylesheet" type="text/css" media="screen" href="{{ asset_url }}" />
     {% endstylesheets %}
@@ -19,10 +16,10 @@
     {% include 'MondelSiteBundle:Default:flashes.html.twig' %}
 
     <header id="main-header" class="main-content">
-        <div id="main-search-container" class="float-left">
+        <div id="main-search-container" class="pull-left">
             <input type="search" id="main-search" class="input-field">
         </div>
-        <div id="user-info" class="float-right">
+        <div id="user-info" class="pull-right">
 
             {% if is_granted('ROLE_USER') %}
 
@@ -38,7 +35,7 @@
                     <input type="text" name="_username" id="username" class="input-field">
                     <input type="password" name="_password" id="password" class="input-field">
                     
-                    <button id="login-button" class="button">Entrar</button>                    
+                    <button id="login-button" class="btn">Entrar</button>                    
                     
                     <input type="checkbox" id="remember_me" name="_remember_me" checked>
                     <span>No cerrar sesión</span>

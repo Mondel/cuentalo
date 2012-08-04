@@ -3,12 +3,8 @@
 {% block stylesheets %}
     
     {% stylesheets
-        '@MondelSiteBundle/Resources/public/css/normalize.css'
-        '@MondelSiteBundle/Resources/public/css/gh-buttons.css'
-        '@MondelSiteBundle/Resources/public/css/classes.css'
-        '@MondelSiteBundle/Resources/public/css/form.css'
-        '@MondelSiteBundle/Resources/public/css/layout.css'
-        filter='yui_css'        
+        '@MondelSiteBundle/Resources/public/less/styles.less'
+        filter='less'
     %}
         <link rel="stylesheet" type="text/css" media="screen" href="{{ asset_url }}" />
     {% endstylesheets %}
@@ -17,23 +13,93 @@
 
 {% block body %}
 
-    {% include 'MondelSiteBundle:Default:flashes.html.twig' %}
+    {% include 'MondelSiteBundle:Default:flashes.html.twig' %}    
 
-    <header id="main-header" class="content">
+    <header class="navbar navbar-fixed-top">
+        <div class="navbar-inner">
+            <div class="container-fluid">
+                <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </a>
+                <a class="btn btn-navbar" data-toggle="collapse" data-target=".form-collapse">
+                    <span class="icon-user icon-white"></span>
+                </a>
+                <a class="brand" href="{{ path('home_page') }}">Cuentalo</a>
 
-        <a href="{{ path('home_page') }}" class="float-left">
-            <img id="main-logo" src="{{ asset('bundles/mondelsite/img/logo_cuentalo.png') }}" alt="Cuentalo">
-        </a>
+                {% if is_granted('ROLE_USER') %}
 
-        {% block userInfo %}{% endblock %}
-
-        <div class="clear"></div>
+                    <div class="btn-group pull-right">
+                        <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
+                            <i class="icon-user"></i> {{ app.user.nick }}
+                            <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">Configurar</a></li>
+                            <li class="divider"></li>
+                            <li><a href="{{ path('user_logout') }}">Salir</a></li>
+                        </ul>
+                    </div>
+        
+                {% else %}
+            
+                    {% include 'MondelUserBundle:Default:login_form.html.twig' %}
+        
+                {% endif %}
+                
+                <div class="nav-collapse">
+                    <ul class="nav">
+                        <li class="active"><a href="#">Home</a></li>
+                        <li><a href="#about">About</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
     </header>
 
-    {% block firstContent %}{% endblock %}
+    <div class="container-fluid">
+        <div class="row-fluid">
+            <div class="span2">
+                <div class="well sidebar-nav">
+                    <ul class="nav nav-list">
+                        <li class="nav-header">Sidebar</li>
+                        <li class="active"><a href="#">Link</a></li>
+                        <li><a href="#">Link</a></li>
+                        <li><a href="#">Link</a></li>
+                        <li><a href="#">Link</a></li>
+                        <li class="nav-header">Sidebar</li>
+                        <li><a href="#">Link</a></li>
+                        <li><a href="#">Link</a></li>
+                        <li><a href="#">Link</a></li>
+                        <li><a href="#">Link</a></li>
+                        <li><a href="#">Link</a></li>
+                        <li><a href="#">Link</a></li>
+                        <li class="nav-header">Sidebar</li>
+                        <li><a href="#">Link</a></li>
+                        <li><a href="#">Link</a></li>
+                        <li><a href="#">Link</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="span10">
+                {% block mainContent %}{% endblock %}
+            </div>
+        </div>
+    </div>    
 
-    {% block mainContent %}{% endblock %}
+    {% block footer %}{% endblock %}    
 
-    {% block footer %}{% endblock %}
+{% endblock %}
+
+{% block javascripts %}
+    
+    {% javascripts
+        '../vendor/twitter/bootstrap/js/bootstrap-dropdown.js'        
+        '../vendor/twitter/bootstrap/js/bootstrap-collapse.js'
+    %}
+        <script src="{{ asset_url }}"></script>
+    {% endjavascripts %}
 
 {% endblock %}
