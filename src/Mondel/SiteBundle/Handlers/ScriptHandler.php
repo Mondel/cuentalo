@@ -50,8 +50,6 @@ class ScriptHandler
     
     protected static function copyR( $path, $dest )
     {
-        echo $path . "\n";
-        echo $dest . "\n";
         if( is_dir($path) )
         {
             @mkdir( $dest );
@@ -70,8 +68,7 @@ class ScriptHandler
                     else
                     {
                         copy( $path.DIRECTORY_SEPARATOR.$file, $dest.DIRECTORY_SEPARATOR.$file );
-                    }
-                    echo "TEST" . "\n";
+                    }                    
                 }
             }
             return true;
