@@ -1,24 +1,17 @@
 {% extends 'MondelSiteBundle::layout.html.twig' %}
 
 {% block mainContent %}
-
-    <form id="post-form" action="{{ path('post_create') }}" method="post" enctype="{{ form_enctype(postForm) }}">
     
-        {{ form_rest(postForm) }}
+    <section id="stream">
+        {% for post in posts %}
 
-        <button class="btn" id="create-post-button">Crear</button>
+            <blockquote class="well">
+                <p>{{ post.text }}</p>
+                <small>Anonimous</small>
+            </blockquote>
 
-    </form>
-    
-    {% for post in posts %}
-
-        <blockquote class="well">
-            <p>{{ post.text }}</p>
-            <small>Anonimous</small>
-        </blockquote>
-
-    {% endfor %}
-    
+        {% endfor %}        
+    </section>
 
 {% endblock %}
 
@@ -41,11 +34,15 @@
             data: $('#post-form').serialize()//{ name: "John", location: "Boston" }
         }).then(
             function (data) {
-                $('#post-form')
-                    .after('<blockquote class="well"><p>' + data + '</p><small>Anonimous</small></blockquote>')
+                $('#stream')
+                    .prepend('<blockquote class="well"><p>' + data + '</p><small>Anonimous</small></blockquote>');
                     //reset form
-                    .find('textarea').val(this.defaultValue).end()
-                    .find('select').val(this.defaultValue);
+                    $('#post-form')
+                        .find('textarea').val(this.defaultValue).end()
+                        .find('select').val(this.defaultValue);
+
+                    //hide modal
+                    $('#post-create-modal').modal('hide');
             },
             function (data) {
                 console.log(data);

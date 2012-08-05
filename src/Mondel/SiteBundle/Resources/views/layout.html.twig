@@ -55,6 +55,9 @@
                         <li><a href="#contact">Contact</a></li>
                     </ul>
                 </div>
+                <a class="btn" data-toggle="modal" href="#post-create-modal">
+                    <span class="icon-pencil"></span>
+                </a>                
             </div>
         </div>
     </header>
@@ -87,7 +90,27 @@
                 {% block mainContent %}{% endblock %}
             </div>
         </div>
-    </div>    
+    </div>
+
+    <div class="modal hide" id="post-create-modal">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">×</button>
+            <h3>Modal header</h3>
+        </div>
+        <form id="post-form" action="{{ path('post_create') }}" method="post" enctype="{{ form_enctype(postForm) }}">
+            <div class="modal-body">
+            
+                {{ form_rest(postForm) }}
+
+                {#<button class="btn" id="create-post-button">Crear</button>#}
+               
+            </div>
+            <div class="modal-footer">
+                <button href="#" class="btn" data-dismiss="modal">Cerrar</button>
+                <button href="#" class="btn btn-primary" id="create-post-button">Contar</button>
+            </div>
+        </form>
+    </div>
 
     {% block footer %}{% endblock %}    
 
@@ -96,8 +119,9 @@
 {% block javascripts %}
     
     {% javascripts
-        '../vendor/twitter/bootstrap/js/bootstrap-dropdown.js'        
         '../vendor/twitter/bootstrap/js/bootstrap-collapse.js'
+        '../vendor/twitter/bootstrap/js/bootstrap-dropdown.js'
+        '../vendor/twitter/bootstrap/js/bootstrap-modal.js'
     %}
         <script src="{{ asset_url }}"></script>
     {% endjavascripts %}
