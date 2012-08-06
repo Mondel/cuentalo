@@ -1,24 +1,22 @@
-<form class="form-inline navbar-form pull-right form-collapse" action="{{ path('user_login_check') }}" method="post">
+<form class="well" action="{{ path('user_login_check') }}" method="post">
     
     {% if error is defined and error %}
         <div class="alert error">{{ error.message | trans }}</div>
     {% endif %}
     
-    <input type="text" name="_username" class="input-small" placeholder="Email" {% if lastUsername is defined %}value="{{ lastUsername }}"{% endif %}>
+    <input type="text" name="_username" class="input-large" placeholder="Email" {% if lastUsername is defined %}value="{{ lastUsername }}"{% endif %}>
     
-    <input type="password" name="_password" class="input-small" placeholder="Contraseña">
+    <input type="password" name="_password" class="input-large" placeholder="Contraseña">
     
     <label class="checkbox">
         <input type="checkbox" name="_remember_me" checked>
         No cerrar sesión
     </label>
     
-    {#
-    <div>
-        <a class="pull-left" href="{{ path('user_password_recover') }}">He perdido mi contraseña</a>
-    </div>
-    #}
-
     <button class="btn">Entrar</button>
+
+    <a href="{{ path('user_password_recover') }}">He perdido mi contraseña</a>
+
+    <a class="user-register" href="{{ path('user_register') }}">Soy nuevo, registrarme</a>    
     
 </form>
