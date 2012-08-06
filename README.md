@@ -18,6 +18,7 @@ Cuentalo Sitio Web
 - php app/console assetic:dump
 * Configurar apache httdconf de la siguiente manera:
 
+```
 <VirtualHost *:80>
     DocumentRoot   "/directorio/de/cuentalo/web"
     DirectoryIndex app_dev.php
@@ -28,5 +29,6 @@ Cuentalo Sitio Web
         Allow from All
     </Directory>
 </VirtualHost>
+```
 
 * Abrir la url de tu sitio web configurado en apache
