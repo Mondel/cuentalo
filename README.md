@@ -4,6 +4,7 @@ Cuentalo Sitio Web
 -- Un día con tiempo haremos el README. --
 
 1. Como instalar cuentalo ?
+-----------
 
 * Clonar el repositorio
 * Setear los permisos de los directorios "app/logs" y "app/cache" correctamente (http://symfony.com/doc/current/book/installation.html)
