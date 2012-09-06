@@ -20,7 +20,7 @@ class DefaultController extends Controller
         $posts       = $em->getRepository('MondelPostBundle:Post')->findBy(
         	array('is_active' => '1'),
         	array('created_at' => 'DESC'),
-        	5
+        	15
     	);
 
         $commentsForms = array();

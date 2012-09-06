@@ -1,0 +1,33 @@
+body {
+    background: url(../../bundles/mondelsite/img/background.png);
+}
+
+#main-header {
+    background-color: #1b1b1b;
+    background-image: -moz-linear-gradient(top, #222222, #111111);
+    background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#222222), to(#111111));
+    background-image: -webkit-linear-gradient(top, #222222, #111111);
+    background-image: -o-linear-gradient(top, #222222, #111111);
+    background-image: linear-gradient(to bottom, #222222, #111111);
+    background-repeat: repeat-x;
+    border-color: #252525;
+    filter: progid:dximagetransform.microsoft.gradient(startColorstr='#ff222222', endColorstr='#ff111111', GradientType=0);
+
+    height: 40px;
+}
+
+.post {
+    background: url(../../bundles/mondelsite/img/background_content_post.png);
+    border: 1px solid #CCC;
+    margin: 10px;
+    width: 350px;
+}
+
+.post .post-header {
+    background: url(../../bundles/mondelsite/img/background_header_post.png);
+    padding: 5px;
+}
+
+.post .post-content {
+    padding: 10px;
+}

@@ -1,12 +1,14 @@
 {% extends '::base.html.twig' %}
 
 {% block stylesheets %}
-    
+
     {% stylesheets
-        '@MondelSiteBundle/Resources/public/less/styles.less'
-        filter='less'
+        '@MondelSiteBundle/Resources/public/css/normalize.css'
+        '@MondelSiteBundle/Resources/public/css/classes.css'
+        '@MondelSiteBundle/Resources/public/css/site.css'
+        filter='yui_css'
     %}
-        <link rel="stylesheet" type="text/css" media="screen" href="{{ asset_url }}" />
+    <link rel="stylesheet" type="text/css" media="screen" href="{{ asset_url }}" />
     {% endstylesheets %}
 
 {% endblock %}
@@ -15,111 +17,13 @@
 
     {% include 'MondelSiteBundle:Default:flashes.html.twig' %}    
 
-    <header class="navbar navbar-fixed-top">
-        <div class="navbar-inner">
-            <div class="container-fluid">
-                <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </a>
-                <a class="brand" href="{{ path('home_page') }}">Cuentalo</a>   
-                <a class="btn pull-right" data-toggle="modal" href="#post-create-modal">
-                    <span class="icon-pencil"></span>
-                </a>             
-
-                {% if is_granted('ROLE_USER') %}
-
-                    <div class="btn-group pull-right">
-                        <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
-                            <i class="icon-user"></i> {{ app.user.nick }}
-                            <span class="caret"></span>
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li><a href="#">Configurar</a></li>
-                            <li class="divider"></li>
-                            <li><a href="{{ path('user_logout') }}">Salir</a></li>
-                        </ul>
-                    </div>                    
-        
-                {% endif %}
-                
-                <div class="nav-collapse">
-                    <ul class="nav">
-                        <li class="active"><a href="#">Home</a></li>
-                        <li><a href="#about">About</a></li>
-                        <li><a href="#contact">Contact</a></li>
-                    </ul>
-                </div>                      
-            </div>
-        </div>
+    <header id="main-header">
     </header>
-    
-    <div class="container-fluid">
-        <div class="row-fluid">
-            <div class="span2">
-                <div class="well sidebar-nav">
-                    <ul class="nav nav-list">
-                        <li class="nav-header">Sidebar</li>
-                        <li class="active"><a href="#">Link</a></li>
-                        <li><a href="#">Link</a></li>
-                        <li><a href="#">Link</a></li>
-                        <li><a href="#">Link</a></li>
-                        <li class="nav-header">Sidebar</li>
-                        <li><a href="#">Link</a></li>
-                        <li><a href="#">Link</a></li>
-                        <li><a href="#">Link</a></li>
-                        <li><a href="#">Link</a></li>
-                        <li><a href="#">Link</a></li>
-                        <li><a href="#">Link</a></li>
-                        <li class="nav-header">Sidebar</li>
-                        <li><a href="#">Link</a></li>
-                        <li><a href="#">Link</a></li>
-                        <li><a href="#">Link</a></li>
-                    </ul>
-                </div>
-            </div>
-            <div class="span7">
-                {% block mainContent %}{% endblock %}
-            </div>
-            <div class="span3">
-                {% include 'MondelUserBundle:Default:login_form.html.twig' %}
-            </div>
-        </div>
-    </div>
 
-    <div class="modal hide" id="post-create-modal">
-        <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal">×</button>
-            <h3>Modal header</h3>
-        </div>
-        <form id="post-form" action="{{ path('post_create') }}" method="post" enctype="{{ form_enctype(postForm) }}">
-            <div class="modal-body">
-            
-                {{ form_rest(postForm) }}
-
-                {#<button class="btn" id="create-post-button">Crear</button>#}
-               
-            </div>
-            <div class="modal-footer">
-                <button href="#" class="btn" data-dismiss="modal">Cerrar</button>
-                <button href="#" class="btn btn-primary" id="create-post-button">Contar</button>
-            </div>
-        </form>
-    </div>
-
-    {% block footer %}{% endblock %}    
+    <section id="main-section">
+        {% block mainContent %}{% endblock %}
+    </section>
 
 {% endblock %}
 
-{% block javascripts %}
-    
-    {% javascripts
-        '../vendor/twitter/bootstrap/js/bootstrap-collapse.js'
-        '../vendor/twitter/bootstrap/js/bootstrap-dropdown.js'
-        '../vendor/twitter/bootstrap/js/bootstrap-modal.js'
-    %}
-        <script src="{{ asset_url }}"></script>
-    {% endjavascripts %}
-
-{% endblock %}
+{% block javascripts %}{% endblock %}

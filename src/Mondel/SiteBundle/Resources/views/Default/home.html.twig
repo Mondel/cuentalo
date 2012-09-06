@@ -1,55 +1,19 @@
 {% extends 'MondelSiteBundle::layout.html.twig' %}
 
 {% block mainContent %}
-    
-    <section id="stream">
-        {% for post in posts %}
 
-            <blockquote class="well">
+    {% for post in posts %}
+
+        <article class="post float-left">
+            <header class="post-header">
+                <span>ayer</span>
+                <span>@anon</span>
+            </header>
+            <section class="post-content">
                 <p>{{ post.text }}</p>
-                <small>Anonimous</small>
-            </blockquote>
+            </section>
+        </article>
 
-        {% endfor %}        
-    </section>
-
-{% endblock %}
-
-{% block javascripts %}
-
-{{ parent() }}
-
-<script>
-    URL_POST_CREATE = "{{ path('post_create') }}";
-    var ajaxObj;
-    
-    $('#create-post-button').on('click', function (e) {
-        e.preventDefault();
-        if (ajaxObj) {
-            ajaxObj.abort();
-        }
-        ajaxObj = $.ajax({
-            type: "POST",
-            url: URL_POST_CREATE,
-            data: $('#post-form').serialize()//{ name: "John", location: "Boston" }
-        }).then(
-            function (data) {
-                $('#stream')
-                    .prepend('<blockquote class="well"><p>' + data + '</p><small>Anonimous</small></blockquote>');
-                    //reset form
-                    $('#post-form')
-                        .find('textarea').val(this.defaultValue).end()
-                        .find('select').val(this.defaultValue);
-
-                    //hide modal
-                    $('#post-create-modal').modal('hide');
-            },
-            function (data) {
-                console.log(data);
-            }
-        );        
-    });
-
-</script>
+    {% endfor %}        
 
 {% endblock %}

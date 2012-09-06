@@ -1,7 +1,7 @@
 <form class="well" action="{{ path('user_login_check') }}" method="post">
     
     {% if error is defined and error %}
-        <div class="alert error">{{ error.message | trans }}</div>
+        <div class="alert alert-error">{{ error.message | trans }}</div>
     {% endif %}
     
     <input type="text" name="_username" class="input-large" placeholder="Email" {% if lastUsername is defined %}value="{{ lastUsername }}"{% endif %}>

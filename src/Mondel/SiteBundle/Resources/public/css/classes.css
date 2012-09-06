@@ -1,0 +1,19 @@
+.float-left {
+    float: left;
+}
+
+.float-right {
+    float: right;
+}
+
+.clear {
+    clear: both;
+}
+
+.new-clear {
+    overflow: hidden;
+}
+
+.invisible {
+    display: none;
+}
