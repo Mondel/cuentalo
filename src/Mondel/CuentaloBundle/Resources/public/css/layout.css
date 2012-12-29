@@ -1004,7 +1004,9 @@ button span.icon,
     #center {
         float: none;
         overflow: hidden;
-        width: 320px;
+        /*width: 320px;*/
+        padding: 0 5%;
+        width: 90%;
     }
 
     #left #menu_usuarios {
@@ -1013,7 +1015,8 @@ button span.icon,
 
     #center #box {
         margin: 0 auto;
-        width: 300px;
+        /*width: 300px;*/
+        width: 99%;
     }
 
     #center #box #contenido_texto {
@@ -1021,12 +1024,16 @@ button span.icon,
     }
 
     #left button {
-        width: 310px;
+        /*width: 310px;*/
+        width: 100%;
+        padding: 0;
+        margin: 5px 0;
     }
 
     #center #stream .Post {
         margin: 15px auto;
-        width: 310px;
+        /*width: 310px;*/
+        width: 100%;
     }
 
     #center #stream .Comentario,
@@ -1045,12 +1052,14 @@ button span.icon,
     #center #stream #masContenidos {
         display: block;
         margin: 5px auto;
-        width: 320px;
+        /*width: 320px;*/
+        width: 100%;
     }
 
     body #content,
     .Wrap {
-        max-width: 320px;
+        /*max-width: 320px;*/
+        max-width: 100%;
     }
 
 }
