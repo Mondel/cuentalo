@@ -955,7 +955,7 @@ button span.icon,
 }
 
 /* Smartphones (portrait and landscape) ----------- */
-@media only screen and (min-width : 320px) and (max-width : 480px) {
+@media only screen and (min-width : 320px) and (max-width : 1024px) {
     
     #facebook,
     #left .fb-like-box,
@@ -1064,6 +1064,11 @@ button span.icon,
     .Wrap {
         /*max-width: 320px;*/
         max-width: 100%;
+    }
+
+    .Post .Contenido .DescripcionVideo {
+        padding: 2%;
+        width: 96%;
     }
 
 }
