@@ -1038,15 +1038,19 @@ button span.icon,
 
     #center #stream .Comentario,
     #center #stream .Comentario .ComentarioDatos {
-        width: auto;
+        /*width: auto;*/
+        width: 94%;
     }
 
     #center #stream .Comentario .ComentarioDatos .Texto {
-        width: 245px;
+        /*width: 245px;*/
+        width: 90%;
     }
 
     #center #stream .Post .Datos .Comentarios #comentario_texto {
-        width: 285px;
+        /*width: 285px;*/
+        margin: 3%;
+        width: 94%;
     }
 
     #center #stream #masContenidos {
