@@ -955,7 +955,7 @@ button span.icon,
 }
 
 /* Smartphones (portrait and landscape) ----------- */
-@media only screen and (min-width : 320px) and (max-width : 1024px) {
+@media only screen and (min-width : 240px) and (max-width : 1024px) {
     
     #facebook,
     #left .fb-like-box,
