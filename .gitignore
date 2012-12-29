@@ -13,6 +13,9 @@
 .buildpath
 .project
 .settings
+bin/doctrine
+bin/doctrine.php
+composer.lock
 
 facebook/
 actualizar.sh
